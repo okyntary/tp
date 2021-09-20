@@ -68,3 +68,5 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities: Gradle Expert
+
+I like playing Slay the Spire. Slay the Spire is the best game released in the last three years, fight me.
