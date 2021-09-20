@@ -34,7 +34,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/jovyn.png" width="200px">
 
 [[github](http://github.com/jovyntls)] 
-[[portfolio](team/jovyntan.md)]
+[[portfolio](team/jovyn.md)]
 
 * Role: Team Lead
 * Responsibilities: Scheduling and tracking, Deliverables and deadlines
@@ -48,6 +48,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities: Documentation, Code Quality
+
+### Tan Yan Feng
+
+<img src="images/tanyanfeng.png" width="200px">
+
+[[github](http://github.com/justintanyf)]
+[[portfolio](team/tanyanfeng.md)]
+
+* Role: Developer
+* Responsibilities: Intellij Expert, SourceTree Expert
 
 ### James Doe
 
