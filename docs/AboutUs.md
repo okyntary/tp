@@ -61,7 +61,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Teo Keane
 
-<img src="images/okyntary.png" width="200px">
+<img src="images/okyntary.jpg" width="200px">
 
 [[github](http://github.com/okyntary)]
 [[portfolio](team/okyntary.md)]
