@@ -4,8 +4,9 @@ title: User Guide
 ---
 
 ePoch is a desktop app for managing contacts, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, ePoch can get your contact management tasks done faster than traditional GUI apps.
-
 It is built off of AB3, and contains additional functionality over AB3.
+
+It is intended to be used by NUS students, to help keep track of the students and organizations that they encounter.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -32,7 +33,7 @@ It is built off of AB3, and contains additional functionality over AB3.
 
    * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+1. Refer to the [Features](##features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
