@@ -3,29 +3,28 @@ layout: page
 title: User Guide
 ---
 
-ePoch is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, ePoch can get your contact management tasks done faster than traditional GUI apps.
+ePoch is a desktop app for managing contacts, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, ePoch can get your contact management tasks done faster than traditional GUI apps.
 
-It is intended to be used by NUS students, to help them keep track of the students and organanizations that they encounter.
+It is built off of AB3, and contains additional functionality over AB3.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java 11 or above installed in your Computer.
 
-1. Download the latest `epoch.jar` from [here](https://github.com/AY2122S1-CS2103-T14-2/tp/releases).
+1. Download the JAR file. *The download location will be confirmed later*.
 
-1. Copy the file to the folder you want to use as the _home folder_ for your ePoch.
+1. Copy the file to the folder you want to use as the home folder for your ePoch.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * **`list`** : Lists all contacts.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * **`add`** `n/Tan Wei Yang id/e27182818` : Adds a contact named `Tan Wei Yang` with id `e27182818` to the Address Book.
 
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
