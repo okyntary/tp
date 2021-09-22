@@ -177,16 +177,24 @@ _Details coming soon ..._
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
 
+**Q**: Can I rename tags?<br>
+**A**: You can add tags to a contact, or delete tags from a contact.
+However, ePoch does not support renaming tags.
+
+**Q**: Can I edit a contact's NUSNET ID?<br>
+**A**: Since NUSNET ID is something that should be constant for all students, you cannot edit a contact's NUSNET ID.
+This is a feature that ensures that you do not accidentally and erroneously modify a NUSNET ID.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
-Action | Format, Examples
+Action | Format
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add** | `add n/NAME id/NUSNET_ID [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [at/TAG_TO_ADD]…​`
 **Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Greet** | `greet`
+**Delete** | `delete INDEX`<br>
+**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [at/TAG_TO_ADD]… [dt/TAG_TO_DELETE]…​`<br>
 **List** | `list`
 **Help** | `help`
