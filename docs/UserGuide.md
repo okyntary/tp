@@ -104,3 +104,56 @@ Examples:
 
 Deletes the specified person from ePoch.
 
+Format: `deletep pid/PERSON_ID`
+
+* Deletes the person with the specified person ID (`pid`).
+* The person ID refers to the index number shown in the displayed person list.
+* The person ID **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `deletep pid/2` deletes the person in the address book that has person ID of 2.
+
+### Finding a person: `findp`
+
+Finds all the people in ePoch that match all the specified fields.
+
+Format: `findp [pid/PERSON_ID] [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [cca/CCA_NAME]`
+
+* Finds the people who have valid matches for all the specified fields.
+* At least one of the optional fields must be provided.
+
+### Adding a cca: `addc`
+
+Adds a CCA.
+
+Format: `addc n/CCA_NAME`
+
+### Editing a cca: `editc`
+
+Edits the name of a CCA.
+
+Format: `editc cid/CCA_ID n/CCA_NAME`
+
+### Deleting a cca: `deletec`
+
+Deletes a CCA.
+
+Format: `deletec cid/CCA_ID`
+
+### Deleting a cca: `deletec`
+
+Deletes a CCA.
+
+Format: `deletec cid/CCA_ID`
+
+### Finding a cca: `findc`
+
+Filters all CCAs with names that contain a given string.
+
+Format: `findc s/STRING`
+
+### Adding a reminder to a CCA: `addr`
+
+Adds a reminder to a CCA.
+
+Format: `addr cid/CCA_ID t/REMINDER_TITLE sd/START_DATE [f/FREQUENCY] [o/OCCURRENCES]`
