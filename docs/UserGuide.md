@@ -157,3 +157,4 @@ Format: `findc s/STRING`
 Adds a reminder to a CCA.
 
 Format: `addr cid/CCA_ID t/REMINDER_TITLE sd/START_DATE [f/FREQUENCY] [o/OCCURRENCES]`
+
