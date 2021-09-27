@@ -51,7 +51,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Tan Yan Feng
 
-<img src="images/tanyanfeng.png" width="200px">
+<img src="images/justintanyf.png" width="200px">
 
 [[github](http://github.com/justintanyf)]
 [[portfolio](team/tanyanfeng.md)]
