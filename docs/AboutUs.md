@@ -41,7 +41,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Neo Wei Qing
 
-<img src="images/weiqing.png" width="200px">
+<img src="images/weiquu.png" width="200px">
 
 [[github](http://github.com/weiquu)]
 [[portfolio](team/weiqing.md)]
