@@ -77,9 +77,7 @@
     -->
     <module name="UnusedImports"/>
 
-    <module name="AvoidStarImport">
-      <property name="excludes" value="seedu.address.logic.commands"/>
-    </module>
+    <module name="AvoidStarImport"/>
 
     <!--
     NAMING CHECKS
