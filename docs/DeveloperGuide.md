@@ -288,3 +288,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*` | user who gets bored looking at the same GUI all day | be able to occasionally change ePoch's colour scheme | have a fresh experience when I use ePoch |
 | `*` | user who values their time and has occasional typos | have an auto-complete function | not worry about correcting my typos |
 | `*` | organised user | be able to export my contacts to a JSON file | send an organised list of contacts to others |
+| `* *` | visual user | be able to customise the colour for my contact's CCA tags | visually differentiate and colour-code different tags |
+| `* *` | visual user | be able to customise the colour for my various tasks and reminders | visually differentiate and colour-code different them based on my preferences |
+| `* *` | tech-savvy user who is familiar with keyboard shortcuts | be able to exeucte commands with shortcuts I am familiar with | easily execute more complicated commands with just a few keystrokes |
+| `* * *` | user who has multiple friends, CCAs, and reminders | be able to view all within a nice UI | view them quickly and efficiently |
+| `* *` | user with friends in multiple CCAs | be able to quickly view what CCAs my friends are in | keep track of which CCAs to join based on what CCAs my friends are in |
+| `* *` | user who loves to experiment | be able to quickly delete all data from ePoch at once | try out different configurations of persons CCAs and reminders |
+| `* * *` | user | add a person to a CCA | keep track of what CCAs my friends are in |
+| `* * *` | user whose friends are experimenting with CCAs | be able to efficiently add and remove people from CCAs | update ePoch with the latest information |
+| `* * *` | user who meets many fellow students | be able to add contacts in ePoch | keep track of the people I meet |
+| `* *` | user who meets many fellow students | be able to edit the details of my contacts in ePoch | update ePoch with the latest information, especially since a contact's details may change regularly |
+| `* * *` | busy user | be able to delete contacts from ePoch | stop keeping tracks of contacts that are no longer relevant |
+| `* *` | forgetful user | find any contact that matches my search terms | easily find and contact(s) that I desire |
+| `* * *` | user with multiple CCAs | be able to add all the CCAs I am involved in | keep track of them |
+| `* * *` | user who changes CCAs over time | be able to delete CCAs | keep track of those I am currently a part of |
+| `* *` | careless user | be able to edit the details of CCAs | fix any mistakes I've made in adding the CCA |
+| `* *` | user who is overcommitted with many CCAs | be able to find any CCA with a title that matches a given search term | easily filter through my many CCAs |
+| `* *` | user who has many friends from different CCAs | be able to search for a CCA and view all the people who are part of that CCA | remember who is part of that CCA |
+| `* *` | user who is overcommitted with many upcoming events and commitments | be able to view all the reminders associated with a CCA | see what upcoming events I have related to that CCA |
+| `* * *` | user with many commitments | be able to add reminders | be reminded to do any tasks or events associated with those commitments |
+| `* * *` | user with many CCA commitments | be able to add reminders associated with CCAs | be reminded of CCA-specific commitments |
