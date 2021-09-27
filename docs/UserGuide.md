@@ -158,3 +158,63 @@ Adds a reminder to a CCA.
 
 Format: `addr cid/CCA_ID t/REMINDER_TITLE sd/START_DATE [f/FREQUENCY] [o/OCCURRENCES]`
 
+### Editing the title of a reminder: `editr`
+
+Edits the title of a reminder.
+
+Format: `editr rid/REMINDER_ID t/REMINDER_TITLE`
+
+### Deleting the title of a reminder: `deleter`
+
+Deletes a reminder.
+
+Format: `deleter rid/REMINDER_ID`
+
+### Finding the title of a reminder: `findr`
+
+Filters all reminders that fit a given string.
+
+Format: `findr t/REMINDER_TITLE`
+
+### Snoozing a reminder: `snoozer`
+
+Snoozes the reminder.
+
+Format: `snoozer rid/REMINDER_ID`
+
+### Enrolling a person from a CCA: `enrol`
+
+Enrols a person into a CCA.
+
+Format: `enrol cid/CCA_ID pid/PERSON_ID`
+
+### Expelling a person from a CCA: `expel`
+
+Removes a person from a CCA.
+
+Format: `expel cid/CCA_ID pid/PERSON_ID`
+
+### Delete all data from ePoch: `clear`
+
+Deletes all data (persons, CCAs, reminders) from ePoch.
+
+Format: `clear`
+
+### Exiting the program : `exit`
+
+Exits the program.
+
+Format: `exit`
+
+### Viewing help : `help`
+
+Shows a message explaning how to access the help page.
+
+![help message](images/helpMessage.png)
+
+Format: `help`
+
+### Saving the data
+
+ePoch data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
