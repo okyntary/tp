@@ -1,9 +1,13 @@
 ---
-layout: page
+layout: user
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+ePoch is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, ePoch can get your contact management tasks done faster than traditional GUI apps.
+
+It has been designed for the busy NUS student. It allows the user to create contacts for persons and to create CCAs, link those persons and CCAs together, and to create periodic reminders for those CCAs.
+
+It is built off of AB3, and contains additional functionality over AB3.
 
 * Table of Contents
 {:toc}
@@ -14,9 +18,9 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the JAR file. **The download location will be confirmed later.**
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your ePoch.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -24,13 +28,13 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+   * **`list`** : Lists all persons, CCAs and reminders.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * **`addp`**`n/Tan Wei Yang:` Adds a person named `Tan Wei Yang` to ePoch.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+   * **`deletep`**`pid/3` : Deletes the person with id 3.
 
-   * **`clear`** : Deletes all contacts.
+   * **`clear`** : Deletes all data (persons, CCAs, reminders) from ePoch.
 
    * **`exit`** : Exits the app.
 
@@ -45,13 +49,10 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
-
+  e.g. in `addp n/NAME`, `NAME` is a parameter which can be used as `addp n/John Doe`.
+  
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g `n/NAME [e/EMAIL]` can be used as `n/Johnny Doe [e/EMAIL]` or as `n/Johnny Doe`.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -64,87 +65,138 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 </div>
 
-### Viewing help : `help`
-
-Shows a message explaning how to access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
-
-
-### Adding a person: `add`
-
-Adds a person to the address book.
-
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
-
-Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
 ### Listing all persons : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all persons, CCAs, reminders in ePoch.
 
 Format: `list`
 
-### Editing a person : `edit`
+### Adding a person: `addp`
 
-Edits an existing person in the address book.
+Adds a person to ePoch.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `addp n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+A person must have at least their name added.
+</div>
+
+Examples:
+* `addp n/Jovyn Tan Li Shyan`
+* `addp n/Neo Wei Qing e/wei_qing_official_email_real@gmail.com a/Cinnamon College at/NUSSO @nussymphonyorchestra thanks`
+
+### Editing a person: `editp`
+
+Edits an existing person in ePoch.
+
+Format: `editp pid/PERSON_ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]​`
+
+* Edits the person at the specified by their person id (`pid`). The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit pid/1 p/91234567 e/jiveshrealemail@yahoo.com` Edits the phone number and email address of the 1st person to be `91234567` and `jiveshrealemail@yahoo.com` respectively.
+*  `edit 2 n/weiq dt/NUSSO @nussymphonyorchestra thanks` Edits the name of the 2nd person to be `weiq` and clears the specified tag.
 
-### Locating persons by name: `find`
+### Deleting a person: `deletep`
 
-Finds persons whose names contain any of the given keywords.
+Deletes the specified person from ePoch.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `deletep pid/PERSON_ID`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* Deletes the person with the specified person ID (`pid`).
+* The person ID refers to the index number shown in the displayed person list.
+* The person ID **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `deletep pid/2` deletes the person in the address book that has person ID of 2.
 
-### Deleting a person : `delete`
+### Finding a person: `findp`
 
-Deletes the specified person from the address book.
+Finds all the people in ePoch that match all the specified fields.
 
-Format: `delete INDEX`
+Format: `findp [pid/PERSON_ID] [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [cca/CCA_NAME]`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* Finds the people who have valid matches for all the specified fields.
+* At least one of the optional fields must be provided.
 
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+### Adding a cca: `addc`
 
-### Clearing all entries : `clear`
+Adds a CCA.
 
-Clears all entries from the address book.
+Format: `addc n/CCA_NAME`
+
+### Editing a cca: `editc`
+
+Edits the name of a CCA.
+
+Format: `editc cid/CCA_ID n/CCA_NAME`
+
+### Deleting a cca: `deletec`
+
+Deletes a CCA.
+
+Format: `deletec cid/CCA_ID`
+
+### Deleting a cca: `deletec`
+
+Deletes a CCA.
+
+Format: `deletec cid/CCA_ID`
+
+### Finding a cca: `findc`
+
+Filters all CCAs with names that contain a given string.
+
+Format: `findc s/STRING`
+
+### Adding a reminder to a CCA: `addr`
+
+Adds a reminder to a CCA.
+
+Format: `addr cid/CCA_ID t/REMINDER_TITLE sd/START_DATE [f/FREQUENCY] [o/OCCURRENCES]`
+
+### Editing the title of a reminder: `editr`
+
+Edits the title of a reminder.
+
+Format: `editr rid/REMINDER_ID t/REMINDER_TITLE`
+
+### Deleting the title of a reminder: `deleter`
+
+Deletes a reminder.
+
+Format: `deleter rid/REMINDER_ID`
+
+### Finding the title of a reminder: `findr`
+
+Filters all reminders that fit a given string.
+
+Format: `findr t/REMINDER_TITLE`
+
+### Snoozing a reminder: `snoozer`
+
+Snoozes the reminder.
+
+Format: `snoozer rid/REMINDER_ID`
+
+### Enrolling a person from a CCA: `enrol`
+
+Enrols a person into a CCA.
+
+Format: `enrol cid/CCA_ID pid/PERSON_ID`
+
+### Expelling a person from a CCA: `expel`
+
+Removes a person from a CCA.
+
+Format: `expel cid/CCA_ID pid/PERSON_ID`
+
+### Delete all data from ePoch: `clear`
+
+Deletes all data (persons, CCAs, reminders) from ePoch.
 
 Format: `clear`
 
@@ -154,39 +206,15 @@ Exits the program.
 
 Format: `exit`
 
+### Viewing help : `help`
+
+Shows a message explaning how to access the help page.
+
+![help message](images/helpMessage.png)
+
+Format: `help`
+
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+ePoch data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### Editing the data file
-
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
-</div>
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
---------------------------------------------------------------------------------------------------------------------
-
-## FAQ
-
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
-
---------------------------------------------------------------------------------------------------------------------
-
-## Command summary
-
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
