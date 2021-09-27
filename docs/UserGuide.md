@@ -222,3 +222,49 @@ Format: `help`
 
 ePoch data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
+### Editing the data file
+
+ePoch data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+
+<div markdown="span" class="alert alert-warning">**Caution:**
+If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+</div>
+
+### Archiving data files `[coming in v2.0]`
+
+_Details coming soon ..._
+
+--------------------------------------------------------------------------------------------------------------------
+
+## FAQ
+
+**Q**: How do I transfer my data to another Computer?<br>
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ePoch home folder.
+
+**Q**: Can I create a reminder without linking it to a CCA?
+**A**: No. We do not support that functionality: all reminders must be linked to a CCA in some way
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Summary of commands
+
+Action | Format
+-------|------------------
+**List all data** | `list`
+**Delete all data** | `clear`
+**Add person** | `addp n/PERSON_NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]`
+**Edit person data** | `editp pid/PERSON_ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]`
+**Delete person** | `deletep pid/PERSON_ID`
+**Find person** | `findp [pid/PERSON_ID] [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [cca/CCA_NAME]`
+**Add CCA** | `addc n/CCA_NAME`
+**Edit CCA name** | `editc cid/CCA_ID n/CCA_NAME`
+**Delete CCA** | `deletec cid/CCA_ID`
+**Find CCA** | `findc s/STRING`
+**Add reminder** |`addr cid/CCA_ID t/REMINDER_TITLE sd/START_DATE [f/FREQUENCY] [o/OCCURRENCES]`
+**Edit reminder title** | `editr rid/REMINDER_ID t/REMINDER_TITLE`
+**Delete reminder** | `deleter rid/REMINDER_ID`
+**Find reminder** | `findr t/REMINDER_TITLE`
+**Snooze reminder** | `snoozer`
+**Enrols a person into CCA** | `enrol cid/CCA_ID pid/PERSON_ID`
+**Removes a person from a CCA** | `expel cid/CCA_ID pid/PERSON_ID`
+**Exit** | Exits the app
