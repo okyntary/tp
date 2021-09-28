@@ -388,4 +388,4 @@ Extensions:
 2. ePoch shows a list of persons and CCAs.
 3. User requests to enrol a person into a CCA and specifices the person ID and CCA ID.
 4. ePoch adds the person to the CCA.
-   Use case ends.
+   Use case ends. 
