@@ -308,3 +308,39 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *` | user who is overcommitted with many upcoming events and commitments | be able to view all the reminders associated with a CCA | see what upcoming events I have related to that CCA |
 | `* * *` | user with many commitments | be able to add reminders | be reminded to do any tasks or events associated with those commitments |
 | `* * *` | user with many CCA commitments | be able to add reminders associated with CCAs | be reminded of CCA-specific commitments |
+| `* *` | user who might make typos | edit reminder titles | rectify any errors in the title I set for reminders |
+| `* * *` | user with commitments constantly in flux | delete reminders | delete irrelevant or redundant reminders |
+| `* *` | user who is overcommitted with many commitments | filter reminders | find more important reminders by their title |
+| `* *` | user who can finish reminders quickly | snooze reminders that I've completed | clear space for reminders that I've not yet completed |
+
+
+### Use cases
+
+(For all use cases below, the **System** is`ePoch` and the **Actor** is the `user`, unless specified otherwise)
+
+**Use case: UC1 - List all persons, CCAs, and reminders**
+
+**MSS**
+
+1. User requests to list all persons,  CCAs, and reminders.
+2. ePoch displays all persons,  CCAs, and reminders currently stored in ePoch.
+   Use case ends.
+
+**Use case: UC2 - Add a person**
+
+**MSS**
+
+1. User requests to add a person to the list and optionally specifies their name, phone number, email and address.
+2. ePoch adds the person with the specified information
+   Use case ends.
+
+**Use case: UC3 - Add a CCA**
+
+**MSS**
+
+1. User requests to add a CCA to the list and specifies the CCA name.
+2. ePoch adds the CCA to the list of CCAs.
+   Use case ends.
+
+
+**Use case: UC4 - Find a person**
