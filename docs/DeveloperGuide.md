@@ -3,7 +3,7 @@ layout: page
 title: Developer Guide
 ---
 * Table of Contents
-  {:toc}
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -117,7 +117,7 @@ How the parsing works:
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
-
+****
 
 The `Model` component,
 
@@ -176,7 +176,7 @@ Step 2. The user executes `delete 5` command to delete the 5th person in the add
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add n/David …` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
@@ -211,7 +211,7 @@ Step 5. The user then decides to execute the command `list`. Commands that do no
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …` command. This is the behavior that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
@@ -224,13 +224,13 @@ The following activity diagram summarizes what happens when a user executes a ne
 **Aspect: How undo & redo executes:**
 
 * **Alternative 1 (current choice):** Saves the entire address book.
-    * Pros: Easy to implement.
-    * Cons: May have performance issues in terms of memory usage.
+  * Pros: Easy to implement.
+  * Cons: May have performance issues in terms of memory usage.
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-    * Cons: We must ensure that the implementation of each individual command are correct.
+  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
 
@@ -263,7 +263,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**:
+**Value proposition**: 
 
 ePoch helps users categorise contacts, which helps the user keep track of various overlapping social circles.
 The product offers peace of mind to the user using a “set-and-forget” approach by helping the user schedule recurring social events.
@@ -324,15 +324,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User requests to list all persons,  CCAs, and reminders.
 2. ePoch displays all persons,  CCAs, and reminders currently stored in ePoch.
-   Use case ends.
+Use case ends.
 
 **Use case: UC2 - Add a person**
 
 **MSS**
 
 1. User requests to add a person to the list and optionally specifies their name, phone number, email and address.
-2. ePoch adds the person with the specified information
-   Use case ends.
+2. ePoch adds the person with the specified information 
+Use case ends.
 
 **Use case: UC3 - Add a CCA**
 
@@ -340,7 +340,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User requests to add a CCA to the list and specifies the CCA name.
 2. ePoch adds the CCA to the list of CCAs.
-   Use case ends.
+Use case ends.
 
 
 **Use case: UC4 - Find a person**
@@ -366,19 +366,19 @@ Extensions:
 2. ePoch shows a list of persons.
 3. User requests to delete a person and specficies the person ID.
 4. ePoch deletes the person.
-   Use case ends.
+Use case ends.
 
 **Extensions**
 
 * 2a. The list is empty.
 
   Use case ends.
-
+  
 * 3a. The given person does not exist (person ID invalid).
 
     * 3a1. AddressBook shows an error message.
       Use case resumes at step 2.
-
+     
 
 **Use case: UC6 - Enrol a person into a CCA**
 
@@ -388,7 +388,7 @@ Extensions:
 2. ePoch shows a list of persons and CCAs.
 3. User requests to enrol a person into a CCA and specifices the person ID and CCA ID.
 4. ePoch adds the person to the CCA.
-   Use case ends.
+Use case ends.
 
 **Extensions**
 
@@ -455,7 +455,7 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+1. _{ more test cases … }_
 
 ### Deleting a person
 
@@ -472,7 +472,7 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+1. _{ more test cases … }_
 
 ### Saving data
 
@@ -480,5 +480,4 @@ testers are expected to do more *exploratory* testing.
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
-1. _{ more test cases …​ }_
-
+1. _{ more test cases … }_
