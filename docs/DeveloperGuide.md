@@ -344,3 +344,48 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 **Use case: UC4 - Find a person**
+
+**MSS**
+
+1. User requests to find a person based on their attributes.
+2. ePoch displays all persons that fit the user's requirements.
+
+Extensions:
+
+* 1a. No attributes are specified.
+
+    * 1a1. ePoch throws an error.
+      Use case resumes from step 1.
+
+
+**Use case: UC5 -  Delete a person**
+
+**MSS**
+
+1. User requests to list persons.
+2. ePoch shows a list of persons.
+3. User requests to delete a person and specficies the person ID.
+4. ePoch deletes the person.
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given person does not exist (person ID invalid).
+
+    * 3a1. AddressBook shows an error message.
+      Use case resumes at step 2.
+
+
+**Use case: UC6 - Enrol a person into a CCA**
+
+**MSS**
+
+1. User requests to list persons and CCAs.
+2. ePoch shows a list of persons and CCAs.
+3. User requests to enrol a person into a CCA and specifices the person ID and CCA ID.
+4. ePoch adds the person to the CCA.
+   Use case ends. 
