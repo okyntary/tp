@@ -389,3 +389,50 @@ Extensions:
 3. User requests to enrol a person into a CCA and specifices the person ID and CCA ID.
 4. ePoch adds the person to the CCA.
    Use case ends. 
+
+**Extensions**
+
+* 2a. The list of persons is empty.
+
+  Use case ends.
+
+* 2b. The list of CCAs is empty.
+
+  Use case ends.
+
+* 3a. The given person does not exist (person ID invalid).
+
+    * 3a1. ePoch shows an error message.
+      Use case resumes at step 2.
+
+* 3b. The given CCA does not exist (CCA ID invalid).
+
+    * 3b1. ePoch shows an error message.
+      Use case resumes at step 2.
+
+*{More to be added}*
+
+### Non-Functional Requirements
+
+1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  The JAR file should not exceed 100MB.
+5.  The system should respond within 2 seconds whenever a command is entered by the user.
+
+*{More to be added}*
+
+### Glossary
+
+* **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Person**: A contact that the user wants to save
+* **CCA**: A school-based group that a person may be a member of
+* **Reminder**: A scheduled event associated with a CCA that the user wishes to be notified of
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Instructions for manual testing**
+
+Given below are instructions to test the app manually.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
