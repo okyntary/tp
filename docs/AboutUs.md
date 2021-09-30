@@ -21,7 +21,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Jivesh Mohan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jivesh.png" width="200px">
 
 [[github](https://github.com/jivesh)]
 [[portfolio](team/johndoe.md)]
