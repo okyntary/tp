@@ -3,33 +3,37 @@ layout: user
 title: User Guide
 ---
 
+ePoch is a desktop app for managing contacts, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, ePoch can get your contact management tasks done faster than traditional GUI apps.
+=======
 ePoch is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, ePoch can get your contact management tasks done faster than traditional GUI apps.
 
 It has been designed for the busy NUS student. It allows the user to create contacts for persons and to create CCAs, link those persons and CCAs together, and to create periodic reminders for those CCAs.
 
-It is built off of AB3, and contains additional functionality over AB3.
-
-* Table of Contents
-{:toc}
+It is intended to be used by NUS students, to help keep track of the students and organizations that they encounter.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java 11 or above installed in your Computer.
 
+1. Download the JAR file. *The download location will be confirmed later*.
+
+1. Copy the file to the folder you want to use as the home folder for your ePoch.
+=======
 1. Download the JAR file. **The download location will be confirmed later.**
 
 1. Copy the file to the folder you want to use as the _home folder_ for your ePoch.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * **`list`** : Lists all persons, CCAs and reminders.
 
+   * **`add`** `n/Tan Wei Yang id/e27182818` : Adds a contact named `Tan Wei Yang` with id `e27182818` to the Address Book.
+=======
    * **`addp`**`n/Tan Wei Yang:` Adds a person named `Tan Wei Yang` to ePoch.
 
    * **`deletep`**`pid/3` : Deletes the person with id 3.
@@ -38,7 +42,7 @@ It is built off of AB3, and contains additional functionality over AB3.
 
    * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+1. Refer to the [Features](##features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -218,3 +222,49 @@ Format: `help`
 
 ePoch data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
+### Editing the data file
+
+ePoch data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+
+<div markdown="span" class="alert alert-warning">**Caution:**
+If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+</div>
+
+### Archiving data files `[coming in v2.0]`
+
+_Details coming soon ..._
+
+--------------------------------------------------------------------------------------------------------------------
+
+## FAQ
+
+**Q**: How do I transfer my data to another Computer?<br>
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ePoch home folder.
+
+**Q**: Can I create a reminder without linking it to a CCA?
+**A**: No. We do not support that functionality: all reminders must be linked to a CCA in some way
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Summary of commands
+
+Action | Format
+-------|------------------
+**List all data** | `list`
+**Delete all data** | `clear`
+**Add person** | `addp n/PERSON_NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]`
+**Edit person data** | `editp pid/PERSON_ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]`
+**Delete person** | `deletep pid/PERSON_ID`
+**Find person** | `findp [pid/PERSON_ID] [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [cca/CCA_NAME]`
+**Add CCA** | `addc n/CCA_NAME`
+**Edit CCA name** | `editc cid/CCA_ID n/CCA_NAME`
+**Delete CCA** | `deletec cid/CCA_ID`
+**Find CCA** | `findc s/STRING`
+**Add reminder** |`addr cid/CCA_ID t/REMINDER_TITLE sd/START_DATE [f/FREQUENCY] [o/OCCURRENCES]`
+**Edit reminder title** | `editr rid/REMINDER_ID t/REMINDER_TITLE`
+**Delete reminder** | `deleter rid/REMINDER_ID`
+**Find reminder** | `findr t/REMINDER_TITLE`
+**Snooze reminder** | `snoozer`
+**Enrols a person into CCA** | `enrol cid/CCA_ID pid/PERSON_ID`
+**Removes a person from a CCA** | `expel cid/CCA_ID pid/PERSON_ID`
+**Exit** | Exits the app
