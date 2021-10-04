@@ -96,6 +96,43 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    //// cca-level operations
+
+    /**
+     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     */
+    public boolean hasCca(Cca cca) {
+        requireNonNull(cca);
+        return ccas.contains(cca);
+    }
+
+    /**
+     * Adds a cca to the address book.
+     * The cca must not already exist in the address book.
+     */
+    public void addCca(Cca p) {
+        ccas.add(p);
+    }
+
+    /**
+     * Replaces the given cca {@code target} in the list with {@code editedCca}.
+     * {@code target} must exist in the address book.
+     * The cca identity of {@code editedCca} must not be the same as another existing cca in the address book.
+     */
+    public void setCca(Cca target, Cca editedCca) {
+        requireNonNull(editedCca);
+
+        ccas.setCca(target, editedCca);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeCca(Cca key) {
+        ccas.remove(key);
+    }
+
     //// util methods
 
     @Override

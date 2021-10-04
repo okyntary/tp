@@ -1,10 +1,9 @@
-package seedu.address.logic.commands.cca;
+package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CCAS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 
 /**
@@ -21,6 +20,7 @@ public class ListCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredCcaList(PREDICATE_SHOW_ALL_CCAS);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

@@ -114,6 +114,30 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    @Override
+    public boolean hasCca(Cca person) {
+        requireNonNull(person);
+        return addressBook.hasCca(person);
+    }
+
+    @Override
+    public void deleteCca(Cca target) {
+        addressBook.removeCca(target);
+    }
+
+    @Override
+    public void addCca(Cca person) {
+        addressBook.addCca(person);
+        updateFilteredCcaList(PREDICATE_SHOW_ALL_CCAS);
+    }
+
+    @Override
+    public void setCca(Cca target, Cca editedCca) {
+        requireAllNonNull(target, editedCca);
+
+        addressBook.setCca(target, editedCca);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**

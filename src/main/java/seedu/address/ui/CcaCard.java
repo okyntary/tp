@@ -37,7 +37,7 @@ public class CcaCard extends UiPart<Region> {
         super(FXML);
         this.cca = cca;
         id.setText(displayedIndex + ". ");
-        name.setText(cca.getName().fullName);
+        this.name.setText(cca.getName().fullName);
     }
 
     @Override

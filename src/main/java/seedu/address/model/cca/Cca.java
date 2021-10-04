@@ -6,22 +6,22 @@ import java.util.Objects;
 public class Cca {
 
     // Identity fields
-    private final seedu.address.model.cca.Name name;
+    private final CcaName ccaName;
 
     /**
      * Every field must be present and not null.
      */
-    public Cca(seedu.address.model.cca.Name name) {
-        requireAllNonNull(name);
-        this.name = name;
+    public Cca(CcaName ccaName) {
+        requireAllNonNull(ccaName);
+        this.ccaName = ccaName;
     }
 
-    public Name getName() {
-        return name;
+    public CcaName getName() {
+        return ccaName;
     }
 
     /**
-     * Returns true if both persons have the same name.
+     * Returns true if both persons have the same ccaName.
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSameCca(seedu.address.model.cca.Cca otherCca) {
@@ -54,7 +54,7 @@ public class Cca {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name);
+        return Objects.hash(ccaName);
     }
 
     @Override
