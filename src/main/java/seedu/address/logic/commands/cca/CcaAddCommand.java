@@ -10,7 +10,7 @@ import seedu.address.model.Model;
 import seedu.address.model.cca.Cca;
 
 /**
- * Adds a person to the address book.
+ * Adds a CCA to the address book.
  */
 public class CcaAddCommand extends Command {
 
@@ -30,9 +30,9 @@ public class CcaAddCommand extends Command {
     /**
      * Creates an CcaAddCommand to add the specified {@code Cca}
      */
-    public CcaAddCommand(Cca person) {
-        requireNonNull(person);
-        toAdd = person;
+    public CcaAddCommand(Cca cca) {
+        requireNonNull(cca);
+        toAdd = cca;
     }
 
     @Override

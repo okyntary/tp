@@ -31,9 +31,9 @@ public class CcaAddCommandParser implements Parser<CcaAddCommand> {
 
         CcaName ccaName = ParserUtil.parseCcaName(argMultimap.getValue(PREFIX_NAME).get());
 
-        Cca person = new Cca(ccaName);
+        Cca cca = new Cca(ccaName);
 
-        return new CcaAddCommand(person);
+        return new CcaAddCommand(cca);
     }
 
     /**
