@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.cca.Cca;
 import seedu.address.model.person.Person;
+import seedu.address.model.reminder.Reminder;
 
 /**
  * The API of the Model component.
@@ -119,4 +120,7 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredCcaList(Predicate<Cca> predicate);
+
+    /** Returns an unmodifiable view of the filtered cca list */
+    ObservableList<Reminder> getFilteredReminderList();
 }

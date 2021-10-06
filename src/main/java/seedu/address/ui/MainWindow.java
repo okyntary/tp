@@ -33,6 +33,7 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
     private CcaListPanel ccaListPanel;
+    private ReminderListPanel reminderListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -47,6 +48,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane ccaListPanelPlaceholder;
+
+    @FXML
+    private StackPane reminderListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -119,6 +123,9 @@ public class MainWindow extends UiPart<Stage> {
 
         ccaListPanel = new CcaListPanel(logic.getFilteredCcaList());
         ccaListPanelPlaceholder.getChildren().add(ccaListPanel.getRoot());
+
+        reminderListPanel = new ReminderListPanel(logic.getFilteredReminderList());
+        reminderListPanelPlaceholder.getChildren().add(reminderListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());

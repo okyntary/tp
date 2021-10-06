@@ -10,6 +10,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.cca.Cca;
 import seedu.address.model.person.Person;
+import seedu.address.model.reminder.Reminder;
 
 /**
  * API of the Logic component
@@ -34,8 +35,11 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
+    /** Returns an unmodifiable view of the filtered list of ccas */
     ObservableList<Cca> getFilteredCcaList();
+
+    /** Returns an unmodifiable view of the filtered list of reminders */
+    ObservableList<Reminder> getFilteredReminderList();
 
     /**
      * Returns the user prefs' address book file path.
