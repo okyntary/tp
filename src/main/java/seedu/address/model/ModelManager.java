@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.cca.Cca;
 import seedu.address.model.person.Person;
 
 /**
@@ -22,6 +23,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Cca> filteredCcas;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -35,6 +37,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredCcas = new FilteredList<>(this.addressBook.getCcaList());
     }
 
     public ModelManager() {
@@ -112,6 +115,30 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    @Override
+    public boolean hasCca(Cca person) {
+        requireNonNull(person);
+        return addressBook.hasCca(person);
+    }
+
+    @Override
+    public void deleteCca(Cca target) {
+        addressBook.removeCca(target);
+    }
+
+    @Override
+    public void addCca(Cca person) {
+        addressBook.addCca(person);
+        updateFilteredCcaList(PREDICATE_SHOW_ALL_CCAS);
+    }
+
+    @Override
+    public void setCca(Cca target, Cca editedCca) {
+        requireAllNonNull(target, editedCca);
+
+        addressBook.setCca(target, editedCca);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -127,6 +154,23 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    //=========== Filtered Cca List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Cca> getFilteredCcaList() {
+        return filteredCcas;
+    }
+
+    @Override
+    public void updateFilteredCcaList(Predicate<Cca> predicate) {
+        requireNonNull(predicate);
+        filteredCcas.setPredicate(predicate);
     }
 
     @Override
@@ -145,7 +189,8 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPersons.equals(other.filteredPersons)
+                && filteredCcas.equals(other.filteredCcas);
     }
 
 }
