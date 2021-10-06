@@ -10,18 +10,17 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.cca.exceptions.CcaNotFoundException;
 import seedu.address.model.cca.exceptions.DuplicateCcaException;
-import seedu.address.model.person.Person;
 
 /**
- * A list of persons that enforces uniqueness between its elements and does not allow nulls.
- * A person is considered unique by comparing using {@code Person#isSamePerson(Person)}. As such, adding and updating of
- * persons uses Person#isSamePerson(Person) for equality so as to ensure that the person being added or updated is
- * unique in terms of identity in the UniqueCcaList. However, the removal of a person uses Person#equals(Object) so
- * as to ensure that the person with exactly the same fields will be removed.
+ * A list of CCas that enforces uniqueness between its elements and does not allow nulls.
+ * A CCa is considered unique by comparing using {@code Cca#isSameCca(Cca)}. As such, adding and updating of
+ * CCas uses Cca#isSameCca(Cca) for equality so as to ensure that the CCa being added or updated is
+ * unique in terms of identity in the UniqueCcaList. However, the removal of a CCa uses Cca#equals(Object) so
+ * as to ensure that the CCa with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
- * @see Person#isSamePerson(Person)
+ * @see Cca#isSameCca(Cca)
  */
 public class UniqueCcaList implements Iterable<Cca> {
 
@@ -30,7 +29,7 @@ public class UniqueCcaList implements Iterable<Cca> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent person as the given argument.
+     * Returns true if the list contains an equivalent CCA as the given argument.
      */
     public boolean contains(Cca toCheck) {
         requireNonNull(toCheck);
@@ -38,8 +37,8 @@ public class UniqueCcaList implements Iterable<Cca> {
     }
 
     /**
-     * Adds a person to the list.
-     * The person must not already exist in the list.
+     * Adds a CCA to the list.
+     * The CCA must not already exist in the list.
      */
     public void add(Cca toAdd) {
         requireNonNull(toAdd);
@@ -50,9 +49,9 @@ public class UniqueCcaList implements Iterable<Cca> {
     }
 
     /**
-     * Replaces the person {@code target} in the list with {@code editedCca}.
+     * Replaces the CCA {@code target} in the list with {@code editedCca}.
      * {@code target} must exist in the list.
-     * The person identity of {@code editedCca} must not be the same as another existing person in the list.
+     * The CCA identity of {@code editedCca} must not be the same as another existing CCA in the list.
      */
     public void setCca(Cca target, Cca editedCca) {
         requireAllNonNull(target, editedCca);
@@ -70,8 +69,8 @@ public class UniqueCcaList implements Iterable<Cca> {
     }
 
     /**
-     * Removes the equivalent person from the list.
-     * The person must exist in the list.
+     * Removes the equivalent CCA from the list.
+     * The CCA must exist in the list.
      */
     public void remove(Cca toRemove) {
         requireNonNull(toRemove);
@@ -86,8 +85,8 @@ public class UniqueCcaList implements Iterable<Cca> {
     }
 
     /**
-     * Replaces the contents of this list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of this list with {@code CCAs}.
+     * {@code CCAs} must not contain duplicate CCAs.
      */
     public void setCcas(List<Cca> ccas) {
         requireAllNonNull(ccas);
@@ -123,7 +122,7 @@ public class UniqueCcaList implements Iterable<Cca> {
     }
 
     /**
-     * Returns true if {@code persons} contains only unique ccas.
+     * Returns true if {@code CCAs} contains only unique ccas.
      */
     private boolean ccasAreUnique(List<Cca> ccas) {
         for (int i = 0; i < ccas.size() - 1; i++) {

@@ -6,6 +6,6 @@ package seedu.address.model.cca.exceptions;
  */
 public class DuplicateCcaException extends RuntimeException {
     public DuplicateCcaException() {
-        super("Operation would result in duplicate persons");
+        super("Operation would result in duplicate CCAs");
     }
 }
