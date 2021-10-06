@@ -49,10 +49,10 @@ public class CcaCard extends UiPart<Region> {
         this.cca = cca;
         id.setText(displayedIndex + ". ");
         this.name.setText(cca.getName().fullName);
-        this.numPeople.setText("number of ppl: 2000");
+        this.numPeople.setText("No. of people: 3");
 
         // can consider having tags for CCAs
-        Label tempLabel = new Label("music");
+        Label tempLabel = new Label("Music");
         tempLabel.backgroundProperty().bind(Bindings.createObjectBinding(() -> {
             BackgroundFill fill = new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY);
             return new Background(fill);
