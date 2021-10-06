@@ -23,6 +23,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.cca.Cca;
 import seedu.address.model.person.Person;
+import seedu.address.model.reminder.Reminder;
 import seedu.address.testutil.PersonBuilder;
 
 public class PersonAddCommandTest {
@@ -178,6 +179,11 @@ public class PersonAddCommandTest {
 
         @Override
         public void updateFilteredCcaList(Predicate<Cca> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Reminder> getFilteredReminderList() {
             throw new AssertionError("This method should not be called.");
         }
     }

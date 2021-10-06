@@ -21,6 +21,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.cca.Cca;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.reminder.Reminder;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddressBookTest {
@@ -90,6 +91,7 @@ public class AddressBookTest {
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
         private final ObservableList<Cca> ccas = FXCollections.observableArrayList();
+        private final ObservableList<Reminder> reminders = FXCollections.observableArrayList();
 
         AddressBookStub(Collection<Person> persons) {
             this.persons.setAll(persons);
@@ -104,6 +106,11 @@ public class AddressBookTest {
         @Override
         public ObservableList<Cca> getCcaList() {
             return ccas;
+        }
+
+        @Override
+        public ObservableList<Reminder> getReminderList() {
+            return reminders;
         }
     }
 
