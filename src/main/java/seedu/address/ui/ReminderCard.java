@@ -1,10 +1,21 @@
 package seedu.address.ui;
 
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.ObjectBinding;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
+import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
 import seedu.address.model.reminder.Reminder;
+
+import java.util.Hashtable;
 
 /**
  * An UI component that displays information of a {@code Reminder}.
@@ -29,6 +40,12 @@ public class ReminderCard extends UiPart<Region> {
     private Label name;
     @FXML
     private Label id;
+    @FXML
+    private Label frequency;
+    @FXML
+    private Label occurrences;
+    @FXML
+    private FlowPane tags;
 
     /**
      * Creates a {@code ReminderCode} with the given {@code Reminder} and index to display.
@@ -38,6 +55,21 @@ public class ReminderCard extends UiPart<Region> {
         this.reminder = reminder;
         id.setText(displayedIndex + ". ");
         this.name.setText(reminder.getName().fullName);
+        this.frequency.setText(""); // to test if this shows up as an empty line
+        this.occurrences.setText("temp occ");
+
+        // each CCA has a field for color? can do an enum
+        // then mapping from enum value to the binding
+        // should include a default value in the enum
+        // example mapping (with int in place of enum value):
+        Hashtable<Integer, ObjectBinding<Background>> backgrounds = new Hashtable<>();
+        backgrounds.put(1, Bindings.createObjectBinding(() -> {
+            BackgroundFill fill = new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY);
+            return new Background(fill);
+        })); // so 1 = red
+        Label tempLabel = new Label("NUSSO");
+        tempLabel.backgroundProperty().bind(backgrounds.get(1));
+        tags.getChildren().add(tempLabel);
     }
 
     @Override
