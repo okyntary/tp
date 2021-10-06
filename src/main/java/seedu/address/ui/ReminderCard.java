@@ -1,10 +1,11 @@
 package seedu.address.ui;
 
+import java.util.Hashtable;
+
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.ObjectBinding;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
-import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -14,8 +15,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import seedu.address.model.reminder.Reminder;
-
-import java.util.Hashtable;
 
 /**
  * An UI component that displays information of a {@code Reminder}.

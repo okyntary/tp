@@ -8,15 +8,15 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.reminder.exceptions.ReminderNotFoundException;
 import seedu.address.model.reminder.exceptions.DuplicateReminderException;
+import seedu.address.model.reminder.exceptions.ReminderNotFoundException;
 
 /**
  * A list of Reminders that enforces uniqueness between its elements and does not allow nulls.
- * A Reminder is considered unique by comparing using {@code Reminder#isSameReminder(Reminder)}. As such, adding and updating of
- * Reminder uses Reminder#isSameReminder(Reminder) for equality so as to ensure that the Reminder being added or updated is
- * unique in terms of identity in the UniqueReminderList. However, the removal of a Reminder uses Reminder#equals(Object) so
- * as to ensure that the Reminder with exactly the same fields will be removed.
+ * A Reminder is considered unique by comparing using {@code Reminder#isSameReminder(Reminder)}. As such, adding and
+ * updating of Reminder uses Reminder#isSameReminder(Reminder) for equality so as to ensure that the Reminder being
+ * added or updated is unique in terms of identity in the UniqueReminderList. However, the removal of a Reminder uses
+ * Reminder#equals(Object) so as to ensure that the Reminder with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
