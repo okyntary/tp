@@ -1,11 +1,11 @@
 package seedu.address.model.cca;
-
-import seedu.address.model.person.Person;
-
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
 import java.util.Objects;
+
+import seedu.address.model.person.Person;
+
 
 public class Cca {
 
