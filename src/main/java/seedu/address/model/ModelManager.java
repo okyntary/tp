@@ -173,6 +173,38 @@ public class ModelManager implements Model {
         filteredCcas.setPredicate(predicate);
     }
 
+    /**
+     * Enrols a person into a CCA
+     * {@code cca} must not already exist in the address book.
+     *
+     * @param ccaToEnrolInto
+     * @param personToEnrol
+     */
+    @Override
+    public boolean enrolPersonIntoCca(Cca ccaToEnrolInto, Person personToEnrol) {
+        return false;
+    }
+
+    /**
+     * Finds a CCA based on the cid
+     *
+     * @param cid
+     */
+    @Override
+    public Cca findCcaFromCid(int cid) {
+        return null;
+    }
+
+    /**
+     * Finds a Person based on the pid
+     *
+     * @param pid
+     */
+    @Override
+    public Person findPersonFromPid(int pid) {
+        return null;
+    }
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
