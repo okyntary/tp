@@ -52,12 +52,21 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the contents of the cca list with {@code ccas}.
+     * {@code ccas} must not contain duplicate persons.
+     */
+    public void setCcas(List<Cca> ccas) {
+        this.ccas.setCcas(ccas);
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
+        setCcas(newData.getCcaList());
     }
 
     //// person-level operations
@@ -138,7 +147,9 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
+        String result = persons.asUnmodifiableObservableList().size() + " persons, " +
+                ccas.asUnmodifiableObservableList().size() + " ccas";
+        return result;
         // TODO: refine later
     }
 

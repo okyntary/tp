@@ -65,6 +65,7 @@ class JsonSerializableAddressBook {
             if (addressBook.hasCca(cca)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_CCA);
             }
+            addressBook.addCca(cca);
         }
         return addressBook;
     }
