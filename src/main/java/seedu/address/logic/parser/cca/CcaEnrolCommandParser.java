@@ -1,28 +1,17 @@
 package seedu.address.logic.parser.cca;
 
-import seedu.address.logic.commands.cca.CcaAddCommand;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CCA_ID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_ID;
+
+import java.util.stream.Stream;
+
 import seedu.address.logic.commands.cca.CcaEnrolCommand;
-import seedu.address.logic.commands.person.PersonAddCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.cca.Cca;
-import seedu.address.model.cca.CcaName;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
-
-import java.util.Set;
-import java.util.stream.Stream;
-
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 public class CcaEnrolCommandParser {
     //copy from CcaAddCommandParser and then adapt
