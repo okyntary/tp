@@ -136,7 +136,7 @@ public interface Model {
      * Finds a Person based on the pid
      */
     Person findPersonFromPid(int pid);
-  
+
     /** Returns an unmodifiable view of the filtered cca list */
     ObservableList<Reminder> getFilteredReminderList();
 }
