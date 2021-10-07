@@ -8,7 +8,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-public class CcaDeleteCommandParser implements Parser<CcaDeleteCommand>  {
+public class CcaDeleteCommandParser implements Parser<CcaDeleteCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the PersonDeleteCommand
      * and returns a PersonDeleteCommand object for execution.
