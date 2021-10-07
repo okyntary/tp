@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.cca.Cca;
 import seedu.address.model.person.Person;
+import seedu.address.model.reminder.Reminder;
 
 /**
  * The API of the Model component.
@@ -135,4 +136,7 @@ public interface Model {
      * Finds a Person based on the pid
      */
     Person findPersonFromPid(int pid);
+  
+    /** Returns an unmodifiable view of the filtered cca list */
+    ObservableList<Reminder> getFilteredReminderList();
 }

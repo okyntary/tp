@@ -1,14 +1,9 @@
-package seedu.address.model.cca;
+package seedu.address.model.reminder;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-/**
- * Represents a CCA's name in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
- */
-public class CcaName {
-
+public class ReminderName {
     public static final String MESSAGE_CONSTRAINTS =
             "Names should only contain alphanumeric characters and spaces, and it should not be blank";
 
@@ -21,11 +16,11 @@ public class CcaName {
     public final String fullName;
 
     /**
-     * Constructs a {@code CcaName}.
+     * Constructs a {@code ReminderName}.
      *
      * @param name A valid name.
      */
-    public CcaName(String name) {
+    public ReminderName(String name) {
         requireNonNull(name);
         checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
         fullName = name;
@@ -47,13 +42,12 @@ public class CcaName {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof CcaName // instanceof handles nulls
-                && fullName.equals(((CcaName) other).fullName)); // state check
+                || (other instanceof ReminderName // instanceof handles nulls
+                && fullName.equals(((ReminderName) other).fullName)); // state check
     }
 
     @Override
     public int hashCode() {
         return fullName.hashCode();
     }
-
 }

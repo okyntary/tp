@@ -27,8 +27,8 @@ public class Cca {
     }
 
     /**
-     * Returns true if both persons have the same ccaName.
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both CCAs have the same ccaName.
+     * This defines a weaker notion of equality between two CCAs.
      */
     public boolean isSameCca(seedu.address.model.cca.Cca otherCca) {
         if (otherCca == this) {
@@ -40,8 +40,8 @@ public class Cca {
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * Returns true if both CCAs have the same identity and data fields.
+     * This defines a stronger notion of equality between two CCAs.
      */
     @Override
     public boolean equals(Object other) {
