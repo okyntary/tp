@@ -121,6 +121,22 @@ public interface Model {
      */
     void updateFilteredCcaList(Predicate<Cca> predicate);
 
+    /**
+     * Enrols a person into a CCA
+     * {@code cca} must not already exist in the address book.
+     */
+    boolean enrolPersonIntoCca(Cca ccaToEnrolInto, Person personToEnrol);
+
+    /**
+     * Finds a CCA based on the cid
+     */
+    Cca findCcaFromCid(int cid);
+
+    /**
+     * Finds a Person based on the pid
+     */
+    Person findPersonFromPid(int pid);
+
     /** Returns an unmodifiable view of the filtered cca list */
     ObservableList<Reminder> getFilteredReminderList();
 }
