@@ -182,6 +182,38 @@ public class PersonAddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        /**
+         * Enrols a person into a CCA
+         * {@code cca} must not already exist in the address book.
+         *
+         * @param ccaToEnrolInto
+         * @param personToEnrol
+         */
+        @Override
+        public boolean enrolPersonIntoCca(Cca ccaToEnrolInto, Person personToEnrol) {
+            return false;
+        }
+
+        /**
+         * Finds a CCA based on the cid
+         *
+         * @param cid
+         */
+        @Override
+        public Cca findCcaFromCid(int cid) {
+            return null;
+        }
+
+        /**
+         * Finds a Person based on the pid
+         *
+         * @param pid
+         */
+        @Override
+        public Person findPersonFromPid(int pid) {
+            return null;
+        }
+
         @Override
         public ObservableList<Reminder> getFilteredReminderList() {
             throw new AssertionError("This method should not be called.");
