@@ -3,6 +3,7 @@ package seedu.address.model;
 import javafx.collections.ObservableList;
 import seedu.address.model.cca.Cca;
 import seedu.address.model.person.Person;
+import seedu.address.model.reminder.Reminder;
 
 /**
  * Unmodifiable view of an address book
@@ -15,9 +16,14 @@ public interface ReadOnlyAddressBook {
      */
     ObservableList<Person> getPersonList();
     /**
-     * Returns an unmodifiable view of the persons list.
-     * This list will not contain any duplicate persons.
+     * Returns an unmodifiable view of the cca list.
+     * This list will not contain any duplicate ccas.
      */
     ObservableList<Cca> getCcaList();
+    /**
+     * Returns an unmodifiable view of the reminders list.
+     * This list will not contain any duplicate reminders.
+     */
+    ObservableList<Reminder> getReminderList();
 
 }
