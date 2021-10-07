@@ -150,11 +150,9 @@ public class ParserUtil {
         int intCid = -1;
         try {
             intCid = Integer.parseInt(trimmedCid);
-        }
-        catch( Exception e ) {
+        } catch (Exception e) {
             throw new ParseException("Please input cid as a number");
-        }
-        finally {
+        } finally {
             if (intCid == -1) {
                 throw new ParseException("Please input cid as a number");
             }
@@ -174,11 +172,9 @@ public class ParserUtil {
         int intPid = -1;
         try {
             intPid = Integer.parseInt(trimmedPid);
-        }
-        catch( Exception e ) {
+        } catch (Exception e) {
             throw new ParseException("Please input pid as a number");
-        }
-        finally {
+        } finally {
             if (intPid == -1) {
                 throw new ParseException("Please input pid as a number");
             }
