@@ -1,15 +1,11 @@
 package seedu.address.storage;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.cca.Cca;
-import seedu.address.model.cca.*;
+import seedu.address.model.cca.CcaName;
 
 /**
  * Jackson-friendly version of {@link Cca}.
@@ -20,7 +16,7 @@ public class JsonAdaptedCca {
     private final String name;
 
     /**
-     * Constructs a {@code JsonAdaptedCca} with the given person details.
+     * Constructs a {@code JsonAdaptedCca} with the given cca details.
      */
     @JsonCreator
     public JsonAdaptedCca(@JsonProperty("name") String name) {
