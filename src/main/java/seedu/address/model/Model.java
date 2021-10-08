@@ -125,7 +125,7 @@ public interface Model {
      * Enrols a person into a CCA
      * {@code cca} must not already exist in the address book.
      */
-    boolean enrolPersonIntoCca(Cca ccaToEnrolInto, Person personToEnrol);
+    void enrolPersonIntoCca(Cca ccaToEnrolInto, Person personToEnrol);
 
     /**
      * Finds a CCA based on the cid
