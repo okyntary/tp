@@ -1,17 +1,8 @@
 package seedu.address.storage;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.cca.Cca;
-import seedu.address.model.cca.CcaName;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.storage.JsonAdaptedCca.MISSING_FIELD_MESSAGE_FORMAT;
-import static seedu.address.testutil.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.testutil.TypicalCcas.NUSSO;
 
 class JsonAdaptedCcaTest {
@@ -24,9 +15,10 @@ class JsonAdaptedCcaTest {
         assertEquals(NUSSO, cca.toModelType());
     }
 
-    // Problem - JsonAdaptedCca(null) is ambiguous constructor and Java can't tell which constructor to call
-    // Not a problem for JsonAdaptedPerson because other arguments are passed in as well and Java can tell which
-    // constructor is called
+//    Problem - JsonAdaptedCca(null) is ambiguous constructor and Java can't tell which constructor to call
+//    Not a problem for JsonAdaptedPerson because other arguments are passed in as well and Java can tell which
+//    constructor is called
+
 //    @Test
 //    public void toModelType_nullName_throwsIllegalValueException() {
 //        JsonAdaptedCca cca = new JsonAdaptedCca(null);

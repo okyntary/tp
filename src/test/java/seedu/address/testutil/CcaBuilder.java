@@ -2,10 +2,6 @@ package seedu.address.testutil;
 
 import seedu.address.model.cca.Cca;
 import seedu.address.model.cca.CcaName;
-import seedu.address.model.util.SampleDataUtil;
-
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * A utility class to help with building Cca objects.
@@ -26,8 +22,8 @@ public class CcaBuilder {
     /**
      * Initializes the CcaBuilder with the data of {@code CcaToCopy}.
      */
-    public CcaBuilder(Cca CcaToCopy) {
-        name = CcaToCopy.getName();
+    public CcaBuilder(Cca ccaToCopy) {
+        name = ccaToCopy.getName();
     }
 
     /**
