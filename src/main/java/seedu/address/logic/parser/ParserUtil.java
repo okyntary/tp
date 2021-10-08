@@ -137,4 +137,48 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+    /**
+     * Parses a {@code String cid} into an {@code int}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code cid} is invalid.
+     */
+    public static int parseCid(String cid) throws ParseException {
+        requireNonNull(cid);
+        String trimmedCid = cid.trim();
+        int intCid = -1;
+        try {
+            intCid = Integer.parseInt(trimmedCid);
+        } catch (Exception e) {
+            throw new ParseException("Please input cid as a number");
+        } finally {
+            if (intCid == -1) {
+                throw new ParseException("Please input cid as a number");
+            }
+            return intCid;
+        }
+    }
+
+    /**
+     * Parses a {@code String pid} into an {@code int}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code pid} is invalid.
+     */
+    public static int parsePid(String pid) throws ParseException {
+        requireNonNull(pid);
+        String trimmedPid = pid.trim();
+        int intPid = -1;
+        try {
+            intPid = Integer.parseInt(trimmedPid);
+        } catch (Exception e) {
+            throw new ParseException("Please input pid as a number");
+        } finally {
+            if (intPid == -1) {
+                throw new ParseException("Please input pid as a number");
+            }
+            return intPid;
+        }
+    }
 }
