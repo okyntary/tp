@@ -46,7 +46,7 @@ public class CcaExpelCommand extends Command {
 
         this.ccaToEnrolInto = model.findCcaFromCid(cid);
         this.personToExpel = model.findPersonFromPid(pid);
-        
+
         if (ccaToEnrolInto == null) {
             throw new CommandException(MESSAGE_MISSING_CCA);
         }
