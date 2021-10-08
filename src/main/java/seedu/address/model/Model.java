@@ -129,7 +129,7 @@ public interface Model {
     /**
      * Expels a person from a CCA
      */
-    boolean expelPersonFromCca(Cca ccaToEnrolInto, Person personToExpel);
+    boolean expelPersonFromCca(Cca ccaToExpelFrom, Person personToExpel);
 
     /**
      * Finds a CCA based on the cid

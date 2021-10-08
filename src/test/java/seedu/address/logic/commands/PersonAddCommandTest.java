@@ -184,9 +184,9 @@ public class PersonAddCommandTest {
 
         /**
          * Enrols a person into a CCA
-         * {@code cca} must not already exist in the address book.
-         *  @param ccaToEnrolInto
-         * @param personToEnrol
+         *
+         *  @param ccaToEnrolInto CCA to enrol into
+         * @param personToEnrol person enrolling into CCA
          */
         @Override
         public boolean enrolPersonIntoCca(Cca ccaToEnrolInto, Person personToEnrol) {
@@ -196,11 +196,11 @@ public class PersonAddCommandTest {
         /**
          * Expels a person from a CCA
          *
-         * @param ccaToEnrolInto
-         * @param personToExpel
+         * @param ccaToExpelFrom CCA to expel from
+         * @param personToExpel Person to be expelled from CCA
          */
         @Override
-        public boolean expelPersonFromCca(Cca ccaToEnrolInto, Person personToExpel) {
+        public boolean expelPersonFromCca(Cca ccaToExpelFrom, Person personToExpel) {
             throw new AssertionError("This method should not be called.");
         }
 

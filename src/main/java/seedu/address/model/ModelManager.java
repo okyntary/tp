@@ -191,8 +191,8 @@ public class ModelManager implements Model {
      * Expels a person from a CCA
      */
     @Override
-    public boolean expelPersonFromCca(Cca ccaToEnrolInto, Person personToExpel) {
-        return ccaToEnrolInto.expelPerson(personToExpel);
+    public boolean expelPersonFromCca(Cca ccaToExpelFrom, Person personToExpel) {
+        return ccaToExpelFrom.expelPerson(personToExpel);
     }
 
     /**
