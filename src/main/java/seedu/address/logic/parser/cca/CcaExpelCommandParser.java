@@ -1,18 +1,17 @@
 package seedu.address.logic.parser.cca;
 
-import seedu.address.logic.commands.cca.CcaEnrolCommand;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CCA_ID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_ID;
+
+import java.util.stream.Stream;
+
 import seedu.address.logic.commands.cca.CcaExpelCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
-
-import java.util.stream.Stream;
-
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CCA_ID;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_ID;
 
 public class CcaExpelCommandParser {
     /**
