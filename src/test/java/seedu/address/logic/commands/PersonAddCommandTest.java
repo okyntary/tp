@@ -189,7 +189,18 @@ public class PersonAddCommandTest {
          * @param personToEnrol
          */
         @Override
-        public void enrolPersonIntoCca(Cca ccaToEnrolInto, Person personToEnrol) {
+        public boolean enrolPersonIntoCca(Cca ccaToEnrolInto, Person personToEnrol) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        /**
+         * Expels a person from a CCA
+         *
+         * @param ccaToEnrolInto
+         * @param personToExpel
+         */
+        @Override
+        public boolean expelPersonFromCca(Cca ccaToEnrolInto, Person personToExpel) {
             throw new AssertionError("This method should not be called.");
         }
 
