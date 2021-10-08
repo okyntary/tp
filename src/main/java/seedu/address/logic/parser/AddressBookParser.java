@@ -22,7 +22,6 @@ import seedu.address.logic.commands.person.PersonFindCommand;
 import seedu.address.logic.parser.cca.CcaAddCommandParser;
 import seedu.address.logic.parser.cca.CcaDeleteCommandParser;
 import seedu.address.logic.parser.cca.CcaEnrolCommandParser;
-
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.person.PersonAddCommandParser;
 import seedu.address.logic.parser.person.PersonDeleteCommandParser;
@@ -89,7 +88,7 @@ public class AddressBookParser {
 
         case CcaDeleteCommand.COMMAND_WORD:
             return new CcaDeleteCommandParser().parse(arguments);
-            
+
         case CcaEnrolCommand.COMMAND_WORD:
             return new CcaEnrolCommandParser().parse(arguments);
 
