@@ -13,6 +13,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.cca.Cca;
 import seedu.address.model.person.Person;
+import seedu.address.model.reminder.Reminder;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -24,6 +25,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Cca> filteredCcas;
+    private final FilteredList<Reminder> filteredReminders;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -38,6 +40,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredCcas = new FilteredList<>(this.addressBook.getCcaList());
+        filteredReminders = new FilteredList<>(this.addressBook.getReminderList());
     }
 
     public ModelManager() {
@@ -159,7 +162,7 @@ public class ModelManager implements Model {
     //=========== Filtered Cca List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Cca} backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override
@@ -171,6 +174,38 @@ public class ModelManager implements Model {
     public void updateFilteredCcaList(Predicate<Cca> predicate) {
         requireNonNull(predicate);
         filteredCcas.setPredicate(predicate);
+    }
+
+    /**
+     * Enrols a person into a CCA
+     * {@code cca} must not already exist in the address book.
+     *
+     * @param ccaToEnrolInto
+     * @param personToEnrol
+     */
+    @Override
+    public boolean enrolPersonIntoCca(Cca ccaToEnrolInto, Person personToEnrol) {
+        return false;
+    }
+
+    /**
+     * Finds a CCA based on the cid
+     *
+     * @param cid
+     */
+    @Override
+    public Cca findCcaFromCid(int cid) {
+        return null;
+    }
+
+    /**
+     * Finds a Person based on the pid
+     *
+     * @param pid
+     */
+    @Override
+    public Person findPersonFromPid(int pid) {
+        return null;
     }
 
     @Override
@@ -193,4 +228,14 @@ public class ModelManager implements Model {
                 && filteredCcas.equals(other.filteredCcas);
     }
 
+    //=========== Filtered Reminder List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Reminder} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Reminder> getFilteredReminderList() {
+        return filteredReminders;
+    }
 }

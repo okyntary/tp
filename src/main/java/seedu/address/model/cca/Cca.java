@@ -1,13 +1,17 @@
 package seedu.address.model.cca;
-
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Objects;
+
+import seedu.address.model.person.Person;
+
 
 public class Cca {
 
     // Identity fields
     private final CcaName ccaName;
+    private ArrayList<Person> personArrayList;
 
     /**
      * Every field must be present and not null.
@@ -15,6 +19,7 @@ public class Cca {
     public Cca(CcaName ccaName) {
         requireAllNonNull(ccaName);
         this.ccaName = ccaName;
+        this.personArrayList = new ArrayList<>();
     }
 
     public CcaName getName() {
@@ -66,5 +71,19 @@ public class Cca {
         return builder.toString();
     }
 
+    // Enrol a Person
+    public boolean enrolPerson(Person newPerson) {
+        return this.personArrayList.add(newPerson);
+    }
+
+    // Check if Person Exists
+    public boolean checkPerson(Person personToCheck) {
+        return this.personArrayList.contains(personToCheck);
+    }
+
+    // Expel a Person
+    public boolean expelPerson(Person personToExpel) {
+        return this.personArrayList.remove(personToExpel);
+    }
 }
 

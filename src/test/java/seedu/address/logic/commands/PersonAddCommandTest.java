@@ -23,6 +23,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.cca.Cca;
 import seedu.address.model.person.Person;
+import seedu.address.model.reminder.Reminder;
 import seedu.address.testutil.PersonBuilder;
 
 public class PersonAddCommandTest {
@@ -178,6 +179,43 @@ public class PersonAddCommandTest {
 
         @Override
         public void updateFilteredCcaList(Predicate<Cca> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        /**
+         * Enrols a person into a CCA
+         * {@code cca} must not already exist in the address book.
+         *
+         * @param ccaToEnrolInto
+         * @param personToEnrol
+         */
+        @Override
+        public boolean enrolPersonIntoCca(Cca ccaToEnrolInto, Person personToEnrol) {
+            return false;
+        }
+
+        /**
+         * Finds a CCA based on the cid
+         *
+         * @param cid
+         */
+        @Override
+        public Cca findCcaFromCid(int cid) {
+            return null;
+        }
+
+        /**
+         * Finds a Person based on the pid
+         *
+         * @param pid
+         */
+        @Override
+        public Person findPersonFromPid(int pid) {
+            return null;
+        }
+
+        @Override
+        public ObservableList<Reminder> getFilteredReminderList() {
             throw new AssertionError("This method should not be called.");
         }
     }

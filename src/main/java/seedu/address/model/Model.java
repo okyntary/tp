@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.cca.Cca;
 import seedu.address.model.person.Person;
+import seedu.address.model.reminder.Reminder;
 
 /**
  * The API of the Model component.
@@ -119,4 +120,23 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredCcaList(Predicate<Cca> predicate);
+
+    /**
+     * Enrols a person into a CCA
+     * {@code cca} must not already exist in the address book.
+     */
+    boolean enrolPersonIntoCca(Cca ccaToEnrolInto, Person personToEnrol);
+
+    /**
+     * Finds a CCA based on the cid
+     */
+    Cca findCcaFromCid(int cid);
+
+    /**
+     * Finds a Person based on the pid
+     */
+    Person findPersonFromPid(int pid);
+
+    /** Returns an unmodifiable view of the filtered cca list */
+    ObservableList<Reminder> getFilteredReminderList();
 }

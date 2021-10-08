@@ -9,6 +9,8 @@ import seedu.address.model.cca.Cca;
 import seedu.address.model.cca.UniqueCcaList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.reminder.Reminder;
+import seedu.address.model.reminder.UniqueReminderList;
 
 /**
  * Wraps all data at the address-book level
@@ -18,6 +20,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
     private final UniqueCcaList ccas;
+    private final UniqueReminderList reminders;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -29,6 +32,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     {
         persons = new UniquePersonList();
         ccas = new UniqueCcaList();
+        reminders = new UniqueReminderList();
     }
 
     public AddressBook() {}
@@ -150,6 +154,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Cca> getCcaList() {
         return ccas.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Reminder> getReminderList() {
+        return reminders.asUnmodifiableObservableList();
     }
 
     @Override
