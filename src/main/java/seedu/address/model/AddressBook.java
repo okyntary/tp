@@ -182,6 +182,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public Cca findCcaFromCid(int cid) {
         final Cca[] ccaFromCid = new Cca[1];
+        ccaFromCid[0] = null;
         this.getCcaList().parallelStream().forEach(cca -> {
             if (cca.getCid() == cid) {
                 ccaFromCid[0] = cca;
@@ -197,6 +198,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public Person findPersonFromPid(int pid) {
         final Person[] personFromPid = new Person[1];
+        personFromPid[0] = null;
         this.getPersonList().parallelStream().forEach(person -> {
             if (person.getPid() == pid) {
                 personFromPid[0] = person;

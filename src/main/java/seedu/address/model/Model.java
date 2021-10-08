@@ -83,7 +83,7 @@ public interface Model {
     ObservableList<Person> getFilteredPersonList();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a CCA with the same identity as {@code CCA} exists in the address book.
      */
     boolean hasCca(Cca cca);
 
@@ -123,9 +123,13 @@ public interface Model {
 
     /**
      * Enrols a person into a CCA
-     * {@code cca} must not already exist in the address book.
      */
-    void enrolPersonIntoCca(Cca ccaToEnrolInto, Person personToEnrol);
+    boolean enrolPersonIntoCca(Cca ccaToEnrolInto, Person personToEnrol);
+
+    /**
+     * Expels a person from a CCA
+     */
+    boolean expelPersonFromCca(Cca ccaToEnrolInto, Person personToExpel);
 
     /**
      * Finds a CCA based on the cid

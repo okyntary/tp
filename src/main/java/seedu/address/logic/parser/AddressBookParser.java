@@ -14,12 +14,14 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.cca.CcaAddCommand;
 import seedu.address.logic.commands.cca.CcaEnrolCommand;
+import seedu.address.logic.commands.cca.CcaExpelCommand;
 import seedu.address.logic.commands.person.PersonAddCommand;
 import seedu.address.logic.commands.person.PersonDeleteCommand;
 import seedu.address.logic.commands.person.PersonEditCommand;
 import seedu.address.logic.commands.person.PersonFindCommand;
 import seedu.address.logic.parser.cca.CcaAddCommandParser;
 import seedu.address.logic.parser.cca.CcaEnrolCommandParser;
+import seedu.address.logic.parser.cca.CcaExpelCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.person.PersonAddCommandParser;
 import seedu.address.logic.parser.person.PersonDeleteCommandParser;
@@ -86,6 +88,9 @@ public class AddressBookParser {
 
         case CcaEnrolCommand.COMMAND_WORD:
             return new CcaEnrolCommandParser().parse(arguments);
+
+        case CcaExpelCommand.COMMAND_WORD:
+            return new CcaExpelCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

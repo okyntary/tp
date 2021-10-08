@@ -183,8 +183,16 @@ public class ModelManager implements Model {
      * @param personToEnrol Person enrolling into CCA
      */
     @Override
-    public void enrolPersonIntoCca(Cca ccaToEnrolInto, Person personToEnrol) {
-        ccaToEnrolInto.enrolPerson(personToEnrol);
+    public boolean enrolPersonIntoCca(Cca ccaToEnrolInto, Person personToEnrol) {
+        return ccaToEnrolInto.enrolPerson(personToEnrol);
+    }
+
+    /**
+     * Expels a person from a CCA
+     */
+    @Override
+    public boolean expelPersonFromCca(Cca ccaToEnrolInto, Person personToExpel) {
+        return ccaToEnrolInto.expelPerson(personToExpel);
     }
 
     /**
