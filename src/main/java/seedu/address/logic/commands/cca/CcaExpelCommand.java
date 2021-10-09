@@ -11,11 +11,10 @@ import seedu.address.model.Model;
 import seedu.address.model.cca.Cca;
 import seedu.address.model.person.Person;
 
-public class CcaEnrolCommand extends Command {
+public class CcaExpelCommand extends Command {
+    public static final String COMMAND_WORD = "expel";
 
-    public static final String COMMAND_WORD = "enrol";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Enrols a person into a CCA. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Expels a person from a CCA. "
             + "Parameters: "
             + PREFIX_CCA_ID + "CCA_ID "
             + PREFIX_PERSON_ID + "CCA_ID \n"
@@ -23,20 +22,20 @@ public class CcaEnrolCommand extends Command {
             + PREFIX_CCA_ID + "1 "
             + PREFIX_PERSON_ID + "1 ";
 
-    public static final String MESSAGE_SUCCESS = "Successfully enrolled %1$s into %2$s";
+    public static final String MESSAGE_SUCCESS = "Successfully expelled %1$s from %2$s";
     public static final String MESSAGE_MISSING_CCA = "This CCA does not exist in the address book";
     public static final String MESSAGE_MISSING_PERSON = "This person does not exist in the address book";
-    public static final String MESSAGE_PRESENT_PERSON = "This person(%1$s) is already part of that CCA(%2$s)";
+    public static final String MESSAGE_MISSING_PERSON_FROM_CCA = "This person(%1$s) is not enrolled in this CCA(%2$s)";
 
     private Cca ccaToEnrolInto;
     private final int cid;
-    private Person personToEnrol;
+    private Person personToExpel;
     private final int pid;
 
     /**
      * Creates an CcaAddCommand to add the specified {@code Cca}
      */
-    public CcaEnrolCommand(int cid, int pid) {
+    public CcaExpelCommand(int cid, int pid) {
         this.cid = cid;
         this.pid = pid;
     }
@@ -46,30 +45,38 @@ public class CcaEnrolCommand extends Command {
         requireNonNull(model);
 
         this.ccaToEnrolInto = model.findCcaFromCid(cid);
-        this.personToEnrol = model.findPersonFromPid(pid);
+        this.personToExpel = model.findPersonFromPid(pid);
 
         if (ccaToEnrolInto == null) {
             throw new CommandException(MESSAGE_MISSING_CCA);
         }
 
-        if (personToEnrol == null) {
+        if (personToExpel == null) {
             throw new CommandException(MESSAGE_MISSING_PERSON);
         }
 
-        boolean success = model.enrolPersonIntoCca(ccaToEnrolInto, personToEnrol);
+        boolean success = model.expelPersonFromCca(ccaToEnrolInto, personToExpel);
         if (success) {
-            return new CommandResult(String.format(MESSAGE_SUCCESS, personToEnrol.getName(), ccaToEnrolInto.getName()));
+            return new CommandResult(String.format(MESSAGE_SUCCESS, personToExpel.getName(), ccaToEnrolInto.getName()));
         } else {
             throw new CommandException(
-                    String.format(MESSAGE_PRESENT_PERSON, personToEnrol.getName(), ccaToEnrolInto.getName()));
+                    String.format(MESSAGE_MISSING_PERSON_FROM_CCA, personToExpel.getName(), ccaToEnrolInto.getName()));
         }
+    }
+
+    public Cca getCcaToEnrolInto() {
+        return this.ccaToEnrolInto;
+    }
+
+    public Person getPersonToExpel() {
+        return this.personToExpel;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof CcaEnrolCommand // instanceof handles nulls
-                && ccaToEnrolInto.equals(((CcaEnrolCommand) other).ccaToEnrolInto)
-                && personToEnrol.equals(((CcaEnrolCommand) other).personToEnrol));
+                || (other instanceof CcaExpelCommand // instanceof handles nulls
+                && ccaToEnrolInto.equals(((CcaExpelCommand) other).getCcaToEnrolInto())
+                && personToExpel.equals(((CcaExpelCommand) other).getPersonToExpel()));
     }
 }

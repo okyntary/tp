@@ -184,34 +184,44 @@ public class PersonAddCommandTest {
 
         /**
          * Enrols a person into a CCA
-         * {@code cca} must not already exist in the address book.
          *
-         * @param ccaToEnrolInto
-         * @param personToEnrol
+         *  @param ccaToEnrolInto CCA to enrol into
+         * @param personToEnrol person enrolling into CCA
          */
         @Override
         public boolean enrolPersonIntoCca(Cca ccaToEnrolInto, Person personToEnrol) {
-            return false;
+            throw new AssertionError("This method should not be called.");
+        }
+
+        /**
+         * Expels a person from a CCA
+         *
+         * @param ccaToExpelFrom CCA to expel from
+         * @param personToExpel Person to be expelled from CCA
+         */
+        @Override
+        public boolean expelPersonFromCca(Cca ccaToExpelFrom, Person personToExpel) {
+            throw new AssertionError("This method should not be called.");
         }
 
         /**
          * Finds a CCA based on the cid
          *
-         * @param cid
+         * @param cid cid of CCA to be found
          */
         @Override
         public Cca findCcaFromCid(int cid) {
-            return null;
+            throw new AssertionError("This method should not be called.");
         }
 
         /**
          * Finds a Person based on the pid
          *
-         * @param pid
+         * @param pid pid of Person to be found
          */
         @Override
         public Person findPersonFromPid(int pid) {
-            return null;
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override

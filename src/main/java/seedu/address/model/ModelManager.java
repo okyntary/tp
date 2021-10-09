@@ -179,33 +179,40 @@ public class ModelManager implements Model {
     /**
      * Enrols a person into a CCA
      * {@code cca} must not already exist in the address book.
-     *
-     * @param ccaToEnrolInto
-     * @param personToEnrol
+     *  @param ccaToEnrolInto CCA to enrol into
+     * @param personToEnrol Person enrolling into CCA
      */
     @Override
     public boolean enrolPersonIntoCca(Cca ccaToEnrolInto, Person personToEnrol) {
-        return false;
+        return ccaToEnrolInto.enrolPerson(personToEnrol);
+    }
+
+    /**
+     * Expels a person from a CCA
+     */
+    @Override
+    public boolean expelPersonFromCca(Cca ccaToExpelFrom, Person personToExpel) {
+        return ccaToExpelFrom.expelPerson(personToExpel);
     }
 
     /**
      * Finds a CCA based on the cid
      *
-     * @param cid
+     * @param cid cid of CCA to be found
      */
     @Override
     public Cca findCcaFromCid(int cid) {
-        return null;
+        return this.addressBook.findCcaFromCid(cid);
     }
 
     /**
      * Finds a Person based on the pid
      *
-     * @param pid
+     * @param pid pid of Person to be found
      */
     @Override
     public Person findPersonFromPid(int pid) {
-        return null;
+        return this.addressBook.findPersonFromPid(pid);
     }
 
     @Override

@@ -1,8 +1,9 @@
 package seedu.address.model.cca;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import seedu.address.model.person.Person;
 
@@ -11,7 +12,8 @@ public class Cca {
 
     // Identity fields
     private final CcaName ccaName;
-    private ArrayList<Person> personArrayList;
+    private Set<Person> personArrayList;
+    private int cid;
 
     /**
      * Every field must be present and not null.
@@ -19,11 +21,31 @@ public class Cca {
     public Cca(CcaName ccaName) {
         requireAllNonNull(ccaName);
         this.ccaName = ccaName;
-        this.personArrayList = new ArrayList<>();
+        this.personArrayList = new HashSet<>();
     }
 
+    /**
+     * Returns the name of this CCA.
+     * @return the name of this CCA
+     */
     public CcaName getName() {
         return ccaName;
+    }
+
+    /**
+     * Returns the cid of this CCA.
+     * @return the cid of this CCA
+     */
+    public int getCid() {
+        return this.cid;
+    }
+
+    /**
+     * Sets the cid of this CCA.
+     * @param cid of this cca
+     */
+    public void setCid(int cid) {
+        this.cid = cid;
     }
 
     /**
@@ -76,7 +98,7 @@ public class Cca {
         return this.personArrayList.add(newPerson);
     }
 
-    // Check if Person Exists
+    // Check if Person Exists but should not need as it is a Set<>
     public boolean checkPerson(Person personToCheck) {
         return this.personArrayList.contains(personToCheck);
     }

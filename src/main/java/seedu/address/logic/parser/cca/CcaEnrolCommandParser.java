@@ -14,7 +14,6 @@ import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 public class CcaEnrolCommandParser {
-    //copy from CcaAddCommandParser and then adapt
     /**
      * Parses the given {@code String} of arguments in the context of the CcaEnrolCommand
      * and returns an CcaEnrolCommand object for execution.
