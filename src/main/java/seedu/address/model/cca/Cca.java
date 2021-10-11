@@ -51,6 +51,14 @@ public class Cca {
     }
 
     /**
+     * Checks if the Cid of a CCA is equal to a given Cid
+     * @return a boolean representing if they are equal
+     */
+    public boolean cidEquals(Cid otherCid) {
+        return Integer.parseInt(this.cid.value) == Integer.parseInt(otherCid.value);
+    }
+
+    /**
      * Sets the cid of this CCA.
      * @param cid of this cca
      */
