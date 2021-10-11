@@ -56,12 +56,21 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the contents of the cca list with {@code ccas}.
+     * {@code ccas} must not contain duplicate persons.
+     */
+    public void setCcas(List<Cca> ccas) {
+        this.ccas.setCcas(ccas);
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
+        setCcas(newData.getCcaList());
     }
 
     //// person-level operations
@@ -80,6 +89,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addPerson(Person p) {
         persons.add(p);
+        p.setPid(persons.getCurrentIndex() + 1);
     }
 
     /**
@@ -115,8 +125,9 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Adds a cca to the address book.
      * The cca must not already exist in the address book.
      */
-    public void addCca(Cca p) {
-        ccas.add(p);
+    public void addCca(Cca cca) {
+        ccas.add(cca);
+        cca.setCid(ccas.getCurrentIndex() + 1);
     }
 
     /**
@@ -142,7 +153,9 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
+        String result = persons.asUnmodifiableObservableList().size() + " persons, "
+                + ccas.asUnmodifiableObservableList().size() + " ccas";
+        return result;
         // TODO: refine later
     }
 
@@ -171,5 +184,37 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public int hashCode() {
         return persons.hashCode();
+    }
+
+    /**
+     * Returns the CCA from the cid.
+     * @param cid of the CCA to be found
+     * @return the CCA with that cid
+     */
+    public Cca findCcaFromCid(int cid) {
+        final Cca[] ccaFromCid = new Cca[1];
+        ccaFromCid[0] = null;
+        this.getCcaList().parallelStream().forEach(cca -> {
+            if (cca.getCid() == cid) {
+                ccaFromCid[0] = cca;
+            }
+        });
+        return ccaFromCid[0];
+    }
+
+    /**
+     * Returns the CCA from the cid.
+     * @param pid of the CCA to be found
+     * @return the CCA with that cid
+     */
+    public Person findPersonFromPid(int pid) {
+        final Person[] personFromPid = new Person[1];
+        personFromPid[0] = null;
+        this.getPersonList().parallelStream().forEach(person -> {
+            if (person.getPid() == pid) {
+                personFromPid[0] = person;
+            }
+        });
+        return personFromPid[0];
     }
 }
