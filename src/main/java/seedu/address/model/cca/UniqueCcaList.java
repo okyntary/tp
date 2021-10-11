@@ -36,9 +36,16 @@ public class UniqueCcaList implements Iterable<Cca> {
         if (this.internalList.size() == 0) {
             return 0;
         } else {
-            return this.internalList.get(this.internalList.size() - 1).getCid();
+            int[] currentHighest = {-1};
+            this.internalList.parallelStream().forEach(x -> {
+                if (x.getCid() > currentHighest[0]) {
+                    currentHighest[0] = x.getCid();
+                }
+            });
+            return currentHighest[0];
         }
     }
+
     /**
      * Returns true if the list contains an equivalent CCA as the given argument.
      */
