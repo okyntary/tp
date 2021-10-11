@@ -16,7 +16,7 @@ public class Cid {
      * @param cid A valid integer.
      */
     public Cid(String cid) {
-        // FIXME: cid.trim() shouldn't be done here
+        // TODO: cid.trim() shouldn't be done here
         cid = cid.trim();
         requireNonNull(cid);
         checkArgument(isValidCid(cid), MESSAGE_CONSTRAINTS);

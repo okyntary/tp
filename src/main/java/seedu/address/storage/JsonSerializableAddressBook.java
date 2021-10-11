@@ -60,7 +60,7 @@ class JsonSerializableAddressBook {
             }
             addressBook.addPerson(person);
         }
-        for (JsonAdaptedCca jsonAdaptedCca : ccas ) {
+        for (JsonAdaptedCca jsonAdaptedCca : ccas) {
             Cca cca = jsonAdaptedCca.toModelType();
             if (addressBook.hasCca(cca)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_CCA);
