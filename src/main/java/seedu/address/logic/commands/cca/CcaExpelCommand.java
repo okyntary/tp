@@ -9,7 +9,9 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.cca.Cca;
+import seedu.address.model.cca.Cid;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Pid;
 
 public class CcaExpelCommand extends Command {
     public static final String COMMAND_WORD = "expel";
@@ -35,9 +37,9 @@ public class CcaExpelCommand extends Command {
     /**
      * Creates an CcaAddCommand to add the specified {@code Cca}
      */
-    public CcaExpelCommand(int cid, int pid) {
-        this.cid = cid;
-        this.pid = pid;
+    public CcaExpelCommand(Cid cid, Pid pid) {
+        this.cid = Integer.parseInt(cid.toString());
+        this.pid = Integer.parseInt(pid.toString());
     }
 
     @Override

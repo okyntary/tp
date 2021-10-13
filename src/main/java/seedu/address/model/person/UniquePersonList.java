@@ -44,7 +44,13 @@ public class UniquePersonList implements Iterable<Person> {
         if (this.internalList.size() == 0) {
             return 0;
         } else {
-            return this.internalList.get(this.internalList.size() - 1).getPid();
+            int []currentHighest = {-1};
+            this.internalList.parallelStream().forEach(x -> {
+                if (x.getPid() > currentHighest[0]) {
+                    currentHighest[0] = x.getPid();
+                }
+            });
+            return currentHighest[0];
         }
     }
 

@@ -10,11 +10,13 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.cca.CcaName;
+import seedu.address.model.cca.Cid;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.reminder.ReminderName;
+import seedu.address.model.person.Pid;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -162,7 +164,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code cid} is invalid.
      */
-    public static int parseCid(String cid) throws ParseException {
+    public static Cid parseCid(String cid) throws ParseException {
         requireNonNull(cid);
         String trimmedCid = cid.trim();
         int intCid = -1;
@@ -174,7 +176,7 @@ public class ParserUtil {
             if (intCid == -1) {
                 throw new ParseException("Please input cid as a number");
             }
-            return intCid;
+            return new Cid(cid);
         }
     }
 
@@ -184,7 +186,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code pid} is invalid.
      */
-    public static int parsePid(String pid) throws ParseException {
+    public static Pid parsePid(String pid) throws ParseException {
         requireNonNull(pid);
         String trimmedPid = pid.trim();
         int intPid = -1;
@@ -196,7 +198,7 @@ public class ParserUtil {
             if (intPid == -1) {
                 throw new ParseException("Please input pid as a number");
             }
-            return intPid;
+            return new Pid(pid);
         }
     }
 }
