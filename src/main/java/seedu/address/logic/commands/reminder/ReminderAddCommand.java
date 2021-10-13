@@ -1,8 +1,11 @@
 package seedu.address.logic.commands.reminder;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CCA_ID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FREQUENCY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_OCCURRENCES;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_START_DATE;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
