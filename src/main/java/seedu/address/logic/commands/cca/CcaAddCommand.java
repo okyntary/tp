@@ -20,7 +20,7 @@ public class CcaAddCommand extends Command {
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "NUS String Orchestra ";
+            + PREFIX_NAME + "NUS Symphony Orchestra ";
 
     public static final String MESSAGE_SUCCESS = "New CCA added: %1$s";
     public static final String MESSAGE_DUPLICATE_CCA = "This CCA already exists in the address book";

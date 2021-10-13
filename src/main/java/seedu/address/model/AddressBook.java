@@ -114,7 +114,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// cca-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a cca with the same identity as {@code cca} exists in the address book.
      */
     public boolean hasCca(Cca cca) {
         requireNonNull(cca);
@@ -147,6 +147,33 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeCca(Cca key) {
         ccas.remove(key);
+    }
+
+    //// reminder-level operations
+
+    /**
+     * Returns true if a reminder with the same identity as {@code reminder} exists in the address book.
+     */
+    public boolean hasReminder(Reminder reminder) {
+        requireNonNull(reminder);
+        return reminders.contains(reminder);
+    }
+
+    /**
+     * Adds a reminder to the address book.
+     * The reminder must not already exist in the address book.
+     */
+    public void addReminder(Reminder reminder) {
+        reminders.add(reminder);
+        reminder.setRid(reminders.getCurrentIndex() + 1);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeReminder(Reminder key) {
+        reminders.remove(key);
     }
 
     //// util methods

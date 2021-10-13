@@ -13,4 +13,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_TAG = new Prefix("t/");
     public static final Prefix PREFIX_CCA_ID = new Prefix("cid/");
     public static final Prefix PREFIX_PERSON_ID = new Prefix("pid/");
+    public static final Prefix PREFIX_START_DATE = new Prefix("sd/");
+    public static final Prefix PREFIX_FREQUENCY = new Prefix("f/");
+    public static final Prefix PREFIX_OCCURRENCES = new Prefix("o/");
 }

@@ -143,4 +143,21 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered cca list */
     ObservableList<Reminder> getFilteredReminderList();
+
+    /**
+     * Returns true if a reminder with the same identity as {@code reminder} exists in the address book.
+     */
+    boolean hasReminder(Reminder reminder);
+
+    /**
+     * Deletes the given reminder.
+     * The reminder must exist in the address book.
+     */
+    void deleteReminder(Reminder target);
+
+    /**
+     * Adds the given reminder.
+     * {@code reminder} must not already exist in the address book.
+     */
+    void addReminder(Reminder reminder);
 }
