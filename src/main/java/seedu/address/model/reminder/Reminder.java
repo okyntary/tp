@@ -7,6 +7,7 @@ import java.util.Objects;
 public class Reminder {
     // Identity fields
     private final ReminderName reminderName;
+    private int rid;
 
     /**
      * Every field must be present and not null.
@@ -18,6 +19,14 @@ public class Reminder {
 
     public ReminderName getName() {
         return reminderName;
+    }
+
+    public void setRid(int rid) {
+        this.rid = rid;
+    }
+
+    public int getRid() {
+        return rid;
     }
 
     /**

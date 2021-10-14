@@ -16,6 +16,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Pid;
+import seedu.address.model.reminder.ReminderName;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -53,6 +54,8 @@ public class ParserUtil {
         return new Name(trimmedName);
     }
 
+    // we be kinda repeating code here
+
     /**
      * Parses a {@code String name} into a {@code CcaName}.
      * Leading and trailing whitespaces will be trimmed.
@@ -66,6 +69,21 @@ public class ParserUtil {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
         return new CcaName(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String name} into a {@code ReminderName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static ReminderName parseReminderName(String name) throws ParseException {
+        requireNonNull(name);
+        String trimmedName = name.trim();
+        if (!Name.isValidName(trimmedName)) {
+            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        }
+        return new ReminderName(trimmedName);
     }
 
     /**
