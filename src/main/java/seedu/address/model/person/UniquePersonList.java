@@ -46,8 +46,8 @@ public class UniquePersonList implements Iterable<Person> {
         } else {
             int []currentHighest = {-1};
             this.internalList.parallelStream().forEach(x -> {
-                if (x.getPid() > currentHighest[0]) {
-                    currentHighest[0] = x.getPid();
+                if (Integer.valueOf(x.getPid().value) > currentHighest[0]) {
+                    currentHighest[0] = Integer.valueOf(x.getPid().value);
                 }
             });
             return currentHighest[0];

@@ -211,7 +211,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         final Person[] personFromPid = new Person[1];
         personFromPid[0] = null;
         this.getPersonList().parallelStream().forEach(person -> {
-            if (person.getPid() == pid) {
+            if (Integer.valueOf(person.getPid().value) == pid) {
                 personFromPid[0] = person;
             }
         });

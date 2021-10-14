@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.cca.Cca;
 import seedu.address.model.cca.CcaName;
+import seedu.address.model.cca.Cid;
+import seedu.address.model.person.Person;
 
 /**
  * Jackson-friendly version of {@link Cca}.
@@ -14,6 +16,7 @@ public class JsonAdaptedCca {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Cca's %s field is missing!";
 
     private final String name;
+    private final String cid;
 
     /**
      * Constructs a {@code JsonAdaptedCca} with the given cca details.
@@ -21,6 +24,7 @@ public class JsonAdaptedCca {
     @JsonCreator
     public JsonAdaptedCca(@JsonProperty("name") String name) {
         this.name = name;
+        this.cid = "-1"; // Dummy cid
     }
 
     /**
@@ -28,6 +32,7 @@ public class JsonAdaptedCca {
      */
     public JsonAdaptedCca(Cca source) {
         name = source.getName().fullName;
+        cid = String.valueOf(source.getCid());
     }
 
     /**
@@ -44,7 +49,9 @@ public class JsonAdaptedCca {
         }
         final CcaName modelName = new CcaName(name);
 
-        return new Cca(modelName);
+        final Cid modelCid = new Cid(cid);
+
+        return new Cca(modelName, modelCid);
     }
 
 }

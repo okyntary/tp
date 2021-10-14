@@ -27,11 +27,11 @@ public class Cca {
     /**
      * Every field must be present and not null.
      */
-    public Cca(CcaName ccaName, int cid) {
+    public Cca(CcaName ccaName, Cid cid) {
         requireAllNonNull(ccaName);
         this.ccaName = ccaName;
         this.personArrayList = new HashSet<>();
-        this.cid = new Cid(String.valueOf(cid));
+        this.cid = cid;
     }
 
     /**

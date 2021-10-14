@@ -13,7 +13,7 @@ public class Pid {
     /**
      * Constructs a {@code Pid}.
      *
-     * @param pid A valid phone number.
+     * @param pid A valid pid number.
      */
     public Pid(String pid) {
         requireNonNull(pid);
@@ -22,7 +22,7 @@ public class Pid {
     }
 
     /**
-     * Returns true if a given string is a valid phone number.
+     * Returns true if a given string is a valid pid.
      */
     public static boolean isValidPid(String test) {
         return test.matches(VALIDATION_REGEX);

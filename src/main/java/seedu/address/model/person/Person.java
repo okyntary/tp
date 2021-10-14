@@ -62,8 +62,8 @@ public class Person {
      * Returns the pid for this person.
      * @return the pid of this person
      */
-    public int getPid() {
-        return Integer.parseInt(this.pid.value);
+    public Pid getPid() {
+        return pid;
     }
 
     public Name getName() {
