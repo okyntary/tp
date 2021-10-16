@@ -6,23 +6,25 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Cid {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Phone numbers should only contain numbers, and it should be at least 3 digits long";
+            "Cid should be an integer";
     public static final String VALIDATION_REGEX = "\\d*";
     public final String value;
 
     /**
      * Constructs a {@code Cid}.
      *
-     * @param cid A valid phone number.
+     * @param cid A valid integer.
      */
     public Cid(String cid) {
+        // TODO: cid.trim() shouldn't be done here
+        cid = cid.trim();
         requireNonNull(cid);
         checkArgument(isValidCid(cid), MESSAGE_CONSTRAINTS);
         value = cid;
     }
 
     /**
-     * Returns true if a given string is a valid phone number.
+     * Returns true if a given string is a valid integer.
      */
     public static boolean isValidCid(String test) {
         return test.matches(VALIDATION_REGEX);

@@ -12,7 +12,6 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * Parses input arguments and creates a new PersonDeleteCommand object
  */
 public class PersonDeleteCommandParser implements Parser<PersonDeleteCommand> {
-
     /**
      * Parses the given {@code String} of arguments in the context of the PersonDeleteCommand
      * and returns a PersonDeleteCommand object for execution.
@@ -27,5 +26,4 @@ public class PersonDeleteCommandParser implements Parser<PersonDeleteCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, PersonDeleteCommand.MESSAGE_USAGE), pe);
         }
     }
-
 }

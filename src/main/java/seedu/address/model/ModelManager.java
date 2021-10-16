@@ -119,9 +119,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasCca(Cca person) {
-        requireNonNull(person);
-        return addressBook.hasCca(person);
+    public boolean hasCca(Cca cca) {
+        requireNonNull(cca);
+        return addressBook.hasCca(cca);
     }
 
     @Override
@@ -130,8 +130,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addCca(Cca person) {
-        addressBook.addCca(person);
+    public void addCca(Cca cca) {
+        addressBook.addCca(cca);
         updateFilteredCcaList(PREDICATE_SHOW_ALL_CCAS);
     }
 
@@ -140,6 +140,23 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedCca);
 
         addressBook.setCca(target, editedCca);
+    }
+
+    @Override
+    public boolean hasReminder(Reminder reminder) {
+        requireNonNull(reminder);
+        return addressBook.hasReminder(reminder);
+    }
+
+    @Override
+    public void deleteReminder(Reminder target) {
+        addressBook.removeReminder(target);
+    }
+
+    @Override
+    public void addReminder(Reminder reminder) {
+        addressBook.addReminder(reminder);
+        updateFilteredCcaList(PREDICATE_SHOW_ALL_CCAS);
     }
 
     //=========== Filtered Person List Accessors =============================================================

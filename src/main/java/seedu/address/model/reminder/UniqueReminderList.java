@@ -29,6 +29,18 @@ public class UniqueReminderList implements Iterable<Reminder> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
+     * Returns the current largest rid
+     * @return the current largest rid
+     */
+    public int getCurrentIndex() {
+        if (this.internalList.size() == 0) {
+            return 0;
+        } else {
+            return this.internalList.get(this.internalList.size() - 1).getRid();
+        }
+    }
+
+    /**
      * Returns true if the list contains an equivalent Reminder as the given argument.
      */
     public boolean contains(Reminder toCheck) {

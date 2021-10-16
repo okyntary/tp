@@ -12,6 +12,8 @@ import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.cca.Cid;
+import seedu.address.model.person.Pid;
 
 public class CcaExpelCommandParser {
     /**
@@ -28,8 +30,8 @@ public class CcaExpelCommandParser {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CcaExpelCommand.MESSAGE_USAGE));
         }
 
-        int cid = ParserUtil.parseCid(argMultimap.getValue(PREFIX_CCA_ID).get());
-        int pid = ParserUtil.parsePid(argMultimap.getValue(PREFIX_PERSON_ID).get());
+        Cid cid = ParserUtil.parseCid(argMultimap.getValue(PREFIX_CCA_ID).get());
+        Pid pid = ParserUtil.parsePid(argMultimap.getValue(PREFIX_PERSON_ID).get());
         return new CcaExpelCommand(cid, pid);
     }
 

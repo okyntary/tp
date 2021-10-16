@@ -6,14 +6,14 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Pid {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Phone numbers should only contain numbers, and it should be at least 3 digits long";
+            "Pid should be an integer";
     public static final String VALIDATION_REGEX = "\\d*";
     public final String value;
 
     /**
      * Constructs a {@code Pid}.
      *
-     * @param pid A valid phone number.
+     * @param pid A valid integer.
      */
     public Pid(String pid) {
         requireNonNull(pid);
