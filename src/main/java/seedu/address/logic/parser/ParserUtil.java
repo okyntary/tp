@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
@@ -101,7 +102,7 @@ public class ParserUtil {
         }
         Date startDate;
         try {
-            startDate = ReminderStartDate.parseInputDateFormat.parse(trimmedDateText);
+            startDate = ReminderStartDate.PARSE_INPUT_DATE_FORMAT.parse(trimmedDateText);
         } catch (java.text.ParseException e) {
             throw new ParseException(ReminderStartDate.PARSE_DATE_CONSTRAINTS);
         }

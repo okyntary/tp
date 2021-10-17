@@ -1,6 +1,7 @@
 package seedu.address.model.reminder;
 
 import static java.util.Objects.requireNonNull;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -13,8 +14,8 @@ public class ReminderStartDate {
      * The date must be in YYYY-MM-DD format.
      */
     public static final String VALIDATION_REGEX = "\\d{4}-\\d{1,2}-\\d{1,2}";
-    public static final SimpleDateFormat parseInputDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-    public static final SimpleDateFormat parseDateToStringFormat = new SimpleDateFormat("E, dd MMM yyyy");
+    public static final SimpleDateFormat PARSE_INPUT_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
+    public static final SimpleDateFormat PARSE_DATE_TO_STRING_FORMAT = new SimpleDateFormat("E, dd MMM yyyy");
 
 
     public final Date startDate;
@@ -38,7 +39,7 @@ public class ReminderStartDate {
 
     @Override
     public String toString() {
-        return parseDateToStringFormat.format(startDate);
+        return PARSE_DATE_TO_STRING_FORMAT.format(startDate);
     }
 
     @Override

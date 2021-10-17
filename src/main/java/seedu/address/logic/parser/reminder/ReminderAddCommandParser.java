@@ -3,6 +3,7 @@ package seedu.address.logic.parser.reminder;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START_DATE;
+
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.reminder.ReminderAddCommand;
@@ -33,7 +34,8 @@ public class ReminderAddCommandParser implements Parser<ReminderAddCommand> {
 
         //TODO: update
         ReminderName reminderName = ParserUtil.parseReminderName(argMultimap.getValue(PREFIX_NAME).get());
-        ReminderStartDate reminderStartDate = ParserUtil.parseReminderStartDate(argMultimap.getValue(PREFIX_START_DATE).get());
+        ReminderStartDate reminderStartDate = ParserUtil.parseReminderStartDate(
+                argMultimap.getValue(PREFIX_START_DATE).get());
 
         // Create a new reminder
         Reminder reminder = new Reminder(reminderName, reminderStartDate);
