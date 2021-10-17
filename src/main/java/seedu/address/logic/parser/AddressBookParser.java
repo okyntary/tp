@@ -16,6 +16,7 @@ import seedu.address.logic.commands.cca.CcaAddCommand;
 import seedu.address.logic.commands.cca.CcaDeleteCommand;
 import seedu.address.logic.commands.cca.CcaEnrolCommand;
 import seedu.address.logic.commands.cca.CcaExpelCommand;
+import seedu.address.logic.commands.cca.CcaFindCommand;
 import seedu.address.logic.commands.person.PersonAddCommand;
 import seedu.address.logic.commands.person.PersonDeleteCommand;
 import seedu.address.logic.commands.person.PersonEditCommand;
@@ -25,6 +26,7 @@ import seedu.address.logic.parser.cca.CcaAddCommandParser;
 import seedu.address.logic.parser.cca.CcaDeleteCommandParser;
 import seedu.address.logic.parser.cca.CcaEnrolCommandParser;
 import seedu.address.logic.parser.cca.CcaExpelCommandParser;
+import seedu.address.logic.parser.cca.CcaFindCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.person.PersonAddCommandParser;
 import seedu.address.logic.parser.person.PersonDeleteCommandParser;
@@ -74,6 +76,9 @@ public class AddressBookParser {
 
         case PersonFindCommand.COMMAND_WORD:
             return new PersonFindCommandParser().parse(arguments);
+
+        case CcaFindCommand.COMMAND_WORD:
+            return new CcaFindCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
