@@ -6,12 +6,12 @@ import java.util.List;
 import java.util.Optional;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.cca.Cca;
-import seedu.address.model.cca.Cid;
 
 public class CcaDeleteCommand extends Command {
     public static final String COMMAND_WORD = "deletec";
@@ -23,10 +23,10 @@ public class CcaDeleteCommand extends Command {
 
     public static final String MESSAGE_DELETE_CCA_SUCCESS = "Deleted CCA: %1$s";
 
-    private final Cid targetCid;
+    private final Index targetCcaIndex;
 
-    public CcaDeleteCommand(Cid targetCid) {
-        this.targetCid = targetCid;
+    public CcaDeleteCommand(Index targetCcaIndex) {
+        this.targetCcaIndex = targetCcaIndex;
     }
 
     @Override
@@ -34,13 +34,12 @@ public class CcaDeleteCommand extends Command {
         requireNonNull(model);
         List<Cca> lastShownList = model.getFilteredCcaList();
 
-        Optional<Cca> ccaToDelete = lastShownList.stream().filter(cca -> cca.cidEquals(targetCid)).findFirst();
-
-        if (!ccaToDelete.isPresent()) {
+        if (targetCcaIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_CCA_DISPLAYED_INDEX);
         }
 
-        model.deleteCca(ccaToDelete.get());
+        Cca ccaToDelete = lastShownList.get(targetCcaIndex.getZeroBased());
+        model.deleteCca(ccaToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_CCA_SUCCESS, ccaToDelete));
     }
 
@@ -48,6 +47,6 @@ public class CcaDeleteCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof CcaDeleteCommand // instanceof handles nulls
-                && targetCid.equals(((CcaDeleteCommand) other).targetCid)); // state check
+                && targetCcaIndex.equals(((CcaDeleteCommand) other).targetCcaIndex)); // state check
     }
 }

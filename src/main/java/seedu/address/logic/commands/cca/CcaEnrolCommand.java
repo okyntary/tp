@@ -4,6 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CCA_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_ID;
 
+import java.util.List;
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -31,24 +34,34 @@ public class CcaEnrolCommand extends Command {
     public static final String MESSAGE_PRESENT_PERSON = "This person(%1$s) is already part of that CCA(%2$s)";
 
     private Cca ccaToEnrolInto;
-    private final int cid;
+    private final Index targetCcaIndex;
     private Person personToEnrol;
-    private final int pid;
+    private final Index targetPersonIndex;
 
     /**
      * Creates an CcaAddCommand to add the specified {@code Cca}
      */
-    public CcaEnrolCommand(Cid cid, Pid pid) {
-        this.cid = Integer.parseInt(cid.toString());
-        this.pid = Integer.parseInt(pid.toString());
+    public CcaEnrolCommand(Index targetCcaIndex, Index targetPersonIndex) {
+        this.targetCcaIndex = targetCcaIndex;
+        this.targetPersonIndex = targetPersonIndex;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        this.ccaToEnrolInto = model.findCcaFromCid(cid);
-        this.personToEnrol = model.findPersonFromPid(pid);
+        List<Cca> lastShownCcaList = model.getFilteredCcaList();
+        List<Person> lastShownPersonList = model.getFilteredPersonList();
+
+        if (targetCcaIndex.getZeroBased() >= lastShownCcaList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_CCA_DISPLAYED_INDEX);
+        }
+        if (targetPersonIndex.getZeroBased() >= lastShownPersonList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
+
+        this.ccaToEnrolInto = lastShownCcaList.get(targetCcaIndex.getZeroBased());
+        this.personToEnrol = lastShownPersonList.get(targetPersonIndex.getZeroBased());
 
         if (ccaToEnrolInto == null) {
             throw new CommandException(MESSAGE_MISSING_CCA);
