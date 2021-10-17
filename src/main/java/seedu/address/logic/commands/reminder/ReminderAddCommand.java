@@ -26,7 +26,7 @@ public class ReminderAddCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_CCA_ID + "1 "
             + PREFIX_NAME + "NUSSO rehearsal "
-            + PREFIX_START_DATE + "31-10-2021";
+            + PREFIX_START_DATE + "2021-10-31";
 
     public static final String MESSAGE_SUCCESS = "New Reminder added: %1$s";
     public static final String MESSAGE_DUPLICATE_REMINDER = "This Reminder already exists in the address book";
