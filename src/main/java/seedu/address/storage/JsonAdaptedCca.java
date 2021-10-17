@@ -6,6 +6,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.cca.Cca;
 import seedu.address.model.cca.CcaName;
+import seedu.address.model.person.Person;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Jackson-friendly version of {@link Cca}.
@@ -14,13 +21,17 @@ public class JsonAdaptedCca {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Cca's %s field is missing!";
 
     private final String name;
+    private final Set<JsonAdaptedPerson> personArrayList = new HashSet<>();
 
     /**
      * Constructs a {@code JsonAdaptedCca} with the given cca details.
      */
     @JsonCreator
-    public JsonAdaptedCca(@JsonProperty("name") String name) {
+    public JsonAdaptedCca(@JsonProperty("name") String name, @JsonProperty("members")Set<JsonAdaptedPerson> personArrayList) {
         this.name = name;
+        if (personArrayList != null) {
+            this.personArrayList.addAll(personArrayList);
+        }
     }
 
     /**
@@ -28,6 +39,9 @@ public class JsonAdaptedCca {
      */
     public JsonAdaptedCca(Cca source) {
         name = source.getName().fullName;
+        personArrayList.addAll(source.getPersonArrayList().stream()
+                .map(JsonAdaptedPerson::new)
+                .collect(Collectors.toSet()));
     }
 
     /**
@@ -36,6 +50,11 @@ public class JsonAdaptedCca {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Cca toModelType() throws IllegalValueException {
+        final List<Person> personList = new ArrayList<>();
+        for (JsonAdaptedPerson person : personArrayList) {
+            personList.add(person.toModelType());
+        }
+
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, CcaName.class.getSimpleName()));
         }
@@ -43,8 +62,9 @@ public class JsonAdaptedCca {
             throw new IllegalValueException(CcaName.MESSAGE_CONSTRAINTS);
         }
         final CcaName modelName = new CcaName(name);
+        final Set<Person> personArrayList = new HashSet<>(personList);
 
-        return new Cca(modelName);
+        return new Cca(modelName, personArrayList);
     }
 
 }

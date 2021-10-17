@@ -27,11 +27,10 @@ public class Cca {
     /**
      * Every field must be present and not null.
      */
-    public Cca(CcaName ccaName, int cid) {
+    public Cca(CcaName ccaName, Set<Person> personArrayList) {
         requireAllNonNull(ccaName);
         this.ccaName = ccaName;
-        this.personArrayList = new HashSet<>();
-        this.cid = new Cid(String.valueOf(cid));
+        this.personArrayList = personArrayList;
     }
 
     /**
@@ -40,6 +39,14 @@ public class Cca {
      */
     public CcaName getName() {
         return ccaName;
+    }
+
+    /**
+     * Returns the personArrayList of this CCA.
+     * @return the personArrayList of this CCA
+     */
+    public Set<Person> getPersonArrayList() {
+        return personArrayList;
     }
 
     /**
