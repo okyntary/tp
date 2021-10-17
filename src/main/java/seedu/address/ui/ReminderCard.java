@@ -38,6 +38,8 @@ public class ReminderCard extends UiPart<Region> {
     @FXML
     private Label name;
     @FXML
+    private Label date;
+    @FXML
     private Label id;
     @FXML
     private Label frequency;
@@ -54,8 +56,9 @@ public class ReminderCard extends UiPart<Region> {
         this.reminder = reminder;
         id.setText(displayedIndex + ". ");
         this.name.setText(reminder.getName().fullName);
-        this.frequency.setText(""); // to test if this shows up as an empty line
-        this.occurrences.setText("temp occ");
+        this.date.setText(reminder.getStartDate().toString());
+//        this.frequency.setText(""); // to test if this shows up as an empty line
+//        this.occurrences.setText("temp occ");
 
         // each CCA has a field for color? can do an enum
         // then mapping from enum value to the binding

@@ -1,8 +1,8 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -17,6 +17,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Pid;
 import seedu.address.model.reminder.ReminderName;
+import seedu.address.model.reminder.ReminderStartDate;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -84,6 +85,27 @@ public class ParserUtil {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
         return new ReminderName(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String name} into a {@code ReminderName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static ReminderStartDate parseReminderStartDate(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedDateText = date.trim();
+        if (!ReminderStartDate.isValidDate(trimmedDateText)) {
+            throw new ParseException(ReminderStartDate.MESSAGE_CONSTRAINTS);
+        }
+        Date startDate;
+        try {
+            startDate = ReminderStartDate.parseInputDateFormat.parse(trimmedDateText);
+        } catch (java.text.ParseException e) {
+            throw new ParseException(ReminderStartDate.PARSE_DATE_CONSTRAINTS);
+        }
+        return new ReminderStartDate(startDate);
     }
 
     /**

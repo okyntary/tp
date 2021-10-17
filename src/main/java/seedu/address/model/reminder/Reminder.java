@@ -7,18 +7,24 @@ import java.util.Objects;
 public class Reminder {
     // Identity fields
     private final ReminderName reminderName;
+    private final ReminderStartDate reminderStartDate;
     private int rid;
 
     /**
      * Every field must be present and not null.
      */
-    public Reminder(ReminderName reminderName) {
+    public Reminder(ReminderName reminderName, ReminderStartDate reminderStartDate) {
         requireAllNonNull(reminderName);
         this.reminderName = reminderName;
+        this.reminderStartDate = reminderStartDate;
     }
 
     public ReminderName getName() {
         return reminderName;
+    }
+
+    public ReminderStartDate getStartDate() {
+        return reminderStartDate;
     }
 
     public void setRid(int rid) {
