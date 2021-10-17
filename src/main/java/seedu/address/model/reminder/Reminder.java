@@ -8,7 +8,6 @@ public class Reminder {
     // Identity fields
     private final ReminderName reminderName;
     private final ReminderStartDate reminderStartDate;
-    private int rid;
 
     /**
      * Every field must be present and not null.
@@ -25,14 +24,6 @@ public class Reminder {
 
     public ReminderStartDate getStartDate() {
         return reminderStartDate;
-    }
-
-    public void setRid(int rid) {
-        this.rid = rid;
-    }
-
-    public int getRid() {
-        return rid;
     }
 
     /**
