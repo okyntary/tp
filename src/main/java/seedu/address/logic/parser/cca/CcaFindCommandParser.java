@@ -3,8 +3,8 @@ package seedu.address.logic.parser.cca;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.Arrays;
+
 import seedu.address.logic.commands.cca.CcaFindCommand;
-import seedu.address.logic.commands.person.PersonFindCommand;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.cca.CcaNameContainsKeywordsPredicate;

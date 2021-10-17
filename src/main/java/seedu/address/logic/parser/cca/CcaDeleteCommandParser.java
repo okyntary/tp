@@ -7,7 +7,6 @@ import seedu.address.logic.commands.cca.CcaDeleteCommand;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.cca.Cid;
 
 /**
  * Parses input arguments and creates a new CcaDeleteCommand object
