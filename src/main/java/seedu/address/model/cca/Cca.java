@@ -50,6 +50,14 @@ public class Cca {
     }
 
     /**
+     * Returns the number of people in this CCA.
+     * @return the number of members of this CCA
+     */
+    public int getNumberOfMembers() {
+        return personArrayList.size();
+    }
+
+    /**
      * Returns the cid of this CCA.
      * @return the cid of this CCA
      */

@@ -72,6 +72,8 @@ public class CcaEnrolCommand extends Command {
 
         boolean success = model.enrolPersonIntoCca(ccaToEnrolInto, personToEnrol);
         if (success) {
+            model.setCca(ccaToEnrolInto, ccaToEnrolInto);
+            model.updateFilteredCcaList(Model.PREDICATE_SHOW_ALL_CCAS);
             return new CommandResult(String.format(MESSAGE_SUCCESS, personToEnrol.getName(), ccaToEnrolInto.getName()));
         } else {
             throw new CommandException(
