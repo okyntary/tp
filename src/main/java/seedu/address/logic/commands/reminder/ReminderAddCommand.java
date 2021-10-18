@@ -2,9 +2,7 @@ package seedu.address.logic.commands.reminder;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CCA_ID;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_FREQUENCY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_OCCURRENCES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START_DATE;
 
 import seedu.address.logic.commands.Command;
@@ -25,14 +23,10 @@ public class ReminderAddCommand extends Command {
             + PREFIX_CCA_ID + "CCA_ID "
             + PREFIX_NAME + "REMINDER_NAME "
             + PREFIX_START_DATE + "START_DATE "
-            + "[" + PREFIX_FREQUENCY + "FREQUENCY] "
-            + "[" + PREFIX_OCCURRENCES + "OCCURRENCES]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_CCA_ID + "1 "
             + PREFIX_NAME + "NUSSO rehearsal "
-            + PREFIX_START_DATE + "31-10-2021 "
-            + PREFIX_FREQUENCY + "1w "
-            + PREFIX_OCCURRENCES + "15";
+            + PREFIX_START_DATE + "2021-10-31";
 
     public static final String MESSAGE_SUCCESS = "New Reminder added: %1$s";
     public static final String MESSAGE_DUPLICATE_REMINDER = "This Reminder already exists in the address book";

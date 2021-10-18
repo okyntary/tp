@@ -165,7 +165,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addReminder(Reminder reminder) {
         reminders.add(reminder);
-        reminder.setRid(reminders.getCurrentIndex() + 1);
     }
 
     /**
