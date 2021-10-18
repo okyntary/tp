@@ -120,9 +120,8 @@ public class Cca {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                // May be a bad idea to do this
-                .append("; Enrolled Persons: ")
-                .append(this.getPersonArrayList().toString());
+                .append("; Number of enrolled persons: ")
+                .append(this.getPersonArrayList().size());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
