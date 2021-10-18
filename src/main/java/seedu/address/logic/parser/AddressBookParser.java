@@ -2,7 +2,6 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -23,6 +22,7 @@ import seedu.address.logic.commands.person.PersonEditCommand;
 import seedu.address.logic.commands.person.PersonFindCommand;
 import seedu.address.logic.commands.reminder.ReminderAddCommand;
 import seedu.address.logic.commands.reminder.ReminderDeleteCommand;
+import seedu.address.logic.commands.reminder.ReminderFindCommand;
 import seedu.address.logic.parser.cca.CcaAddCommandParser;
 import seedu.address.logic.parser.cca.CcaDeleteCommandParser;
 import seedu.address.logic.parser.cca.CcaEnrolCommandParser;
@@ -35,6 +35,7 @@ import seedu.address.logic.parser.person.PersonEditCommandParser;
 import seedu.address.logic.parser.person.PersonFindCommandParser;
 import seedu.address.logic.parser.reminder.ReminderAddCommandParser;
 import seedu.address.logic.parser.reminder.ReminderDeleteCommandParser;
+import seedu.address.logic.parser.reminder.ReminderFindCommandParser;
 
 
 /**
@@ -111,6 +112,9 @@ public class AddressBookParser {
 
         case ReminderDeleteCommand.COMMAND_WORD:
             return new ReminderDeleteCommandParser().parse(arguments);
+            
+        case ReminderFindCommand.COMMAND_WORD:
+            return new ReminderFindCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
