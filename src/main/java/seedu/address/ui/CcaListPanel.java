@@ -10,6 +10,9 @@ import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.cca.Cca;
 
+/**
+ * Panel containing the list of CCAs.
+ */
 public class CcaListPanel extends UiPart<Region> {
     private static final String FXML = "CcaListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(CcaListPanel.class);
