@@ -22,6 +22,14 @@ public class Cca {
     /**
      * Every field must be present and not null.
      */
+    public Cca(CcaName ccaName) {
+        requireAllNonNull(ccaName);
+        this.ccaName = ccaName;
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
     public Cca(CcaName ccaName, Set<Tag> tags) {
         requireAllNonNull(ccaName);
         this.ccaName = ccaName;
