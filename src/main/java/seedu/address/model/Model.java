@@ -131,16 +131,6 @@ public interface Model {
      */
     boolean expelPersonFromCca(Cca ccaToExpelFrom, Person personToExpel);
 
-    /**
-     * Finds a CCA based on the cid
-     */
-    Cca findCcaFromCid(int cid);
-
-    /**
-     * Finds a Person based on the pid
-     */
-    Person findPersonFromPid(int pid);
-
     /** Returns an unmodifiable view of the filtered cca list */
     ObservableList<Reminder> getFilteredReminderList();
 

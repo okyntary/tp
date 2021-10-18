@@ -204,26 +204,6 @@ public class PersonAddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-        /**
-         * Finds a CCA based on the cid
-         *
-         * @param cid cid of CCA to be found
-         */
-        @Override
-        public Cca findCcaFromCid(int cid) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        /**
-         * Finds a Person based on the pid
-         *
-         * @param pid pid of Person to be found
-         */
-        @Override
-        public Person findPersonFromPid(int pid) {
-            throw new AssertionError("This method should not be called.");
-        }
-
         @Override
         public ObservableList<Reminder> getFilteredReminderList() {
             throw new AssertionError("This method should not be called.");

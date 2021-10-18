@@ -13,7 +13,6 @@ public class Cca {
     // Identity fields
     private final CcaName ccaName;
     private Set<Person> personArrayList;
-    private Cid cid = new Cid("0");
 
     /**
      * Every field must be present and not null.
@@ -47,30 +46,6 @@ public class Cca {
      */
     public Set<Person> getPersonArrayList() {
         return personArrayList;
-    }
-
-    /**
-     * Returns the cid of this CCA.
-     * @return the cid of this CCA
-     */
-    public int getCid() {
-        return Integer.parseInt(this.cid.value);
-    }
-
-    /**
-     * Checks if the Cid of a CCA is equal to a given Cid
-     * @return a boolean representing if they are equal
-     */
-    public boolean cidEquals(Cid otherCid) {
-        return Integer.parseInt(this.cid.value) == Integer.parseInt(otherCid.value);
-    }
-
-    /**
-     * Sets the cid of this CCA.
-     * @param cid of this cca
-     */
-    public void setCid(int cid) {
-        this.cid = new Cid(String.valueOf(cid));
     }
 
     /**
