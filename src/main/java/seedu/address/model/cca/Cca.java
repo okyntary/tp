@@ -62,15 +62,15 @@ public class Cca {
         return personArrayList;
     }
 
-     /**
+    /**
      * Returns the number of people in this CCA.
      * @return the number of members of this CCA
      */
     public int getNumberOfMembers() {
         return personArrayList.size();
     }
-  
-     /**
+
+    /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
