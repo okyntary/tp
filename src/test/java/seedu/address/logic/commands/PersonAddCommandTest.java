@@ -183,6 +183,17 @@ public class PersonAddCommandTest {
         }
 
         /**
+         * Updates the filter of the filtered reminder list to filter by the given {@code predicate}.
+         *
+         * @param predicate
+         * @throws NullPointerException if {@code predicate} is null.
+         */
+        @Override
+        public void updateFilteredReminderList(Predicate<Reminder> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        /**
          * Enrols a person into a CCA
          *
          *  @param ccaToEnrolInto CCA to enrol into
