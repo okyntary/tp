@@ -49,7 +49,7 @@ public class CcaCard extends UiPart<Region> {
         this.cca = cca;
         id.setText(displayedIndex + ". ");
         this.name.setText(cca.getName().fullName);
-        this.numPeople.setText("No. of people: 3");
+        this.numPeople.setText("No. of people: " + cca.getNumberOfMembers());
 
         // can consider having tags for CCAs
         Label tempLabel = new Label("Music");

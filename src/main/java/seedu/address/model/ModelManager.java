@@ -242,4 +242,10 @@ public class ModelManager implements Model {
     public ObservableList<Reminder> getFilteredReminderList() {
         return filteredReminders;
     }
+
+    @Override
+    public void updateFilteredReminderList(Predicate<Reminder> predicate) {
+        requireNonNull(predicate);
+        filteredReminders.setPredicate(predicate);
+    }
 }

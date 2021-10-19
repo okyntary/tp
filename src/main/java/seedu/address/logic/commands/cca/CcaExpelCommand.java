@@ -16,6 +16,7 @@ import seedu.address.model.cca.Cca;
 import seedu.address.model.person.Person;
 
 public class CcaExpelCommand extends Command {
+
     public static final String COMMAND_WORD = "expel";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Expels a person from a CCA. "
@@ -71,6 +72,8 @@ public class CcaExpelCommand extends Command {
 
         boolean success = model.expelPersonFromCca(ccaToExpelFrom, personToExpel);
         if (success) {
+            model.setCca(ccaToExpelFrom, ccaToExpelFrom);
+            model.updateFilteredCcaList(Model.PREDICATE_SHOW_ALL_CCAS);
             return new CommandResult(String.format(MESSAGE_SUCCESS, personToExpel.getName(), ccaToExpelFrom.getName()));
         } else {
             throw new CommandException(
