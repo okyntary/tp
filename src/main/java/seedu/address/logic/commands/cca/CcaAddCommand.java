@@ -4,6 +4,10 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -29,6 +33,8 @@ public class CcaAddCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New CCA added: %1$s";
     public static final String MESSAGE_DUPLICATE_CCA = "This CCA already exists in the address book";
 
+    private final Logger logger = LogsCenter.getLogger(CcaAddCommand.class);
+
     private final Cca toAdd;
 
     /**
@@ -48,6 +54,7 @@ public class CcaAddCommand extends Command {
         }
 
         model.addCca(toAdd);
+        logger.log(Level.FINE, "CCA successfully added");
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
