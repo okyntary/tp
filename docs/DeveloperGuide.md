@@ -162,7 +162,7 @@ A CCA has:
 * Zero or more people enrolled in it, represented by the HashSet `personArrayList`
 * Zero or more reminders associated with it, represented by the HashSet `remindersArrayList`
 
-Two CCAs are considered identical if they have the same name. 
+Two CCAs are considered identical if they have the same name.
 
 #### Command for Adding CCAs
 
@@ -171,12 +171,12 @@ Polymorphism allows the different Command objects to be passed around and execut
 
 #### Command for Deleting CCAs
 
-The `deletec` command is implemented by `CcaDeleteCommand`. 
+The `deletec` command is implemented by `CcaDeleteCommand`.
 Similar to `CcaAddCommand`, `CcaDeleteCommand` extends `Command` to practice polymorphism.
 
 The `CcaDeleteCommand` class has an Index which is the index of the CCA to delete, specified by the user.
-It implements the `execute` method which handles the logic of the delete command. 
-The `getFilteredCcaList` method is called to obtain a List of CCAs, `lastShownList`. 
+It implements the `execute` method which handles the logic of the delete command.
+The `getFilteredCcaList` method is called to obtain a List of CCAs, `lastShownList`.
 If the given index exists in `lastShownList`, the corresponding CCA is deleted using the `deleteCca` method defined in the `ModelManager`.
 
 #### Command for Finding CCAs
@@ -184,8 +184,8 @@ If the given index exists in `lastShownList`, the corresponding CCA is deleted u
 The `findc` command is implemented by `CcaFindCommand` which also extends `Command`.
 
 The keywords specified by the user are passed as a List to the `CcaNameContainsKeywordsPredicate` constructor. 
-The `CcaNameContainsKeywordsPredicate` class extends `Predicate<Cca>` and implements the `test` method, 
-which uses streams to filter CCAs whose name matches any of the keywords.  
+The `CcaNameContainsKeywordsPredicate` class extends `Predicate<Cca>` and implements the `test` method,
+which uses streams to filter CCAs whose name matches any of the keywords.
 
 
 ### \[Proposed\] Undo/redo feature
@@ -297,7 +297,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: 
+**Value proposition**:
 
 ePoch helps users categorise contacts, which helps the user keep track of various overlapping social circles.
 The product offers peace of mind to the user using a “set-and-forget” approach by helping the user schedule recurring social events.
@@ -407,12 +407,12 @@ Use case ends.
 * 2a. The list is empty.
 
   Use case ends.
-  
+
 * 3a. The given person does not exist (person ID invalid).
 
     * 3a1. AddressBook shows an error message.
       Use case resumes at step 2.
-     
+
 
 **Use case: UC6 - Enrol a person into a CCA**
 
@@ -429,16 +429,16 @@ Use case ends.
 * 2a. The list of persons is empty.
 
   Use case ends.
-  
+
 * 2b. The list of CCAs is empty.
 
   Use case ends.
-  
+
 * 3a. The given person does not exist (person ID invalid).
 
     * 3a1. ePoch shows an error message.
       Use case resumes at step 2.
-     
+
 * 3b. The given CCA does not exist (CCA ID invalid).
 
     * 3b1. ePoch shows an error message.

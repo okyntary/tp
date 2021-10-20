@@ -54,7 +54,7 @@ It is intended to be used by NUS students, to help keep track of the students an
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `addp n/NAME`, `NAME` is a parameter which can be used as `addp n/John Doe`.
-  
+
 * Items in square brackets are optional.<br>
   e.g `n/NAME [e/EMAIL]` can be used as `n/Johnny Doe [e/EMAIL]` or as `n/Johnny Doe`.
 
