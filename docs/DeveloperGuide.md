@@ -154,6 +154,40 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### CCAs
+
+A CCA has:
+
+* A CCA name, represented by the `CcaName` class. CCA name must be unique.
+* Zero or more people enrolled in it, represented by the HashSet `personArrayList`
+* Zero or more reminders associated with it, represented by the HashSet `remindersArrayList`
+
+Two CCAs are considered identical if they have the same name. 
+
+#### Command for Adding CCAs
+
+The `addc` command is implemented by `CcaAddCommand`, which extends `Command`.
+Polymorphism allows the different Command objects to be passed around and executed without having to know what type of Command it is.
+
+#### Command for Deleting CCAs
+
+The `deletec` command is implemented by `CcaDeleteCommand`. 
+Similar to `CcaAddCommand`, `CcaDeleteCommand` extends `Command` to practice polymorphism.
+
+The `CcaDeleteCommand` class has an Index which is the index of the CCA to delete, specified by the user.
+It implements the `execute` method which handles the logic of the delete command. 
+The `getFilteredCcaList` method is called to obtain a List of CCAs, `lastShownList`. 
+If the given index exists in `lastShownList`, the corresponding CCA is deleted using the `deleteCca` method defined in the `ModelManager`.
+
+#### Command for Finding CCAs
+
+The `findc` command is implemented by `CcaFindCommand` which also extends `Command`.
+
+The keywords specified by the user are passed as a List to the `CcaNameContainsKeywordsPredicate` constructor. 
+The `CcaNameContainsKeywordsPredicate` class extends `Predicate<Cca>` and implements the `test` method, 
+which uses streams to filter CCAs whose name matches any of the keywords.  
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
