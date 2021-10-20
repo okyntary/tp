@@ -24,6 +24,10 @@ Class Name
 Class Phone
 Class Tag
 
+Class UniqueCcaList
+Class Cca
+Class CcaName
+
 }
 
 Class HiddenOutside #FFFFFF
@@ -46,9 +50,18 @@ Person *--> Email
 Person *--> Address
 Person *--> "*" Tag
 
+AddressBook *--> "1" UniqueCcaList
+UniqueCcaList --> "~* all" Cca
+Cca *--> CcaName
+Cca *--> "*" Tag
+
+Cca *-left-> "*" Person
+
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
+UniqueCcaList -[hidden]down-> Cca
 
 ModelManager -->"~* filtered" Person
+ModelManager -->"~* filtered" Cca
 @enduml
