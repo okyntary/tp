@@ -2,6 +2,7 @@ package seedu.address.logic.parser.reminder;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_START_DATE;
 
 import java.util.stream.Stream;
 
@@ -14,6 +15,7 @@ import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.reminder.ReminderName;
+import seedu.address.model.reminder.ReminderStartDate;
 
 public class ReminderAddCommandParser implements Parser<ReminderAddCommand> {
     /**
@@ -23,19 +25,20 @@ public class ReminderAddCommandParser implements Parser<ReminderAddCommand> {
      */
     public ReminderAddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_START_DATE);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_START_DATE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReminderAddCommand.MESSAGE_USAGE));
         }
 
         //TODO: update
         ReminderName reminderName = ParserUtil.parseReminderName(argMultimap.getValue(PREFIX_NAME).get());
+        ReminderStartDate reminderStartDate = ParserUtil.parseReminderStartDate(
+                argMultimap.getValue(PREFIX_START_DATE).get());
 
-        // Create a new reminder here
-        // TODO: update constructor
-        Reminder reminder = new Reminder(reminderName);
+        // Create a new reminder
+        Reminder reminder = new Reminder(reminderName, reminderStartDate);
 
         return new ReminderAddCommand(reminder);
     }
