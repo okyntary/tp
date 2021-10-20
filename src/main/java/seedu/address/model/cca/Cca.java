@@ -6,6 +6,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.person.Person;
+import seedu.address.model.reminder.Reminder;
 
 
 public class Cca {
@@ -13,7 +14,7 @@ public class Cca {
     // Identity fields
     private final CcaName ccaName;
     private Set<Person> personArrayList;
-    private Cid cid = new Cid("0");
+    private Set<Reminder> reminders;
 
     /**
      * Every field must be present and not null.
@@ -22,6 +23,7 @@ public class Cca {
         requireAllNonNull(ccaName);
         this.ccaName = ccaName;
         this.personArrayList = new HashSet<>();
+        this.reminders = new HashSet<>();
     }
 
     /**
@@ -31,6 +33,7 @@ public class Cca {
         requireAllNonNull(ccaName);
         this.ccaName = ccaName;
         this.personArrayList = personArrayList;
+        this.reminders = reminders;
     }
 
     /**
@@ -55,30 +58,6 @@ public class Cca {
      */
     public int getNumberOfMembers() {
         return personArrayList.size();
-    }
-
-    /**
-     * Returns the cid of this CCA.
-     * @return the cid of this CCA
-     */
-    public int getCid() {
-        return Integer.parseInt(this.cid.value);
-    }
-
-    /**
-     * Checks if the Cid of a CCA is equal to a given Cid
-     * @return a boolean representing if they are equal
-     */
-    public boolean cidEquals(Cid otherCid) {
-        return Integer.parseInt(this.cid.value) == Integer.parseInt(otherCid.value);
-    }
-
-    /**
-     * Sets the cid of this CCA.
-     * @param cid of this cca
-     */
-    public void setCid(int cid) {
-        this.cid = new Cid(String.valueOf(cid));
     }
 
     /**

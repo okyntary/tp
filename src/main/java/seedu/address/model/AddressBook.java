@@ -127,7 +127,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addCca(Cca cca) {
         ccas.add(cca);
-        cca.setCid(ccas.getCurrentIndex() + 1);
     }
 
     /**
@@ -210,22 +209,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public int hashCode() {
         return persons.hashCode();
-    }
-
-    /**
-     * Returns the CCA from the cid.
-     * @param cid of the CCA to be found
-     * @return the CCA with that cid
-     */
-    public Cca findCcaFromCid(int cid) {
-        final Cca[] ccaFromCid = new Cca[1];
-        ccaFromCid[0] = null;
-        this.getCcaList().parallelStream().forEach(cca -> {
-            if (cca.getCid() == cid) {
-                ccaFromCid[0] = cca;
-            }
-        });
-        return ccaFromCid[0];
     }
 
     /**
