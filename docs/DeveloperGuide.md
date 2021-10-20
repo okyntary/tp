@@ -183,7 +183,7 @@ If the given index exists in `lastShownList`, the corresponding CCA is deleted u
 
 The `findc` command is implemented by `CcaFindCommand` which also extends `Command`.
 
-The keywords specified by the user are passed as a List to the `CcaNameContainsKeywordsPredicate` constructor. 
+The keywords specified by the user are passed as a List to the `CcaNameContainsKeywordsPredicate` constructor.
 The `CcaNameContainsKeywordsPredicate` class extends `Predicate<Cca>` and implements the `test` method,
 which uses streams to filter CCAs whose name matches any of the keywords.
 
@@ -365,7 +365,7 @@ Use case ends.
 **MSS**
 
 1. User requests to add a person to the list and optionally specifies their name, phone number, email and address.
-2. ePoch adds the person with the specified information 
+2. ePoch adds the person with the specified information
 Use case ends.
 
 **Use case: UC3 - Add a CCA**
@@ -452,7 +452,7 @@ Use case ends.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  The JAR file should not exceed 100MB.
-5.  The system should respond within 2 seconds whenever a command is entered by the user. 
+5.  The system should respond within 2 seconds whenever a command is entered by the user.
 
 *{More to be added}*
 
