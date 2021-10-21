@@ -1,20 +1,24 @@
 package seedu.address.model.cca;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
+import seedu.address.model.tag.Tag;
 
 
 public class Cca {
 
     // Identity fields
     private final CcaName ccaName;
-    private Set<Person> personArrayList;
-    private Set<Reminder> reminders;
+    // Data fields
+    private Set<Person> personArrayList = new HashSet<>();
+    private Set<Reminder> reminders = new HashSet<>();
+    private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
@@ -23,17 +27,21 @@ public class Cca {
         requireAllNonNull(ccaName);
         this.ccaName = ccaName;
         this.personArrayList = new HashSet<>();
-        this.reminders = new HashSet<>();
     }
 
-    /**
-     * Every field must be present and not null.
-     */
-    public Cca(CcaName ccaName, Set<Person> personArrayList, Set<Reminder> reminders) {
+    public Cca(CcaName ccaName, Set<Tag> tags) {
+        requireAllNonNull(ccaName);
+        this.ccaName = ccaName;
+        this.personArrayList = new HashSet<>();
+        this.tags.addAll(tags);
+    }
+
+    public Cca(CcaName ccaName, Set<Person> personArrayList, Set<Reminder> reminders, Set<Tag> tags) {
         requireAllNonNull(ccaName);
         this.ccaName = ccaName;
         this.personArrayList = personArrayList;
         this.reminders = reminders;
+        this.tags.addAll(tags);
     }
 
     /**
@@ -61,6 +69,7 @@ public class Cca {
     }
 
     /**
+<<<<<<< HEAD
      * Returns the reminders of this CCA.
      * @return the reminders of this CCA
      */
@@ -74,6 +83,14 @@ public class Cca {
      */
     public int getNumberOfReminders() {
         return reminders.size();
+    }
+
+    /**
+     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Tag> getTags() {
+        return Collections.unmodifiableSet(tags);
     }
 
     /**
@@ -104,7 +121,9 @@ public class Cca {
         }
 
         seedu.address.model.cca.Cca otherCca = (seedu.address.model.cca.Cca) other;
-        return otherCca.getName().equals(getName());
+        return otherCca.getName().equals(this.getName())
+                && otherCca.getPersonArrayList().equals(this.getPersonArrayList())
+                && otherCca.getTags().equals(this.getTags());
     }
 
     @Override
@@ -116,8 +135,15 @@ public class Cca {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName());
+        builder.append(getName())
+                .append("; Number of enrolled persons: ")
+                .append(this.getPersonArrayList().size());
 
+        Set<Tag> tags = getTags();
+        if (!tags.isEmpty()) {
+            builder.append("; Tags: ");
+            tags.forEach(builder::append);
+        }
         return builder.toString();
     }
 

@@ -23,7 +23,6 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
-    private Pid pid = new Pid("0");
 
     /**
      * Every field must be present and not null.
@@ -35,35 +34,6 @@ public class Person {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
-    }
-
-    /**
-     * Every field must be present and not null.
-     */
-    public Person(Name name, Phone phone, Email email, Address address, Pid pid, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, pid, tags);
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.pid = pid;
-        this.tags.addAll(tags);
-    }
-
-    /**
-     * Set pid for this person.
-     * @param pid for this person
-     */
-    public void setPid(int pid) {
-        this.pid = new Pid(String.valueOf(pid));
-    }
-
-    /**
-     * Returns the pid for this person.
-     * @return the pid of this person
-     */
-    public int getPid() {
-        return Integer.parseInt(this.pid.value);
     }
 
     public Name getName() {

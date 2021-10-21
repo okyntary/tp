@@ -98,7 +98,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addPerson(Person p) {
         persons.add(p);
-        p.setPid(persons.getCurrentIndex() + 1);
     }
 
     /**
