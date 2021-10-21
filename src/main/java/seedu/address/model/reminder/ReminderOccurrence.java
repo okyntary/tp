@@ -3,7 +3,7 @@ package seedu.address.model.reminder;
 public class ReminderOccurrence {
     public static final String MESSAGE_CONSTRAINTS = "Occurrences should be entered as an integer e.g. 2";
 
-    public int occurrences;
+    private int occurrences;
 
     /**
      * Constructs a {@code ReminderOccurrence}.
@@ -13,6 +13,10 @@ public class ReminderOccurrence {
     public ReminderOccurrence(int occurrences) {
         assert occurrences > 0 : "Occurrence parsing incorrect";
         this.occurrences = occurrences;
+    }
+
+    public int getOccurrences() {
+        return occurrences;
     }
 
     @Override
