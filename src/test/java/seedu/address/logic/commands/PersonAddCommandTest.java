@@ -221,11 +221,6 @@ public class PersonAddCommandTest {
         }
 
         @Override
-        public void updateFilteredReminderList(Predicate<Reminder> predicate) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public boolean hasReminder(Reminder reminder) {
             throw new AssertionError("This method should not be called.");
         }
