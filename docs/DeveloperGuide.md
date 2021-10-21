@@ -163,9 +163,10 @@ Whenever ePoch needs to save or update its storage, it converts the relevant obj
 
 There are three main classes types in ePoch that need to be saved: `Person`, `Cca`, and `Reminder`. Each of these classes is converted to its corresponding `JsonAdapted` class,
 to be made suitable for `.json` conversion. Because each `Cca` object contains a `Set` of `Person`s and `Reminder`s as members, `JsonAdaptedPerson` and `JsonAdaptedReminder` will be stored within `JsonAdaptedCca` as well.
+If a new type of object needs to be saved, the relevant `JsonAdapted` version of it needs to be created.
 
 Alternatives considered: instead of storing whole `Person` and `Reminder` objects in `Cca` objects, the alternative of storing unique identifiers for them `Pid`, `Rid` etc was considered. In the end, this possibility was rejected
-because of how time-consuming refactoring the entire project to use this new system would be. 
+because of how time-consuming and error-prone refactoring the entire project to use this new system would be. 
 
 ### \[Proposed\] Undo/redo feature
 
