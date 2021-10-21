@@ -6,6 +6,10 @@ plugins {
     id 'jacoco'
 }
 
+run {
+    enableAssertions = true
+}
+
 mainClassName = 'seedu.address.Main'
 
 sourceCompatibility = JavaVersion.VERSION_11
@@ -17,6 +21,7 @@ repositories {
 }
 
 checkstyle {
+    toolVersion = '8.29'
     toolVersion = '8.29'
 }
 

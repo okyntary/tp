@@ -121,7 +121,15 @@ public class ParserUtil {
     public static ReminderFrequency parseReminderFrequency(String frequency) throws ParseException {
         requireNonNull(frequency);
         String trimmedFrequency = frequency.trim();
+        boolean empty = false;
         if (trimmedFrequency.length() == 0) {
+            trimmedFrequency = "1d"; // to pass the check
+            empty = true;
+        }
+        if (!ReminderFrequency.isValidFrequency(trimmedFrequency)) {
+            throw new ParseException(ReminderFrequency.MESSAGE_CONSTRAINTS);
+        }
+        if (empty) {
             trimmedFrequency = "1o";
         }
         String timePeriodString = trimmedFrequency.substring(trimmedFrequency.length() - 1);
