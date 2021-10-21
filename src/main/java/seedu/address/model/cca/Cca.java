@@ -29,6 +29,11 @@ public class Cca {
         this.personArrayList = new HashSet<>();
     }
 
+    /**
+     * Constructor using ccaName and tags
+     * @param ccaName Name of Cca
+     * @param tags Tags to initialize Cca with
+     */
     public Cca(CcaName ccaName, Set<Tag> tags) {
         requireAllNonNull(ccaName);
         this.ccaName = ccaName;
@@ -36,6 +41,14 @@ public class Cca {
         this.tags.addAll(tags);
     }
 
+    /**
+     *
+     * Constructor using ccaName, personArrayList, reminders, and tags
+     * @param ccaName Name of Cca
+     * @param personArrayList list of associated members
+     * @param reminders list of associated reminders
+     * @param tags Cca tags
+     */
     public Cca(CcaName ccaName, Set<Person> personArrayList, Set<Reminder> reminders, Set<Tag> tags) {
         requireAllNonNull(ccaName);
         this.ccaName = ccaName;

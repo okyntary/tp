@@ -1,12 +1,16 @@
 package seedu.address.storage;
 
-import java.util.*;
+import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.reminder.*;
+import seedu.address.model.reminder.Reminder;
+import seedu.address.model.reminder.ReminderFrequency;
+import seedu.address.model.reminder.ReminderName;
+import seedu.address.model.reminder.ReminderOccurrence;
+import seedu.address.model.reminder.ReminderStartDate;
 import seedu.address.model.util.Frequency;
 
 /**
@@ -45,7 +49,7 @@ class JsonAdaptedReminder {
         startDate = source.getStartDate().startDate;
         timePeriod = source.getFrequency().timePeriod;
         numTimePeriod = source.getFrequency().numTimePeriod;
-        occurences = source.getOccurrences().occurrences;
+        occurences = source.getOccurrences().getOccurrences();
     }
 
     /**
@@ -55,7 +59,8 @@ class JsonAdaptedReminder {
      */
     public Reminder toModelType() throws IllegalValueException {
         if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, ReminderName.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    ReminderName.class.getSimpleName()));
         }
         if (!ReminderName.isValidName(name)) {
             throw new IllegalValueException(ReminderName.MESSAGE_CONSTRAINTS);
