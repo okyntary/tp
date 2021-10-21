@@ -3,9 +3,13 @@ package seedu.address.logic.parser.reminder;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.*;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.LogicManager;
 import seedu.address.logic.commands.reminder.ReminderAddCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
@@ -14,18 +18,22 @@ import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.reminder.Reminder;
+import seedu.address.model.reminder.ReminderFrequency;
 import seedu.address.model.reminder.ReminderName;
+import seedu.address.model.reminder.ReminderOccurrence;
 import seedu.address.model.reminder.ReminderStartDate;
 
 public class ReminderAddCommandParser implements Parser<ReminderAddCommand> {
+    private final Logger logger = LogsCenter.getLogger(LogicManager.class);
+
     /**
      * Parses the given {@code String} of arguments in the context of the ReminderAddCommand
      * and returns an ReminderAddCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public ReminderAddCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_CCA_ID, PREFIX_NAME, PREFIX_START_DATE);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_CCA_ID, PREFIX_NAME, PREFIX_START_DATE,
+                PREFIX_FREQUENCY, PREFIX_OCCURRENCES);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_START_DATE)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -36,9 +44,16 @@ public class ReminderAddCommandParser implements Parser<ReminderAddCommand> {
         ReminderStartDate reminderStartDate = ParserUtil.parseReminderStartDate(
                 argMultimap.getValue(PREFIX_START_DATE).get());
         Index ccaIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_CCA_ID).get());
+        ReminderFrequency reminderFrequency = argMultimap.getValue(PREFIX_FREQUENCY).isPresent()
+                ? ParserUtil.parseReminderFrequency(argMultimap.getValue(PREFIX_FREQUENCY).get())
+                : ParserUtil.parseReminderFrequency("");
+        ReminderOccurrence reminderOccurrence = argMultimap.getValue(PREFIX_OCCURRENCES).isPresent()
+                ? ParserUtil.parseReminderOccurrence(argMultimap.getValue(PREFIX_OCCURRENCES).get())
+                : ParserUtil.parseReminderOccurrence("");
 
         // Create a new reminder
-        Reminder reminder = new Reminder(reminderName, reminderStartDate);
+        Reminder reminder = new Reminder(reminderName, reminderStartDate, reminderFrequency, reminderOccurrence);
+        logger.log(Level.INFO, "New reminder created.");
 
         return new ReminderAddCommand(reminder, ccaIndex);
     }

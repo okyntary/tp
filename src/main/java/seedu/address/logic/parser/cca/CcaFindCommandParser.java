@@ -15,8 +15,8 @@ import seedu.address.model.cca.CcaNameContainsKeywordsPredicate;
 public class CcaFindCommandParser implements Parser<CcaFindCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the PersonFindCommand
-     * and returns a PersonFindCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the CcaFindCommand
+     * and returns a CcaFindCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public CcaFindCommand parse(String args) throws ParseException {

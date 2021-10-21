@@ -89,7 +89,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addPerson(Person p) {
         persons.add(p);
-        p.setPid(persons.getCurrentIndex() + 1);
     }
 
     /**
@@ -209,21 +208,5 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public int hashCode() {
         return persons.hashCode();
-    }
-
-    /**
-     * Returns the CCA from the cid.
-     * @param pid of the CCA to be found
-     * @return the CCA with that cid
-     */
-    public Person findPersonFromPid(int pid) {
-        final Person[] personFromPid = new Person[1];
-        personFromPid[0] = null;
-        this.getPersonList().parallelStream().forEach(person -> {
-            if (person.getPid() == pid) {
-                personFromPid[0] = person;
-            }
-        });
-        return personFromPid[0];
     }
 }

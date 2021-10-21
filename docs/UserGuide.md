@@ -3,8 +3,6 @@ layout: user
 title: User Guide
 ---
 
-ePoch is a desktop app for managing contacts, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, ePoch can get your contact management tasks done faster than traditional GUI apps.
-=======
 ePoch is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, ePoch can get your contact management tasks done faster than traditional GUI apps.
 
 It has been designed for the busy NUS student. It allows the user to create contacts for persons and to create CCAs, link those persons and CCAs together, and to create periodic reminders for those CCAs.
@@ -17,10 +15,6 @@ It is intended to be used by NUS students, to help keep track of the students an
 
 1. Ensure you have Java 11 or above installed in your Computer.
 
-1. Download the JAR file. *The download location will be confirmed later*.
-
-1. Copy the file to the folder you want to use as the home folder for your ePoch.
-=======
 1. Download the JAR file. **The download location will be confirmed later.**
 
 1. Copy the file to the folder you want to use as the _home folder_ for your ePoch.
@@ -32,8 +26,6 @@ It is intended to be used by NUS students, to help keep track of the students an
 
    * **`list`** : Lists all persons, CCAs and reminders.
 
-   * **`add`** `n/Tan Wei Yang id/e27182818` : Adds a contact named `Tan Wei Yang` with id `e27182818` to the Address Book.
-=======
    * **`addp`**`n/Tan Wei Yang:` Adds a person named `Tan Wei Yang` to ePoch.
 
    * **`deletep`**`pid/3` : Deletes the person with id 3.
@@ -54,7 +46,7 @@ It is intended to be used by NUS students, to help keep track of the students an
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `addp n/NAME`, `NAME` is a parameter which can be used as `addp n/John Doe`.
-  
+
 * Items in square brackets are optional.<br>
   e.g `n/NAME [e/EMAIL]` can be used as `n/Johnny Doe [e/EMAIL]` or as `n/Johnny Doe`.
 
