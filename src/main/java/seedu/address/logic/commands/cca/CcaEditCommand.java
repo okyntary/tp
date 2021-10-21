@@ -21,6 +21,7 @@ import seedu.address.model.Model;
 import seedu.address.model.cca.Cca;
 import seedu.address.model.cca.CcaName;
 import seedu.address.model.person.Person;
+import seedu.address.model.reminder.Reminder;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -89,9 +90,10 @@ public class CcaEditCommand extends Command {
 
         CcaName updatedName = editCcaDescriptor.getName().orElse(ccaToEdit.getName());
         Set<Person> copyOfPersonArrayList = ccaToEdit.getPersonArrayList();
+        Set<Reminder> copyOfReminders = ccaToEdit.getReminders();
         Set<Tag> updatedTags = editCcaDescriptor.getTags().orElse(ccaToEdit.getTags());
 
-        return new Cca(updatedName, copyOfPersonArrayList, updatedTags);
+        return new Cca(updatedName, copyOfPersonArrayList, copyOfReminders, updatedTags);
     }
 
     @Override

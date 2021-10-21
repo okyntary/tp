@@ -76,6 +76,7 @@ public class JsonAdaptedCca {
         }
         for (JsonAdaptedReminder reminder: reminders) {
             reminderList.add(reminder.toModelType());
+        }
         final List<Tag> ccaTags = new ArrayList<>();
         for (JsonAdaptedPerson person : personArrayList) {
             personList.add(person.toModelType());

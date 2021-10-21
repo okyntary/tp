@@ -29,6 +29,13 @@ public class Cca {
         this.personArrayList = new HashSet<>();
     }
 
+    public Cca(CcaName ccaName, Set<Tag> tags) {
+        requireAllNonNull(ccaName);
+        this.ccaName = ccaName;
+        this.personArrayList = new HashSet<>();
+        this.tags.addAll(tags);
+    }
+
     public Cca(CcaName ccaName, Set<Person> personArrayList, Set<Reminder> reminders, Set<Tag> tags) {
         requireAllNonNull(ccaName);
         this.ccaName = ccaName;
