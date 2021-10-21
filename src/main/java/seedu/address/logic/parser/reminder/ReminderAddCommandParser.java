@@ -2,8 +2,8 @@ package seedu.address.logic.parser.reminder;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CCA_ID;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FREQUENCY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OCCURRENCES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START_DATE;
 
