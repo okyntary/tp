@@ -181,12 +181,29 @@ If the given index exists in `lastShownList`, the corresponding CCA is deleted u
 
 #### Command for Finding CCAs
 
-The `findc` command is implemented by `CcaFindCommand` which also extends `Command`.
+The `findc` command is implemented by `CcaFindCommand` which extends `Command`.
 
 The keywords specified by the user are passed as a List to the `CcaNameContainsKeywordsPredicate` constructor.
 The `CcaNameContainsKeywordsPredicate` class extends `Predicate<Cca>` and implements the `test` method,
 which uses streams to filter CCAs whose name matches any of the keywords.
 
+#### Command for Enrolling Person into CCAs
+
+The `enrol` command is implemented by `CcaEnrolCommand` which extends `Command`.
+
+The `CcaEnrolCommand` class has two Indexes, the index of the CCA to be enrolled into, and the index of the Person to enrol, specified by the user.
+It implements the `execute` method which handles the logic of the enrol command.
+The `getFilteredCcaList` and `getFilteredPersonList` method is called to obtain a List of CCAs and Persons, `lastShownCcaList` and `lastShownPersonList` respectively.
+If the gives Indexes exist in `lastShownCcaList` and `lastShownPersonList`, the corresponding Person is enrolled into the corresponding CCA using the `enrolPersonIntoCca` method defined in the `ModelManager`.
+
+#### Command for Expelling Person from CCAs
+
+The `expel` command is implemented by `CcaExpelCommand` which extends `Command`.
+
+The `CcaExpelCommand` class has two Indexes, the index of the CCA to be expelled from, and the index of the Person to expel, specified by the user.
+It implements the `execute` method which handles the logic of the expel command.
+The `getFilteredCcaList` and `getFilteredPersonList` method is called to obtain a List of CCAs and Persons, `lastShownCcaList` and `lastShownPersonList` respectively.
+If the gives Indexes exist in `lastShownCcaList` and `lastShownPersonList`, the corresponding Person is expelled from the corresponding CCA using the `expelPersonFromCca` method defined in the `ModelManager`.
 
 ### \[Proposed\] Undo/redo feature
 
