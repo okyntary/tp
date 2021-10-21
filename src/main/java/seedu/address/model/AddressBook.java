@@ -57,10 +57,18 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Replaces the contents of the cca list with {@code ccas}.
-     * {@code ccas} must not contain duplicate persons.
+     * {@code ccas} must not contain duplicate ccas.
      */
     public void setCcas(List<Cca> ccas) {
         this.ccas.setCcas(ccas);
+    }
+
+    /**
+     * Replaces the contents of the reminder list with {@code reminders}.
+     * {@code reminders} must not contain duplicate reminders.
+     */
+    public void setReminders(List<Reminder> reminders) {
+        this.reminders.setReminders(reminders);
     }
 
     /**
@@ -71,6 +79,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
         setPersons(newData.getPersonList());
         setCcas(newData.getCcaList());
+        setReminders(newData.getReminderList());
     }
 
     //// person-level operations
@@ -179,7 +188,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public String toString() {
         String result = persons.asUnmodifiableObservableList().size() + " persons, "
-                + ccas.asUnmodifiableObservableList().size() + " ccas";
+                + ccas.asUnmodifiableObservableList().size() + " ccas, "
+                + reminders.asUnmodifiableObservableList().size() + " reminders";
         return result;
         // TODO: refine later
     }
@@ -209,21 +219,5 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public int hashCode() {
         return persons.hashCode();
-    }
-
-    /**
-     * Returns the CCA from the cid.
-     * @param pid of the CCA to be found
-     * @return the CCA with that cid
-     */
-    public Person findPersonFromPid(int pid) {
-        final Person[] personFromPid = new Person[1];
-        personFromPid[0] = null;
-        this.getPersonList().parallelStream().forEach(person -> {
-            if (person.getPid() == pid) {
-                personFromPid[0] = person;
-            }
-        });
-        return personFromPid[0];
     }
 }

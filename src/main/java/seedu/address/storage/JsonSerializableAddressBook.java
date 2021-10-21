@@ -13,6 +13,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.cca.Cca;
 import seedu.address.model.person.Person;
+import seedu.address.model.reminder.Reminder;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
@@ -22,6 +23,7 @@ class JsonSerializableAddressBook {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
     public static final String MESSAGE_DUPLICATE_CCA = "Ccas list contains duplicate cca(s).";
+    public static final String MESSAGE_DUPLICATE_REMINDER = "Reminder list contains duplicate reminder(s).";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
     private final List<JsonAdaptedCca> ccas = new ArrayList<>();
@@ -70,6 +72,13 @@ class JsonSerializableAddressBook {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_CCA);
             }
             addressBook.addCca(cca);
+        }
+        for (JsonAdaptedReminder jsonAdaptedReminder : reminders) {
+            Reminder reminder = jsonAdaptedReminder.toModelType();
+            if (addressBook.hasReminder(reminder)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_REMINDER);
+            }
+            addressBook.addReminder(reminder);
         }
         return addressBook;
     }

@@ -37,9 +37,10 @@ public class ReminderAddCommandParser implements Parser<ReminderAddCommand> {
                 argMultimap.getValue(PREFIX_START_DATE).get());
         Index ccaIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_CCA_ID).get());
 
+        // TODO: check date is valid?
         // Create a new reminder
         Reminder reminder = new Reminder(reminderName, reminderStartDate);
-
+        assert(reminder.isSameReminder(reminder));
         return new ReminderAddCommand(reminder, ccaIndex);
     }
 

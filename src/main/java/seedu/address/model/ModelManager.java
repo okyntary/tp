@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.function.Predicate;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -160,6 +161,7 @@ public class ModelManager implements Model {
         if (success) {
             updateFilteredCcaList(PREDICATE_SHOW_ALL_CCAS);
         }
+        logger.log(Level.INFO, "About to add reminder to address book");
         return success;
     }
 
