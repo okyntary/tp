@@ -29,7 +29,7 @@ public class Cca {
     /**
      * Every field must be present and not null.
      */
-    public Cca(CcaName ccaName, Set<Person> personArrayList) {
+    public Cca(CcaName ccaName, Set<Person> personArrayList, Set<Reminder> reminders) {
         requireAllNonNull(ccaName);
         this.ccaName = ccaName;
         this.personArrayList = personArrayList;
@@ -58,6 +58,22 @@ public class Cca {
      */
     public int getNumberOfMembers() {
         return personArrayList.size();
+    }
+
+    /**
+     * Returns the reminders of this CCA.
+     * @return the reminders of this CCA
+     */
+    public Set<Reminder> getReminders() {
+        return reminders;
+    }
+
+    /**
+     * Returns the number of reminders in this CCA.
+     * @return the number of reminders of this CCA
+     */
+    public int getNumberOfReminders() {
+        return reminders.size();
     }
 
     /**
@@ -119,5 +135,14 @@ public class Cca {
     public boolean expelPerson(Person personToExpel) {
         return this.personArrayList.remove(personToExpel);
     }
-}
 
+    // Add a reminder
+    public boolean addReminder(Reminder reminder) {
+        return this.reminders.add(reminder);
+    }
+
+    // Remove a reminder
+    public boolean removeReminder(Reminder reminder) {
+        return this.reminders.remove(reminder);
+    }
+}

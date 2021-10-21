@@ -13,6 +13,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.cca.Cca;
 import seedu.address.model.cca.CcaName;
 import seedu.address.model.person.Person;
+import seedu.address.model.reminder.Reminder;
 
 /**
  * Jackson-friendly version of {@link Cca}.
@@ -22,16 +23,21 @@ public class JsonAdaptedCca {
 
     private final String name;
     private final Set<JsonAdaptedPerson> personArrayList = new HashSet<>();
+    private final Set<JsonAdaptedReminder> reminders = new HashSet<>();
 
     /**
      * Constructs a {@code JsonAdaptedCca} with the given cca details.
      */
     @JsonCreator
     public JsonAdaptedCca(@JsonProperty("name") String name,
-                          @JsonProperty("members")Set<JsonAdaptedPerson> personArrayList) {
+                          @JsonProperty("members")Set<JsonAdaptedPerson> personArrayList,
+                          @JsonProperty("reminders")Set<JsonAdaptedReminder> reminders) {
         this.name = name;
         if (personArrayList != null) {
             this.personArrayList.addAll(personArrayList);
+        }
+        if (reminders != null) {
+            this.reminders.addAll(reminders);
         }
     }
 
@@ -43,6 +49,9 @@ public class JsonAdaptedCca {
         personArrayList.addAll(source.getPersonArrayList().stream()
                 .map(JsonAdaptedPerson::new)
                 .collect(Collectors.toSet()));
+        reminders.addAll(source.getReminders().stream()
+                .map(JsonAdaptedReminder::new)
+                .collect(Collectors.toSet()));
     }
 
     /**
@@ -52,8 +61,12 @@ public class JsonAdaptedCca {
      */
     public Cca toModelType() throws IllegalValueException {
         final List<Person> personList = new ArrayList<>();
+        final List<Reminder> reminderList = new ArrayList<>();
         for (JsonAdaptedPerson person : personArrayList) {
             personList.add(person.toModelType());
+        }
+        for (JsonAdaptedReminder reminder: reminders) {
+            reminderList.add(reminder.toModelType());
         }
 
         if (name == null) {
@@ -64,8 +77,9 @@ public class JsonAdaptedCca {
         }
         final CcaName modelName = new CcaName(name);
         final Set<Person> personArrayList = new HashSet<>(personList);
+        final Set<Reminder> reminders = new HashSet<>(reminderList);
 
-        return new Cca(modelName, personArrayList);
+        return new Cca(modelName, personArrayList, reminders);
     }
 
 }
