@@ -1,19 +1,23 @@
 package seedu.address.model.cca;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
 
 
 public class Cca {
 
     // Identity fields
     private final CcaName ccaName;
-    private Set<Person> personArrayList;
-    private Cid cid = new Cid("0");
+
+    // Data fields
+    private Set<Person> personArrayList = new HashSet<>();
+    private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
@@ -21,16 +25,25 @@ public class Cca {
     public Cca(CcaName ccaName) {
         requireAllNonNull(ccaName);
         this.ccaName = ccaName;
-        this.personArrayList = new HashSet<>();
     }
 
     /**
      * Every field must be present and not null.
      */
-    public Cca(CcaName ccaName, Set<Person> personArrayList) {
+    public Cca(CcaName ccaName, Set<Tag> tags) {
         requireAllNonNull(ccaName);
         this.ccaName = ccaName;
-        this.personArrayList = personArrayList;
+        this.tags.addAll(tags);
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Cca(CcaName ccaName, Set<Person> personArrayList, Set<Tag> tags) {
+        requireAllNonNull(ccaName);
+        this.ccaName = ccaName;
+        this.personArrayList.addAll(personArrayList);
+        this.tags.addAll(tags);
     }
 
     /**
@@ -58,27 +71,11 @@ public class Cca {
     }
 
     /**
-     * Returns the cid of this CCA.
-     * @return the cid of this CCA
+     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
      */
-    public int getCid() {
-        return Integer.parseInt(this.cid.value);
-    }
-
-    /**
-     * Checks if the Cid of a CCA is equal to a given Cid
-     * @return a boolean representing if they are equal
-     */
-    public boolean cidEquals(Cid otherCid) {
-        return Integer.parseInt(this.cid.value) == Integer.parseInt(otherCid.value);
-    }
-
-    /**
-     * Sets the cid of this CCA.
-     * @param cid of this cca
-     */
-    public void setCid(int cid) {
-        this.cid = new Cid(String.valueOf(cid));
+    public Set<Tag> getTags() {
+        return Collections.unmodifiableSet(tags);
     }
 
     /**
@@ -92,6 +89,21 @@ public class Cca {
 
         return otherCca != null
                 && otherCca.getName().equals(getName());
+    }
+
+    // Enrol a Person
+    public boolean enrolPerson(Person newPerson) {
+        return this.personArrayList.add(newPerson);
+    }
+
+    // Check if Person Exists but should not need as it is a Set<>
+    public boolean checkPerson(Person personToCheck) {
+        return this.personArrayList.contains(personToCheck);
+    }
+
+    // Expel a Person
+    public boolean expelPerson(Person personToExpel) {
+        return this.personArrayList.remove(personToExpel);
     }
 
     /**
@@ -109,7 +121,9 @@ public class Cca {
         }
 
         seedu.address.model.cca.Cca otherCca = (seedu.address.model.cca.Cca) other;
-        return otherCca.getName().equals(getName());
+        return otherCca.getName().equals(this.getName())
+                && otherCca.getPersonArrayList().equals(this.getPersonArrayList())
+                && otherCca.getTags().equals(this.getTags());
     }
 
     @Override
@@ -121,24 +135,16 @@ public class Cca {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName());
+        builder.append(getName())
+                .append("; Number of enrolled persons: ")
+                .append(this.getPersonArrayList().size());
 
+        Set<Tag> tags = getTags();
+        if (!tags.isEmpty()) {
+            builder.append("; Tags: ");
+            tags.forEach(builder::append);
+        }
         return builder.toString();
-    }
-
-    // Enrol a Person
-    public boolean enrolPerson(Person newPerson) {
-        return this.personArrayList.add(newPerson);
-    }
-
-    // Check if Person Exists but should not need as it is a Set<>
-    public boolean checkPerson(Person personToCheck) {
-        return this.personArrayList.contains(personToCheck);
-    }
-
-    // Expel a Person
-    public boolean expelPerson(Person personToExpel) {
-        return this.personArrayList.remove(personToExpel);
     }
 }
 

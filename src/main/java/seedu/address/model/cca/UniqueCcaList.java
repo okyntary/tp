@@ -29,24 +29,6 @@ public class UniqueCcaList implements Iterable<Cca> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns the current largest cid
-     * @return the current largest cid
-     */
-    public int getCurrentIndex() {
-        if (this.internalList.size() == 0) {
-            return 0;
-        } else {
-            int[] currentHighest = {-1};
-            this.internalList.parallelStream().forEach(x -> {
-                if (x.getCid() > currentHighest[0]) {
-                    currentHighest[0] = x.getCid();
-                }
-            });
-            return currentHighest[0];
-        }
-    }
-
-    /**
      * Returns true if the list contains an equivalent CCA as the given argument.
      */
     public boolean contains(Cca toCheck) {

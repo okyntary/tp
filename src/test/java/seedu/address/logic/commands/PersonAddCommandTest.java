@@ -183,6 +183,17 @@ public class PersonAddCommandTest {
         }
 
         /**
+         * Updates the filter of the filtered reminder list to filter by the given {@code predicate}.
+         *
+         * @param predicate
+         * @throws NullPointerException if {@code predicate} is null.
+         */
+        @Override
+        public void updateFilteredReminderList(Predicate<Reminder> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        /**
          * Enrols a person into a CCA
          *
          *  @param ccaToEnrolInto CCA to enrol into
@@ -201,26 +212,6 @@ public class PersonAddCommandTest {
          */
         @Override
         public boolean expelPersonFromCca(Cca ccaToExpelFrom, Person personToExpel) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        /**
-         * Finds a CCA based on the cid
-         *
-         * @param cid cid of CCA to be found
-         */
-        @Override
-        public Cca findCcaFromCid(int cid) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        /**
-         * Finds a Person based on the pid
-         *
-         * @param pid pid of Person to be found
-         */
-        @Override
-        public Person findPersonFromPid(int pid) {
             throw new AssertionError("This method should not be called.");
         }
 
