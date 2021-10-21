@@ -154,6 +154,57 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### CCAs
+
+A CCA has:
+
+* A CCA name, represented by the `CcaName` class. CCA name must be unique.
+* Zero or more people enrolled in it, represented by the HashSet `personArrayList`
+* Zero or more reminders associated with it, represented by the HashSet `remindersArrayList`
+
+Two CCAs are considered identical if they have the same name.
+
+#### Command for Adding CCAs
+
+The `addc` command is implemented by `CcaAddCommand`, which extends `Command`.
+Polymorphism allows the different Command objects to be passed around and executed without having to know what type of Command it is.
+
+#### Command for Deleting CCAs
+
+The `deletec` command is implemented by `CcaDeleteCommand`.
+Similar to `CcaAddCommand`, `CcaDeleteCommand` extends `Command` to practice polymorphism.
+
+The `CcaDeleteCommand` class has an Index which is the index of the CCA to delete, specified by the user.
+It implements the `execute` method which handles the logic of the delete command.
+The `getFilteredCcaList` method is called to obtain a List of CCAs, `lastShownList`.
+If the given index exists in `lastShownList`, the corresponding CCA is deleted using the `deleteCca` method defined in the `ModelManager`.
+
+#### Command for Finding CCAs
+
+The `findc` command is implemented by `CcaFindCommand` which extends `Command`.
+
+The keywords specified by the user are passed as a List to the `CcaNameContainsKeywordsPredicate` constructor.
+The `CcaNameContainsKeywordsPredicate` class extends `Predicate<Cca>` and implements the `test` method,
+which uses streams to filter CCAs whose name matches any of the keywords.
+
+#### Command for Enrolling Person into CCAs
+
+The `enrol` command is implemented by `CcaEnrolCommand` which extends `Command`.
+
+The `CcaEnrolCommand` class has two Indexes, the index of the CCA to be enrolled into, and the index of the Person to enrol, specified by the user.
+It implements the `execute` method which handles the logic of the enrol command.
+The `getFilteredCcaList` and `getFilteredPersonList` method is called to obtain a List of CCAs and Persons, `lastShownCcaList` and `lastShownPersonList` respectively.
+If the gives Indexes exist in `lastShownCcaList` and `lastShownPersonList`, the corresponding Person is enrolled into the corresponding CCA using the `enrolPersonIntoCca` method defined in the `ModelManager`.
+
+#### Command for Expelling Person from CCAs
+
+The `expel` command is implemented by `CcaExpelCommand` which extends `Command`.
+
+The `CcaExpelCommand` class has two Indexes, the index of the CCA to be expelled from, and the index of the Person to expel, specified by the user.
+It implements the `execute` method which handles the logic of the expel command.
+The `getFilteredCcaList` and `getFilteredPersonList` method is called to obtain a List of CCAs and Persons, `lastShownCcaList` and `lastShownPersonList` respectively.
+If the gives Indexes exist in `lastShownCcaList` and `lastShownPersonList`, the corresponding Person is expelled from the corresponding CCA using the `expelPersonFromCca` method defined in the `ModelManager`.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -263,7 +314,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: 
+**Value proposition**:
 
 ePoch helps users categorise contacts, which helps the user keep track of various overlapping social circles.
 The product offers peace of mind to the user using a “set-and-forget” approach by helping the user schedule recurring social events.
@@ -331,7 +382,7 @@ Use case ends.
 **MSS**
 
 1. User requests to add a person to the list and optionally specifies their name, phone number, email and address.
-2. ePoch adds the person with the specified information 
+2. ePoch adds the person with the specified information
 Use case ends.
 
 **Use case: UC3 - Add a CCA**
@@ -373,12 +424,12 @@ Use case ends.
 * 2a. The list is empty.
 
   Use case ends.
-  
+
 * 3a. The given person does not exist (person ID invalid).
 
     * 3a1. AddressBook shows an error message.
       Use case resumes at step 2.
-     
+
 
 **Use case: UC6 - Enrol a person into a CCA**
 
@@ -395,16 +446,16 @@ Use case ends.
 * 2a. The list of persons is empty.
 
   Use case ends.
-  
+
 * 2b. The list of CCAs is empty.
 
   Use case ends.
-  
+
 * 3a. The given person does not exist (person ID invalid).
 
     * 3a1. ePoch shows an error message.
       Use case resumes at step 2.
-     
+
 * 3b. The given CCA does not exist (CCA ID invalid).
 
     * 3b1. ePoch shows an error message.
@@ -418,7 +469,7 @@ Use case ends.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  The JAR file should not exceed 100MB.
-5.  The system should respond within 2 seconds whenever a command is entered by the user. 
+5.  The system should respond within 2 seconds whenever a command is entered by the user.
 
 *{More to be added}*
 
