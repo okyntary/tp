@@ -212,26 +212,6 @@ public class ModelManager implements Model {
         return ccaToExpelFrom.expelPerson(personToExpel);
     }
 
-    /**
-     * Finds a CCA based on the cid
-     *
-     * @param cid cid of CCA to be found
-     */
-    @Override
-    public Cca findCcaFromCid(int cid) {
-        return this.addressBook.findCcaFromCid(cid);
-    }
-
-    /**
-     * Finds a Person based on the pid
-     *
-     * @param pid pid of Person to be found
-     */
-    @Override
-    public Person findPersonFromPid(int pid) {
-        return this.addressBook.findPersonFromPid(pid);
-    }
-
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object

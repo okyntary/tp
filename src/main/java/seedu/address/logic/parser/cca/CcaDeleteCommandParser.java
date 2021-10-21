@@ -13,8 +13,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class CcaDeleteCommandParser implements Parser<CcaDeleteCommand> {
     /**
-     * Parses the given {@code String} of arguments in the context of the PersonDeleteCommand
-     * and returns a PersonDeleteCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the CcaDeleteCommand
+     * and returns a CcaDeleteCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public CcaDeleteCommand parse(String args) throws ParseException {
