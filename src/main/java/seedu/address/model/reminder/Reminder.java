@@ -8,14 +8,19 @@ public class Reminder {
     // Identity fields
     private final ReminderName reminderName;
     private final ReminderStartDate reminderStartDate;
+    private final ReminderFrequency reminderFrequency;
+    private final ReminderOccurrence reminderOccurrence;
 
     /**
      * Every field must be present and not null.
      */
-    public Reminder(ReminderName reminderName, ReminderStartDate reminderStartDate) {
-        requireAllNonNull(reminderName);
+    public Reminder(ReminderName reminderName, ReminderStartDate reminderStartDate,
+                    ReminderFrequency reminderFrequency, ReminderOccurrence reminderOccurrence) {
+        requireAllNonNull(reminderName, reminderStartDate, reminderFrequency, reminderOccurrence);
         this.reminderName = reminderName;
         this.reminderStartDate = reminderStartDate;
+        this.reminderFrequency = reminderFrequency;
+        this.reminderOccurrence = reminderOccurrence;
     }
 
     public ReminderName getName() {
@@ -24,6 +29,14 @@ public class Reminder {
 
     public ReminderStartDate getStartDate() {
         return reminderStartDate;
+    }
+
+    public ReminderFrequency getFrequency() {
+        return reminderFrequency;
+    }
+
+    public ReminderOccurrence getOccurrences() {
+        return reminderOccurrence;
     }
 
     /**
@@ -54,7 +67,9 @@ public class Reminder {
         }
 
         seedu.address.model.reminder.Reminder otherReminder = (seedu.address.model.reminder.Reminder) other;
-        return otherReminder.getName().equals(getName());
+        return otherReminder.getName().equals(getName()) && otherReminder.getStartDate().equals(getStartDate())
+                && otherReminder.getFrequency().equals(getFrequency())
+                && otherReminder.getOccurrences().equals(getOccurrences());
     }
 
     @Override
