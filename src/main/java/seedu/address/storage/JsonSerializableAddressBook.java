@@ -25,15 +25,18 @@ class JsonSerializableAddressBook {
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
     private final List<JsonAdaptedCca> ccas = new ArrayList<>();
+    private final List<JsonAdaptedReminder> reminders = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given persons.
      */
     @JsonCreator
     public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
-                                       @JsonProperty("ccas") List<JsonAdaptedCca> ccas) {
+                                       @JsonProperty("ccas") List<JsonAdaptedCca> ccas,
+                                       @JsonProperty("reminders") List<JsonAdaptedReminder> reminders) {
         this.persons.addAll(persons);
         this.ccas.addAll(ccas);
+        this.reminders.addAll(reminders);
     }
 
     /**
@@ -44,6 +47,7 @@ class JsonSerializableAddressBook {
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
         ccas.addAll(source.getCcaList().stream().map(JsonAdaptedCca::new).collect(Collectors.toList()));
+        reminders.addAll(source.getReminderList().stream().map(JsonAdaptedReminder::new).collect(Collectors.toList()));
     }
 
     /**
