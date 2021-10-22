@@ -159,6 +159,14 @@ public interface Model {
     void snoozeReminder(Reminder target);
 
     /**
+     * Replaces the given Reminder {@code target} with {@code editedReminder}.
+     * {@code target} must exist in the address book.
+     * The Reminder identity of {@code editedReminder} must not be the same as another existing
+     * Reminder in the address book.
+     */
+    void setReminder(Reminder target, Reminder editedReminder);
+
+    /**
      * Adds the given reminder.
      * {@code reminder} must not already exist in the address book.
      */

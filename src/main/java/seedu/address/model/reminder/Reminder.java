@@ -2,19 +2,18 @@ package seedu.address.model.reminder;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
-import seedu.address.MainApp;
-import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.cca.Cca;
 import seedu.address.model.util.Frequency;
 
 public class Reminder {
+    private static final SimpleDateFormat PARSE_DATE_TO_STRING_FORMAT = new SimpleDateFormat("E, dd MMM yyyy");
+
     // Identity fields
     private final ReminderName reminderName;
     private final ReminderStartDate reminderStartDate;
@@ -36,10 +35,14 @@ public class Reminder {
         this.reminderStartDate = reminderStartDate;
         this.reminderFrequency = reminderFrequency;
         this.reminderOccurrence = reminderOccurrence;
-        fillAllDates();
+        fillAllUpcomingDates();
     }
 
-    private void fillAllDates() {
+    private void setAllUpcomingDates(ArrayList<Date> dates) {
+        this.dates = dates;
+    }
+
+    private void fillAllUpcomingDates() {
         int occurrences = reminderOccurrence.getOccurrences();
         assert occurrences > 0 : "An error occurred getting the dates for the Reminder";
         dates.add(reminderStartDate.getDate());
@@ -73,8 +76,8 @@ public class Reminder {
         }
     }
 
-    public Date getNextDate() {
-        return dates.get(0);
+    public String getNextDate() {
+        return PARSE_DATE_TO_STRING_FORMAT.format(dates.get(0));
     }
 
     public ReminderName getName() {
@@ -101,23 +104,22 @@ public class Reminder {
         this.cca = cca;
     }
 
+    public boolean isAtLastOccurrence() {
+        return reminderOccurrence.isAtLastOccurrence();
+    }
+
     /**
-     * Snoozes the Reminder.
+     * Gets the snoozed Reminder
      * This decrements the occurrences remaining.
      *
-     * @return A boolean whether or not the reminder should be deleted.
+     * @return A new Reminder representing the previous Reminder that has been snoozed.
      */
-    public boolean snooze() {
-        reminderOccurrence.decrementOccurrence();
-        Logger logger = LogsCenter.getLogger(MainApp.class);
-        logger.log(Level.INFO, "snoozing");
-
-        if (reminderOccurrence.hasFinishedOccurring()) {
-            return true;
-        }
-        // not done occurring, at least 1 occurrence left
+    public Reminder getSnoozedReminder() {
+        Reminder snoozedReminder = new Reminder(getName(), getStartDate(), getFrequency(),
+                new ReminderOccurrence(getOccurrences().getOccurrences() - 1));
         dates.remove(0);
-        return false;
+        snoozedReminder.setAllUpcomingDates(dates);
+        return snoozedReminder;
     }
 
     /**

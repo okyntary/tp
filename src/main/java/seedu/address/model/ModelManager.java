@@ -139,7 +139,6 @@ public class ModelManager implements Model {
     @Override
     public void setCca(Cca target, Cca editedCca) {
         requireAllNonNull(target, editedCca);
-
         addressBook.setCca(target, editedCca);
     }
 
@@ -169,6 +168,12 @@ public class ModelManager implements Model {
     public void snoozeReminder(Reminder target) {
         requireNonNull(target);
         addressBook.snoozeReminder(target);
+    }
+
+    @Override
+    public void setReminder(Reminder target, Reminder editedReminder) {
+        requireAllNonNull(target, editedReminder);
+        addressBook.setReminder(target, editedReminder);
     }
 
     //=========== Filtered Person List Accessors =============================================================

@@ -19,12 +19,8 @@ public class ReminderOccurrence {
         return occurrences;
     }
 
-    public void decrementOccurrence() {
-        occurrences--;
-    }
-
-    public boolean hasFinishedOccurring() {
-        return occurrences == 0;
+    public boolean isAtLastOccurrence() {
+        return occurrences == 1;
     }
 
     @Override
