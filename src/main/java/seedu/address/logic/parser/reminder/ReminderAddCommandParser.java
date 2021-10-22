@@ -55,8 +55,10 @@ public class ReminderAddCommandParser implements Parser<ReminderAddCommand> {
                 ? ParserUtil.parseReminderOccurrence(argMultimap.getValue(PREFIX_OCCURRENCES).get())
                 : ParserUtil.parseReminderOccurrence("");
 
+        // TODO: check date is valid?
         // Create a new reminder
         Reminder reminder = new Reminder(reminderName, reminderStartDate, reminderFrequency, reminderOccurrence);
+        assert(reminder.isSameReminder(reminder));
 
         return new ReminderAddCommand(reminder, ccaIndex);
     }
