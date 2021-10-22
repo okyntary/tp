@@ -153,6 +153,12 @@ public interface Model {
     void deleteReminder(Reminder target);
 
     /**
+     * Snoozes the given reminder.
+     * The reminder must exist n the address book.
+     */
+    void snoozeReminder(Reminder target);
+
+    /**
      * Adds the given reminder.
      * {@code reminder} must not already exist in the address book.
      */

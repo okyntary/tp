@@ -6,7 +6,11 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+import seedu.address.MainApp;
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.cca.Cca;
 import seedu.address.model.util.Frequency;
 
@@ -20,7 +24,7 @@ public class Reminder {
     // Data fields
     // Assumes a reminder can be tagged to at most 1 CCA
     private Cca cca;
-    private ArrayList<Date> dates;
+    private ArrayList<Date> dates = new ArrayList<>();
 
     /**
      * Every field must be present and not null.
@@ -95,6 +99,25 @@ public class Reminder {
 
     public void setCca(Cca cca) {
         this.cca = cca;
+    }
+
+    /**
+     * Snoozes the Reminder.
+     * This decrements the occurrences remaining.
+     *
+     * @return A boolean whether or not the reminder should be deleted.
+     */
+    public boolean snooze() {
+        reminderOccurrence.decrementOccurrence();
+        Logger logger = LogsCenter.getLogger(MainApp.class);
+        logger.log(Level.INFO, "snoozing");
+
+        if (reminderOccurrence.hasFinishedOccurring()) {
+            return true;
+        }
+        // not done occurring, at least 1 occurrence left
+        dates.remove(0);
+        return false;
     }
 
     /**

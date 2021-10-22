@@ -165,6 +165,12 @@ public class ModelManager implements Model {
         return success;
     }
 
+    @Override
+    public void snoozeReminder(Reminder target) {
+        requireNonNull(target);
+        addressBook.snoozeReminder(target);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**

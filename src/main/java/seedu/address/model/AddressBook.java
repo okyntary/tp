@@ -182,6 +182,17 @@ public class AddressBook implements ReadOnlyAddressBook {
         reminders.remove(key);
     }
 
+    /**
+     * Snoozes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void snoozeReminder(Reminder key) {
+        boolean isToBeDeleted = key.snooze();
+        if (isToBeDeleted) {
+            removeReminder(key);
+        }
+    }
+
     //// util methods
 
     @Override
