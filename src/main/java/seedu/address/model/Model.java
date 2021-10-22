@@ -156,5 +156,5 @@ public interface Model {
      * Adds the given reminder.
      * {@code reminder} must not already exist in the address book.
      */
-    void addReminder(Reminder reminder);
+    boolean addReminder(Reminder reminder, Cca ccaToAddInto);
 }

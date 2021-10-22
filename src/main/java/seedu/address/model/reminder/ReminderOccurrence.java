@@ -15,6 +15,10 @@ public class ReminderOccurrence {
         this.occurrences = occurrences;
     }
 
+    public int getOccurrences() {
+        return occurrences;
+    }
+
     @Override
     public String toString() {
         return Integer.toString(occurrences);

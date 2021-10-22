@@ -154,9 +154,13 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addReminder(Reminder reminder) {
+    public boolean addReminder(Reminder reminder, Cca ccaToAddInto) {
         addressBook.addReminder(reminder);
-        updateFilteredCcaList(PREDICATE_SHOW_ALL_CCAS);
+        boolean success = ccaToAddInto.addReminder(reminder);
+        if (success) {
+            updateFilteredCcaList(PREDICATE_SHOW_ALL_CCAS);
+        }
+        return success;
     }
 
     //=========== Filtered Person List Accessors =============================================================

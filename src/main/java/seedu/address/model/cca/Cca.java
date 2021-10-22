@@ -7,6 +7,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.person.Person;
+import seedu.address.model.reminder.Reminder;
 import seedu.address.model.tag.Tag;
 
 
@@ -14,9 +15,9 @@ public class Cca {
 
     // Identity fields
     private final CcaName ccaName;
-
     // Data fields
     private Set<Person> personArrayList = new HashSet<>();
+    private Set<Reminder> reminders = new HashSet<>();
     private final Set<Tag> tags = new HashSet<>();
 
     /**
@@ -25,24 +26,34 @@ public class Cca {
     public Cca(CcaName ccaName) {
         requireAllNonNull(ccaName);
         this.ccaName = ccaName;
+        this.personArrayList = new HashSet<>();
     }
 
     /**
-     * Every field must be present and not null.
+     * Constructor using ccaName and tags
+     * @param ccaName Name of Cca
+     * @param tags Tags to initialize Cca with
      */
     public Cca(CcaName ccaName, Set<Tag> tags) {
         requireAllNonNull(ccaName);
         this.ccaName = ccaName;
+        this.personArrayList = new HashSet<>();
         this.tags.addAll(tags);
     }
 
     /**
-     * Every field must be present and not null.
+     *
+     * Constructor using ccaName, personArrayList, reminders, and tags
+     * @param ccaName Name of Cca
+     * @param personArrayList list of associated members
+     * @param reminders list of associated reminders
+     * @param tags Cca tags
      */
-    public Cca(CcaName ccaName, Set<Person> personArrayList, Set<Tag> tags) {
+    public Cca(CcaName ccaName, Set<Person> personArrayList, Set<Reminder> reminders, Set<Tag> tags) {
         requireAllNonNull(ccaName);
         this.ccaName = ccaName;
-        this.personArrayList.addAll(personArrayList);
+        this.personArrayList = personArrayList;
+        this.reminders = reminders;
         this.tags.addAll(tags);
     }
 
@@ -71,6 +82,23 @@ public class Cca {
     }
 
     /**
+<<<<<<< HEAD
+     * Returns the reminders of this CCA.
+     * @return the reminders of this CCA
+     */
+    public Set<Reminder> getReminders() {
+        return reminders;
+    }
+
+    /**
+     * Returns the number of reminders in this CCA.
+     * @return the number of reminders of this CCA
+     */
+    public int getNumberOfReminders() {
+        return reminders.size();
+    }
+
+    /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
@@ -89,21 +117,6 @@ public class Cca {
 
         return otherCca != null
                 && otherCca.getName().equals(getName());
-    }
-
-    // Enrol a Person
-    public boolean enrolPerson(Person newPerson) {
-        return this.personArrayList.add(newPerson);
-    }
-
-    // Check if Person Exists but should not need as it is a Set<>
-    public boolean checkPerson(Person personToCheck) {
-        return this.personArrayList.contains(personToCheck);
-    }
-
-    // Expel a Person
-    public boolean expelPerson(Person personToExpel) {
-        return this.personArrayList.remove(personToExpel);
     }
 
     /**
@@ -146,5 +159,29 @@ public class Cca {
         }
         return builder.toString();
     }
-}
 
+    // Enrol a Person
+    public boolean enrolPerson(Person newPerson) {
+        return this.personArrayList.add(newPerson);
+    }
+
+    // Check if Person Exists but should not need as it is a Set<>
+    public boolean checkPerson(Person personToCheck) {
+        return this.personArrayList.contains(personToCheck);
+    }
+
+    // Expel a Person
+    public boolean expelPerson(Person personToExpel) {
+        return this.personArrayList.remove(personToExpel);
+    }
+
+    // Add a reminder
+    public boolean addReminder(Reminder reminder) {
+        return this.reminders.add(reminder);
+    }
+
+    // Remove a reminder
+    public boolean removeReminder(Reminder reminder) {
+        return this.reminders.remove(reminder);
+    }
+}

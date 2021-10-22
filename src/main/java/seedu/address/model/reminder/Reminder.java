@@ -66,6 +66,7 @@ public class Reminder {
             return false;
         }
 
+        // TODO
         seedu.address.model.reminder.Reminder otherReminder = (seedu.address.model.reminder.Reminder) other;
         return otherReminder.getName().equals(getName()) && otherReminder.getStartDate().equals(getStartDate())
                 && otherReminder.getFrequency().equals(getFrequency())
