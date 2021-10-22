@@ -1,14 +1,10 @@
 package seedu.address.model.reminder;
 
-import seedu.address.model.cca.Cca;
-import seedu.address.model.cca.CcaName;
-
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Optional;
-import java.util.Set;
+
+import seedu.address.model.cca.Cca;
 
 public class Reminder {
     // Identity fields
@@ -49,8 +45,8 @@ public class Reminder {
         return reminderOccurrence;
     }
 
-    public Optional<Cca> getCca() {
-        return Optional.ofNullable(cca);
+    public Cca getCca() {
+        return cca;
     }
 
     public void setCca(Cca cca) {
