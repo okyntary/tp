@@ -82,7 +82,7 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays objects like `Person`, `CCA`, and `Reminder` residing in their respective `Model`s.
 
 ### Logic component
 
@@ -121,8 +121,8 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the address book data i.e., all `Person`, `Cca`, and `Reminder` objects (which are contained in a `UniquePersonList`, `UniqueCcaList`, `UniqueReminderList` object respectively).
+* stores the currently 'selected' `Person`, `Cca`, and `Reminder` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>`, `ObservableList<Cca>`, and `ObservableList<Reminder>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
@@ -170,8 +170,8 @@ because of how time-consuming refactoring the entire project to use this new sys
 A CCA has:
 
 * A CCA name, represented by the `CcaName` class. CCA name must be unique.
-* Zero or more people enrolled in it, represented by the HashSet `personArrayList`
-* Zero or more reminders associated with it, represented by the HashSet `remindersArrayList`
+* Zero or more people enrolled in it, represented by the HashSet `personArrayList`.
+* Zero or more reminders associated with it, represented by the HashSet `remindersArrayList`.
 
 Two CCAs are considered identical if they have the same name.
 
@@ -215,7 +215,31 @@ The `CcaExpelCommand` class has two Indexes, the index of the CCA to be expelled
 It implements the `execute` method which handles the logic of the expel command.
 The `getFilteredCcaList` and `getFilteredPersonList` method is called to obtain a List of CCAs and Persons, `lastShownCcaList` and `lastShownPersonList` respectively.
 If the gives Indexes exist in `lastShownCcaList` and `lastShownPersonList`, the corresponding Person is expelled from the corresponding CCA using the `expelPersonFromCca` method defined in the `ModelManager`.
->>>>>>> 48dc6b1455d2d7f6d9cfc11d7f503f8cc2e9928d
+
+### Reminders
+
+A Reminder has:
+
+* A reminder name, represented by the `ReminderName` class.
+* A start date, represented by the `ReminderStartDate` class.
+* Zero or one frequency, represented by the `ReminderFrequency` class and making use of enumerations from the `Frequency` class.
+* Zero or one occurrence, represented by the `ReminderOccurrence` class.
+* Exactly one CCA that it is linked to, represented as a `Cca` data field.
+
+Two Reminders are considered identical if they have the same name, same frequency, and same occurrence.
+
+#### Command for Adding Reminders
+
+The `addr` command is implemented by `ReminderAddCommand`, which extends `Command`.
+Polymorphism allows the different Command objects to be passed around and executed without having to know what type of Command it is.
+
+If the user does not specify a frequency and occurrence, the frequency defaults to a One-off frequency and the occurrence defaults to 1 (since we take it that the Reminder only occurs once).
+If the user specifies only one of frequency and occurrence, then an error is thrown.
+
+The `ReminderAddCommand` class has an Index which is the index of the CCA to add the Reminder to, specified by the user.
+It implements the `execute` method which handles the logic of the add command.
+The `updateFilteredCcaList` and `updateFilteredReminderList` methods are called to update the `UI` component.
+
 
 ### \[Proposed\] Undo/redo feature
 

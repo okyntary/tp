@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OCCURRENCES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START_DATE;
 
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Stream;
 
@@ -39,9 +38,17 @@ public class ReminderAddCommandParser implements Parser<ReminderAddCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_CCA_ID, PREFIX_NAME, PREFIX_START_DATE,
                 PREFIX_FREQUENCY, PREFIX_OCCURRENCES);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_START_DATE)
+        if (!arePrefixesPresent(argMultimap, PREFIX_CCA_ID, PREFIX_NAME, PREFIX_START_DATE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReminderAddCommand.MESSAGE_USAGE));
+        }
+
+        if ((argMultimap.getValue(PREFIX_FREQUENCY).isPresent()
+                    && !argMultimap.getValue(PREFIX_OCCURRENCES).isPresent())
+                || (!argMultimap.getValue(PREFIX_FREQUENCY).isPresent()
+                    && argMultimap.getValue(PREFIX_OCCURRENCES).isPresent())) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    ReminderAddCommand.MESSAGE_ONE_OF_FREQUENCY_OCCURRENCE));
         }
 
         ReminderName reminderName = ParserUtil.parseReminderName(argMultimap.getValue(PREFIX_NAME).get());
@@ -55,11 +62,9 @@ public class ReminderAddCommandParser implements Parser<ReminderAddCommand> {
                 ? ParserUtil.parseReminderOccurrence(argMultimap.getValue(PREFIX_OCCURRENCES).get())
                 : ParserUtil.parseReminderOccurrence("");
 
-        // TODO: check date is valid?
         // Create a new reminder
         Reminder reminder = new Reminder(reminderName, reminderStartDate, reminderFrequency, reminderOccurrence);
         assert(reminder.isSameReminder(reminder));
-        logger.log(Level.INFO, "New reminder created.");
 
         return new ReminderAddCommand(reminder, ccaIndex);
     }

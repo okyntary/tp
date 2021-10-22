@@ -4,12 +4,18 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
+import seedu.address.model.cca.Cca;
+
 public class Reminder {
     // Identity fields
     private final ReminderName reminderName;
     private final ReminderStartDate reminderStartDate;
     private final ReminderFrequency reminderFrequency;
     private final ReminderOccurrence reminderOccurrence;
+
+    // Data fields
+    // Assumes a reminder can be tagged to at most 1 CCA
+    private Cca cca;
 
     /**
      * Every field must be present and not null.
@@ -37,6 +43,14 @@ public class Reminder {
 
     public ReminderOccurrence getOccurrences() {
         return reminderOccurrence;
+    }
+
+    public Cca getCca() {
+        return cca;
+    }
+
+    public void setCca(Cca cca) {
+        this.cca = cca;
     }
 
     /**
