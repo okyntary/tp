@@ -57,8 +57,8 @@ public class ReminderCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         this.name.setText(reminder.getName().fullName);
         this.date.setText(reminder.getStartDate().toString());
-        // this.frequency.setText(""); // to test if this shows up as an empty line
-        // this.occurrences.setText("temp occ");
+        this.frequency.setText("Frequency" + reminder.getFrequency().toString());
+        this.occurrences.setText("Occurrences" + reminder.getOccurrences().toString());
 
         // each CCA has a field for color? can do an enum
         // then mapping from enum value to the binding

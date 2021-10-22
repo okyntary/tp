@@ -39,7 +39,7 @@ public class ReminderAddCommandParser implements Parser<ReminderAddCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_CCA_ID, PREFIX_NAME, PREFIX_START_DATE,
                 PREFIX_FREQUENCY, PREFIX_OCCURRENCES);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_START_DATE)
+        if (!arePrefixesPresent(argMultimap, PREFIX_CCA_ID, PREFIX_NAME, PREFIX_START_DATE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReminderAddCommand.MESSAGE_USAGE));
         }
@@ -57,7 +57,6 @@ public class ReminderAddCommandParser implements Parser<ReminderAddCommand> {
 
         // Create a new reminder
         Reminder reminder = new Reminder(reminderName, reminderStartDate, reminderFrequency, reminderOccurrence);
-        logger.log(Level.INFO, "New reminder created.");
 
         return new ReminderAddCommand(reminder, ccaIndex);
     }
