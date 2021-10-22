@@ -19,6 +19,14 @@ public class ReminderOccurrence {
         return occurrences;
     }
 
+    public void decrementOccurrence() {
+        occurrences--;
+    }
+
+    public boolean hasFinishedOccurring() {
+        return occurrences == 0;
+    }
+
     @Override
     public String toString() {
         return Integer.toString(occurrences);
