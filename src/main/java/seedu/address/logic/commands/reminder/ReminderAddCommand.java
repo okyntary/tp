@@ -35,6 +35,8 @@ public class ReminderAddCommand extends Command {
             + PREFIX_START_DATE + "2021-10-31";
 
     public static final String MESSAGE_SUCCESS = "New Reminder added: %1$s";
+    public static final String MESSAGE_ONE_OF_FREQUENCY_OCCURRENCE =
+            "Please input either both frequency and occurrence or neither of them.";
     public static final String MESSAGE_DUPLICATE_REMINDER = "This Reminder already exists in the address book";
     private static final String MESSAGE_MISSING_CCA = "This CCA does not exist in the address book";
     private static final String MESSAGE_PRESENT_REMINDER = "This reminder (%1$s) is already part of this CCA (%2$s)";
@@ -75,6 +77,7 @@ public class ReminderAddCommand extends Command {
             model.setCca(ccaToAddInto, ccaToAddInto);
             toAdd.setCca(ccaToAddInto);
             model.updateFilteredCcaList(Model.PREDICATE_SHOW_ALL_CCAS);
+            model.updateFilteredReminderList(Model.PREDICATE_SHOW_ALL_REMINDERS);
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd.getName(), ccaToAddInto.getName()));
         } else {
             throw new CommandException(

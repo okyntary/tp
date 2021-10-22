@@ -43,6 +43,14 @@ public class ReminderAddCommandParser implements Parser<ReminderAddCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReminderAddCommand.MESSAGE_USAGE));
         }
 
+        if ((argMultimap.getValue(PREFIX_FREQUENCY).isPresent()
+                    && !argMultimap.getValue(PREFIX_OCCURRENCES).isPresent())
+                || (!argMultimap.getValue(PREFIX_FREQUENCY).isPresent()
+                    && argMultimap.getValue(PREFIX_OCCURRENCES).isPresent())) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    ReminderAddCommand.MESSAGE_ONE_OF_FREQUENCY_OCCURRENCE));
+        }
+
         ReminderName reminderName = ParserUtil.parseReminderName(argMultimap.getValue(PREFIX_NAME).get());
         ReminderStartDate reminderStartDate = ParserUtil.parseReminderStartDate(
                 argMultimap.getValue(PREFIX_START_DATE).get());
@@ -54,7 +62,6 @@ public class ReminderAddCommandParser implements Parser<ReminderAddCommand> {
                 ? ParserUtil.parseReminderOccurrence(argMultimap.getValue(PREFIX_OCCURRENCES).get())
                 : ParserUtil.parseReminderOccurrence("");
 
-        // TODO: check date is valid?
         // Create a new reminder
         Reminder reminder = new Reminder(reminderName, reminderStartDate, reminderFrequency, reminderOccurrence);
         assert(reminder.isSameReminder(reminder));
