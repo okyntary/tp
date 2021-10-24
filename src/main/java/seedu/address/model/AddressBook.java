@@ -144,7 +144,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setCca(Cca target, Cca editedCca) {
         requireNonNull(editedCca);
-
         ccas.setCca(target, editedCca);
     }
 
@@ -180,6 +179,29 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeReminder(Reminder key) {
         reminders.remove(key);
+    }
+
+    /**
+     * Snoozes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void snoozeReminder(Reminder key) {
+        if (key.isAtLastOccurrence()) {
+            removeReminder(key);
+        } else {
+            setReminder(key, key.getSnoozedReminder());
+        }
+    }
+
+    /**
+     * Replaces the given Reminder {@code target} in the list with {@code editedReminder}.
+     * {@code target} must exist in the address book.
+     * The Reminder identity of {@code editedReminder} must not be the same as another existing
+     * Reminder in the address book.
+     */
+    public void setReminder(Reminder target, Reminder editedReminder) {
+        requireNonNull(editedReminder);
+        reminders.setReminder(target, editedReminder);
     }
 
     //// util methods

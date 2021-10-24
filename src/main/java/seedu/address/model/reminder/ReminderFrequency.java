@@ -37,6 +37,14 @@ public class ReminderFrequency {
         return test.matches(VALIDATION_REGEX);
     }
 
+    public Frequency getTimePeriod() {
+        return timePeriod;
+    }
+
+    public int getNumTimePeriod() {
+        return numTimePeriod;
+    }
+
     @Override
     public String toString() {
         return numTimePeriod + " " + timePeriod;

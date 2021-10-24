@@ -19,6 +19,10 @@ public class ReminderOccurrence {
         return occurrences;
     }
 
+    public boolean isAtLastOccurrence() {
+        return occurrences == 1;
+    }
+
     @Override
     public String toString() {
         return Integer.toString(occurrences);
