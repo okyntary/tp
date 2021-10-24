@@ -13,8 +13,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class ReminderDeleteCommandParser implements Parser<ReminderDeleteCommand> {
     /**
-     * Parses the given {@code String} of arguments in the context of the PersonDeleteCommand
-     * and returns a PersonDeleteCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the ReminderDeleteCommand
+     * and returns a ReminderDeleteCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public ReminderDeleteCommand parse(String args) throws ParseException {

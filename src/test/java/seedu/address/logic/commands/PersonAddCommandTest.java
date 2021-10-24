@@ -230,6 +230,10 @@ public class PersonAddCommandTest {
         }
 
         @Override
+        public void snoozeReminder(Reminder target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
         public void setReminder(Reminder target, Reminder editedReminder) {
             throw new AssertionError("This method should not be called.");
         }
