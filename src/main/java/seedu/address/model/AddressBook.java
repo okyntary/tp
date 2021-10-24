@@ -182,6 +182,17 @@ public class AddressBook implements ReadOnlyAddressBook {
         reminders.remove(key);
     }
 
+    /**
+     * Replaces the given reminder {@code target} in the list with {@code editedReminder}.
+     * {@code target} must exist in the address book.
+     * The cca identity of {@code editedReminder} must not be the same as another existing cca in the address book.
+     */
+    public void setReminder(Reminder target, Reminder editedReminder) {
+        requireNonNull(editedReminder);
+
+        reminders.setReminder(target, editedReminder);
+    }
+
     //// util methods
 
     @Override

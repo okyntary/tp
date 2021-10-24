@@ -157,4 +157,11 @@ public interface Model {
      * {@code reminder} must not already exist in the address book.
      */
     boolean addReminder(Reminder reminder, Cca ccaToAddInto);
+
+    /**
+     * Replaces the given reminder {@code target} with {@code editedReminder}.
+     * {@code target} must exist in the address book.
+     * The reminder identity of {@code editedReminder} must not be the same as another existing reminder in the address book.
+     */
+    void setReminder(Reminder target, Reminder editedReminder);
 }

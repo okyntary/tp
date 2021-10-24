@@ -165,6 +165,13 @@ public class ModelManager implements Model {
         return success;
     }
 
+    @Override
+    public void setReminder(Reminder target, Reminder editedReminder) {
+        requireAllNonNull(target, editedReminder);
+
+        addressBook.setReminder(target, editedReminder);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**

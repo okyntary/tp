@@ -228,6 +228,11 @@ public class PersonAddCommandTest {
         public boolean addReminder(Reminder reminder, Cca ccaToAddInto) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void setReminder(Reminder target, Reminder editedReminder) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
