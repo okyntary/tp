@@ -25,7 +25,7 @@ import seedu.address.model.reminder.Reminder;
 import seedu.address.model.tag.Tag;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing CCA in the address book.
  */
 public class CcaEditCommand extends Command {
 
@@ -50,7 +50,7 @@ public class CcaEditCommand extends Command {
 
     /**
      * @param index of the cca in the filtered CCA list to edit
-     * @param editCcaDescriptor details to edit the person with
+     * @param editCcaDescriptor details to edit the CCA with
      */
     public CcaEditCommand(Index index, EditCcaDescriptor editCcaDescriptor) {
         requireNonNull(index);
@@ -116,7 +116,7 @@ public class CcaEditCommand extends Command {
 
     /**
      * Stores the details to edit the CCA with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * corresponding field value of the CCA.
      */
     public static class EditCcaDescriptor {
         private CcaName name;
