@@ -37,24 +37,6 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
-     * Returns the current largest pid
-     * @return the current largest pid
-     */
-    public int getCurrentIndex() {
-        if (this.internalList.size() == 0) {
-            return 0;
-        } else {
-            int []currentHighest = {-1};
-            this.internalList.parallelStream().forEach(x -> {
-                if (x.getPid() > currentHighest[0]) {
-                    currentHighest[0] = x.getPid();
-                }
-            });
-            return currentHighest[0];
-        }
-    }
-
-    /**
      * Adds a person to the list.
      * The person must not already exist in the list.
      */

@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.function.Predicate;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -138,7 +139,6 @@ public class ModelManager implements Model {
     @Override
     public void setCca(Cca target, Cca editedCca) {
         requireAllNonNull(target, editedCca);
-
         addressBook.setCca(target, editedCca);
     }
 
@@ -154,9 +154,26 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addReminder(Reminder reminder) {
+    public boolean addReminder(Reminder reminder, Cca ccaToAddInto) {
         addressBook.addReminder(reminder);
-        updateFilteredCcaList(PREDICATE_SHOW_ALL_CCAS);
+        boolean success = ccaToAddInto.addReminder(reminder);
+        if (success) {
+            updateFilteredCcaList(PREDICATE_SHOW_ALL_CCAS);
+        }
+        logger.log(Level.INFO, "About to add reminder to address book");
+        return success;
+    }
+
+    @Override
+    public void snoozeReminder(Reminder target) {
+        requireNonNull(target);
+        addressBook.snoozeReminder(target);
+    }
+
+    @Override
+    public void setReminder(Reminder target, Reminder editedReminder) {
+        requireAllNonNull(target, editedReminder);
+        addressBook.setReminder(target, editedReminder);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -210,26 +227,6 @@ public class ModelManager implements Model {
     @Override
     public boolean expelPersonFromCca(Cca ccaToExpelFrom, Person personToExpel) {
         return ccaToExpelFrom.expelPerson(personToExpel);
-    }
-
-    /**
-     * Finds a CCA based on the cid
-     *
-     * @param cid cid of CCA to be found
-     */
-    @Override
-    public Cca findCcaFromCid(int cid) {
-        return this.addressBook.findCcaFromCid(cid);
-    }
-
-    /**
-     * Finds a Person based on the pid
-     *
-     * @param pid pid of Person to be found
-     */
-    @Override
-    public Person findPersonFromPid(int pid) {
-        return this.addressBook.findPersonFromPid(pid);
     }
 
     @Override

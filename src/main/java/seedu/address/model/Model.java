@@ -138,16 +138,6 @@ public interface Model {
      */
     boolean expelPersonFromCca(Cca ccaToExpelFrom, Person personToExpel);
 
-    /**
-     * Finds a CCA based on the cid
-     */
-    Cca findCcaFromCid(int cid);
-
-    /**
-     * Finds a Person based on the pid
-     */
-    Person findPersonFromPid(int pid);
-
     /** Returns an unmodifiable view of the filtered cca list */
     ObservableList<Reminder> getFilteredReminderList();
 
@@ -163,8 +153,22 @@ public interface Model {
     void deleteReminder(Reminder target);
 
     /**
+     * Snoozes the given reminder.
+     * The reminder must exist n the address book.
+     */
+    void snoozeReminder(Reminder target);
+
+    /**
+     * Replaces the given Reminder {@code target} with {@code editedReminder}.
+     * {@code target} must exist in the address book.
+     * The Reminder identity of {@code editedReminder} must not be the same as another existing
+     * Reminder in the address book.
+     */
+    void setReminder(Reminder target, Reminder editedReminder);
+
+    /**
      * Adds the given reminder.
      * {@code reminder} must not already exist in the address book.
      */
-    void addReminder(Reminder reminder);
+    boolean addReminder(Reminder reminder, Cca ccaToAddInto);
 }

@@ -2,7 +2,9 @@ package seedu.address.logic.parser.cca;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.cca.CcaAddCommand;
@@ -14,6 +16,7 @@ import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.cca.Cca;
 import seedu.address.model.cca.CcaName;
+import seedu.address.model.tag.Tag;
 
 public class CcaAddCommandParser implements Parser<CcaAddCommand> {
     /**
@@ -23,7 +26,7 @@ public class CcaAddCommandParser implements Parser<CcaAddCommand> {
      */
     public CcaAddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -31,9 +34,10 @@ public class CcaAddCommandParser implements Parser<CcaAddCommand> {
         }
 
         CcaName ccaName = ParserUtil.parseCcaName(argMultimap.getValue(PREFIX_NAME).get());
+        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         // Create a new CCA here
-        Cca cca = new Cca(ccaName);
+        Cca cca = new Cca(ccaName, tagList);
 
         return new CcaAddCommand(cca);
     }

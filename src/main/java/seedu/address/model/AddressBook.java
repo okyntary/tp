@@ -57,10 +57,18 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Replaces the contents of the cca list with {@code ccas}.
-     * {@code ccas} must not contain duplicate persons.
+     * {@code ccas} must not contain duplicate ccas.
      */
     public void setCcas(List<Cca> ccas) {
         this.ccas.setCcas(ccas);
+    }
+
+    /**
+     * Replaces the contents of the reminder list with {@code reminders}.
+     * {@code reminders} must not contain duplicate reminders.
+     */
+    public void setReminders(List<Reminder> reminders) {
+        this.reminders.setReminders(reminders);
     }
 
     /**
@@ -71,6 +79,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
         setPersons(newData.getPersonList());
         setCcas(newData.getCcaList());
+        setReminders(newData.getReminderList());
     }
 
     //// person-level operations
@@ -89,7 +98,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addPerson(Person p) {
         persons.add(p);
-        p.setPid(persons.getCurrentIndex() + 1);
     }
 
     /**
@@ -127,7 +135,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addCca(Cca cca) {
         ccas.add(cca);
-        cca.setCid(ccas.getCurrentIndex() + 1);
     }
 
     /**
@@ -137,7 +144,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setCca(Cca target, Cca editedCca) {
         requireNonNull(editedCca);
-
         ccas.setCca(target, editedCca);
     }
 
@@ -175,12 +181,36 @@ public class AddressBook implements ReadOnlyAddressBook {
         reminders.remove(key);
     }
 
+    /**
+     * Snoozes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void snoozeReminder(Reminder key) {
+        if (key.isAtLastOccurrence()) {
+            removeReminder(key);
+        } else {
+            setReminder(key, key.getSnoozedReminder());
+        }
+    }
+
+    /**
+     * Replaces the given Reminder {@code target} in the list with {@code editedReminder}.
+     * {@code target} must exist in the address book.
+     * The Reminder identity of {@code editedReminder} must not be the same as another existing
+     * Reminder in the address book.
+     */
+    public void setReminder(Reminder target, Reminder editedReminder) {
+        requireNonNull(editedReminder);
+        reminders.setReminder(target, editedReminder);
+    }
+
     //// util methods
 
     @Override
     public String toString() {
         String result = persons.asUnmodifiableObservableList().size() + " persons, "
-                + ccas.asUnmodifiableObservableList().size() + " ccas";
+                + ccas.asUnmodifiableObservableList().size() + " ccas, "
+                + reminders.asUnmodifiableObservableList().size() + " reminders";
         return result;
         // TODO: refine later
     }
@@ -210,37 +240,5 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public int hashCode() {
         return persons.hashCode();
-    }
-
-    /**
-     * Returns the CCA from the cid.
-     * @param cid of the CCA to be found
-     * @return the CCA with that cid
-     */
-    public Cca findCcaFromCid(int cid) {
-        final Cca[] ccaFromCid = new Cca[1];
-        ccaFromCid[0] = null;
-        this.getCcaList().parallelStream().forEach(cca -> {
-            if (cca.getCid() == cid) {
-                ccaFromCid[0] = cca;
-            }
-        });
-        return ccaFromCid[0];
-    }
-
-    /**
-     * Returns the CCA from the cid.
-     * @param pid of the CCA to be found
-     * @return the CCA with that cid
-     */
-    public Person findPersonFromPid(int pid) {
-        final Person[] personFromPid = new Person[1];
-        personFromPid[0] = null;
-        this.getPersonList().parallelStream().forEach(person -> {
-            if (person.getPid() == pid) {
-                personFromPid[0] = person;
-            }
-        });
-        return personFromPid[0];
     }
 }

@@ -11,15 +11,16 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.cca.CcaName;
-import seedu.address.model.cca.Cid;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.Pid;
+import seedu.address.model.reminder.ReminderFrequency;
 import seedu.address.model.reminder.ReminderName;
+import seedu.address.model.reminder.ReminderOccurrence;
 import seedu.address.model.reminder.ReminderStartDate;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.util.Frequency;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -89,10 +90,10 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String name} into a {@code ReminderName}.
+     * Parses a {@code String date} into a {@code ReminderStartDate}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code name} is invalid.
+     * @throws ParseException if the given {@code date} is invalid.
      */
     public static ReminderStartDate parseReminderStartDate(String date) throws ParseException {
         requireNonNull(date);
@@ -107,6 +108,65 @@ public class ParserUtil {
             throw new ParseException(ReminderStartDate.PARSE_DATE_CONSTRAINTS);
         }
         return new ReminderStartDate(startDate);
+    }
+
+    /**
+     * Parses a {@code String frequency} into a {@code ReminderFrequency}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code frequency} is invalid.
+     */
+    public static ReminderFrequency parseReminderFrequency(String frequency) throws ParseException {
+        requireNonNull(frequency);
+        String trimmedFrequency = frequency.trim();
+        boolean empty = false;
+        if (trimmedFrequency.length() == 0) {
+            trimmedFrequency = "1d"; // to pass the check
+            empty = true;
+        }
+        if (!ReminderFrequency.isValidFrequency(trimmedFrequency)) {
+            throw new ParseException(ReminderFrequency.MESSAGE_CONSTRAINTS);
+        }
+        if (empty) {
+            trimmedFrequency = "1o";
+        }
+        String timePeriodString = trimmedFrequency.substring(trimmedFrequency.length() - 1);
+        String numTimePeriodString = trimmedFrequency.substring(0, trimmedFrequency.length() - 1);
+        int numTimePeriod = 0;
+        try {
+            numTimePeriod = Integer.parseInt(numTimePeriodString);
+        } catch (NumberFormatException e) {
+            throw new ParseException(ReminderFrequency.MESSAGE_CONSTRAINTS);
+        }
+        if (numTimePeriod <= 0) {
+            throw new ParseException(ReminderFrequency.MESSAGE_CONSTRAINTS);
+        }
+        Frequency timePeriod = Frequency.getFrequency(timePeriodString);
+        return new ReminderFrequency(timePeriod, numTimePeriod);
+    }
+
+    /**
+     * Parses an {@code String occurrence} into a {@code ReminderOccurrence}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code occurrence} is invalid.
+     */
+    public static ReminderOccurrence parseReminderOccurrence(String occurrence) throws ParseException {
+        requireNonNull(occurrence);
+        String trimmedOccurrence = occurrence.trim();
+        if (trimmedOccurrence.length() == 0) {
+            trimmedOccurrence = "1";
+        }
+        int numOccurrences = 0;
+        try {
+            numOccurrences = Integer.parseInt(trimmedOccurrence);
+        } catch (NumberFormatException e) {
+            throw new ParseException(ReminderOccurrence.MESSAGE_CONSTRAINTS);
+        }
+        if (numOccurrences <= 0) {
+            throw new ParseException(ReminderOccurrence.MESSAGE_CONSTRAINTS);
+        }
+        return new ReminderOccurrence(numOccurrences);
     }
 
     /**
@@ -179,50 +239,5 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
-    }
-
-    // todo: Should be able to delete if the usual index works
-    /**
-     * Parses a {@code String cid} into an {@code int}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code cid} is invalid.
-     */
-    public static Cid parseCid(String cid) throws ParseException {
-        requireNonNull(cid);
-        String trimmedCid = cid.trim();
-        int intCid = -1;
-        try {
-            intCid = Integer.parseInt(trimmedCid);
-        } catch (Exception e) {
-            throw new ParseException("Please input cid as a number");
-        } finally {
-            if (intCid == -1) {
-                throw new ParseException("Please input cid as a number");
-            }
-            return new Cid(cid);
-        }
-    }
-
-    /**
-     * Parses a {@code String pid} into an {@code int}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code pid} is invalid.
-     */
-    public static Pid parsePid(String pid) throws ParseException {
-        requireNonNull(pid);
-        String trimmedPid = pid.trim();
-        int intPid = -1;
-        try {
-            intPid = Integer.parseInt(trimmedPid);
-        } catch (Exception e) {
-            throw new ParseException("Please input pid as a number");
-        } finally {
-            if (intPid == -1) {
-                throw new ParseException("Please input pid as a number");
-            }
-            return new Pid(pid);
-        }
     }
 }

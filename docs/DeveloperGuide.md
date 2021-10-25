@@ -82,7 +82,7 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays objects like `Person`, `CCA`, and `Reminder` residing in their respective `Model`s.
 
 ### Logic component
 
@@ -121,8 +121,8 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the address book data i.e., all `Person`, `Cca`, and `Reminder` objects (which are contained in a `UniquePersonList`, `UniqueCcaList`, `UniqueReminderList` object respectively).
+* stores the currently 'selected' `Person`, `Cca`, and `Reminder` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>`, `ObservableList<Cca>`, and `ObservableList<Reminder>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
@@ -153,6 +153,93 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Storage
+
+The current Storage mechanism is split into two main sections: `AddressBook` storage, for all ePoch-related data, and `UserPrefs` storage, for all user preference-related data.
+Whenever ePoch needs to save or update its storage, it converts the relevant object into a `.json` object with the `saveJsonFile` method in `jsonUtil`.
+
+There are three main classes types in ePoch that need to be saved: `Person`, `Cca`, and `Reminder`. Each of these classes is converted to its corresponding `JsonAdapted` class,
+to be made suitable for `.json` conversion. Because each `Cca` object contains a `Set` of `Person`s and `Reminder`s as members, `JsonAdaptedPerson` and `JsonAdaptedReminder` will be stored within `JsonAdaptedCca` as well.
+
+Alternatives considered: instead of storing whole `Person` and `Reminder` objects in `Cca` objects, the alternative of storing unique identifiers for them `Pid`, `Rid` etc was considered. In the end, this possibility was rejected
+because of how time-consuming refactoring the entire project to use this new system would be. 
+
+### CCAs
+
+A CCA has:
+
+* A CCA name, represented by the `CcaName` class. CCA name must be unique.
+* Zero or more people enrolled in it, represented by the HashSet `personArrayList`.
+* Zero or more reminders associated with it, represented by the HashSet `remindersArrayList`.
+
+Two CCAs are considered identical if they have the same name.
+
+#### Command for Adding CCAs
+
+The `addc` command is implemented by `CcaAddCommand`, which extends `Command`.
+Polymorphism allows the different Command objects to be passed around and executed without having to know what type of Command it is.
+
+#### Command for Deleting CCAs
+
+The `deletec` command is implemented by `CcaDeleteCommand`.
+Similar to `CcaAddCommand`, `CcaDeleteCommand` extends `Command` to practice polymorphism.
+
+The `CcaDeleteCommand` class has an Index which is the index of the CCA to delete, specified by the user.
+It implements the `execute` method which handles the logic of the delete command.
+The `getFilteredCcaList` method is called to obtain a List of CCAs, `lastShownList`.
+If the given index exists in `lastShownList`, the corresponding CCA is deleted using the `deleteCca` method defined in the `ModelManager`.
+
+#### Command for Finding CCAs
+
+The `findc` command is implemented by `CcaFindCommand` which extends `Command`.
+
+The keywords specified by the user are passed as a List to the `CcaNameContainsKeywordsPredicate` constructor.
+The `CcaNameContainsKeywordsPredicate` class extends `Predicate<Cca>` and implements the `test` method,
+which uses streams to filter CCAs whose name matches any of the keywords.
+
+#### Command for Enrolling Person into CCAs
+
+The `enrol` command is implemented by `CcaEnrolCommand` which extends `Command`.
+
+The `CcaEnrolCommand` class has two Indexes, the index of the CCA to be enrolled into, and the index of the Person to enrol, specified by the user.
+It implements the `execute` method which handles the logic of the enrol command.
+The `getFilteredCcaList` and `getFilteredPersonList` method is called to obtain a List of CCAs and Persons, `lastShownCcaList` and `lastShownPersonList` respectively.
+If the gives Indexes exist in `lastShownCcaList` and `lastShownPersonList`, the corresponding Person is enrolled into the corresponding CCA using the `enrolPersonIntoCca` method defined in the `ModelManager`.
+
+#### Command for Expelling Person from CCAs
+
+The `expel` command is implemented by `CcaExpelCommand` which extends `Command`.
+
+The `CcaExpelCommand` class has two Indexes, the index of the CCA to be expelled from, and the index of the Person to expel, specified by the user.
+It implements the `execute` method which handles the logic of the expel command.
+The `getFilteredCcaList` and `getFilteredPersonList` method is called to obtain a List of CCAs and Persons, `lastShownCcaList` and `lastShownPersonList` respectively.
+If the gives Indexes exist in `lastShownCcaList` and `lastShownPersonList`, the corresponding Person is expelled from the corresponding CCA using the `expelPersonFromCca` method defined in the `ModelManager`.
+
+### Reminders
+
+A Reminder has:
+
+* A reminder name, represented by the `ReminderName` class.
+* A start date, represented by the `ReminderStartDate` class.
+* Zero or one frequency, represented by the `ReminderFrequency` class and making use of enumerations from the `Frequency` class.
+* Zero or one occurrence, represented by the `ReminderOccurrence` class.
+* Exactly one CCA that it is linked to, represented as a `Cca` data field.
+
+Two Reminders are considered identical if they have the same name, same frequency, and same occurrence.
+
+#### Command for Adding Reminders
+
+The `addr` command is implemented by `ReminderAddCommand`, which extends `Command`.
+Polymorphism allows the different Command objects to be passed around and executed without having to know what type of Command it is.
+
+If the user does not specify a frequency and occurrence, the frequency defaults to a One-off frequency and the occurrence defaults to 1 (since we take it that the Reminder only occurs once).
+If the user specifies only one of frequency and occurrence, then an error is thrown.
+
+The `ReminderAddCommand` class has an Index which is the index of the CCA to add the Reminder to, specified by the user.
+It implements the `execute` method which handles the logic of the add command.
+The `updateFilteredCcaList` and `updateFilteredReminderList` methods are called to update the `UI` component.
+
 
 ### \[Proposed\] Undo/redo feature
 
@@ -263,7 +350,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: 
+**Value proposition**:
 
 ePoch helps users categorise contacts, which helps the user keep track of various overlapping social circles.
 The product offers peace of mind to the user using a “set-and-forget” approach by helping the user schedule recurring social events.
@@ -331,7 +418,7 @@ Use case ends.
 **MSS**
 
 1. User requests to add a person to the list and optionally specifies their name, phone number, email and address.
-2. ePoch adds the person with the specified information 
+2. ePoch adds the person with the specified information
 Use case ends.
 
 **Use case: UC3 - Add a CCA**
@@ -373,12 +460,12 @@ Use case ends.
 * 2a. The list is empty.
 
   Use case ends.
-  
+
 * 3a. The given person does not exist (person ID invalid).
 
     * 3a1. AddressBook shows an error message.
       Use case resumes at step 2.
-     
+
 
 **Use case: UC6 - Enrol a person into a CCA**
 
@@ -395,16 +482,16 @@ Use case ends.
 * 2a. The list of persons is empty.
 
   Use case ends.
-  
+
 * 2b. The list of CCAs is empty.
 
   Use case ends.
-  
+
 * 3a. The given person does not exist (person ID invalid).
 
     * 3a1. ePoch shows an error message.
       Use case resumes at step 2.
-     
+
 * 3b. The given CCA does not exist (CCA ID invalid).
 
     * 3b1. ePoch shows an error message.
@@ -418,7 +505,7 @@ Use case ends.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  The JAR file should not exceed 100MB.
-5.  The system should respond within 2 seconds whenever a command is entered by the user. 
+5.  The system should respond within 2 seconds whenever a command is entered by the user.
 
 *{More to be added}*
 

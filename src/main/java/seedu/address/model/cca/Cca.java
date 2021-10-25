@@ -1,19 +1,24 @@
 package seedu.address.model.cca;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.person.Person;
+import seedu.address.model.reminder.Reminder;
+import seedu.address.model.tag.Tag;
 
 
 public class Cca {
 
     // Identity fields
     private final CcaName ccaName;
-    private Set<Person> personArrayList;
-    private Cid cid = new Cid("0");
+    // Data fields
+    private Set<Person> personArrayList = new HashSet<>();
+    private Set<Reminder> reminders = new HashSet<>();
+    private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
@@ -25,12 +30,31 @@ public class Cca {
     }
 
     /**
-     * Every field must be present and not null.
+     * Constructor using ccaName and tags
+     * @param ccaName Name of Cca
+     * @param tags Tags to initialize Cca with
      */
-    public Cca(CcaName ccaName, Set<Person> personArrayList) {
+    public Cca(CcaName ccaName, Set<Tag> tags) {
+        requireAllNonNull(ccaName);
+        this.ccaName = ccaName;
+        this.personArrayList = new HashSet<>();
+        this.tags.addAll(tags);
+    }
+
+    /**
+     *
+     * Constructor using ccaName, personArrayList, reminders, and tags
+     * @param ccaName Name of Cca
+     * @param personArrayList list of associated members
+     * @param reminders list of associated reminders
+     * @param tags Cca tags
+     */
+    public Cca(CcaName ccaName, Set<Person> personArrayList, Set<Reminder> reminders, Set<Tag> tags) {
         requireAllNonNull(ccaName);
         this.ccaName = ccaName;
         this.personArrayList = personArrayList;
+        this.reminders = reminders;
+        this.tags.addAll(tags);
     }
 
     /**
@@ -58,27 +82,28 @@ public class Cca {
     }
 
     /**
-     * Returns the cid of this CCA.
-     * @return the cid of this CCA
+<<<<<<< HEAD
+     * Returns the reminders of this CCA.
+     * @return the reminders of this CCA
      */
-    public int getCid() {
-        return Integer.parseInt(this.cid.value);
+    public Set<Reminder> getReminders() {
+        return reminders;
     }
 
     /**
-     * Checks if the Cid of a CCA is equal to a given Cid
-     * @return a boolean representing if they are equal
+     * Returns the number of reminders in this CCA.
+     * @return the number of reminders of this CCA
      */
-    public boolean cidEquals(Cid otherCid) {
-        return Integer.parseInt(this.cid.value) == Integer.parseInt(otherCid.value);
+    public int getNumberOfReminders() {
+        return reminders.size();
     }
 
     /**
-     * Sets the cid of this CCA.
-     * @param cid of this cca
+     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
      */
-    public void setCid(int cid) {
-        this.cid = new Cid(String.valueOf(cid));
+    public Set<Tag> getTags() {
+        return Collections.unmodifiableSet(tags);
     }
 
     /**
@@ -109,7 +134,9 @@ public class Cca {
         }
 
         seedu.address.model.cca.Cca otherCca = (seedu.address.model.cca.Cca) other;
-        return otherCca.getName().equals(getName());
+        return otherCca.getName().equals(this.getName())
+                && otherCca.getPersonArrayList().equals(this.getPersonArrayList())
+                && otherCca.getTags().equals(this.getTags());
     }
 
     @Override
@@ -121,8 +148,15 @@ public class Cca {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName());
+        builder.append(getName())
+                .append("; Number of enrolled persons: ")
+                .append(this.getPersonArrayList().size());
 
+        Set<Tag> tags = getTags();
+        if (!tags.isEmpty()) {
+            builder.append("; Tags: ");
+            tags.forEach(builder::append);
+        }
         return builder.toString();
     }
 
@@ -140,5 +174,14 @@ public class Cca {
     public boolean expelPerson(Person personToExpel) {
         return this.personArrayList.remove(personToExpel);
     }
-}
 
+    // Add a reminder
+    public boolean addReminder(Reminder reminder) {
+        return this.reminders.add(reminder);
+    }
+
+    // Remove a reminder
+    public boolean removeReminder(Reminder reminder) {
+        return this.reminders.remove(reminder);
+    }
+}

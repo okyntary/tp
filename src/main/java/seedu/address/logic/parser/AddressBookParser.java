@@ -14,6 +14,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.cca.CcaAddCommand;
 import seedu.address.logic.commands.cca.CcaDeleteCommand;
+import seedu.address.logic.commands.cca.CcaEditCommand;
 import seedu.address.logic.commands.cca.CcaEnrolCommand;
 import seedu.address.logic.commands.cca.CcaExpelCommand;
 import seedu.address.logic.commands.cca.CcaFindCommand;
@@ -24,8 +25,10 @@ import seedu.address.logic.commands.person.PersonFindCommand;
 import seedu.address.logic.commands.reminder.ReminderAddCommand;
 import seedu.address.logic.commands.reminder.ReminderDeleteCommand;
 import seedu.address.logic.commands.reminder.ReminderFindCommand;
+import seedu.address.logic.commands.reminder.ReminderSnoozeCommand;
 import seedu.address.logic.parser.cca.CcaAddCommandParser;
 import seedu.address.logic.parser.cca.CcaDeleteCommandParser;
+import seedu.address.logic.parser.cca.CcaEditCommandParser;
 import seedu.address.logic.parser.cca.CcaEnrolCommandParser;
 import seedu.address.logic.parser.cca.CcaExpelCommandParser;
 import seedu.address.logic.parser.cca.CcaFindCommandParser;
@@ -37,6 +40,7 @@ import seedu.address.logic.parser.person.PersonFindCommandParser;
 import seedu.address.logic.parser.reminder.ReminderAddCommandParser;
 import seedu.address.logic.parser.reminder.ReminderDeleteCommandParser;
 import seedu.address.logic.parser.reminder.ReminderFindCommandParser;
+import seedu.address.logic.parser.reminder.ReminderSnoozeCommandParser;
 
 
 /**
@@ -99,6 +103,9 @@ public class AddressBookParser {
         case CcaAddCommand.COMMAND_WORD:
             return new CcaAddCommandParser().parse(arguments);
 
+        case CcaEditCommand.COMMAND_WORD:
+            return new CcaEditCommandParser().parse(arguments);
+
         case CcaDeleteCommand.COMMAND_WORD:
             return new CcaDeleteCommandParser().parse(arguments);
 
@@ -116,6 +123,9 @@ public class AddressBookParser {
 
         case ReminderFindCommand.COMMAND_WORD:
             return new ReminderFindCommandParser().parse(arguments);
+
+        case ReminderSnoozeCommand.COMMAND_WORD:
+            return new ReminderSnoozeCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

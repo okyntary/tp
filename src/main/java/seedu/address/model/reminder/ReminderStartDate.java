@@ -30,6 +30,10 @@ public class ReminderStartDate {
         startDate = date;
     }
 
+    public Date getDate() {
+        return this.startDate;
+    }
+
     /**
      * Returns true if a given string is a valid name.
      */
