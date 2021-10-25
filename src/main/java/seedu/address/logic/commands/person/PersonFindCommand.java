@@ -2,6 +2,11 @@ package seedu.address.logic.commands.person;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.Command;
@@ -15,11 +20,6 @@ import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.reminder.ReminderName;
 import seedu.address.model.reminder.ReminderNameContainsKeywordsPredicate;
-
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
