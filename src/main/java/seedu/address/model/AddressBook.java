@@ -57,7 +57,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Replaces the contents of the CCA list with {@code ccas}.
-     * {@code ccas} must not contain duplicate ccas.
+     * {@code ccas} must not contain duplicate CCAs.
      */
     public void setCcas(List<Cca> ccas) {
         this.ccas.setCcas(ccas);
@@ -209,7 +209,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public String toString() {
         String result = persons.asUnmodifiableObservableList().size() + " persons, "
-                + ccas.asUnmodifiableObservableList().size() + " ccas, "
+                + ccas.asUnmodifiableObservableList().size() + " CCAs, "
                 + reminders.asUnmodifiableObservableList().size() + " reminders";
         return result;
         // TODO: refine later

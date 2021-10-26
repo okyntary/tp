@@ -122,7 +122,7 @@ public class UniqueCcaList implements Iterable<Cca> {
     }
 
     /**
-     * Returns true if {@code CCAs} contains only unique ccas.
+     * Returns true if {@code CCAs} contains only unique CCAs.
      */
     private boolean ccasAreUnique(List<Cca> ccas) {
         for (int i = 0; i < ccas.size() - 1; i++) {
