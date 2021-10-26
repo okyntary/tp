@@ -16,7 +16,7 @@ public interface ReadOnlyAddressBook {
      */
     ObservableList<Person> getPersonList();
     /**
-     * Returns an unmodifiable view of the cca list.
+     * Returns an unmodifiable view of the CCA list.
      * This list will not contain any duplicate ccas.
      */
     ObservableList<Cca> getCcaList();

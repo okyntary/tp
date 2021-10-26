@@ -12,11 +12,11 @@ import seedu.address.model.cca.exceptions.CcaNotFoundException;
 import seedu.address.model.cca.exceptions.DuplicateCcaException;
 
 /**
- * A list of CCas that enforces uniqueness between its elements and does not allow nulls.
- * A CCa is considered unique by comparing using {@code Cca#isSameCca(Cca)}. As such, adding and updating of
- * CCas uses Cca#isSameCca(Cca) for equality so as to ensure that the CCa being added or updated is
- * unique in terms of identity in the UniqueCcaList. However, the removal of a CCa uses Cca#equals(Object) so
- * as to ensure that the CCa with exactly the same fields will be removed.
+ * A list of CCAs that enforces uniqueness between its elements and does not allow nulls.
+ * A CCA is considered unique by comparing using {@code Cca#isSameCca(Cca)}. As such, adding and updating of
+ * CCAs uses Cca#isSameCca(Cca) for equality so as to ensure that the CCA being added or updated is
+ * unique in terms of identity in the UniqueCcaList. However, the removal of a CCA uses Cca#equals(Object) so
+ * as to ensure that the CCA with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *

@@ -56,7 +56,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Replaces the contents of the cca list with {@code ccas}.
+     * Replaces the contents of the CCA list with {@code ccas}.
      * {@code ccas} must not contain duplicate ccas.
      */
     public void setCcas(List<Cca> ccas) {
@@ -122,7 +122,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// cca-level operations
 
     /**
-     * Returns true if a cca with the same identity as {@code cca} exists in the address book.
+     * Returns true if a CCA with the same identity as {@code cca} exists in the address book.
      */
     public boolean hasCca(Cca cca) {
         requireNonNull(cca);
@@ -130,17 +130,17 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds a cca to the address book.
-     * The cca must not already exist in the address book.
+     * Adds a CCA to the address book.
+     * The CCA must not already exist in the address book.
      */
     public void addCca(Cca cca) {
         ccas.add(cca);
     }
 
     /**
-     * Replaces the given cca {@code target} in the list with {@code editedCca}.
+     * Replaces the given CCA {@code target} in the list with {@code editedCca}.
      * {@code target} must exist in the address book.
-     * The cca identity of {@code editedCca} must not be the same as another existing cca in the address book.
+     * The CCA identity of {@code editedCca} must not be the same as another existing CCA in the address book.
      */
     public void setCca(Cca target, Cca editedCca) {
         requireNonNull(editedCca);

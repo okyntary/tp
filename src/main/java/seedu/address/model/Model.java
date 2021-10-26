@@ -89,25 +89,25 @@ public interface Model {
     boolean hasCca(Cca cca);
 
     /**
-     * Deletes the given cca.
-     * The cca must exist in the address book.
+     * Deletes the given CCA.
+     * The CCA must exist in the address book.
      */
     void deleteCca(Cca target);
 
     /**
-     * Adds the given cca.
+     * Adds the given CCA.
      * {@code cca} must not already exist in the address book.
      */
     void addCca(Cca cca);
 
     /**
-     * Replaces the given cca {@code target} with {@code editedCca}.
+     * Replaces the given CCA {@code target} with {@code editedCca}.
      * {@code target} must exist in the address book.
-     * The cca identity of {@code editedCca} must not be the same as another existing cca in the address book.
+     * The CCA identity of {@code editedCca} must not be the same as another existing CCA in the address book.
      */
     void setCca(Cca target, Cca editedCca);
 
-    /** Returns an unmodifiable view of the filtered cca list */
+    /** Returns an unmodifiable view of the filtered CCA list */
     ObservableList<Cca> getFilteredCcaList();
 
     /**
@@ -138,7 +138,7 @@ public interface Model {
      */
     boolean expelPersonFromCca(Cca ccaToExpelFrom, Person personToExpel);
 
-    /** Returns an unmodifiable view of the filtered cca list */
+    /** Returns an unmodifiable view of the filtered CCA list */
     ObservableList<Reminder> getFilteredReminderList();
 
     /**

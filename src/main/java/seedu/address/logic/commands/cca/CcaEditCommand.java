@@ -49,7 +49,7 @@ public class CcaEditCommand extends Command {
     private final EditCcaDescriptor editCcaDescriptor;
 
     /**
-     * @param index of the cca in the filtered CCA list to edit
+     * @param index of the CCA in the filtered CCA list to edit
      * @param editCcaDescriptor details to edit the person with
      */
     public CcaEditCommand(Index index, EditCcaDescriptor editCcaDescriptor) {
