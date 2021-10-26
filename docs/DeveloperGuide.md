@@ -403,118 +403,127 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is`ePoch` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, **system** refers to `ePoch`, unless specified otherwise)
 
 **Use case: UC1 - List all persons, CCAs, and reminders**
 
 **MSS**
 
-1. User requests to list all persons,  CCAs, and reminders.
-2. ePoch displays all persons,  CCAs, and reminders currently stored in ePoch.
+1. User requests to list all persons, CCAs, and reminders.
+1. The system displays all persons, CCAs, and reminders currently stored in ePoch. <br>
 Use case ends.
 
 **Use case: UC2 - Add a person**
 
 **MSS**
 
-1. User requests to add a person to the list and optionally specifies their name, phone number, email and address.
-2. ePoch adds the person with the specified information
+1. User requests to add a person to ePoch by specifying their name, address, email and phone number, optionally specifying additional user tags.
+1. The system adds the person with the specified information to ePoch. <br>
 Use case ends.
+
+Extension:
+
+- 1a. At least one attribute from name, address, email and phone number is missing or specified improperly.
+  - 1a1. The system throws an error. Use case resumes from step 1.
 
 **Use case: UC3 - Add a CCA**
 
 **MSS**
 
-1. User requests to add a CCA to the list and specifies the CCA name.
-2. ePoch adds the CCA to the list of CCAs.
+1. User requests to add a CCA to ePoch by specifying the CCA name.
+1The system adds the CCA to ePoch. <br>
 Use case ends.
 
+Extension:
+- 1a. The CCA name is not specified correctly, or is missing.
+  - The system throws an error. Use case resumes from step 1.
 
-**Use case: UC4 - Find a person**
+**Use case: UC4 - Add a reminder**
 
 **MSS**
 
-1. User requests to find a person based on their attributes.
-2. ePoch displays all persons that fit the user's requirements.
+1. User requests to add a reminder to ePoch by specifying its name, the id of the CCA to which it is linked, and its start date, optionally specifying its frequency.
+1. The system adds the reminder to ePoch. <br>
+   Use case ends.
+
+Extension:
+- 1a. At least one attribute from name, cid and start date is missing or specified improperly.
+    - The system throws an error. Use case resumes from step 1.
+    
+**Use case: UC5 - Find a person**
+
+**MSS**
+
+1. User requests to find a person based on the specified attributes.
+1. The system displays all persons that fit the user's specifications. <br>
+   Use case ends.
 
 Extensions:
 
-* 1a. No attributes are specified.
-
-    * 1a1. ePoch throws an error.
-      Use case resumes from step 1.
+- 1a. No attributes are specified, or attributes are specified improperly. 
+  - -1a1. The system throws an error. Use case resumes from step 1.
 
 
-**Use case: UC5 -  Delete a person**
+**Use case: UC6 - Delete a person**
 
 **MSS**
 
 1. User requests to list persons.
-2. ePoch shows a list of persons.
-3. User requests to delete a person and specficies the person ID.
-4. ePoch deletes the person.
+1. The system shows a list of persons (UC1).
+1. User requests to delete a person by specifying that person's ID.
+1. The system deletes the person.
 Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
-
+- 2a. The list is empty. <br>
   Use case ends.
+- 3a. The specified person does not exist (person ID invalid).
+  - 3a1. The system throws an error. Use case resumes from step 2.
 
-* 3a. The given person does not exist (person ID invalid).
-
-    * 3a1. AddressBook shows an error message.
-      Use case resumes at step 2.
-
-
-**Use case: UC6 - Enrol a person into a CCA**
+**Use case: UC7 - Enrol a person into a CCA**
 
 **MSS**
 
 1. User requests to list persons and CCAs.
-2. ePoch shows a list of persons and CCAs.
-3. User requests to enrol a person into a CCA and specifices the person ID and CCA ID.
-4. ePoch adds the person to the CCA.
+1. The system shows a list of persons and CCAs.
+1. User requests to enrol a person into a CCA by specifying the IDs of the desired person and CCA.
+1. The system adds the person to the CCA.
 Use case ends.
 
-**Extensions**
+***Extensions**
 
-* 2a. The list of persons is empty.
-
+-2a. The list of persons is empty. <br>
   Use case ends.
-
-* 2b. The list of CCAs is empty.
-
+- 2b. The list of CCAs is empty. <br>
   Use case ends.
+- 3a. The specified person does not exist (person ID invalid).
+    * 3a1. The system throws an error message. Use case resumes from step 2.
+- 3b. The specified CCA does not exist (CCA ID invalid).
+    * 3b1. The system throws an error message. Use case resumes at step 2.
 
-* 3a. The given person does not exist (person ID invalid).
+**Use case: UC8 - Clear all data**
 
-    * 3a1. ePoch shows an error message.
-      Use case resumes at step 2.
+**MSS**
 
-* 3b. The given CCA does not exist (CCA ID invalid).
-
-    * 3b1. ePoch shows an error message.
-      Use case resumes at step 2.
-
-*{More to be added}*
+1. User requests to clear all data.
+1. The system clears all data (persons, CCAs, reminders) stored in ePoch. <br>
+   Use case ends.
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4.  The JAR file should not exceed 100MB.
-5.  The system should respond within 2 seconds whenever a command is entered by the user.
-
-*{More to be added}*
+1.  The system should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+1.  The system should be able to hold up to 1000 objects (persons, CCAs, reminders) without a noticeable sluggishness in performance for typical usage.
+1.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1.  The `.jar` file should not exceed 100MB in size.
+1.  The system should respond within 2 seconds whenever a command is entered by the user.
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Person**: A contact that the user wants to save
-* **CCA**: A school-based group that a person may be a member of
-* **Reminder**: A scheduled event associated with a CCA that the user wishes to be notified of
+* **Mainstream OS**: Windows, Linux, Unix, OS-X.
+* **Person**: A contact that the user wants to save.
+* **CCA**: A school-based group that a person may be a member of.
+* **Reminder**: A scheduled event associated with a CCA that the user wishes to be notified of.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -524,47 +533,144 @@ Given below are instructions to test the app manually.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
-
 </div>
 
 ### Launch and shutdown
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+   1. Download the ePoch `.jar` file and copy it into an empty folder where you wish to test it.
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the `.jar` file to run it. <br>
+      Expected: this should show the GUI with a set of sample contacts. The window size may not be optimally set for your monitor size.
 
 1. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+   1. Re-launch the app by double-clicking the `.jar` file.<br>
+       Expected: The most recent window size and location should be remembered.
 
 1. _{ more test cases … }_
+
+### Adding a person
+
+1. Adding a person
+
+   1. Prerequisites: None.
+   
+   2. Test case: `addp n/Ellen Chua a/Tembusu e/ellenchua@u.nus.edu.sg p/98225832` <br>
+      Expected: a person named `Ellen Chua`, with address `Tembusu`, email `ellenchua@u.nus.edu.sg`, and phone number `98225832` is added.
+   
+   3. Test case: `addp` <br>
+      Expected: Error thrown, indicating invalid command format.
+   
+   4. Test case: `addp n/Kevin Norton`, i.e. some fields are missing. <br>
+      Expected: Similar to previous.
+   
+   5. Other incorrect add commands to try: `add`, `addperson` etc. <br>
+      Expected: Similar to previous.
 
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all persons using the `list` command. There must be at least one person in the list to delete.
 
-   1. Test case: `deletpe 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   1. Test case: `deletep 1`<br>
+      Expected: The first contact in the list is deleted. Details of the deleted contact are shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `deletep 0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the size of the list of persons) <br>
       Expected: Similar to previous.
 
-1. _{ more test cases … }_
+### Adding and deleting CCAs
 
-### Saving data
+1. Adding and deleting CCAs can be testing similarly to testing adding and deleting persons, as explained above. <br>
+   Instead of `addp` and `deletep`, the commands `addc` and `deletec` are used. <br>
+   When adding a CCA, the only attribute that needs to be specified is its name.
+
+### Adding a reminder
+
+1. Adding a reminder to a CCA
+   1. Prerequisites: List all CCAs using the `list` command. The CCA that the reminder is to be added to is listed.
+   
+   2. Test case: `addr n/Weekly band practice cid/1 sd/2021-09-20` <br>
+       Expected: a reminder named `Weekly band practice` which begins on `2021-09-20` is added to the CCA at index 1 (i.e. the first CCA in the list).
+
+   3. Test case: `addr` <br>
+      Expected: Error thrown, indicating invalid command format.
+
+   4. Test case: `addp n/Weekly band practice`, i.e. some fields are missing. <br>
+      Expected: Similar to previous.
+
+   5. Other incorrect add commands to try: `add`, `addreminder cid/0`, `addreminder cid/x` where `x` is greater than the number of CCAs listed etc. <br>
+      Expected: Similar to previous.
+
+### Deleting a reminder
+
+1. Deleting a reminder while all reminders are being shown
+
+    1. Prerequisites: List all reminders using the `list` command. There must be at least one reminder in the list to delete.
+
+    2. Test case: `deleter 1`<br>
+       Expected: The first reminder in the list is deleted. Details of the deleted contact are shown in the status message.
+
+    3. Test case: `deletep 0`<br>
+       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+
+    4. Other incorrect delete commands to try: `delete`, `deleter x` (where x is larger than the size of the list of reminders) <br>
+       Expected: Similar to previous.
+   
+### Enrolling a person into a CCA
+
+1. Enrolling a person to a CCA
+    1. Prerequisites: List all persons and CCAs using the `list` command. The person to be enrolled, and the CCA that they are to be enrolled into must be listed.
+
+    2. Test case: `enrol pid/1 cid/1` <br>
+       Expected: the first person in the list of persons is enrolled into the first CCA in the list of CCAs. The no. of people in each CCA increases by 1.
+
+    3. Test case: `enrol` <br>
+       Expected: Error thrown, indicating invalid command format.
+
+    4. Test case: `enrol cid/1`, i.e. some fields are missing. <br>
+       Expected: Similar to previous.
+       
+    5. Other incorrect add commands to try: `enrol`, `enrol cid/0`, `addreminder cid/x` where `x` is greater than the number of CCAs listed etc. <br>
+       Expected: Similar to previous.
+
+### Expelling a person from a CCA
+
+1. Expelling a person from a CCA
+    1. Prerequisites: List all persons and CCAs using the `list` command. The person to be expelled, and the CCA that they are to be expelled from must be listed. The person to be expelled must already be enrolled inside this CCA.
+
+    2. Test case: `expel pid/1 cid/1` <br>
+       Expected: the first person in the list of persons is expelled from the first CCA in the list of CCAs. The no. of people in each CCA decreases by 1.
+
+    3. Test case: `expel` <br>
+       Expected: Error thrown, indicating invalid command format.
+
+    4. Test case: `expel cid/1`, i.e. some fields are missing. <br>
+       Expected: Similar to previous.
+
+    6. Other incorrect add commands to try: `expel`, `expel pid/0`, `expel pid/x` where `x` is greater than the number of persons listed etc. <br>
+       Expected: Similar to previous.
+
+   5. Test case: `expel pid/1 cid/1` when the person specified is not already enrolled into the CCA specified.
+      Expected: Error thrown, indicating invalid command.
+
+### Saving and reading data
 
 1. Dealing with missing/corrupted data files
+   1. Note: All contact data in ePoch (persons, CCAs, reminders) is stored in `data/addressbook.json`. 
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases … }_
+   2. Simulate missing file
+      1. Prerequisites: Delete `addressbook.json`, if it exists, from the `/data` folder in the directory where the `.jar` file for ePoch is stored.
+      
+      2. Test case: Double-click the `.jar` file to run it. <br>
+         Expected: this should show the GUI with a set of sample contacts. There should be no `addressbook.json` file in the `/data` at this exact moment.
+      
+      3. Test case: Run the `clear` command in ePoch. <br>
+         Expected: this should clear all sample contacts from ePoch, and the GUI should contain no data at all. An `addressbook.json` file should be created in the `/data` folder.s

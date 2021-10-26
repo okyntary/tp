@@ -26,7 +26,7 @@ It is intended to be used by NUS students, to help keep track of the students an
 
    * **`list`** : Lists all persons, CCAs and reminders currently stored in ePoch.
 
-   * **`addp`**`n/Tan Wei Yang a/CAPT e/tanweiyang@u.nus.edu.sg p/94492210` Adds a person named `Tan Wei Yang`, with address `CAPT`, email `tanweiyang@u.nus.edu.sg`, and phone number `94492210` to ePoch.
+   * **`addp n/Tan Wei Yang a/CAPT e/tanweiyang@u.nus.edu.sg p/94492210`** Adds a person named `Tan Wei Yang`, with address `CAPT`, email `tanweiyang@u.nus.edu.sg`, and phone number `94492210` to ePoch.
 
    * **`deletep`**`pid/3` : Deletes the person with id 3, ie. shown as third in the list of persons.
 
