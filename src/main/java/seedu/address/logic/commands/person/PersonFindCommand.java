@@ -43,6 +43,8 @@ public class PersonFindCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
+        model.resetAllFilteredLists();
+
         model.updateFilteredPersonList(predicate);
 
         CcaNameContainsKeywordsPredicate ccaPredicate = getFilterForCcaList(model);

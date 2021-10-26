@@ -44,6 +44,8 @@ public class CcaFindCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
+        model.resetAllFilteredLists();
+
         model.updateFilteredCcaList(predicate);
 
         NameContainsKeywordsPredicate personPredicate = getFilterForPersonList(model.getFilteredCcaList());
