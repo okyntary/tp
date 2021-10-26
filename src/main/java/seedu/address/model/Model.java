@@ -129,6 +129,26 @@ public interface Model {
     void updateFilteredReminderList(Predicate<Reminder> predicate);
 
     /**
+     * Resets person list by removing all filters.
+     */
+    void resetFiltersForPersonList();
+
+    /**
+     * Resets CCA list by removing all filters.
+     */
+    void resetFiltersForCcaList();
+
+    /**
+     * Resets reminder list by removing all filters.
+     */
+    void resetFiltersForReminderList();
+
+    /**
+     * Resets the CCA, Person, and Reminder lists by removing all filters.
+     */
+    void resetAllFilteredLists();
+
+    /**
      * Enrols a person into a CCA
      */
     boolean enrolPersonIntoCca(Cca ccaToEnrolInto, Person personToEnrol);

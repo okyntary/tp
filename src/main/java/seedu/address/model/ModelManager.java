@@ -265,4 +265,28 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredReminders.setPredicate(predicate);
     }
+
+    //=========== Filtered List Reset Functions =============================================================
+
+    @Override
+    public void resetFiltersForPersonList() {
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public void resetFiltersForCcaList() {
+        updateFilteredCcaList(PREDICATE_SHOW_ALL_CCAS);
+    }
+
+    @Override
+    public void resetFiltersForReminderList() {
+        updateFilteredReminderList(PREDICATE_SHOW_ALL_REMINDERS);
+    }
+
+    @Override
+    public void resetAllFilteredLists() {
+        this.resetFiltersForPersonList();
+        this.resetFiltersForCcaList();
+        this.resetFiltersForReminderList();
+    }
 }
