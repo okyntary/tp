@@ -118,31 +118,31 @@ Format: `findp [pid/PERSON_ID] [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [
 * Finds the people who have valid matches for all the specified fields.
 * At least one of the optional fields must be provided.
 
-### Adding a cca: `addc`
+### Adding a CCA: `addc`
 
 Adds a CCA.
 
 Format: `addc n/CCA_NAME`
 
-### Editing a cca: `editc`
+### Editing a CCA: `editc`
 
 Edits the name of a CCA.
 
 Format: `editc cid/CCA_ID n/CCA_NAME`
 
-### Deleting a cca: `deletec`
+### Deleting a CCA: `deletec`
 
 Deletes a CCA.
 
 Format: `deletec cid/CCA_ID`
 
-### Deleting a cca: `deletec`
+### Deleting a CCA: `deletec`
 
 Deletes a CCA.
 
 Format: `deletec cid/CCA_ID`
 
-### Finding a cca: `findc`
+### Finding a CCA: `findc`
 
 Filters all CCAs with names that contain a given string.
 

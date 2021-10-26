@@ -31,8 +31,8 @@ public class Cca {
 
     /**
      * Constructor using ccaName and tags
-     * @param ccaName Name of Cca
-     * @param tags Tags to initialize Cca with
+     * @param ccaName Name of CCA
+     * @param tags Tags to initialize CCA with
      */
     public Cca(CcaName ccaName, Set<Tag> tags) {
         requireAllNonNull(ccaName);
@@ -44,10 +44,10 @@ public class Cca {
     /**
      *
      * Constructor using ccaName, personArrayList, reminders, and tags
-     * @param ccaName Name of Cca
+     * @param ccaName Name of CCA
      * @param personArrayList list of associated members
      * @param reminders list of associated reminders
-     * @param tags Cca tags
+     * @param tags CCA tags
      */
     public Cca(CcaName ccaName, Set<Person> personArrayList, Set<Reminder> reminders, Set<Tag> tags) {
         requireAllNonNull(ccaName);

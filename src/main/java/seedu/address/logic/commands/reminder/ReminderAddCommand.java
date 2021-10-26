@@ -20,14 +20,15 @@ import seedu.address.model.reminder.Reminder;
 
 
 /**
- * Adds a Reminder to the address book.
+ * Adds a Reminder to ePoch.
  */
 public class ReminderAddCommand extends Command {
 
     public static final String COMMAND_WORD = "addr";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a Reminder to the address book. "
-            + "\nParameters: "
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a Reminder to ePoch. "
+            + "Parameters: "
             + PREFIX_CCA_ID + "CCA_ID "
             + PREFIX_NAME + "REMINDER_NAME "
             + PREFIX_START_DATE + "START_DATE "
@@ -42,10 +43,9 @@ public class ReminderAddCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New Reminder added: %1$s";
     public static final String MESSAGE_ONE_OF_FREQUENCY_OCCURRENCE =
-            "Please input either both frequency and occurrence or neither of them. "
-                    + "Frequency can be daily (d), weekly (w), monthly (d) or yearly (y)";
-    public static final String MESSAGE_DUPLICATE_REMINDER = "This Reminder already exists in the address book";
-    private static final String MESSAGE_MISSING_CCA = "This CCA does not exist in the address book";
+            "Please input either both frequency and occurrence or neither of them.";
+    public static final String MESSAGE_DUPLICATE_REMINDER = "This Reminder already exists in ePoch";
+    private static final String MESSAGE_MISSING_CCA = "This CCA does not exist in ePoch";
     private static final String MESSAGE_PRESENT_REMINDER = "This reminder (%1$s) is already part of this CCA (%2$s)";
 
     private final Reminder toAdd;

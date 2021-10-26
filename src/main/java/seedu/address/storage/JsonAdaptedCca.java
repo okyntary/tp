@@ -28,7 +28,7 @@ public class JsonAdaptedCca {
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonAdaptedCca} with the given cca details.
+     * Constructs a {@code JsonAdaptedCca} with the given CCA details.
      */
     @JsonCreator
     public JsonAdaptedCca(@JsonProperty("name") String name,

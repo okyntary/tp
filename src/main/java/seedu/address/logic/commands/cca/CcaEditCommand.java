@@ -43,14 +43,14 @@ public class CcaEditCommand extends Command {
 
     public static final String MESSAGE_EDIT_CCA_SUCCESS = "Edited CCA: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_CCA = "This CCA already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_CCA = "This CCA already exists in ePoch.";
 
     private final Index index;
     private final EditCcaDescriptor editCcaDescriptor;
 
     /**
-     * @param index of the cca in the filtered CCA list to edit
-     * @param editCcaDescriptor details to edit the CCA with
+     * @param index of the CCA in the filtered CCA list to edit
+     * @param editCcaDescriptor details to edit the person with
      */
     public CcaEditCommand(Index index, EditCcaDescriptor editCcaDescriptor) {
         requireNonNull(index);
