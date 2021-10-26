@@ -215,6 +215,26 @@ public class PersonAddCommandTest {
         }
 
         @Override
+        public void resetFiltersForPersonList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void resetFiltersForCcaList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void resetFiltersForReminderList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void resetAllFilteredLists() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasReminder(Reminder reminder) {
             throw new AssertionError("This method should not be called.");
         }
