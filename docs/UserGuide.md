@@ -186,7 +186,7 @@ Format: `enrol cid/CCA_ID pid/PERSON_ID`
 
 ### Expelling a person from a CCA: `expel`
 
-Removes a person from a CCA.
+Expels a person from a CCA.
 
 Format: `expel cid/CCA_ID pid/PERSON_ID`
 
@@ -221,10 +221,6 @@ ePoch data are saved as a JSON file `[JAR file location]/data/addressbook.json`.
 <div markdown="span" class="alert alert-warning">**Caution:**
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
 </div>
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
