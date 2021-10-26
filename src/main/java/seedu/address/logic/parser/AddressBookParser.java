@@ -81,26 +81,11 @@ public class AddressBookParser {
         case PersonDeleteCommand.COMMAND_WORD:
             return new PersonDeleteCommandParser().parse(arguments);
 
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
-
         case PersonFindCommand.COMMAND_WORD:
             return new PersonFindCommandParser().parse(arguments);
 
         case CcaFindCommand.COMMAND_WORD:
             return new CcaFindCommandParser().parse(arguments);
-
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
-
-        case GreetCommand.COMMAND_WORD:
-            return new GreetCommand();
-
-        case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
-
-        case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
 
         case CcaAddCommand.COMMAND_WORD:
             return new CcaAddCommandParser().parse(arguments);
@@ -131,6 +116,21 @@ public class AddressBookParser {
 
         case ReminderSnoozeCommand.COMMAND_WORD:
             return new ReminderSnoozeCommandParser().parse(arguments);
+
+        case ClearCommand.COMMAND_WORD:
+            return new ClearCommand();
+
+        case ListCommand.COMMAND_WORD:
+            return new ListCommand();
+
+        case GreetCommand.COMMAND_WORD:
+            return new GreetCommand();
+
+        case ExitCommand.COMMAND_WORD:
+            return new ExitCommand();
+
+        case HelpCommand.COMMAND_WORD:
+            return new HelpCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
