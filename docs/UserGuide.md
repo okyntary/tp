@@ -118,31 +118,31 @@ Format: `findp [pid/PERSON_ID] [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [
 * Finds the people who have valid matches for all the specified fields.
 * At least one of the optional fields must be provided.
 
-### Adding a cca: `addc`
+### Adding a CCA: `addc`
 
 Adds a CCA.
 
 Format: `addc n/CCA_NAME`
 
-### Editing a cca: `editc`
+### Editing a CCA: `editc`
 
 Edits the name of a CCA.
 
 Format: `editc cid/CCA_ID n/CCA_NAME`
 
-### Deleting a cca: `deletec`
+### Deleting a CCA: `deletec`
 
 Deletes a CCA.
 
 Format: `deletec cid/CCA_ID`
 
-### Deleting a cca: `deletec`
+### Deleting a CCA: `deletec`
 
 Deletes a CCA.
 
 Format: `deletec cid/CCA_ID`
 
-### Finding a cca: `findc`
+### Finding a CCA: `findc`
 
 Filters all CCAs with names that contain a given string.
 
@@ -186,7 +186,7 @@ Format: `enrol cid/CCA_ID pid/PERSON_ID`
 
 ### Expelling a person from a CCA: `expel`
 
-Removes a person from a CCA.
+Expels a person from a CCA.
 
 Format: `expel cid/CCA_ID pid/PERSON_ID`
 
@@ -221,10 +221,6 @@ ePoch data are saved as a JSON file `[JAR file location]/data/addressbook.json`.
 <div markdown="span" class="alert alert-warning">**Caution:**
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
 </div>
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 

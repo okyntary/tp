@@ -25,7 +25,7 @@ import seedu.address.model.reminder.ReminderStartDate;
 
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing person in ePoch.
  */
 public class ReminderEditCommand extends Command {
 
@@ -33,19 +33,19 @@ public class ReminderEditCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the reminder identified "
             + "by the index number used in the displayed reminder list. "
-            + "Existing values will be overwritten by the input valies.\n"
-            + "Parameters: INDEX (must be a positive integer)"
+            + "Existing values will be overwritten by the input values. "
+            + "\nParameters: INDEX (must be a positive integer) "
             + PREFIX_CCA_ID + "CCA_ID "
             + PREFIX_NAME + "REMINDER_NAME "
             + PREFIX_START_DATE + "START_DATE "
-            + "Example: " + COMMAND_WORD + " "
+            + "\nExample: " + COMMAND_WORD + " "
             + PREFIX_CCA_ID + "1 "
             + PREFIX_NAME + "NUSSO rehearsal "
             + PREFIX_START_DATE + "2021-10-31";
 
     public static final String MESSAGE_EDIT_REMINDER_SUCCESS = "Edited Reminder: %1$s";
     public static final String REMINDER_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_EDIT = "This reminder already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_EDIT = "This reminder already exists in ePoch.";
 
     private final Index index;
     private final EditReminderDescriptor editReminderDescriptor;

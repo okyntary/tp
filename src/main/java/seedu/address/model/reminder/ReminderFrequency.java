@@ -45,9 +45,17 @@ public class ReminderFrequency {
         return numTimePeriod;
     }
 
+    public boolean isRecurring() {
+        return !timePeriod.equals(Frequency.ONE_OFF);
+    }
+
     @Override
     public String toString() {
-        return numTimePeriod + " " + timePeriod;
+        if (isRecurring()) {
+            return "Every " + numTimePeriod + " " + timePeriod;
+        } else {
+            return "Once only";
+        }
     }
 
     @Override

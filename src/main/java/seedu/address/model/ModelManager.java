@@ -17,7 +17,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of ePoch data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -212,7 +212,7 @@ public class ModelManager implements Model {
 
     /**
      * Enrols a person into a CCA
-     * {@code cca} must not already exist in the address book.
+     * {@code cca} must not already exist in ePoch.
      *  @param ccaToEnrolInto CCA to enrol into
      * @param personToEnrol Person enrolling into CCA
      */

@@ -56,8 +56,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Replaces the contents of the cca list with {@code ccas}.
-     * {@code ccas} must not contain duplicate ccas.
+     * Replaces the contents of the CCA list with {@code ccas}.
+     * {@code ccas} must not contain duplicate CCAs.
      */
     public void setCcas(List<Cca> ccas) {
         this.ccas.setCcas(ccas);
@@ -85,7 +85,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// person-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a person with the same identity as {@code person} exists in ePoch.
      */
     public boolean hasPerson(Person person) {
         requireNonNull(person);
@@ -93,8 +93,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
+     * Adds a person to ePoch.
+     * The person must not already exist in ePoch.
      */
     public void addPerson(Person p) {
         persons.add(p);
@@ -102,8 +102,8 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Replaces the given person {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * {@code target} must exist in ePoch.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in ePoch.
      */
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
@@ -113,7 +113,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * {@code key} must exist in ePoch.
      */
     public void removePerson(Person key) {
         persons.remove(key);
@@ -122,7 +122,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// cca-level operations
 
     /**
-     * Returns true if a cca with the same identity as {@code cca} exists in the address book.
+     * Returns true if a CCA with the same identity as {@code cca} exists in ePoch.
      */
     public boolean hasCca(Cca cca) {
         requireNonNull(cca);
@@ -130,17 +130,17 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds a cca to the address book.
-     * The cca must not already exist in the address book.
+     * Adds a CCA to ePoch.
+     * The CCA must not already exist in ePoch.
      */
     public void addCca(Cca cca) {
         ccas.add(cca);
     }
 
     /**
-     * Replaces the given cca {@code target} in the list with {@code editedCca}.
-     * {@code target} must exist in the address book.
-     * The cca identity of {@code editedCca} must not be the same as another existing cca in the address book.
+     * Replaces the given CCA {@code target} in the list with {@code editedCca}.
+     * {@code target} must exist in ePoch.
+     * The CCA identity of {@code editedCca} must not be the same as another existing CCA in ePoch.
      */
     public void setCca(Cca target, Cca editedCca) {
         requireNonNull(editedCca);
@@ -149,7 +149,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * {@code key} must exist in ePoch.
      */
     public void removeCca(Cca key) {
         ccas.remove(key);
@@ -158,7 +158,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// reminder-level operations
 
     /**
-     * Returns true if a reminder with the same identity as {@code reminder} exists in the address book.
+     * Returns true if a reminder with the same identity as {@code reminder} exists in ePoch.
      */
     public boolean hasReminder(Reminder reminder) {
         requireNonNull(reminder);
@@ -166,8 +166,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds a reminder to the address book.
-     * The reminder must not already exist in the address book.
+     * Adds a reminder to ePoch.
+     * The reminder must not already exist in ePoch.
      */
     public void addReminder(Reminder reminder) {
         reminders.add(reminder);
@@ -175,7 +175,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * {@code key} must exist in ePoch.
      */
     public void removeReminder(Reminder key) {
         reminders.remove(key);
@@ -183,7 +183,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Snoozes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * {@code key} must exist in ePoch.
      */
     public void snoozeReminder(Reminder key) {
         if (key.isAtLastOccurrence()) {
@@ -195,9 +195,9 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Replaces the given Reminder {@code target} in the list with {@code editedReminder}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in ePoch.
      * The Reminder identity of {@code editedReminder} must not be the same as another existing
-     * Reminder in the address book.
+     * Reminder in ePoch.
      */
     public void setReminder(Reminder target, Reminder editedReminder) {
         requireNonNull(editedReminder);
@@ -209,7 +209,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public String toString() {
         String result = persons.asUnmodifiableObservableList().size() + " persons, "
-                + ccas.asUnmodifiableObservableList().size() + " ccas, "
+                + ccas.asUnmodifiableObservableList().size() + " CCAs, "
                 + reminders.asUnmodifiableObservableList().size() + " reminders";
         return result;
         // TODO: refine later

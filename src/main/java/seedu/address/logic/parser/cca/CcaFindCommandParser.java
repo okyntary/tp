@@ -10,7 +10,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.cca.CcaNameContainsKeywordsPredicate;
 
 /**
- * Parses input arguments and creates a new PersonFindCommand object
+ * Parses input arguments and creates a new CcaFindCommand object
  */
 public class CcaFindCommandParser implements Parser<CcaFindCommand> {
 

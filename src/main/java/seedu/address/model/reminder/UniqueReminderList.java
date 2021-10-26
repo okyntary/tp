@@ -26,7 +26,7 @@ public class UniqueReminderList implements Iterable<Reminder> {
 
     private final ObservableList<Reminder> internalList = FXCollections.observableArrayList();
     private final ObservableList<Reminder> internalUnmodifiableList =
-            FXCollections.unmodifiableObservableList(internalList);
+            FXCollections.unmodifiableObservableList(internalList.sorted());
 
     /**
      * Returns true if the list contains an equivalent Reminder as the given argument.
