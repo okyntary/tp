@@ -33,12 +33,12 @@ public class ReminderEditCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the reminder identified "
             + "by the index number used in the displayed reminder list. "
-            + "Existing values will be overwritten by the input valies.\n"
-            + "Parameters: INDEX (must be a positive integer)"
+            + "Existing values will be overwritten by the input values. "
+            + "\nParameters: INDEX (must be a positive integer) "
             + PREFIX_CCA_ID + "CCA_ID "
             + PREFIX_NAME + "REMINDER_NAME "
             + PREFIX_START_DATE + "START_DATE "
-            + "Example: " + COMMAND_WORD + " "
+            + "\nExample: " + COMMAND_WORD + " "
             + PREFIX_CCA_ID + "1 "
             + PREFIX_NAME + "NUSSO rehearsal "
             + PREFIX_START_DATE + "2021-10-31";
