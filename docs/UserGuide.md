@@ -3,7 +3,7 @@ layout: user
 title: User Guide
 ---
 
-ePoch is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, ePoch can get your contact management tasks done faster than traditional GUI apps.
+ePoch is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type quickly, ePoch can get your contact management tasks done faster than traditional GUI apps.
 
 It has been designed for the busy NUS student. It allows the user to create contacts for persons and to create CCAs, link those persons and CCAs together, and to create periodic reminders for those CCAs.
 
@@ -15,26 +15,26 @@ It is intended to be used by NUS students, to help keep track of the students an
 
 1. Ensure you have Java 11 or above installed in your Computer.
 
-1. Download the JAR file. **The download location will be confirmed later.**
+1. Download the JAR file. **The download location to be confirmed later.**
 
-1. Copy the file to the folder you want to use as the _home folder_ for your ePoch.
+1. Copy the file to the folder you want to use as the _home folder_ for your ePoch app.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+1. Enter commands in the command box and press Enter to execute them. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all persons, CCAs and reminders.
+   * **`list`** : Lists all persons, CCAs and reminders currently stored in ePoch.
 
-   * **`addp`**`n/Tan Wei Yang:` Adds a person named `Tan Wei Yang` to ePoch.
+   * **`addp`**`n/Tan Wei Yang a/CAPT e/tanweiyang@u.nus.edu.sg p/94492210` Adds a person named `Tan Wei Yang`, with address `CAPT`, email `tanweiyang@u.nus.edu.sg`, and phone number `94492210` to ePoch.
 
-   * **`deletep`**`pid/3` : Deletes the person with id 3.
+   * **`deletep`**`pid/3` : Deletes the person with id 3, ie. shown as third in the list of persons.
 
-   * **`clear`** : Deletes all data (persons, CCAs, reminders) from ePoch.
+   * **`clear`** : Deletes all data (persons, CCAs and reminders) from ePoch.
 
-   * **`exit`** : Exits the app.
+   * **`exit`** : Exits ePoch.
 
-1. Refer to the [Features](##features) below for details of each command.
+1. Refer to the [Features](##features) segment below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
