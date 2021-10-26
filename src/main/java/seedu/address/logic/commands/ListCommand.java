@@ -20,9 +20,7 @@ public class ListCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        model.updateFilteredCcaList(PREDICATE_SHOW_ALL_CCAS);
-        model.updateFilteredReminderList(PREDICATE_SHOW_ALL_REMINDERS);
+        model.resetAllFilteredLists();
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
