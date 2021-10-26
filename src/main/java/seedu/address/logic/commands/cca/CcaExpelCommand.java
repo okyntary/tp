@@ -28,8 +28,8 @@ public class CcaExpelCommand extends Command {
             + PREFIX_PERSON_ID + "1 ";
 
     public static final String MESSAGE_SUCCESS = "Successfully expelled %1$s from %2$s";
-    public static final String MESSAGE_MISSING_CCA = "This CCA does not exist in the address book";
-    public static final String MESSAGE_MISSING_PERSON = "This person does not exist in the address book";
+    public static final String MESSAGE_MISSING_CCA = "This CCA does not exist in ePoch";
+    public static final String MESSAGE_MISSING_PERSON = "This person does not exist in ePoch";
     public static final String MESSAGE_MISSING_PERSON_FROM_CCA = "This person(%1$s) is not enrolled in this CCA(%2$s)";
 
     private Cca ccaToExpelFrom;

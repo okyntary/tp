@@ -25,7 +25,7 @@ import seedu.address.model.reminder.ReminderStartDate;
 
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing person in ePoch.
  */
 public class ReminderEditCommand extends Command {
 
@@ -45,7 +45,7 @@ public class ReminderEditCommand extends Command {
 
     public static final String MESSAGE_EDIT_REMINDER_SUCCESS = "Edited Reminder: %1$s";
     public static final String REMINDER_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_EDIT = "This reminder already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_EDIT = "This reminder already exists in ePoch.";
 
     private final Index index;
     private final EditReminderDescriptor editReminderDescriptor;
