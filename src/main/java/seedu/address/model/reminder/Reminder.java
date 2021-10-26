@@ -11,7 +11,7 @@ import java.util.Objects;
 import seedu.address.model.cca.Cca;
 import seedu.address.model.util.Frequency;
 
-public class Reminder {
+public class Reminder implements Comparable<Reminder> {
     private static final SimpleDateFormat PARSE_DATE_TO_STRING_FORMAT = new SimpleDateFormat("E, dd MMM yyyy");
 
     // Identity fields
@@ -133,6 +133,16 @@ public class Reminder {
 
         return otherReminder != null
                 && otherReminder.getName().equals(getName());
+    }
+
+    /**
+     * Compares reminders based on their start date.
+     * @param otherReminder The reminder to be compared with
+     * @return 1, 0 or -1 if the 1st reminder is earlier, on the same day, or later than the 2nd reminder respectively.
+     */
+    @Override
+    public int compareTo(Reminder otherReminder) {
+        return this.getStartDate().compareTo(otherReminder.getStartDate());
     }
 
     /**
