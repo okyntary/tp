@@ -82,7 +82,6 @@ public class Cca {
     }
 
     /**
-<<<<<<< HEAD
      * Returns the reminders of this CCA.
      * @return the reminders of this CCA
      */
@@ -166,7 +165,7 @@ public class Cca {
     }
 
     // Check if Person Exists but should not need as it is a Set<>
-    public boolean checkPerson(Person personToCheck) {
+    public boolean containsEnrolledPerson(Person personToCheck) {
         return this.personArrayList.contains(personToCheck);
     }
 
