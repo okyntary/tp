@@ -15,13 +15,13 @@ import seedu.address.model.Model;
 import seedu.address.model.cca.Cca;
 
 /**
- * Adds a CCA to the address book.
+ * Adds a CCA to ePoch.
  */
 public class CcaAddCommand extends Command {
 
     public static final String COMMAND_WORD = "addc";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a CCA to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a CCA to ePoch. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + "[" + PREFIX_TAG + "TAG]...\n"
@@ -31,7 +31,7 @@ public class CcaAddCommand extends Command {
             + PREFIX_TAG + "InterviewDependent";
 
     public static final String MESSAGE_SUCCESS = "New CCA added: %1$s";
-    public static final String MESSAGE_DUPLICATE_CCA = "This CCA already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_CCA = "This CCA already exists in ePoch";
 
     private final Logger logger = LogsCenter.getLogger(CcaAddCommand.class);
 

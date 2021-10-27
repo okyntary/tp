@@ -31,8 +31,8 @@ public class Cca {
 
     /**
      * Constructor using ccaName and tags
-     * @param ccaName Name of Cca
-     * @param tags Tags to initialize Cca with
+     * @param ccaName Name of CCA
+     * @param tags Tags to initialize CCA with
      */
     public Cca(CcaName ccaName, Set<Tag> tags) {
         requireAllNonNull(ccaName);
@@ -44,10 +44,10 @@ public class Cca {
     /**
      *
      * Constructor using ccaName, personArrayList, reminders, and tags
-     * @param ccaName Name of Cca
+     * @param ccaName Name of CCA
      * @param personArrayList list of associated members
      * @param reminders list of associated reminders
-     * @param tags Cca tags
+     * @param tags CCA tags
      */
     public Cca(CcaName ccaName, Set<Person> personArrayList, Set<Reminder> reminders, Set<Tag> tags) {
         requireAllNonNull(ccaName);
@@ -82,7 +82,6 @@ public class Cca {
     }
 
     /**
-<<<<<<< HEAD
      * Returns the reminders of this CCA.
      * @return the reminders of this CCA
      */
@@ -166,7 +165,7 @@ public class Cca {
     }
 
     // Check if Person Exists but should not need as it is a Set<>
-    public boolean checkPerson(Person personToCheck) {
+    public boolean containsEnrolledPerson(Person personToCheck) {
         return this.personArrayList.contains(personToCheck);
     }
 

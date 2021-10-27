@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class ReminderStartDate {
+public class ReminderStartDate implements Comparable<ReminderStartDate> {
     public static final String MESSAGE_CONSTRAINTS =
             "Dates should be entered in YYYY-MM-DD format, e.g. 2021-5-23";
     public static final String PARSE_DATE_CONSTRAINTS = "This date could not be parsed. Is it a valid date?";
@@ -16,7 +16,6 @@ public class ReminderStartDate {
     public static final String VALIDATION_REGEX = "\\d{4}-\\d{1,2}-\\d{1,2}";
     public static final SimpleDateFormat PARSE_INPUT_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
     public static final SimpleDateFormat PARSE_DATE_TO_STRING_FORMAT = new SimpleDateFormat("E, dd MMM yyyy");
-
 
     public final Date startDate;
 
@@ -39,6 +38,16 @@ public class ReminderStartDate {
      */
     public static boolean isValidDate(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Compares start dates.
+     * @param otherStartDate The start date to be compared with
+     * @return 1, 0 or -1 if the 1st date is earlier, on the same day, or later than the 2nd date respectively.
+     */
+    @Override
+    public int compareTo(ReminderStartDate otherStartDate) {
+        return this.startDate.compareTo(otherStartDate.startDate);
     }
 
     @Override

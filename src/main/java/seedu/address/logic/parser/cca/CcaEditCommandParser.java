@@ -21,7 +21,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new PersonEditCommand object
+ * Parses input arguments and creates a new CcaEditCommand object
  */
 public class CcaEditCommandParser implements Parser<CcaEditCommand> {
 

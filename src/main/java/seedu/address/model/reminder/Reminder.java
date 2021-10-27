@@ -8,10 +8,10 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
 
-import seedu.address.model.cca.Cca;
+//import seedu.address.model.cca.Cca;
 import seedu.address.model.util.Frequency;
 
-public class Reminder {
+public class Reminder implements Comparable<Reminder> {
     private static final SimpleDateFormat PARSE_DATE_TO_STRING_FORMAT = new SimpleDateFormat("E, dd MMM yyyy");
 
     // Identity fields
@@ -22,7 +22,7 @@ public class Reminder {
 
     // Data fields
     // Assumes a reminder can be tagged to at most 1 CCA
-    private Cca cca;
+    private String ccaName;
     private ArrayList<Date> dates = new ArrayList<>();
 
     /**
@@ -96,12 +96,22 @@ public class Reminder {
         return reminderOccurrence;
     }
 
+    /*
     public Cca getCca() {
         return cca;
     }
 
     public void setCca(Cca cca) {
         this.cca = cca;
+    }
+    */
+
+    public String getCcaName() {
+        return ccaName;
+    }
+
+    public void setCcaName(String ccaName) {
+        this.ccaName = ccaName;
     }
 
     public boolean isAtLastOccurrence() {
@@ -136,6 +146,16 @@ public class Reminder {
     }
 
     /**
+     * Compares reminders based on their start date.
+     * @param otherReminder The reminder to be compared with
+     * @return 1, 0 or -1 if the 1st reminder is earlier, on the same day, or later than the 2nd reminder respectively.
+     */
+    @Override
+    public int compareTo(Reminder otherReminder) {
+        return this.getStartDate().compareTo(otherReminder.getStartDate());
+    }
+
+    /**
      * Returns true if both Reminders have the same identity and data fields.
      * This defines a stronger notion of equality between two Reminders.
      */
@@ -151,7 +171,7 @@ public class Reminder {
 
         // Same if they have the same name, associated cca, start date, frequency, and occurrences
         seedu.address.model.reminder.Reminder otherReminder = (seedu.address.model.reminder.Reminder) other;
-        return otherReminder.getName().equals(getName()) && otherReminder.getCca().equals(getCca())
+        return otherReminder.getName().equals(getName()) && otherReminder.getCcaName().equals(getCcaName())
                 && otherReminder.getStartDate().equals(getStartDate())
                 && otherReminder.getFrequency().equals(getFrequency())
                 && otherReminder.getOccurrences().equals(getOccurrences());

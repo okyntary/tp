@@ -57,26 +57,26 @@ public interface Model {
     ReadOnlyAddressBook getAddressBook();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a person with the same identity as {@code person} exists in ePoch.
      */
     boolean hasPerson(Person person);
 
     /**
      * Deletes the given person.
-     * The person must exist in the address book.
+     * The person must exist in ePoch.
      */
     void deletePerson(Person target);
 
     /**
      * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * {@code person} must not already exist in ePoch.
      */
     void addPerson(Person person);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * {@code target} must exist in ePoch.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in ePoch.
      */
     void setPerson(Person target, Person editedPerson);
 
@@ -84,30 +84,30 @@ public interface Model {
     ObservableList<Person> getFilteredPersonList();
 
     /**
-     * Returns true if a CCA with the same identity as {@code CCA} exists in the address book.
+     * Returns true if a CCA with the same identity as {@code CCA} exists in ePoch.
      */
     boolean hasCca(Cca cca);
 
     /**
-     * Deletes the given cca.
-     * The cca must exist in the address book.
+     * Deletes the given CCA.
+     * The CCA must exist in ePoch.
      */
     void deleteCca(Cca target);
 
     /**
-     * Adds the given cca.
-     * {@code cca} must not already exist in the address book.
+     * Adds the given CCA.
+     * {@code cca} must not already exist in ePoch.
      */
     void addCca(Cca cca);
 
     /**
-     * Replaces the given cca {@code target} with {@code editedCca}.
-     * {@code target} must exist in the address book.
-     * The cca identity of {@code editedCca} must not be the same as another existing cca in the address book.
+     * Replaces the given CCA {@code target} with {@code editedCca}.
+     * {@code target} must exist in ePoch.
+     * The CCA identity of {@code editedCca} must not be the same as another existing CCA in ePoch.
      */
     void setCca(Cca target, Cca editedCca);
 
-    /** Returns an unmodifiable view of the filtered cca list */
+    /** Returns an unmodifiable view of the filtered CCA list */
     ObservableList<Cca> getFilteredCcaList();
 
     /**
@@ -158,37 +158,37 @@ public interface Model {
      */
     boolean expelPersonFromCca(Cca ccaToExpelFrom, Person personToExpel);
 
-    /** Returns an unmodifiable view of the filtered cca list */
+    /** Returns an unmodifiable view of the filtered CCA list */
     ObservableList<Reminder> getFilteredReminderList();
 
     /**
-     * Returns true if a reminder with the same identity as {@code reminder} exists in the address book.
+     * Returns true if a reminder with the same identity as {@code reminder} exists in ePoch.
      */
     boolean hasReminder(Reminder reminder);
 
     /**
      * Deletes the given reminder.
-     * The reminder must exist in the address book.
+     * The reminder must exist in ePoch.
      */
     void deleteReminder(Reminder target);
 
     /**
      * Snoozes the given reminder.
-     * The reminder must exist n the address book.
+     * The reminder must exist n ePoch.
      */
     void snoozeReminder(Reminder target);
 
     /**
      * Replaces the given Reminder {@code target} with {@code editedReminder}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in ePoch.
      * The Reminder identity of {@code editedReminder} must not be the same as another existing
-     * Reminder in the address book.
+     * Reminder in ePoch.
      */
     void setReminder(Reminder target, Reminder editedReminder);
 
     /**
      * Adds the given reminder.
-     * {@code reminder} must not already exist in the address book.
+     * {@code reminder} must not already exist in ePoch.
      */
     boolean addReminder(Reminder reminder, Cca ccaToAddInto);
 }

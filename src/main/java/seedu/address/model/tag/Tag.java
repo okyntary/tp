@@ -3,14 +3,16 @@ package seedu.address.model.tag;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.util.Hashtable;
+
 /**
- * Represents a Tag in the address book.
+ * Represents a Tag in ePoch.
  * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
  */
 public class Tag {
-
     public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+    private static Hashtable<String, TagColour> tagColours = new Hashtable<>();
 
     public final String tagName;
 
@@ -23,6 +25,7 @@ public class Tag {
         requireNonNull(tagName);
         checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
         this.tagName = tagName;
+        Tag.tagColours.put(this.tagName, TagColour.DEFAULT_COLOUR);
     }
 
     /**
@@ -30,6 +33,20 @@ public class Tag {
      */
     public static boolean isValidTagName(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Changes the tag colour of all tags with that tag name.
+     *
+     * @param tagName The name of the tag to assign the new colour to.
+     * @param colour The colour to assign to the tag.
+     */
+    public static void setTagColour(String tagName, TagColour colour) {
+        Tag.tagColours.put(tagName, colour);
+    }
+
+    public TagColour getTagColour() {
+        return Tag.tagColours.get(this.tagName);
     }
 
     @Override

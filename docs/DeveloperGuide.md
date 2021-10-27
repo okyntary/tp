@@ -240,6 +240,16 @@ The `ReminderAddCommand` class has an Index which is the index of the CCA to add
 It implements the `execute` method which handles the logic of the add command.
 The `updateFilteredCcaList` and `updateFilteredReminderList` methods are called to update the `UI` component.
 
+#### Command for Editing Reminders
+
+The `editr` command is implemented by `ReminderEditCommand`, which extends `Command`.
+Polymorphism allows the different Command objects to be passed around and executed without having to know what type of Command it is.
+
+If the user does not specify any of the fields, the fields default to the original values of the unedited reminder.
+
+The `ReminderEditCommand` class has an Index which is the index of the Reminder to be edited, specified by the user.
+It implements the `execute` method which handles the logic of the add command.
+The `updateFilteredReminderList` method is called to update the `UI` component.
 
 ### \[Proposed\] Undo/redo feature
 
@@ -349,172 +359,179 @@ _{Explain here how the data archiving feature will be implemented}_
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
+* has many contacts that are spread across different CCAs
+* needs to keep track of many recurring reminders associated with each CCA
 
 **Value proposition**:
 
-ePoch helps users categorise contacts, which helps the user keep track of various overlapping social circles.
-The product offers peace of mind to the user using a “set-and-forget” approach by helping the user schedule recurring social events.
+ePoch helps overcommitted students keep track of their many contacts and events across various CCAs.
+The product allows students to link persons with CCAs and set reminders that repeat over a given time interval, to conveniently organise their commitments and overlapping social circles.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …                                    | I want to …                     | So that I can…                                                        |
+| Priority | As a …                                     | I want to …                    | So that I can…                                                         |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *` | new user | see usage instructions of ePoch | refer to instructions if I forget how to use ePoch |
 | `* *` | user with multiple devices across different operating systems | use ePoch across multiple platforms | access its functionality regardless of the device I am using |
-| `* * *` | user who dislikes using the mouse or trackpad (or has no acces to them) | something similar to a command line interface | rely exclusively on keyboard inputs |
-| `* *` | careless user | be able to undo any command I erroneously enter with ease | get ePoch back to a state where there are no errors |
-| `*` | careless user who often does not realise their mistakes immediately | be able to undo any commands even across different sessions of using ePoch | revert ePoch back to an even earlier state if necessary |
-| `*` | user with an appreciation for aesthetics | be able to visualise my contacts on fancy visualisations (e.g. using graphs or charts) | gain a better understanding of how they connect with each other through their CCAs |
-| `*` | user with a love for statistics and categories | view statistics of my contacts and CCAs | view potentially interesting data on them and their relation to me |
-| `*` | user who is visually impaired | hear sound cues every time there is an action | verify that my command has been executed |
-| `*` | user who is sensitive to the volume of sounds | be able to adjust the master volume of the sound cues | get the volume to a level which is comfortable with me |
-| `*` | user who does not want sound cues for all reminders | be able to toggle certain reminder sound cues on and off at will | get a stronger reminder for certain events but not others |
-| `*` | user who gets bored looking at the same GUI all day | be able to occasionally change ePoch's colour scheme | have a fresh experience when I use ePoch |
-| `*` | user who values their time and has occasional typos | have an auto-complete function | not worry about correcting my typos |
+| `* * *` | user who dislikes using the mouse or trackpad | interact with an app through a command line interface | rely exclusively on keyboard inputs |
+| `*` | user who manages multiple CCAs | view the number of people in each CCA | easily keep track of CCA enrolment
 | `*` | organised user | be able to export my contacts to a JSON file | send an organised list of contacts to others |
 | `* *` | visual user | be able to customise the colour for my contact's CCA tags | visually differentiate and colour-code different tags |
-| `* *` | visual user | be able to customise the colour for my various tasks and reminders | visually differentiate and colour-code different them based on my preferences |
+| `* *` | visual user | be able to be visually prompted of overdue reminders | visually differentiate what I need to urgently work on |
+| `* *` | user participating in different types of CCAs | add tags to categorise my CCA into categories like 'Music' and 'Sports' | differentiate and organise my different types of CCAs |
 | `* *` | tech-savvy user who is familiar with keyboard shortcuts | be able to exeucte commands with shortcuts I am familiar with | easily execute more complicated commands with just a few keystrokes |
-| `* * *` | user who has multiple friends, CCAs, and reminders | be able to view all within a nice UI | view them quickly and efficiently |
+| `* * *` | user who has multiple friends, CCAs, and reminders | be able to view all within a clean and user-friendly UI | view them quickly and efficiently |
 | `* *` | user with friends in multiple CCAs | be able to quickly view what CCAs my friends are in | keep track of which CCAs to join based on what CCAs my friends are in |
 | `* *` | user who loves to experiment | be able to quickly delete all data from ePoch at once | try out different configurations of persons CCAs and reminders |
 | `* * *` | user | add a person to a CCA | keep track of what CCAs my friends are in |
-| `* * *` | user whose friends are experimenting with CCAs | be able to efficiently add and remove people from CCAs | update ePoch with the latest information |
+| `* * *` | user whose friends are joining many CCAs | be able to efficiently add people from CCAs | keep track of my friends from different CCAs |
+| `* * *` | user whose friends are experimenting with CCAs | be able to efficiently remove people from CCAs | update ePoch with the latest information |
 | `* * *` | user who meets many fellow students | be able to add contacts in ePoch | keep track of the people I meet |
 | `* *` | user who meets many fellow students | be able to edit the details of my contacts in ePoch | update ePoch with the latest information, especially since a contact's details may change regularly |
 | `* * *` | busy user | be able to delete contacts from ePoch | stop keeping tracks of contacts that are no longer relevant |
 | `* *` | forgetful user | find any contact that matches my search terms | easily find and contact(s) that I desire |
 | `* * *` | user with multiple CCAs | be able to add all the CCAs I am involved in | keep track of them |
-| `* * *` | user who changes CCAs over time | be able to delete CCAs | keep track of those I am currently a part of |
+| `* * *` | user who changes CCAs over time | be able to delete CCAs | stop keeping track of those I am no longer a part of |
 | `* *` | careless user | be able to edit the details of CCAs | fix any mistakes I've made in adding the CCA |
 | `* *` | user who is overcommitted with many CCAs | be able to find any CCA with a title that matches a given search term | easily filter through my many CCAs |
 | `* *` | user who has many friends from different CCAs | be able to search for a CCA and view all the people who are part of that CCA | remember who is part of that CCA |
 | `* *` | user who is overcommitted with many upcoming events and commitments | be able to view all the reminders associated with a CCA | see what upcoming events I have related to that CCA |
 | `* * *` | user with many commitments | be able to add reminders | be reminded to do any tasks or events associated with those commitments |
-| `* * *` | user with many CCA commitments | be able to add reminders associated with CCAs | be reminded of CCA-specific commitments |
+| `* * *` | user with many CCA commitments | be able to add reminders associated with CCAs | stay on top of things by organising my CCA-specific commitments |
 | `* *` | user who might make typos | edit reminder titles | rectify any errors in the title I set for reminders |
+| `* *` | busy user with many recurring meetings | set reminders to repeat at a specific interval | be constantly reminded of my commitments without having to remember to add a new reminder each time |
+| `* *` | busy user with many recurring meetings | set reminders to repeat for a given number of occurrences | efficiently set reminders without wasting time on repeated actions |
 | `* * *` | user with commitments constantly in flux | delete reminders | delete irrelevant or redundant reminders |
-| `* *` | user who is overcommitted with many commitments | filter reminders | find more important reminders by their title |
-| `* *` | user who can finish reminders quickly | snooze reminders that I've completed | clear space for reminders that I've not yet completed |
+| `* *` | user who is overcommitted with many commitments | search for reminders with names matching given keywords | find more important reminders by their title |
+| `* *` | user with many recurring reminders | snooze reminders that I've completed | clear space for reminders that I've not yet completed |
 
 
 ### Use cases
 
-(For all use cases below, the **System** is`ePoch` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, **system** refers to `ePoch`, unless specified otherwise)
 
 **Use case: UC1 - List all persons, CCAs, and reminders**
 
 **MSS**
 
-1. User requests to list all persons,  CCAs, and reminders.
-2. ePoch displays all persons,  CCAs, and reminders currently stored in ePoch.
+1. User requests to list all persons, CCAs, and reminders.
+1. The system displays all persons, CCAs, and reminders currently stored in ePoch. <br>
 Use case ends.
 
 **Use case: UC2 - Add a person**
 
 **MSS**
 
-1. User requests to add a person to the list and optionally specifies their name, phone number, email and address.
-2. ePoch adds the person with the specified information
+1. User requests to add a person to ePoch by specifying their name, address, email and phone number, optionally specifying additional user tags.
+1. The system adds the person with the specified information to ePoch. <br>
 Use case ends.
+
+Extension:
+
+- 1a. At least one attribute from name, address, email and phone number is missing or specified improperly.
+  - 1a1. The system throws an error. Use case resumes from step 1.
 
 **Use case: UC3 - Add a CCA**
 
 **MSS**
 
-1. User requests to add a CCA to the list and specifies the CCA name.
-2. ePoch adds the CCA to the list of CCAs.
+1. User requests to add a CCA to ePoch by specifying the CCA name.
+1. The system adds the CCA to ePoch. <br>
 Use case ends.
 
+Extension:
+- 1a. The CCA name is not specified correctly, or is missing.
+  - The system throws an error. Use case resumes from step 1.
 
-**Use case: UC4 - Find a person**
+**Use case: UC4 - Add a reminder**
 
 **MSS**
 
-1. User requests to find a person based on their attributes.
-2. ePoch displays all persons that fit the user's requirements.
+1. User requests to add a reminder to ePoch by specifying its name, the id of the CCA to which it is linked, and its start date, optionally specifying its frequency.
+1. The system adds the reminder to ePoch. <br>
+   Use case ends.
+
+Extension:
+- 1a. At least one attribute from name, cid and start date is missing or specified improperly.
+    - The system throws an error. Use case resumes from step 1.
+    
+**Use case: UC5 - Find a person**
+
+**MSS**
+
+1. User requests to find a person based on the specified attributes.
+1. The system displays all persons that fit the user's specifications. <br>
+   Use case ends.
 
 Extensions:
 
-* 1a. No attributes are specified.
-
-    * 1a1. ePoch throws an error.
-      Use case resumes from step 1.
+- 1a. No attributes are specified, or attributes are specified improperly. 
+  - 1a1. The system throws an error. Use case resumes from step 1.
 
 
-**Use case: UC5 -  Delete a person**
+**Use case: UC6 - Delete a person**
 
 **MSS**
 
 1. User requests to list persons.
-2. ePoch shows a list of persons.
-3. User requests to delete a person and specficies the person ID.
-4. ePoch deletes the person.
+1. The system shows a list of persons (UC1).
+1. User requests to delete a person by specifying that person's ID.
+1. The system deletes the person.
 Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
-
+- 2a. The list is empty. <br>
   Use case ends.
+- 3a. The specified person does not exist (person ID invalid).
+  - 3a1. The system throws an error. Use case resumes from step 2.
 
-* 3a. The given person does not exist (person ID invalid).
-
-    * 3a1. AddressBook shows an error message.
-      Use case resumes at step 2.
-
-
-**Use case: UC6 - Enrol a person into a CCA**
+**Use case: UC7 - Enrol a person into a CCA**
 
 **MSS**
 
 1. User requests to list persons and CCAs.
-2. ePoch shows a list of persons and CCAs.
-3. User requests to enrol a person into a CCA and specifices the person ID and CCA ID.
-4. ePoch adds the person to the CCA.
+1. The system shows a list of persons and CCAs.
+1. User requests to enrol a person into a CCA by specifying the IDs of the desired person and CCA.
+1. The system adds the person to the CCA.
 Use case ends.
 
-**Extensions**
+***Extensions**
 
-* 2a. The list of persons is empty.
-
+- 2a. The list of persons is empty. <br>
   Use case ends.
-
-* 2b. The list of CCAs is empty.
-
+- 2b. The list of CCAs is empty. <br>
   Use case ends.
+- 3a. The specified person does not exist (person ID invalid).
+    * 3a1. The system throws an error message. Use case resumes from step 2.
+- 3b. The specified CCA does not exist (CCA ID invalid).
+    * 3b1. The system throws an error message. Use case resumes at step 2.
 
-* 3a. The given person does not exist (person ID invalid).
+**Use case: UC8 - Clear all data**
 
-    * 3a1. ePoch shows an error message.
-      Use case resumes at step 2.
+**MSS**
 
-* 3b. The given CCA does not exist (CCA ID invalid).
-
-    * 3b1. ePoch shows an error message.
-      Use case resumes at step 2.
-
-*{More to be added}*
+1. User requests to clear all data.
+1. The system clears all data (persons, CCAs, reminders) stored in ePoch. <br>
+   Use case ends.
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4.  The JAR file should not exceed 100MB.
-5.  The system should respond within 2 seconds whenever a command is entered by the user.
-
-*{More to be added}*
+1.  The system should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+1.  The system should be able to hold up to 1000 objects (persons, CCAs, reminders) without a noticeable sluggishness in performance for typical usage.
+1.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1.  The `.jar` file should not exceed 100MB in size.
+1.  The system should respond within 2 seconds whenever a command is entered by the user.
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Person**: A contact that the user wants to save
-* **CCA**: A school-based group that a person may be a member of
-* **Reminder**: A scheduled event associated with a CCA that the user wishes to be notified of
+* **Mainstream OS**: Windows, Linux, Unix, OS-X.
+* **Person**: A contact that the user wants to save.
+* **CCA**: A school-based group that a person may be a member of.
+* **Reminder**: A scheduled event associated with a CCA that the user wishes to be notified of.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -524,47 +541,144 @@ Given below are instructions to test the app manually.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
-
 </div>
 
 ### Launch and shutdown
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+   1. Download the ePoch `.jar` file and copy it into an empty folder where you wish to test it.
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the `.jar` file to run it. <br>
+      Expected: this should show the GUI with a set of sample contacts. The window size may not be optimally set for your monitor size.
 
 1. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+   1. Re-launch the app by double-clicking the `.jar` file.<br>
+       Expected: The most recent window size and location should be remembered.
 
 1. _{ more test cases … }_
+
+### Adding a person
+
+1. Adding a person
+
+   1. Prerequisites: None.
+   
+   2. Test case: `addp n/Ellen Chua a/Tembusu e/ellenchua@u.nus.edu.sg p/98225832` <br>
+      Expected: a person named `Ellen Chua`, with address `Tembusu`, email `ellenchua@u.nus.edu.sg`, and phone number `98225832` is added.
+   
+   3. Test case: `addp` <br>
+      Expected: Error thrown, indicating invalid command format.
+   
+   4. Test case: `addp n/Kevin Norton`, i.e. some fields are missing. <br>
+      Expected: Similar to previous.
+   
+   5. Other incorrect add commands to try: `add`, `addperson` etc. <br>
+      Expected: Similar to previous.
 
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all persons using the `list` command. There must be at least one person in the list to delete.
 
-   1. Test case: `deletpe 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   1. Test case: `deletep 1`<br>
+      Expected: The first contact in the list is deleted. Details of the deleted contact are shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `deletep 0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the size of the number of people listed) <br>
       Expected: Similar to previous.
 
-1. _{ more test cases … }_
+### Adding and deleting CCAs
 
-### Saving data
+1. Adding and deleting CCAs can be testing similarly to testing adding and deleting persons, as explained above. <br>
+   Instead of `addp` and `deletep`, the commands `addc` and `deletec` are used. <br>
+   When adding a CCA, the only attribute that needs to be specified is its name.
+
+### Adding a reminder
+
+1. Adding a reminder to a CCA
+   1. Prerequisites: List all CCAs using the `list` command. The CCA that the reminder is to be added to is listed.
+   
+   2. Test case: `addr n/Weekly band practice cid/1 sd/2021-09-20` <br>
+       Expected: a reminder named `Weekly band practice` which begins on `2021-09-20` is added to the CCA at index 1 (i.e. the first CCA in the list).
+
+   3. Test case: `addr` <br>
+      Expected: Error thrown, indicating invalid command format.
+
+   4. Test case: `addr n/Weekly band practice`, i.e. some fields are missing. <br>
+      Expected: Similar to previous.
+
+   5. Other incorrect add commands to try: `add`, `addreminder cid/0`, `addreminder cid/x` where `x` is greater than the number of CCAs listed etc. <br>
+      Expected: Similar to previous.
+
+### Deleting a reminder
+
+1. Deleting a reminder while all reminders are being shown
+
+    1. Prerequisites: List all reminders using the `list` command. There must be at least one reminder in the list to delete.
+
+    2. Test case: `deleter 1`<br>
+       Expected: The first reminder in the list is deleted. Details of the deleted contact are shown in the status message.
+
+    3. Test case: `deletep 0`<br>
+       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+
+    4. Other incorrect delete commands to try: `delete`, `deleter x` (where x is larger than the number of reminders listed) <br>
+       Expected: Similar to previous.
+   
+### Enrolling a person into a CCA
+
+1. Enrolling a person to a CCA
+    1. Prerequisites: List all persons and CCAs using the `list` command. The person to be enrolled, and the CCA that they are to be enrolled into must be listed.
+
+    2. Test case: `enrol pid/1 cid/1` <br>
+       Expected: the first person in the list of persons is enrolled into the first CCA in the list of CCAs. The number of people in the specified CCA increases by 1.
+
+    3. Test case: `enrol` <br>
+       Expected: Error thrown, indicating invalid command format.
+
+    4. Test case: `enrol cid/1`, i.e. some fields are missing. <br>
+       Expected: Similar to previous.
+       
+    5. Other incorrect add commands to try: `enrol`, `enrol cid/0`, `addreminder cid/x` where `x` is greater than the number of CCAs listed etc. <br>
+       Expected: Similar to previous.
+
+### Expelling a person from a CCA
+
+1. Expelling a person from a CCA
+    1. Prerequisites: List all persons and CCAs using the `list` command. The person to be expelled, and the CCA that they are to be expelled from must be listed. The person to be expelled must already be enrolled inside this CCA.
+
+    2. Test case: `expel pid/1 cid/1` <br>
+       Expected: the first person in the list of persons is expelled from the first CCA in the list of CCAs. The number of people in each CCA decreases by 1.
+
+    3. Test case: `expel` <br>
+       Expected: Error thrown, indicating invalid command format.
+
+    4. Test case: `expel cid/1`, i.e. some fields are missing. <br>
+       Expected: Similar to previous.
+
+    6. Other incorrect add commands to try: `expel`, `expel pid/0`, `expel pid/x` where `x` is greater than the number of persons listed etc. <br>
+       Expected: Similar to previous.
+
+   5. Test case: `expel pid/1 cid/1` when the person specified is not already enrolled into the CCA specified.
+      Expected: Error thrown, indicating invalid command.
+
+### Saving and reading data
 
 1. Dealing with missing/corrupted data files
+   1. Note: All contact data in ePoch (persons, CCAs, reminders) is stored in `data/addressbook.json`. 
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases … }_
+   2. Simulate missing file
+      1. Prerequisites: Delete `addressbook.json`, if it exists, from the `/data` folder in the directory where the `.jar` file for ePoch is stored.
+      
+      2. Test case: Double-click the `.jar` file to run it. <br>
+         Expected: this should show the GUI with a set of sample contacts. There should be no `addressbook.json` file in the `/data` at this exact moment.
+      
+      3. Test case: Run the `clear` command in ePoch. <br>
+         Expected: this should clear all sample contacts from ePoch, and the GUI should contain no data at all. An `addressbook.json` file should be created in the `/data` folder.s

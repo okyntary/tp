@@ -4,7 +4,7 @@ import seedu.address.model.cca.Cca;
 import seedu.address.model.cca.CcaName;
 
 /**
- * A utility class to help with building Cca objects.
+ * A utility class to help with building CCA objects.
  */
 public class CcaBuilder {
 

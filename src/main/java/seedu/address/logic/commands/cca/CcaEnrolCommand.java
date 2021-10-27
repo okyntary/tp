@@ -28,8 +28,8 @@ public class CcaEnrolCommand extends Command {
             + PREFIX_PERSON_ID + "1 ";
 
     public static final String MESSAGE_SUCCESS = "Successfully enrolled %1$s into %2$s";
-    public static final String MESSAGE_MISSING_CCA = "This CCA does not exist in the address book";
-    public static final String MESSAGE_MISSING_PERSON = "This person does not exist in the address book";
+    public static final String MESSAGE_MISSING_CCA = "This CCA does not exist in ePoch";
+    public static final String MESSAGE_MISSING_PERSON = "This person does not exist in ePoch";
     public static final String MESSAGE_PRESENT_PERSON = "This person(%1$s) is already part of that CCA(%2$s)";
 
     private Cca ccaToEnrolInto;

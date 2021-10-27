@@ -10,13 +10,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.cca.exceptions.CcaNotFoundException;
 import seedu.address.model.cca.exceptions.DuplicateCcaException;
+import seedu.address.model.person.Person;
 
 /**
- * A list of CCas that enforces uniqueness between its elements and does not allow nulls.
- * A CCa is considered unique by comparing using {@code Cca#isSameCca(Cca)}. As such, adding and updating of
- * CCas uses Cca#isSameCca(Cca) for equality so as to ensure that the CCa being added or updated is
- * unique in terms of identity in the UniqueCcaList. However, the removal of a CCa uses Cca#equals(Object) so
- * as to ensure that the CCa with exactly the same fields will be removed.
+ * A list of CCAs that enforces uniqueness between its elements and does not allow nulls.
+ * A CCA is considered unique by comparing using {@code Cca#isSameCca(Cca)}. As such, adding and updating of
+ * CCAs uses Cca#isSameCca(Cca) for equality so as to ensure that the CCA being added or updated is
+ * unique in terms of identity in the UniqueCcaList. However, the removal of a CCA uses Cca#equals(Object) so
+ * as to ensure that the CCA with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
@@ -66,6 +67,15 @@ public class UniqueCcaList implements Iterable<Cca> {
         }
 
         internalList.set(index, editedCca);
+    }
+
+    public void setEnrolledPerson(Person enrolledTarget, Person editedPersonToBeEnrolled) {
+        internalList.parallelStream().forEach(cca -> {
+            if (cca.containsEnrolledPerson(enrolledTarget)) {
+                cca.expelPerson(enrolledTarget);
+                cca.enrolPerson(editedPersonToBeEnrolled);
+            }
+        });
     }
 
     /**
@@ -122,7 +132,7 @@ public class UniqueCcaList implements Iterable<Cca> {
     }
 
     /**
-     * Returns true if {@code CCAs} contains only unique ccas.
+     * Returns true if {@code CCAs} contains only unique CCAs.
      */
     private boolean ccasAreUnique(List<Cca> ccas) {
         for (int i = 0; i < ccas.size() - 1; i++) {
