@@ -136,17 +136,11 @@ Deletes a CCA.
 
 Format: `deletec cid/CCA_ID`
 
-### Deleting a CCA: `deletec`
-
-Deletes a CCA.
-
-Format: `deletec cid/CCA_ID`
-
 ### Finding a CCA: `findc`
 
-Filters all CCAs with names that contain a given string.
+Filters all CCAs with names that contain a given string, as well as people enrolled in these CCAs and reminders associated with these CCAs.
 
-Format: `findc s/STRING`
+Format: `findc STRING`
 
 ### Adding a reminder to a CCA: `addr`
 
@@ -241,13 +235,13 @@ Action | Format
 **List all data** | `list`
 **Delete all data** | `clear`
 **Add person** | `addp n/PERSON_NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]`
-**Edit person data** | `editp pid/PERSON_ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]`
-**Delete person** | `deletep pid/PERSON_ID`
+**Edit person data** | `editp PERSON_ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]`
+**Delete person** | `deletep PERSON_ID`
 **Find person** | `findp [pid/PERSON_ID] [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [cca/CCA_NAME]`
 **Add CCA** | `addc n/CCA_NAME`
-**Edit CCA name** | `editc cid/CCA_ID n/CCA_NAME`
-**Delete CCA** | `deletec cid/CCA_ID`
-**Find CCA** | `findc s/STRING`
+**Edit CCA name** | `editc CCA_ID n/CCA_NAME`
+**Delete CCA** | `deletec CCA_ID`
+**Find CCA** | `findc STRING`
 **Add reminder** |`addr cid/CCA_ID t/REMINDER_TITLE sd/START_DATE [f/FREQUENCY] [o/OCCURRENCES]`
 **Edit reminder title** | `editr rid/REMINDER_ID t/REMINDER_TITLE`
 **Delete reminder** | `deleter rid/REMINDER_ID`
