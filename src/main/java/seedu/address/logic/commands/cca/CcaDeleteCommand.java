@@ -11,7 +11,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.Parser;
 import seedu.address.model.Model;
 import seedu.address.model.cca.Cca;
 import seedu.address.model.reminder.Reminder;
@@ -43,7 +42,7 @@ public class CcaDeleteCommand extends Command {
 
         Cca ccaToDelete = lastShownList.get(targetCcaIndex.getZeroBased());
         Set<Reminder> remindersToDelete = ccaToDelete.getReminders();
-        ObservableList<Reminder> reminderList = model.getFilteredReminderList();
+        ObservableList<Reminder> reminderList = model.getAddressBook().getReminderList();
         for (int i = 0; i < reminderList.size(); ) {
             Reminder reminder = reminderList.get(i);
             if (remindersToDelete.contains(reminder)) {

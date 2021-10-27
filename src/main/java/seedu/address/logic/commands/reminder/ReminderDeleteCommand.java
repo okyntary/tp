@@ -38,7 +38,7 @@ public class ReminderDeleteCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_REMINDER_DISPLAYED_INDEX);
         }
         Reminder reminderToDelete = lastShownList.get(targetReminderIndex.getZeroBased());
-        for (Cca cca : model.getFilteredCcaList()) {
+        for (Cca cca : model.getAddressBook().getCcaList()) {
             if (cca.getName().fullName == reminderToDelete.getCcaName()) {
                 cca.removeReminder(reminderToDelete);
             }
