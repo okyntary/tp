@@ -240,6 +240,16 @@ The `ReminderAddCommand` class has an Index which is the index of the CCA to add
 It implements the `execute` method which handles the logic of the add command.
 The `updateFilteredCcaList` and `updateFilteredReminderList` methods are called to update the `UI` component.
 
+#### Command for Editing Reminders
+
+The `editr` command is implemented by `ReminderEditCommand`, which extends `Command`.
+Polymorphism allows the different Command objects to be passed around and executed without having to know what type of Command it is.
+
+If the user does not specify any of the fields, the fields default to the original values of the unedited reminder.
+
+The `ReminderEditCommand` class has an Index which is the index of the Reminder to be edited, specified by the user.
+It implements the `execute` method which handles the logic of the add command.
+The `updateFilteredReminderList` method is called to update the `UI` component.
 
 ### \[Proposed\] Undo/redo feature
 
