@@ -6,15 +6,12 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
-import seedu.address.model.cca.Cca;
-import seedu.address.model.cca.CcaName;
 import seedu.address.model.cca.CcaNameContainsKeywordsPredicate;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.reminder.ReminderNameContainsKeywordsPredicate;
