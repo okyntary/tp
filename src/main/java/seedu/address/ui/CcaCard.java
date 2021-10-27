@@ -66,16 +66,6 @@ public class CcaCard extends UiPart<Region> {
                     }));
                     tags.getChildren().add(tagLabel);
                 });
-
-        // can consider having tags for CCAs
-        /*
-        Label tempLabel = new Label("Music");
-        tempLabel.backgroundProperty().bind(Bindings.createObjectBinding(() -> {
-            BackgroundFill fill = new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY);
-            return new Background(fill);
-        }));
-        tags.getChildren().add(tempLabel);
-        */
     }
 
     @Override
