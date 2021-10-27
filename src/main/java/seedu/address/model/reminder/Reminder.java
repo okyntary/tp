@@ -2,14 +2,12 @@ package seedu.address.model.reminder;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
 
-import seedu.address.model.cca.Cca;
 import seedu.address.model.util.Frequency;
 
 public class Reminder implements Comparable<Reminder> {
@@ -23,7 +21,7 @@ public class Reminder implements Comparable<Reminder> {
 
     // Data fields
     // Assumes a reminder can be tagged to at most 1 CCA
-    private Cca cca;
+    private String ccaName;
     private ArrayList<Date> dates = new ArrayList<>();
 
     /**
@@ -44,13 +42,13 @@ public class Reminder implements Comparable<Reminder> {
      */
     public Reminder(ReminderName reminderName, ReminderStartDate reminderStartDate,
                     ReminderFrequency reminderFrequency, ReminderOccurrence reminderOccurrence,
-                    Cca cca, ArrayList<Date> dates) {
+                    String ccaName, ArrayList<Date> dates) {
         requireAllNonNull(reminderName, reminderStartDate, reminderFrequency, reminderOccurrence);
         this.reminderName = reminderName;
         this.reminderStartDate = reminderStartDate;
         this.reminderFrequency = reminderFrequency;
         this.reminderOccurrence = reminderOccurrence;
-        this.cca = cca;
+        this.ccaName = ccaName;
         this.dates = dates;
     }
 
@@ -120,12 +118,12 @@ public class Reminder implements Comparable<Reminder> {
         return reminderOccurrence;
     }
 
-    public Cca getCca() {
-        return cca;
+    public String getCcaName() {
+        return ccaName;
     }
 
-    public void setCca(Cca cca) {
-        this.cca = cca;
+    public void setCcaName(String ccaName) {
+        this.ccaName = ccaName;
     }
 
     public boolean isAtLastOccurrence() {
@@ -185,13 +183,10 @@ public class Reminder implements Comparable<Reminder> {
 
         // Same if they have the same name, associated cca, start date, frequency, and occurrences
         seedu.address.model.reminder.Reminder otherReminder = (seedu.address.model.reminder.Reminder) other;
-        boolean sameName = otherReminder.getName().equals(this.getName());
-        boolean sameCca = otherReminder.getCca().getName().equals(this.getCca().getName());
-        boolean sameStartDate = otherReminder.getStartDate().equals(this.getStartDate());
-        boolean sameFrequency = otherReminder.getFrequency().equals(this.getFrequency());
-        boolean sameOccurrences = otherReminder.getOccurrences().equals(this.getOccurrences());
-
-        return sameName && sameCca && sameStartDate && sameFrequency && sameOccurrences;
+        return otherReminder.getName().equals(getName()) && otherReminder.getCcaName().equals(getCcaName())
+                && otherReminder.getStartDate().equals(getStartDate())
+                && otherReminder.getFrequency().equals(getFrequency())
+                && otherReminder.getOccurrences().equals(getOccurrences());
     }
 
     @Override

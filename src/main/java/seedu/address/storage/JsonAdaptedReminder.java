@@ -28,7 +28,7 @@ class JsonAdaptedReminder {
     private final int numTimePeriod;
     private final int occurrences;
 
-    private final JsonAdaptedCca cca;
+    private final String ccaName;
     private final ArrayList<Date> dates;
 
     /**
@@ -39,14 +39,14 @@ class JsonAdaptedReminder {
                                @JsonProperty("frequency") Frequency timePeriod,
                                @JsonProperty("numTimePeriod") int numTimePeriod,
                                @JsonProperty("occurrences") int occurrences,
-                               @JsonProperty("cca") JsonAdaptedCca cca,
+                               @JsonProperty("ccaName") String ccaName,
                                @JsonProperty("dates") ArrayList<Date> dates) {
         this.name = name;
         this.startDate = startDate;
         this.timePeriod = timePeriod;
         this.numTimePeriod = numTimePeriod;
         this.occurrences = occurrences;
-        this.cca = cca;
+        this.ccaName = ccaName;
         this.dates = dates;
     }
 
@@ -60,7 +60,7 @@ class JsonAdaptedReminder {
         numTimePeriod = source.getFrequency().numTimePeriod;
         occurrences = source.getOccurrences().getOccurrences();
 
-        cca = new JsonAdaptedCca(source.getCca());
+        ccaName = source.getCcaName();
         dates = source.getDates();
     }
 
@@ -82,7 +82,7 @@ class JsonAdaptedReminder {
         final ReminderFrequency reminderFrequency = new ReminderFrequency(this.timePeriod, this.numTimePeriod);
         final ReminderOccurrence reminderOccurrence = new ReminderOccurrence(occurrences);
 
-        return new Reminder(reminderName, reminderStartDate, reminderFrequency, reminderOccurrence, cca.toModelType(),
+        return new Reminder(reminderName, reminderStartDate, reminderFrequency, reminderOccurrence, ccaName,
                 dates);
     }
 }
