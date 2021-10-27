@@ -431,7 +431,7 @@ Extension:
 **MSS**
 
 1. User requests to add a CCA to ePoch by specifying the CCA name.
-1The system adds the CCA to ePoch. <br>
+1. The system adds the CCA to ePoch. <br>
 Use case ends.
 
 Extension:
@@ -461,7 +461,7 @@ Extension:
 Extensions:
 
 - 1a. No attributes are specified, or attributes are specified improperly. 
-  - -1a1. The system throws an error. Use case resumes from step 1.
+  - 1a1. The system throws an error. Use case resumes from step 1.
 
 
 **Use case: UC6 - Delete a person**
@@ -493,7 +493,7 @@ Use case ends.
 
 ***Extensions**
 
--2a. The list of persons is empty. <br>
+- 2a. The list of persons is empty. <br>
   Use case ends.
 - 2b. The list of CCAs is empty. <br>
   Use case ends.
@@ -583,7 +583,7 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `deletep 0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the size of the list of persons) <br>
+   1. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the size of the number of people listed) <br>
       Expected: Similar to previous.
 
 ### Adding and deleting CCAs
@@ -603,7 +603,7 @@ testers are expected to do more *exploratory* testing.
    3. Test case: `addr` <br>
       Expected: Error thrown, indicating invalid command format.
 
-   4. Test case: `addp n/Weekly band practice`, i.e. some fields are missing. <br>
+   4. Test case: `addr n/Weekly band practice`, i.e. some fields are missing. <br>
       Expected: Similar to previous.
 
    5. Other incorrect add commands to try: `add`, `addreminder cid/0`, `addreminder cid/x` where `x` is greater than the number of CCAs listed etc. <br>
@@ -621,7 +621,7 @@ testers are expected to do more *exploratory* testing.
     3. Test case: `deletep 0`<br>
        Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-    4. Other incorrect delete commands to try: `delete`, `deleter x` (where x is larger than the size of the list of reminders) <br>
+    4. Other incorrect delete commands to try: `delete`, `deleter x` (where x is larger than the number of reminders listed) <br>
        Expected: Similar to previous.
    
 ### Enrolling a person into a CCA
@@ -630,7 +630,7 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: List all persons and CCAs using the `list` command. The person to be enrolled, and the CCA that they are to be enrolled into must be listed.
 
     2. Test case: `enrol pid/1 cid/1` <br>
-       Expected: the first person in the list of persons is enrolled into the first CCA in the list of CCAs. The no. of people in each CCA increases by 1.
+       Expected: the first person in the list of persons is enrolled into the first CCA in the list of CCAs. The number of people in the specified CCA increases by 1.
 
     3. Test case: `enrol` <br>
        Expected: Error thrown, indicating invalid command format.
@@ -647,7 +647,7 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: List all persons and CCAs using the `list` command. The person to be expelled, and the CCA that they are to be expelled from must be listed. The person to be expelled must already be enrolled inside this CCA.
 
     2. Test case: `expel pid/1 cid/1` <br>
-       Expected: the first person in the list of persons is expelled from the first CCA in the list of CCAs. The no. of people in each CCA decreases by 1.
+       Expected: the first person in the list of persons is expelled from the first CCA in the list of CCAs. The number of people in each CCA decreases by 1.
 
     3. Test case: `expel` <br>
        Expected: Error thrown, indicating invalid command format.
