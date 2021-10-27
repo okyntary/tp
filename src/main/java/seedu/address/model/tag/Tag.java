@@ -10,7 +10,6 @@ import java.util.Hashtable;
  * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
  */
 public class Tag {
-
     public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
     private static Hashtable<String, TagColour> tagColours = new Hashtable<>();
@@ -36,8 +35,14 @@ public class Tag {
         return test.matches(VALIDATION_REGEX);
     }
 
-    public void setTagColour(TagColour colour) {
-        Tag.tagColours.put(this.tagName, colour);
+    /**
+     * Changes the tag colour of all tags with that tag name.
+     *
+     * @param tagName The name of the tag to assign the new colour to.
+     * @param colour The colour to assign to the tag.
+     */
+    public static void setTagColour(String tagName, TagColour colour) {
+        Tag.tagColours.put(tagName, colour);
     }
 
     public TagColour getTagColour() {
