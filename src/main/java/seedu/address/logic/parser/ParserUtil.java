@@ -9,6 +9,7 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.commands.TagColourCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.cca.CcaName;
 import seedu.address.model.person.Address;
@@ -20,6 +21,7 @@ import seedu.address.model.reminder.ReminderName;
 import seedu.address.model.reminder.ReminderOccurrence;
 import seedu.address.model.reminder.ReminderStartDate;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.TagColour;
 import seedu.address.model.util.Frequency;
 
 /**
@@ -239,5 +241,41 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses {@code String RGB values} into a {@code TagColour}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code RGB values} are invalid.
+     */
+    public static TagColour parseTagColour(String rgbValues) throws ParseException {
+        requireNonNull(rgbValues);
+        String trimmedRgbValues = rgbValues.trim();
+        String[] rgbValuesArray = trimmedRgbValues.split(" ");
+        if (rgbValuesArray.length != 3) {
+            throw new ParseException(TagColourCommand.MESSAGE_RGB_CONSTRAINTS);
+        }
+
+        int red;
+        int green;
+        int blue;
+        try {
+            red = Integer.parseInt(rgbValuesArray[0]);
+        } catch (NumberFormatException e) {
+            throw new ParseException(TagColourCommand.MESSAGE_RGB_CONSTRAINTS);
+        }
+        try {
+            green = Integer.parseInt(rgbValuesArray[1]);
+        } catch (NumberFormatException e) {
+            throw new ParseException(TagColourCommand.MESSAGE_RGB_CONSTRAINTS);
+        }
+        try {
+            blue = Integer.parseInt(rgbValuesArray[2]);
+        } catch (NumberFormatException e) {
+            throw new ParseException(TagColourCommand.MESSAGE_RGB_CONSTRAINTS);
+        }
+
+        return new TagColour(red, green, blue);
     }
 }

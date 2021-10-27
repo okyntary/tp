@@ -12,12 +12,16 @@ public class TagColour {
     private static final int DEFAULT_COLOUR_RED = 73;
     private static final int DEFAULT_COLOUR_GREEN = 130;
     private static final int DEFAULT_COLOUR_BLUE = 150;
+    private static final int DEFAULT_COLOUR_CCA_RED = 0;
+    private static final int DEFAULT_COLOUR_CCA_GREEN = 0;
+    private static final int DEFAULT_COLOUR_CCA_BLUE = 155;
 
     /** Default colour for new tags. */
     public static final TagColour DEFAULT_COLOUR = new TagColour(DEFAULT_COLOUR_RED,
             DEFAULT_COLOUR_GREEN, DEFAULT_COLOUR_BLUE);
     /** Default colour for CCA tags, can be changed. */
-    private static TagColour defaultCcaColour = new TagColour(0, 0, 255);
+    public static final TagColour DEFAULT_CCA_COLOUR = new TagColour(DEFAULT_COLOUR_CCA_RED,
+            DEFAULT_COLOUR_CCA_GREEN, DEFAULT_COLOUR_CCA_BLUE);
 
     public final int red;
     public final int green;
@@ -51,10 +55,6 @@ public class TagColour {
      */
     public static boolean areValidRgbValues(int red, int green, int blue) {
         return (red >= 0 && red <= 255) && (green >= 0 && green <= 255) && (blue >= 0 && blue <= 255);
-    }
-
-    public static TagColour getCcaColour() {
-        return defaultCcaColour;
     }
 
     @Override
