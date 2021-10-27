@@ -61,7 +61,7 @@ public class PersonFindCommand extends Command {
         Set<Cca> allValidCcas = new HashSet<>();
         for (Person validPerson: model.getFilteredPersonList()) {
             for (Cca cca: model.getFilteredCcaList()) {
-                if (cca.checkPerson(validPerson)) {
+                if (cca.containsEnrolledPerson(validPerson)) {
                     allValidCcas.add(cca);
                 }
             }

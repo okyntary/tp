@@ -2,6 +2,7 @@ package seedu.address.logic.commands.reminder;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -53,12 +54,11 @@ public class ReminderFindCommand extends Command {
     }
 
     private CcaNameContainsKeywordsPredicate getFilterForCcaList(ObservableList<Reminder> reminderList) {
-        Set<Cca> allValidCcas = new HashSet<>();
+        Set<String> allValidCcas = new HashSet<>();
         for (Reminder validReminder: reminderList) {
-            allValidCcas.add(validReminder.getCca());
+            allValidCcas.add(validReminder.getCcaName());
         }
-        List<String> ccaNames = allValidCcas
-                .stream().map(Cca::getName).map(CcaName::toString).collect(Collectors.toList());
+        List<String> ccaNames = new ArrayList<>(allValidCcas);
         return new CcaNameContainsKeywordsPredicate(ccaNames);
     }
 
