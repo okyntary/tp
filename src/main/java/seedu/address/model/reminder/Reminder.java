@@ -2,6 +2,7 @@ package seedu.address.model.reminder;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -36,6 +37,21 @@ public class Reminder implements Comparable<Reminder> {
         this.reminderFrequency = reminderFrequency;
         this.reminderOccurrence = reminderOccurrence;
         fillAllUpcomingDates();
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Reminder(ReminderName reminderName, ReminderStartDate reminderStartDate,
+                    ReminderFrequency reminderFrequency, ReminderOccurrence reminderOccurrence,
+                    Cca cca, ArrayList<Date> dates) {
+        requireAllNonNull(reminderName, reminderStartDate, reminderFrequency, reminderOccurrence);
+        this.reminderName = reminderName;
+        this.reminderStartDate = reminderStartDate;
+        this.reminderFrequency = reminderFrequency;
+        this.reminderOccurrence = reminderOccurrence;
+        this.cca = cca;
+        this.dates = dates;
     }
 
     private void setAllUpcomingDates(ArrayList<Date> dates) {
@@ -74,6 +90,14 @@ public class Reminder implements Comparable<Reminder> {
             dates.add(calendar.getTime());
             occurrences--;
         }
+    }
+
+    public ArrayList<Date> getDates() {
+        return this.dates;
+    }
+
+    public void setDates(ArrayList<Date> dates) {
+        this.dates = dates;
     }
 
     public String getNextDate() {
@@ -161,10 +185,13 @@ public class Reminder implements Comparable<Reminder> {
 
         // Same if they have the same name, associated cca, start date, frequency, and occurrences
         seedu.address.model.reminder.Reminder otherReminder = (seedu.address.model.reminder.Reminder) other;
-        return otherReminder.getName().equals(getName()) && otherReminder.getCca().equals(getCca())
-                && otherReminder.getStartDate().equals(getStartDate())
-                && otherReminder.getFrequency().equals(getFrequency())
-                && otherReminder.getOccurrences().equals(getOccurrences());
+        boolean sameName = otherReminder.getName().equals(this.getName());
+        boolean sameCca = otherReminder.getCca().getName().equals(this.getCca().getName());
+        boolean sameStartDate = otherReminder.getStartDate().equals(this.getStartDate());
+        boolean sameFrequency = otherReminder.getFrequency().equals(this.getFrequency());
+        boolean sameOccurrences = otherReminder.getOccurrences().equals(this.getOccurrences());
+
+        return sameName && sameCca && sameStartDate && sameFrequency && sameOccurrences;
     }
 
     @Override

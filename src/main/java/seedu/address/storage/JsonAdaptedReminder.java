@@ -1,6 +1,8 @@
 package seedu.address.storage;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -24,7 +26,10 @@ class JsonAdaptedReminder {
     private final Date startDate;
     private final Frequency timePeriod;
     private final int numTimePeriod;
-    private final int occurences;
+    private final int occurrences;
+
+    private final JsonAdaptedCca cca;
+    private final ArrayList<Date> dates;
 
     /**
      * Constructs a {@code JsonAdaptedReminder} with the given person details.
@@ -33,12 +38,16 @@ class JsonAdaptedReminder {
     public JsonAdaptedReminder(@JsonProperty("name") String name, @JsonProperty("startDate") Date startDate,
                                @JsonProperty("frequency") Frequency timePeriod,
                                @JsonProperty("numTimePeriod") int numTimePeriod,
-                               @JsonProperty("occurences") int occurrences) {
+                               @JsonProperty("occurrences") int occurrences,
+                               @JsonProperty("cca") JsonAdaptedCca cca,
+                               @JsonProperty("dates") ArrayList<Date> dates) {
         this.name = name;
         this.startDate = startDate;
         this.timePeriod = timePeriod;
         this.numTimePeriod = numTimePeriod;
-        this.occurences = occurrences;
+        this.occurrences = occurrences;
+        this.cca = cca;
+        this.dates = dates;
     }
 
     /**
@@ -49,7 +58,10 @@ class JsonAdaptedReminder {
         startDate = source.getStartDate().startDate;
         timePeriod = source.getFrequency().timePeriod;
         numTimePeriod = source.getFrequency().numTimePeriod;
-        occurences = source.getOccurrences().getOccurrences();
+        occurrences = source.getOccurrences().getOccurrences();
+
+        cca = new JsonAdaptedCca(source.getCca());
+        dates = source.getDates();
     }
 
     /**
@@ -68,8 +80,9 @@ class JsonAdaptedReminder {
         final ReminderName reminderName = new ReminderName(name);
         final ReminderStartDate reminderStartDate = new ReminderStartDate(startDate);
         final ReminderFrequency reminderFrequency = new ReminderFrequency(this.timePeriod, this.numTimePeriod);
-        final ReminderOccurrence reminderOccurrence = new ReminderOccurrence(occurences);
+        final ReminderOccurrence reminderOccurrence = new ReminderOccurrence(occurrences);
 
-        return new Reminder(reminderName, reminderStartDate, reminderFrequency, reminderOccurrence);
+        return new Reminder(reminderName, reminderStartDate, reminderFrequency, reminderOccurrence, cca.toModelType(),
+                dates);
     }
 }
