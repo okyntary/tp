@@ -129,6 +129,7 @@ public class Reminder implements Comparable<Reminder> {
                 new ReminderOccurrence(getOccurrences().getOccurrences() - 1));
         dates.remove(0);
         snoozedReminder.setAllUpcomingDates(dates);
+        snoozedReminder.setCcaName(getCcaName());
         return snoozedReminder;
     }
 

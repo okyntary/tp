@@ -12,7 +12,9 @@ import java.util.Hashtable;
 public class Tag {
     public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
-    private static Hashtable<String, TagColour> tagColours = new Hashtable<>();
+    private static final Hashtable<String, TagColour> tagColours = new Hashtable<>() {
+        { put(" ", TagColour.DEFAULT_CCA_COLOUR); }
+    };
 
     public final String tagName;
 
@@ -45,8 +47,20 @@ public class Tag {
         Tag.tagColours.put(tagName, colour);
     }
 
+    public static boolean hasTagBeenCreated(String tagName) {
+        return Tag.tagColours.containsKey(tagName);
+    }
+
     public TagColour getTagColour() {
         return Tag.tagColours.get(this.tagName);
+    }
+
+    public static void setCcaTagColour(TagColour colour) {
+        Tag.tagColours.put(" ", colour);
+    }
+
+    public static TagColour getCcaTagColour() {
+        return Tag.tagColours.get(" ");
     }
 
     @Override

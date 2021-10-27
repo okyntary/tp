@@ -17,6 +17,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import seedu.address.model.reminder.Reminder;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.TagColour;
 
 /**
@@ -63,7 +64,7 @@ public class ReminderCard extends UiPart<Region> {
         this.frequency.setText("Frequency: " + reminder.getFrequency().toString());
         this.occurrences.setText("Occurrences Left: " + reminder.getOccurrences().toString());
 
-        TagColour tagColour = TagColour.getCcaColour();
+        TagColour tagColour = Tag.getCcaTagColour();
         Label tagLabel = new Label(reminder.getCcaName());
         tagLabel.backgroundProperty().bind(Bindings.createObjectBinding(() -> {
             Color c = Color.rgb(tagColour.red, tagColour.green, tagColour.blue);

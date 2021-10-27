@@ -31,7 +31,7 @@ public class PersonAddCommandParser implements Parser<PersonAddCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the PersonAddCommand
-     * and returns an PersonAddCommand object for execution.
+     * and returns a PersonAddCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public PersonAddCommand parse(String args) throws ParseException {

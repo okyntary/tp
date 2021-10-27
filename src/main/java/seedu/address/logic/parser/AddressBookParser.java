@@ -12,6 +12,7 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.GreetCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.TagColourCommand;
 import seedu.address.logic.commands.cca.CcaAddCommand;
 import seedu.address.logic.commands.cca.CcaDeleteCommand;
 import seedu.address.logic.commands.cca.CcaEditCommand;
@@ -116,6 +117,9 @@ public class AddressBookParser {
 
         case ReminderSnoozeCommand.COMMAND_WORD:
             return new ReminderSnoozeCommandParser().parse(arguments);
+
+        case TagColourCommand.COMMAND_WORD:
+            return new TagColourCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
