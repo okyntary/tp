@@ -4,8 +4,6 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
@@ -18,7 +16,6 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
-import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.tag.TagColour;
 
@@ -27,7 +24,6 @@ import seedu.address.model.tag.TagColour;
  */
 public class ReminderCard extends UiPart<Region> {
 
-    private static final Logger logger = LogsCenter.getLogger(UiManager.class);
     private static final String FXML = "ReminderListCard.fxml";
 
     /**
@@ -81,11 +77,10 @@ public class ReminderCard extends UiPart<Region> {
         DateFormat df = new SimpleDateFormat("E, dd MMM yyyy");
         df.setTimeZone(TimeZone.getTimeZone("Singapore")); // check if this is needed
         String currDate = df.format(date);
-        logger.log(Level.INFO, "today: " + currDate);
-        logger.log(Level.INFO, "next date: " + reminder.getNextDate());
         if (reminder.getNextDate().equals(currDate)) {
-            logger.log(Level.INFO, "ahhhh");
-            cardPane.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
+            this.cardPane.backgroundProperty().bind(Bindings.createObjectBinding(() ->
+                new Background(new BackgroundFill(Color.rgb(255, 40, 0, 0.7),
+                        CornerRadii.EMPTY, Insets.EMPTY))));
         }
     }
 

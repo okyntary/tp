@@ -9,10 +9,15 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 public class TagColour {
     public static final String MESSAGE_CONSTRAINTS =
             "Colours should be in the form of 3 space-separated integers from 0 to 255";
-    public static final TagColour DEFAULT_COLOUR = new TagColour(255, 0, 0);
+    private static final int DEFAULT_COLOUR_RED = 73;
+    private static final int DEFAULT_COLOUR_GREEN = 130;
+    private static final int DEFAULT_COLOUR_BLUE = 150;
+
+    /** Default colour for new tags. */
+    public static final TagColour DEFAULT_COLOUR = new TagColour(DEFAULT_COLOUR_RED,
+            DEFAULT_COLOUR_GREEN, DEFAULT_COLOUR_BLUE);
+    /** Default colour for CCA tags, can be changed. */
     private static TagColour defaultCcaColour = new TagColour(0, 0, 255);
-    // 73, 130, 150
-    // swap out for public static final
 
     public final int red;
     public final int green;
@@ -50,5 +55,26 @@ public class TagColour {
 
     public static TagColour getCcaColour() {
         return defaultCcaColour;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof TagColour // instanceof handles nulls
+                && red == ((TagColour) other).red
+                && green == ((TagColour) other).green
+                && blue == ((TagColour) other).blue); // state check
+    }
+
+    @Override
+    public int hashCode() {
+        return red + green + blue;
+    }
+
+    /**
+     * Format as text for viewing.
+     */
+    public String toString() {
+        return "[RGB: " + red + ", " + green + ", " + blue + ']';
     }
 }
