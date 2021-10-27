@@ -10,6 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.cca.exceptions.CcaNotFoundException;
 import seedu.address.model.cca.exceptions.DuplicateCcaException;
+import seedu.address.model.person.Person;
 
 /**
  * A list of CCAs that enforces uniqueness between its elements and does not allow nulls.
@@ -66,6 +67,15 @@ public class UniqueCcaList implements Iterable<Cca> {
         }
 
         internalList.set(index, editedCca);
+    }
+
+    public void setEnrolledPerson(Person enrolledTarget, Person editedPersonToBeEnrolled) {
+        internalList.parallelStream().forEach(cca -> {
+            if (cca.containsEnrolledPerson(enrolledTarget)) {
+                cca.expelPerson(enrolledTarget);
+                cca.enrolPerson(editedPersonToBeEnrolled);
+            }
+        });
     }
 
     /**

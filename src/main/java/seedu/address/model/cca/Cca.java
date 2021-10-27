@@ -81,7 +81,6 @@ public class Cca {
     }
 
     /**
-<<<<<<< HEAD
      * Returns the reminders of this CCA.
      * @return the reminders of this CCA
      */

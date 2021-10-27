@@ -3,6 +3,8 @@ package seedu.address.model.tag;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.util.Hashtable;
+
 /**
  * Represents a Tag in ePoch.
  * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
@@ -11,6 +13,7 @@ public class Tag {
 
     public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+    private static Hashtable<String, TagColour> tagColours = new Hashtable<>();
 
     public final String tagName;
 
@@ -23,6 +26,7 @@ public class Tag {
         requireNonNull(tagName);
         checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
         this.tagName = tagName;
+        Tag.tagColours.put(this.tagName, TagColour.DEFAULT_COLOUR);
     }
 
     /**
@@ -30,6 +34,14 @@ public class Tag {
      */
     public static boolean isValidTagName(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    public void setTagColour(TagColour colour) {
+        Tag.tagColours.put(this.tagName, colour);
+    }
+
+    public TagColour getTagColour() {
+        return Tag.tagColours.get(this.tagName);
     }
 
     @Override
