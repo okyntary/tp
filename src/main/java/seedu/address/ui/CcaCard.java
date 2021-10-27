@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import java.util.Comparator;
+
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -12,6 +14,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import seedu.address.model.cca.Cca;
+import seedu.address.model.tag.TagColour;
 
 /**
  * An UI component that displays information of a {@code Cca}.
@@ -51,13 +54,28 @@ public class CcaCard extends UiPart<Region> {
         this.name.setText(cca.getName().fullName);
         this.numPeople.setText("No. of people: " + cca.getNumberOfMembers());
 
+        cca.getTags().stream()
+                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .forEach(tag -> {
+                    TagColour tagColour = tag.getTagColour();
+                    Label tagLabel = new Label(tag.tagName);
+                    tagLabel.backgroundProperty().bind(Bindings.createObjectBinding(() -> {
+                        Color c = Color.rgb(tagColour.red, tagColour.green, tagColour.blue);
+                        BackgroundFill tagFill = new BackgroundFill(c, CornerRadii.EMPTY, Insets.EMPTY);
+                        return new Background(tagFill);
+                    }));
+                    tags.getChildren().add(tagLabel);
+                });
+
         // can consider having tags for CCAs
+        /*
         Label tempLabel = new Label("Music");
         tempLabel.backgroundProperty().bind(Bindings.createObjectBinding(() -> {
             BackgroundFill fill = new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY);
             return new Background(fill);
         }));
         tags.getChildren().add(tempLabel);
+        */
     }
 
     @Override
