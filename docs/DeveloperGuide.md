@@ -170,8 +170,8 @@ because of how time-consuming refactoring the entire project to use this new sys
 A CCA has:
 
 * A CCA name, represented by the `CcaName` class. CCA name must be unique.
-* Zero or more people enrolled in it, represented by the HashSet `personArrayList`.
-* Zero or more reminders associated with it, represented by the HashSet `remindersArrayList`.
+* Zero or more people enrolled in it, represented by the HashSet `members`.
+* Zero or more reminders associated with it, represented by the HashSet `reminders`.
 
 Two CCAs are considered identical if they have the same name.
 
