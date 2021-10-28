@@ -12,8 +12,9 @@ import java.util.Hashtable;
 public class Tag {
     public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+    private static final String CCA_COLOUR_KEY = " "; // works because no tag can be an blank (empty) string
     private static final Hashtable<String, TagColour> tagColours = new Hashtable<>() {
-        { put(" ", TagColour.DEFAULT_CCA_COLOUR); }
+        { put(CCA_COLOUR_KEY, TagColour.DEFAULT_CCA_COLOUR); }
     };
 
     public final String tagName;
@@ -56,11 +57,11 @@ public class Tag {
     }
 
     public static void setCcaTagColour(TagColour colour) {
-        Tag.tagColours.put(" ", colour);
+        Tag.tagColours.put(CCA_COLOUR_KEY, colour);
     }
 
     public static TagColour getCcaTagColour() {
-        return Tag.tagColours.get(" ");
+        return Tag.tagColours.get(CCA_COLOUR_KEY);
     }
 
     @Override

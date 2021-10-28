@@ -276,6 +276,10 @@ public class ParserUtil {
             throw new ParseException(TagColourCommand.MESSAGE_RGB_CONSTRAINTS);
         }
 
+        if (red < 0 || red > 255 || green < 0 || green > 255 || blue < 0 || blue > 255) {
+            throw new ParseException(TagColourCommand.MESSAGE_RGB_CONSTRAINTS);
+        }
+
         return new TagColour(red, green, blue);
     }
 }
