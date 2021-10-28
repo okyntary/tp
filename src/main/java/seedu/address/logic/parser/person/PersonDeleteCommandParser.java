@@ -3,7 +3,7 @@ package seedu.address.logic.parser.person;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.commons.exceptions.ExceedingMaxIndexException;
+import seedu.address.commons.exceptions.IndexExceedsCapacityException;
 import seedu.address.logic.commands.person.PersonDeleteCommand;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
@@ -22,8 +22,8 @@ public class PersonDeleteCommandParser implements Parser<PersonDeleteCommand> {
         try {
             Index index = ParserUtil.parseIndex(args);
             return new PersonDeleteCommand(index);
-        } catch (ExceedingMaxIndexException emie) {
-            throw new ParseException(emie.getMessage());
+        } catch (IndexExceedsCapacityException iece) {
+            throw new ParseException(iece.getMessage());
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, PersonDeleteCommand.MESSAGE_USAGE), pe);

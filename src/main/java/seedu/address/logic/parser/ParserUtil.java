@@ -9,7 +9,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.commons.exceptions.ExceedingMaxIndexException;
+import seedu.address.commons.exceptions.IndexExceedsCapacityException;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.TagColourCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -37,12 +37,12 @@ public class ParserUtil {
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
-     * @throws ExceedingMaxIndexException if the specified index is exceeds ePoch's capacity of 999999999.
+     * @throws IndexExceedsCapacityException if the specified index is exceeds ePoch's capacity of 999999999.
      */
-    public static Index parseIndex(String oneBasedIndex) throws ParseException, ExceedingMaxIndexException {
+    public static Index parseIndex(String oneBasedIndex) throws ParseException, IndexExceedsCapacityException {
         String trimmedIndex = oneBasedIndex.trim();
         if (trimmedIndex.length() > 9) {
-            throw new ExceedingMaxIndexException(MESSAGE_INDEX_EXCEEDS_MAXIMUM_SIZE);
+            throw new IndexExceedsCapacityException(MESSAGE_INDEX_EXCEEDS_MAXIMUM_SIZE);
         }
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
             throw new ParseException(MESSAGE_INVALID_INDEX);

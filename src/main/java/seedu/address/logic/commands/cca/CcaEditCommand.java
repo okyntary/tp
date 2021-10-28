@@ -34,7 +34,7 @@ public class CcaEditCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the CCA identified "
             + "by the index number used in the displayed CCA list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: INDEX (must be a positive integer less than 1,000,000,000) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "

@@ -10,7 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_OCCURRENCES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START_DATE;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.commons.exceptions.ExceedingMaxIndexException;
+import seedu.address.commons.exceptions.IndexExceedsCapacityException;
 import seedu.address.logic.commands.reminder.ReminderEditCommand;
 import seedu.address.logic.commands.reminder.ReminderEditCommand.EditReminderDescriptor;
 import seedu.address.logic.parser.ArgumentMultimap;
@@ -38,8 +38,8 @@ public class ReminderEditCommandParser implements Parser<ReminderEditCommand> {
 
         try {
             index = ParserUtil.parseIndex((argMultimap.getPreamble()));
-        } catch (ExceedingMaxIndexException emie) {
-            throw new ParseException(emie.getMessage());
+        } catch (IndexExceedsCapacityException iece) {
+            throw new ParseException(iece.getMessage());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     ReminderEditCommand.MESSAGE_USAGE), pe);
@@ -66,7 +66,7 @@ public class ReminderEditCommandParser implements Parser<ReminderEditCommand> {
             try {
                 editReminderDescriptor.setCcaIndex(ParserUtil
                         .parseIndex(argMultimap.getValue(PREFIX_CCA_ID).get()));
-            } catch (ExceedingMaxIndexException iie) {
+            } catch (IndexExceedsCapacityException iie) {
                 throw new ParseException(MESSAGE_INVALID_CCA_DISPLAYED_INDEX);
             }
         }

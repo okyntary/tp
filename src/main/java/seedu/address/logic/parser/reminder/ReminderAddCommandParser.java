@@ -13,7 +13,7 @@ import java.util.stream.Stream;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
-import seedu.address.commons.exceptions.ExceedingMaxIndexException;
+import seedu.address.commons.exceptions.IndexExceedsCapacityException;
 import seedu.address.logic.LogicManager;
 import seedu.address.logic.commands.reminder.ReminderAddCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
@@ -59,7 +59,7 @@ public class ReminderAddCommandParser implements Parser<ReminderAddCommand> {
         Index ccaIndex;
         try {
             ccaIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_CCA_ID).get());
-        } catch (ExceedingMaxIndexException iie) {
+        } catch (IndexExceedsCapacityException iie) {
             throw new ParseException(MESSAGE_INVALID_CCA_DISPLAYED_INDEX + "\n" + iie.getMessage());
         }
         ReminderFrequency reminderFrequency = argMultimap.getValue(PREFIX_FREQUENCY).isPresent()

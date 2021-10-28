@@ -11,7 +11,7 @@ public class ReminderOccurrence {
      * @param occurrences The number of times the reminder occurs.
      */
     public ReminderOccurrence(int occurrences) {
-        assert occurrences > 0 : "Occurrence parsing incorrect";
+//        assert occurrences > 0 : "Occurrence parsing incorrect";
         this.occurrences = occurrences;
     }
 

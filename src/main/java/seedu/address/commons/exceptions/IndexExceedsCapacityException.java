@@ -3,11 +3,11 @@ package seedu.address.commons.exceptions;
 /**
  * Signals that some given index exceeds ePoch's maximum capacity.
  */
-public class ExceedingMaxIndexException extends IllegalValueException {
+public class IndexExceedsCapacityException extends IllegalValueException {
     /**
      * @param message should contain relevant information on the failed constraint(s)
      */
-    public ExceedingMaxIndexException(String message) {
+    public IndexExceedsCapacityException(String message) {
         super(message);
     }
 
@@ -15,7 +15,7 @@ public class ExceedingMaxIndexException extends IllegalValueException {
      * @param message should contain relevant information on the failed constraint(s)
      * @param cause of the main exception
      */
-    public ExceedingMaxIndexException(String message, Throwable cause) {
+    public IndexExceedsCapacityException(String message, Throwable cause) {
         super(message, cause);
     }
 }
