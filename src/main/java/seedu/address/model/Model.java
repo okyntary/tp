@@ -129,6 +129,24 @@ public interface Model {
     void updateFilteredReminderList(Predicate<Reminder> predicate);
 
     /**
+     * Returns the number of persons in ePoch.
+     * @return the number of persons in ePoch.
+     */
+    int getNumberOfPersons();
+
+    /**
+     * Returns the number of CCAs in ePoch.
+     * @return the number of CCAs in ePoch.
+     */
+    int getNumberOfCcas();
+
+    /**
+     * Returns the number of reminders in ePoch.
+     * @return the number of reminders in ePoch.
+     */
+    int getNumberOfReminders();
+
+    /**
      * Resets person list by removing all filters.
      */
     void resetFiltersForPersonList();
