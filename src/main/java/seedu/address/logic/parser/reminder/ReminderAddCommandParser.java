@@ -1,5 +1,6 @@
 package seedu.address.logic.parser.reminder;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_CCA_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CCA_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FREQUENCY;
@@ -12,6 +13,7 @@ import java.util.stream.Stream;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.exceptions.ExceedingMaxIndexException;
 import seedu.address.logic.LogicManager;
 import seedu.address.logic.commands.reminder.ReminderAddCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
@@ -54,7 +56,12 @@ public class ReminderAddCommandParser implements Parser<ReminderAddCommand> {
         ReminderName reminderName = ParserUtil.parseReminderName(argMultimap.getValue(PREFIX_NAME).get());
         ReminderStartDate reminderStartDate = ParserUtil.parseReminderStartDate(
                 argMultimap.getValue(PREFIX_START_DATE).get());
-        Index ccaIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_CCA_ID).get());
+        Index ccaIndex;
+        try {
+            ccaIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_CCA_ID).get());
+        } catch (ExceedingMaxIndexException iie) {
+            throw new ParseException(MESSAGE_INVALID_CCA_DISPLAYED_INDEX + "\n" + iie.getMessage());
+        }
         ReminderFrequency reminderFrequency = argMultimap.getValue(PREFIX_FREQUENCY).isPresent()
                 ? ParserUtil.parseReminderFrequency(argMultimap.getValue(PREFIX_FREQUENCY).get())
                 : ParserUtil.parseReminderFrequency("");

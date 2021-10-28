@@ -3,6 +3,7 @@ package seedu.address.logic.parser.reminder;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.exceptions.ExceedingMaxIndexException;
 import seedu.address.logic.commands.reminder.ReminderDeleteCommand;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
@@ -21,6 +22,8 @@ public class ReminderDeleteCommandParser implements Parser<ReminderDeleteCommand
         try {
             Index index = ParserUtil.parseIndex(args);
             return new ReminderDeleteCommand(index);
+        } catch (ExceedingMaxIndexException emie) {
+            throw new ParseException(emie.getMessage());
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReminderDeleteCommand.MESSAGE_USAGE), pe);

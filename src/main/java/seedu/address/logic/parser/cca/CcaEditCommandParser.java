@@ -11,6 +11,7 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.exceptions.ExceedingMaxIndexException;
 import seedu.address.logic.commands.cca.CcaEditCommand;
 import seedu.address.logic.commands.cca.CcaEditCommand.EditCcaDescriptor;
 import seedu.address.logic.parser.ArgumentMultimap;
@@ -39,6 +40,8 @@ public class CcaEditCommandParser implements Parser<CcaEditCommand> {
 
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
+        } catch (ExceedingMaxIndexException emie) {
+            throw new ParseException(emie.getMessage());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 CcaEditCommand.MESSAGE_USAGE), pe);
