@@ -172,6 +172,7 @@ A CCA has:
 * A CCA name, represented by the `CcaName` class. CCA name must be unique.
 * Zero or more people enrolled in it, represented by the HashSet `members`.
 * Zero or more reminders associated with it, represented by the HashSet `reminders`.
+* A set of zero or more tags, with the tags being represented by the `Tag` class.
 
 Two CCAs are considered identical if they have the same name.
 
@@ -226,7 +227,7 @@ A Reminder has:
 * Zero or one occurrence, represented by the `ReminderOccurrence` class.
 * Exactly one CCA that it is linked to, represented as a `Cca` data field.
 
-Two Reminders are considered identical if they have the same name, same frequency, and same occurrence.
+Two Reminders are considered identical if they have the same name, same cca, same start date, same frequency, and same occurrence.
 
 #### Command for Adding Reminders
 
@@ -240,91 +241,71 @@ The `ReminderAddCommand` class has an Index which is the index of the CCA to add
 It implements the `execute` method which handles the logic of the add command.
 The `updateFilteredCcaList` and `updateFilteredReminderList` methods are called to update the `UI` component.
 
+#### Command for Deleting Reminders
 
-### \[Proposed\] Undo/redo feature
+The `deleter` command is implemented by `ReminderDeleteCommand`.
+Similar to `ReminderAddCommand`, `ReminderDeleteCommand` extends `Command` to practice polymorphism.
 
-#### Proposed Implementation
+The `ReminderDeleteCommand` class has an Index which is the index of the Reminder to delete, specified by the user.
+It implements the `execute` method which handles the logic of the delete command.
+The `getFilteredReminderList` method is called to obtain a List of Reminders, `lastShownList`.
+If the given index exists in `lastShownList`, the corresponding Reminder is deleted using the `deleteReminder` method defined in the `ModelManager`.
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+#### Command for Editing Reminders
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+The `editr` command is implemented by `ReminderEditCommand` which extends `Command`.
+Similar to other commands, `ReminderEditCommand` extends `Command` to practice polymorphism.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+The new values specified by the user are parsed and passed to the `createEditedReminder` method, which makes use of the nested class `EditReminderDescriptor` to generate the new, edited Reminder.
+Both old and new Reminders are then passed to the `setReminder` method defined in the `ModelManager` to edit the data in the corresponding Reminder.
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+#### Command for Finding Reminders
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+The `findr` command is implemented by `ReminderFindCommand` which extends `Command`.
+Similar to other commands, `ReminderFindCommand` extends `Command` to practice polymorphism.
 
-![UndoRedoState0](images/UndoRedoState0.png)
+The keywords specified by the user are passed as a List to the `ReminderNameContainsKeywordsPredicate` constructor.
+The `ReminderNameContainsKeywordsPredicate` class extends `Predicate<Reminder>` and implements the `test` method,
+which uses streams to filter Reminders whose name matches any of the keywords.
 
-Step 2. The user executes `deletep 5` command to delete the 5th person in the address book. The `deletep` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `deletep 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+#### Command for Snoozing Reminders
 
-![UndoRedoState1](images/UndoRedoState1.png)
+The `snoozer` command is implemented by `ReminderSnoozeCommand`, which extends `Command`.
+Polymorphism allows the different Command objects to be passed around and executed without having to know what type of Command it is.
 
-Step 3. The user executes `addp n/David …` to add a new person. The `addp` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+The `ReminderSnoozeCommand` has an Index which is the index of the Reminder to snooze, specified by the user.
+If the Index is not valid, an error message is shown.
+It implements the `execute` method which handles the logic of the add command.
+It edits the Reminder by getting its next date and updating the `UI` components, using the same process as the `ReminderEditCommand`.
+If the Reminder is on its last occurrence, this action performs the same action as the `ReminderDeleteCommand` (as the Reminder has no more occurrences after being snoozed).
 
-![UndoRedoState2](images/UndoRedoState2.png)
+### Tags
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+A Tag has:
 
-</div>
+* A tag name, represented by a `String`
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Two Tags are considered identical if they have the same name.
+A Tag also corresponds to a certain `TagColour`, the mappings of which are stored in the static `tagColours` Hashtable within the Tag class.
 
-![UndoRedoState3](images/UndoRedoState3.png)
+#### Command for Changing Non-CCA Tag Colours
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
+The `colourt` command is implemented by `TagColourCommand`, which extends `Command`.
+Polymorphism allows the different Command objects to be passed around and executed without having to know what type of Command it is.
 
-</div>
+The `TagColourCommand` has a `String` containing the tag name and a `TagColour` representing the new colour to change that particular tag to.
+It implements the `execute` method which handles the logic of the `TagColourCommand`, setting the value in the Hashtable (of the relevant key, specified by the tag name) to the new `TagColour` value.
+It then updates the `UI` component by refreshing the list of Persons and CCAs (Reminders only have a CCA tag, and so do not need to be refreshed).
 
-The following sequence diagram shows how the undo operation works:
+#### Command for Changing CCA Tag Colours
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+The `colourc` command is implemented by the `CcaColourCommand`, which extends `Command`.
+Polymorphism allows the different Command objects to be passed around and executed without having to know what type of Command it is.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `deletep`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
+The `CcaColourCommand` has a `TagColour` representing the new colour to change the CCA tags to.
+Since, CCA tags are automatically added to Reminders, one changes all of the CCA tag colours at once.
+The command implements the `execute` method which handles the logic of the `CcaColourCommand`, setting the value in the Hashtable (of the key corresponding to CCA tags) to the new `TagColour` value.
+It then updates the `UI` component by refreshing the list of Reminders.
 
 --------------------------------------------------------------------------------------------------------------------
 
