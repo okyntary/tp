@@ -311,6 +311,11 @@ public class PersonAddCommandTest {
         }
 
         @Override
+        public int getNumberOfPersons() {
+            return 1;
+        }
+
+        @Override
         public ReadOnlyAddressBook getAddressBook() {
             return new AddressBook();
         }
