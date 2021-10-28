@@ -7,6 +7,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IndexExceedsCapacityException;
@@ -41,7 +42,7 @@ public class ParserUtil {
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException, IndexExceedsCapacityException {
         String trimmedIndex = oneBasedIndex.trim();
-        if (trimmedIndex.length() > 9) {
+        if (trimmedIndex.length() > 9 && Pattern.compile("\\d+").matcher(trimmedIndex).matches()) {
             throw new IndexExceedsCapacityException(MESSAGE_INDEX_EXCEEDS_MAXIMUM_SIZE);
         }
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
