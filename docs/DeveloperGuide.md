@@ -253,11 +253,14 @@ If the given index exists in `lastShownList`, the corresponding Reminder is dele
 
 #### Command for Editing Reminders
 
-The `editr` command is implemented by `ReminderEditCommand` which extends `Command`.
-Similar to other commands, `ReminderEditCommand` extends `Command` to practice polymorphism.
+The `editr` command is implemented by `ReminderEditCommand`, which extends `Command`.
+Polymorphism allows the different Command objects to be passed around and executed without having to know what type of Command it is.
 
-The new values specified by the user are parsed and passed to the `createEditedReminder` method, which makes use of the nested class `EditReminderDescriptor` to generate the new, edited Reminder.
-Both old and new Reminders are then passed to the `setReminder` method defined in the `ModelManager` to edit the data in the corresponding Reminder.
+If the user does not specify any of the fields, the fields default to the original values of the unedited reminder.
+
+The `ReminderEditCommand` class has an Index which is the index of the Reminder to be edited, specified by the user.
+It implements the `execute` method which handles the logic of the add command.
+The `updateFilteredReminderList` method is called to update the `UI` component.
 
 #### Command for Finding Reminders
 
