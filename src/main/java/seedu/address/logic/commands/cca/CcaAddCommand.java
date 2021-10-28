@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.cca;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_MAXIMUM_CCAS_CAPACITY_REACHED;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -51,6 +52,10 @@ public class CcaAddCommand extends Command {
 
         if (model.hasCca(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_CCA);
+        }
+
+        if (model.getNumberOfCcas() == model.MAXIMUM_CAPACITY_CCAS) {
+            throw new CommandException(MESSAGE_MAXIMUM_CCAS_CAPACITY_REACHED);
         }
 
         model.addCca(toAdd);

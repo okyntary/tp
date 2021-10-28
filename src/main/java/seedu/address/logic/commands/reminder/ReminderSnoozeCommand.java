@@ -17,7 +17,7 @@ public class ReminderSnoozeCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Snoozes the Reminder identified by the index number used in the displayed Reminder list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Parameters: INDEX (must be a positive integer less than 1,000,000,000)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_SNOOZE_REMINDER_SUCCESS = "Snoozed Reminder: %1$s";
