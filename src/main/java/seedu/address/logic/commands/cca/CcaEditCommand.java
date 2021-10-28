@@ -66,7 +66,7 @@ public class CcaEditCommand extends Command {
         List<Cca> lastShownList = model.getFilteredCcaList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_CCA_DISPLAYED_INDEX);
         }
 
         Cca ccaToEdit = lastShownList.get(index.getZeroBased());
