@@ -8,7 +8,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
 
-//import seedu.address.model.cca.Cca;
 import seedu.address.model.util.Frequency;
 
 public class Reminder implements Comparable<Reminder> {
@@ -36,6 +35,21 @@ public class Reminder implements Comparable<Reminder> {
         this.reminderFrequency = reminderFrequency;
         this.reminderOccurrence = reminderOccurrence;
         fillAllUpcomingDates();
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Reminder(ReminderName reminderName, ReminderStartDate reminderStartDate,
+                    ReminderFrequency reminderFrequency, ReminderOccurrence reminderOccurrence,
+                    String ccaName, ArrayList<Date> dates) {
+        requireAllNonNull(reminderName, reminderStartDate, reminderFrequency, reminderOccurrence);
+        this.reminderName = reminderName;
+        this.reminderStartDate = reminderStartDate;
+        this.reminderFrequency = reminderFrequency;
+        this.reminderOccurrence = reminderOccurrence;
+        this.ccaName = ccaName;
+        this.dates = dates;
     }
 
     private void setAllUpcomingDates(ArrayList<Date> dates) {
@@ -76,6 +90,14 @@ public class Reminder implements Comparable<Reminder> {
         }
     }
 
+    public ArrayList<Date> getDates() {
+        return this.dates;
+    }
+
+    public void setDates(ArrayList<Date> dates) {
+        this.dates = dates;
+    }
+
     public String getNextDate() {
         return PARSE_DATE_TO_STRING_FORMAT.format(dates.get(0));
     }
@@ -95,16 +117,6 @@ public class Reminder implements Comparable<Reminder> {
     public ReminderOccurrence getOccurrences() {
         return reminderOccurrence;
     }
-
-    /*
-    public Cca getCca() {
-        return cca;
-    }
-
-    public void setCca(Cca cca) {
-        this.cca = cca;
-    }
-    */
 
     public String getCcaName() {
         return ccaName;
@@ -129,6 +141,7 @@ public class Reminder implements Comparable<Reminder> {
                 new ReminderOccurrence(getOccurrences().getOccurrences() - 1));
         dates.remove(0);
         snoozedReminder.setAllUpcomingDates(dates);
+        snoozedReminder.setCcaName(getCcaName());
         return snoozedReminder;
     }
 

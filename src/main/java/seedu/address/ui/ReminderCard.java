@@ -1,9 +1,11 @@
 package seedu.address.ui;
 
-import java.util.Hashtable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
 
 import javafx.beans.binding.Bindings;
-import javafx.beans.binding.ObjectBinding;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
@@ -15,6 +17,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import seedu.address.model.reminder.Reminder;
+import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.TagColour;
 
 /**
  * An UI component that displays information of a {@code Reminder}.
@@ -60,18 +64,25 @@ public class ReminderCard extends UiPart<Region> {
         this.frequency.setText("Frequency: " + reminder.getFrequency().toString());
         this.occurrences.setText("Occurrences Left: " + reminder.getOccurrences().toString());
 
-        // each CCA has a field for color? can do an enum
-        // then mapping from enum value to the binding
-        // should include a default value in the enum
-        // example mapping (with int in place of enum value):
-        Hashtable<Integer, ObjectBinding<Background>> backgrounds = new Hashtable<>();
-        backgrounds.put(1, Bindings.createObjectBinding(() -> {
-            BackgroundFill fill = new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY);
-            return new Background(fill);
-        })); // so 1 = red
-        Label tempLabel = new Label("NUSSO");
-        tempLabel.backgroundProperty().bind(backgrounds.get(1));
-        tags.getChildren().add(tempLabel);
+        TagColour tagColour = Tag.getCcaTagColour();
+        Label tagLabel = new Label(reminder.getCcaName());
+        tagLabel.backgroundProperty().bind(Bindings.createObjectBinding(() -> {
+            Color c = Color.rgb(tagColour.red, tagColour.green, tagColour.blue);
+            BackgroundFill tagFill = new BackgroundFill(c, CornerRadii.EMPTY, Insets.EMPTY);
+            return new Background(tagFill);
+        }));
+        tags.getChildren().add(tagLabel);
+
+        // if reminder.getNextDate() is today, then change colour
+        Date date = new Date();
+        DateFormat df = new SimpleDateFormat("E, dd MMM yyyy");
+        df.setTimeZone(TimeZone.getTimeZone("Singapore")); // check if this is needed
+        String currDate = df.format(date);
+        if (reminder.getNextDate().equals(currDate)) {
+            this.cardPane.backgroundProperty().bind(Bindings.createObjectBinding(() ->
+                new Background(new BackgroundFill(Color.rgb(255, 40, 0, 0.7),
+                        CornerRadii.EMPTY, Insets.EMPTY))));
+        }
     }
 
     @Override

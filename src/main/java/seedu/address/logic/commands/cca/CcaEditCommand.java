@@ -89,11 +89,11 @@ public class CcaEditCommand extends Command {
         assert ccaToEdit != null;
 
         CcaName updatedName = editCcaDescriptor.getName().orElse(ccaToEdit.getName());
-        Set<Person> copyOfPersonArrayList = ccaToEdit.getPersonArrayList();
+        Set<Person> copyOfmembers = ccaToEdit.getMembers();
         Set<Reminder> copyOfReminders = ccaToEdit.getReminders();
         Set<Tag> updatedTags = editCcaDescriptor.getTags().orElse(ccaToEdit.getTags());
 
-        return new Cca(updatedName, copyOfPersonArrayList, copyOfReminders, updatedTags);
+        return new Cca(updatedName, copyOfmembers, copyOfReminders, updatedTags);
     }
 
     @Override

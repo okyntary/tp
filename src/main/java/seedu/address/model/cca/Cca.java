@@ -10,13 +10,12 @@ import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.tag.Tag;
 
-
 public class Cca {
 
     // Identity fields
     private final CcaName ccaName;
     // Data fields
-    private Set<Person> personArrayList = new HashSet<>();
+    private Set<Person> members = new HashSet<>();
     private Set<Reminder> reminders = new HashSet<>();
     private final Set<Tag> tags = new HashSet<>();
 
@@ -26,7 +25,7 @@ public class Cca {
     public Cca(CcaName ccaName) {
         requireAllNonNull(ccaName);
         this.ccaName = ccaName;
-        this.personArrayList = new HashSet<>();
+        this.members = new HashSet<>();
     }
 
     /**
@@ -37,22 +36,22 @@ public class Cca {
     public Cca(CcaName ccaName, Set<Tag> tags) {
         requireAllNonNull(ccaName);
         this.ccaName = ccaName;
-        this.personArrayList = new HashSet<>();
+        this.members = new HashSet<>();
         this.tags.addAll(tags);
     }
 
     /**
      *
-     * Constructor using ccaName, personArrayList, reminders, and tags
+     * Constructor using ccaName, members, reminders, and tags
      * @param ccaName Name of CCA
-     * @param personArrayList list of associated members
+     * @param members list of associated members
      * @param reminders list of associated reminders
      * @param tags CCA tags
      */
-    public Cca(CcaName ccaName, Set<Person> personArrayList, Set<Reminder> reminders, Set<Tag> tags) {
+    public Cca(CcaName ccaName, Set<Person> members, Set<Reminder> reminders, Set<Tag> tags) {
         requireAllNonNull(ccaName);
         this.ccaName = ccaName;
-        this.personArrayList = personArrayList;
+        this.members = members;
         this.reminders = reminders;
         this.tags.addAll(tags);
     }
@@ -66,11 +65,11 @@ public class Cca {
     }
 
     /**
-     * Returns the personArrayList of this CCA.
-     * @return the personArrayList of this CCA
+     * Returns the members of this CCA.
+     * @return the members of this CCA
      */
-    public Set<Person> getPersonArrayList() {
-        return personArrayList;
+    public Set<Person> getMembers() {
+        return members;
     }
 
     /**
@@ -78,11 +77,10 @@ public class Cca {
      * @return the number of members of this CCA
      */
     public int getNumberOfMembers() {
-        return personArrayList.size();
+        return members.size();
     }
 
     /**
-<<<<<<< HEAD
      * Returns the reminders of this CCA.
      * @return the reminders of this CCA
      */
@@ -114,7 +112,6 @@ public class Cca {
         if (otherCca == this) {
             return true;
         }
-
         return otherCca != null
                 && otherCca.getName().equals(getName());
     }
@@ -135,7 +132,7 @@ public class Cca {
 
         seedu.address.model.cca.Cca otherCca = (seedu.address.model.cca.Cca) other;
         return otherCca.getName().equals(this.getName())
-                && otherCca.getPersonArrayList().equals(this.getPersonArrayList())
+                && otherCca.getMembers().equals(this.getMembers())
                 && otherCca.getTags().equals(this.getTags());
     }
 
@@ -150,7 +147,7 @@ public class Cca {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
                 .append("; Number of enrolled persons: ")
-                .append(this.getPersonArrayList().size());
+                .append(this.getMembers().size());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
@@ -162,17 +159,17 @@ public class Cca {
 
     // Enrol a Person
     public boolean enrolPerson(Person newPerson) {
-        return this.personArrayList.add(newPerson);
+        return this.members.add(newPerson);
     }
 
     // Check if Person Exists but should not need as it is a Set<>
-    public boolean checkPerson(Person personToCheck) {
-        return this.personArrayList.contains(personToCheck);
+    public boolean containsEnrolledPerson(Person personToCheck) {
+        return this.members.contains(personToCheck);
     }
 
     // Expel a Person
     public boolean expelPerson(Person personToExpel) {
-        return this.personArrayList.remove(personToExpel);
+        return this.members.remove(personToExpel);
     }
 
     // Add a reminder

@@ -17,7 +17,6 @@ public class ReminderStartDate implements Comparable<ReminderStartDate> {
     public static final SimpleDateFormat PARSE_INPUT_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
     public static final SimpleDateFormat PARSE_DATE_TO_STRING_FORMAT = new SimpleDateFormat("E, dd MMM yyyy");
 
-
     public final Date startDate;
 
     /**
