@@ -1,13 +1,26 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandTestUtil.CCA_NAME_DESC_NUSSO;
+import static seedu.address.logic.commands.CommandTestUtil.CCA_NAME_DESC_USKICK;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_CCA_NAME_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
+import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CCA_NAME_TRACK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CCA_NAME_USKICK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalCcas.NUSSO;
 import static seedu.address.testutil.TypicalCcas.USKICK;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.commands.cca.CcaAddCommand;
 import seedu.address.logic.parser.cca.CcaAddCommandParser;
 import seedu.address.model.cca.Cca;
@@ -27,7 +40,7 @@ public class CcaAddCommandParserTest {
                 + TAG_DESC_FRIEND, new CcaAddCommand(expectedCca));
 
         // multiple names - last name accepted
-        assertParseSuccess(parser, NAME_DESC_AMY + CCA_NAME_DESC_USKICK
+        assertParseSuccess(parser, VALID_CCA_NAME_USKICK + CCA_NAME_DESC_USKICK
                 + TAG_DESC_FRIEND, new CcaAddCommand(expectedCca));
 
         // multiple tags - all accepted
@@ -68,7 +81,7 @@ public class CcaAddCommandParserTest {
                 + INVALID_TAG_DESC + VALID_TAG_FRIEND, Tag.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
-        assertParseFailure(parser, INVALID_NAME_DESC + INVALID_ADDRESS_DESC,
+        assertParseFailure(parser, INVALID_CCA_NAME_DESC + INVALID_ADDRESS_DESC,
                 Name.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble

@@ -5,11 +5,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showCcaAtIndex;
+import static seedu.address.testutil.TypicalCcas.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CCA;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_CCA;
-import static seedu.address.testutil.TypicalCcas.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.cca.CcaDeleteCommand;
