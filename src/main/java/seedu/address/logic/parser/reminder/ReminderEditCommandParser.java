@@ -1,6 +1,7 @@
 package seedu.address.logic.parser.reminder;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_CCA_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CCA_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FREQUENCY;
@@ -9,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_OCCURRENCES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START_DATE;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.exceptions.IndexExceedsCapacityException;
 import seedu.address.logic.commands.reminder.ReminderEditCommand;
 import seedu.address.logic.commands.reminder.ReminderEditCommand.EditReminderDescriptor;
 import seedu.address.logic.parser.ArgumentMultimap;
@@ -36,6 +38,8 @@ public class ReminderEditCommandParser implements Parser<ReminderEditCommand> {
 
         try {
             index = ParserUtil.parseIndex((argMultimap.getPreamble()));
+        } catch (IndexExceedsCapacityException iece) {
+            throw new ParseException(iece.getMessage());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     ReminderEditCommand.MESSAGE_USAGE), pe);
@@ -59,8 +63,12 @@ public class ReminderEditCommandParser implements Parser<ReminderEditCommand> {
                     .parseReminderOccurrence(argMultimap.getValue(PREFIX_OCCURRENCES).get()));
         }
         if (argMultimap.getValue(PREFIX_CCA_ID).isPresent()) {
-            editReminderDescriptor.setCcaIndex(ParserUtil
-                    .parseIndex(argMultimap.getValue(PREFIX_CCA_ID).get()));
+            try {
+                editReminderDescriptor.setCcaIndex(ParserUtil
+                        .parseIndex(argMultimap.getValue(PREFIX_CCA_ID).get()));
+            } catch (IndexExceedsCapacityException iie) {
+                throw new ParseException(MESSAGE_INVALID_CCA_DISPLAYED_INDEX);
+            }
         }
 
         return new ReminderEditCommand(index, editReminderDescriptor);

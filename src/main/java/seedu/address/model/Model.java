@@ -13,6 +13,10 @@ import seedu.address.model.reminder.Reminder;
  * The API of the Model component.
  */
 public interface Model {
+    public static final int MAXIMUM_CAPACITY_PERSONS = 999999999;
+    public static final int MAXIMUM_CAPACITY_CCAS = 999999999;
+    public static final int MAXIMUM_CAPACITY_REMINDERS = 999999999;
+
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
     Predicate<Cca> PREDICATE_SHOW_ALL_CCAS = unused -> true;
@@ -127,6 +131,24 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredReminderList(Predicate<Reminder> predicate);
+
+    /**
+     * Returns the number of persons in ePoch.
+     * @return the number of persons in ePoch.
+     */
+    int getNumberOfPersons();
+
+    /**
+     * Returns the number of CCAs in ePoch.
+     * @return the number of CCAs in ePoch.
+     */
+    int getNumberOfCcas();
+
+    /**
+     * Returns the number of reminders in ePoch.
+     * @return the number of reminders in ePoch.
+     */
+    int getNumberOfReminders();
 
     /**
      * Resets person list by removing all filters.

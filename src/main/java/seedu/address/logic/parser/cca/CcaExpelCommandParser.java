@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_ID;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.exceptions.IndexExceedsCapacityException;
 import seedu.address.logic.commands.cca.CcaExpelCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
@@ -30,8 +31,15 @@ public class CcaExpelCommandParser implements Parser<CcaExpelCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CcaExpelCommand.MESSAGE_USAGE));
         }
 
-        Index ccaIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_CCA_ID).get());
-        Index personIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_PERSON_ID).get());
+        Index ccaIndex;
+        Index personIndex;
+        try {
+            ccaIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_CCA_ID).get());
+            personIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_PERSON_ID).get());
+        } catch (IndexExceedsCapacityException iie) {
+            throw new ParseException(iie.getMessage());
+        }
+
         return new CcaExpelCommand(ccaIndex, personIndex);
     }
 

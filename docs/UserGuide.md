@@ -146,31 +146,31 @@ Format: `findc STRING`
 
 Adds a reminder to a CCA.
 
-Format: `addr cid/CCA_ID t/REMINDER_TITLE sd/START_DATE [f/FREQUENCY] [o/OCCURRENCES]`
+Format: `addr cid/CCA_ID n/REMINDER_NAME sd/START_DATE [f/FREQUENCY] [o/OCCURRENCES]`
 
-### Editing the title of a reminder: `editr`
+### Editing a reminder: `editr`
 
-Edits the title of a reminder.
+Edits a reminder.
 
-Format: `editr rid/REMINDER_ID t/REMINDER_TITLE`
+Format: `editr cid/CCA_ID n/REMINDER_NAME sd/START_DATE [f/FREQUENCY] [o/OCCURRENCES]`
 
-### Deleting the title of a reminder: `deleter`
+### Deleting a reminder: `deleter`
 
 Deletes a reminder.
 
-Format: `deleter rid/REMINDER_ID`
+Format: `deleter REMINDER_ID`
 
 ### Finding the title of a reminder: `findr`
 
 Filters all reminders that fit a given string.
 
-Format: `findr t/REMINDER_TITLE`
+Format: `findr STRING`
 
 ### Snoozing a reminder: `snoozer`
 
 Snoozes the reminder.
 
-Format: `snoozer rid/REMINDER_ID`
+Format: `snoozer REMINDER_ID`
 
 ### Enrolling a person from a CCA: `enrol`
 
@@ -183,6 +183,18 @@ Format: `enrol cid/CCA_ID pid/PERSON_ID`
 Expels a person from a CCA.
 
 Format: `expel cid/CCA_ID pid/PERSON_ID`
+
+### Changing the colour of a non-CCA tag: `colourt`
+
+Changes the colour of a non-CCA tag.
+
+Format: `colourt n/TAG_NAME c/RED GREEN BLUE`
+
+### Changing the colour of all CCA tags: `colourc`
+
+Changes the colour of all CCA tags.
+
+Format: `colourc c/RED GREEN BLUE`
 
 ### Delete all data from ePoch: `clear`
 
@@ -242,11 +254,14 @@ Action | Format
 **Edit CCA name** | `editc CCA_ID n/CCA_NAME`
 **Delete CCA** | `deletec CCA_ID`
 **Find CCA** | `findc STRING`
-**Add reminder** |`addr cid/CCA_ID t/REMINDER_TITLE sd/START_DATE [f/FREQUENCY] [o/OCCURRENCES]`
-**Edit reminder title** | `editr rid/REMINDER_ID t/REMINDER_TITLE`
-**Delete reminder** | `deleter rid/REMINDER_ID`
-**Find reminder** | `findr t/REMINDER_TITLE`
-**Snooze reminder** | `snoozer`
+**Add reminder** | `addr cid/CCA_ID n/REMINDER_NAME sd/START_DATE [f/FREQUENCY] [o/OCCURRENCES]`
+**Edit reminder title** | `editr cid/CCA_ID n/REMINDER_NAME sd/START_DATE [f/FREQUENCY] [o/OCCURRENCES]`
+**Delete reminder** | `deleter REMINDER_ID`
+**Find reminder** | `findr STRING`
+**Snooze reminder** | `snoozer REMINDER_ID`
 **Enrols a person into CCA** | `enrol cid/CCA_ID pid/PERSON_ID`
 **Removes a person from a CCA** | `expel cid/CCA_ID pid/PERSON_ID`
-**Exit** | Exits the app
+**Changes the colour of a non-CCA tag** | `colourt n/TAG_NAME c/RED GREEN BLUE`
+**Changes the colour of all CCA tags** | `colourc c/RED GREEN BLUE`
+**View help page** | `help`
+**Exit the app** | `exit`

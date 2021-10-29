@@ -3,10 +3,12 @@ package seedu.address.logic.commands.cca;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COLOUR;
 
+import javafx.collections.ObservableList;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.reminder.Reminder;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.TagColour;
 
@@ -41,6 +43,14 @@ public class CcaColourCommand extends Command {
         // TODO: reload all tags
         requireNonNull(model);
         Tag.setCcaTagColour(tagColour);
+
+        ObservableList<Reminder> reminderList = model.getAddressBook().getReminderList();
+        for (int i = 0; i < reminderList.size(); i++) {
+            Reminder reminder = reminderList.get(i);
+            model.setReminder(reminder, reminder);
+        }
+        // add personList here if we're including cca tags for persons
+
         return new CommandResult(String.format(MESSAGE_SUCCESS));
     }
 

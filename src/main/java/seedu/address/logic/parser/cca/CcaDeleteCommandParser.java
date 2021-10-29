@@ -3,6 +3,7 @@ package seedu.address.logic.parser.cca;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.exceptions.IndexExceedsCapacityException;
 import seedu.address.logic.commands.cca.CcaDeleteCommand;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
@@ -21,6 +22,8 @@ public class CcaDeleteCommandParser implements Parser<CcaDeleteCommand> {
         try {
             Index index = ParserUtil.parseIndex(args);
             return new CcaDeleteCommand(index);
+        } catch (IndexExceedsCapacityException iece) {
+            throw new ParseException(iece.getMessage());
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, CcaDeleteCommand.MESSAGE_USAGE), pe);

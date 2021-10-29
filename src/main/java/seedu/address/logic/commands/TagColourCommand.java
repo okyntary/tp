@@ -4,8 +4,11 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COLOUR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
+import javafx.collections.ObservableList;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.cca.Cca;
+import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.TagColour;
 
@@ -42,7 +45,6 @@ public class TagColourCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        // TODO: need to reload all tags,,,,
         requireNonNull(model);
 
         if (!Tag.hasTagBeenCreated(tagName)) {
@@ -50,6 +52,18 @@ public class TagColourCommand extends Command {
         }
 
         Tag.setTagColour(tagName, tagColour);
+
+        ObservableList<Cca> ccaList = model.getAddressBook().getCcaList();
+        for (int i = 0; i < ccaList.size(); i++) {
+            Cca cca = ccaList.get(i);
+            model.setCca(cca, cca); //refresh ALL ccas (should be faster than running through all cca and checking tags)
+        }
+        ObservableList<Person> personList = model.getAddressBook().getPersonList();
+        for (int i = 0; i < personList.size(); i++) {
+            Person person = personList.get(i);
+            model.setPerson(person, person);
+        }
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, tagName));
     }
 

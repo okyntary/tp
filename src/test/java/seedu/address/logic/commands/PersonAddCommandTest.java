@@ -153,6 +153,11 @@ public class PersonAddCommandTest {
         }
 
         @Override
+        public int getNumberOfPersons() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
@@ -174,6 +179,11 @@ public class PersonAddCommandTest {
 
         @Override
         public ObservableList<Cca> getFilteredCcaList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public int getNumberOfCcas() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -206,6 +216,11 @@ public class PersonAddCommandTest {
 
         @Override
         public ObservableList<Reminder> getFilteredReminderList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public int getNumberOfReminders() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -293,6 +308,11 @@ public class PersonAddCommandTest {
         public void addPerson(Person person) {
             requireNonNull(person);
             personsAdded.add(person);
+        }
+
+        @Override
+        public int getNumberOfPersons() {
+            return 1;
         }
 
         @Override

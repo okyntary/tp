@@ -1,13 +1,16 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INDEX_EXCEEDS_MAXIMUM_SIZE;
 
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.exceptions.IndexExceedsCapacityException;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.TagColourCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -35,9 +38,13 @@ public class ParserUtil {
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     * @throws IndexExceedsCapacityException if the specified index is exceeds ePoch's capacity of 999999999.
      */
-    public static Index parseIndex(String oneBasedIndex) throws ParseException {
+    public static Index parseIndex(String oneBasedIndex) throws ParseException, IndexExceedsCapacityException {
         String trimmedIndex = oneBasedIndex.trim();
+        if (trimmedIndex.length() > 9 && Pattern.compile("\\d+").matcher(trimmedIndex).matches()) {
+            throw new IndexExceedsCapacityException(MESSAGE_INDEX_EXCEEDS_MAXIMUM_SIZE);
+        }
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }

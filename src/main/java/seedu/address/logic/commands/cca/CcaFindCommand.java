@@ -68,7 +68,7 @@ public class CcaFindCommand extends Command {
     private NameContainsKeywordsPredicate getFilterForPersonList(ObservableList<Cca> ccaList) {
         Set<Person> allPersons = new HashSet<>();
         for (Cca validCca: ccaList) {
-            allPersons.addAll(validCca.getPersonArrayList());
+            allPersons.addAll(validCca.getMembers());
         }
         List<String> allPersonNames = allPersons
                 .stream().map(Person::getName).map(Name::toString).collect(Collectors.toList());
