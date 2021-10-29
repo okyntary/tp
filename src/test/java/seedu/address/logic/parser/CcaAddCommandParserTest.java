@@ -11,7 +11,6 @@ import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CCA_NAME_TRACK;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_CCA_NAME_USKICK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -40,7 +39,7 @@ public class CcaAddCommandParserTest {
                 + TAG_DESC_FRIEND, new CcaAddCommand(expectedCca));
 
         // multiple names - last name accepted
-        assertParseSuccess(parser, VALID_CCA_NAME_USKICK + CCA_NAME_DESC_USKICK
+        assertParseSuccess(parser, CCA_NAME_DESC_NUSSO + CCA_NAME_DESC_USKICK
                 + TAG_DESC_FRIEND, new CcaAddCommand(expectedCca));
 
         // multiple tags - all accepted
