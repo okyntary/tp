@@ -75,7 +75,7 @@ Adds a person to ePoch.
 Format: `addp n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person must have at least their name added.
+A person must have at least their name, phone number, email, and address added.
 </div>
 
 Examples:
@@ -86,37 +86,37 @@ Examples:
 
 Edits an existing person in ePoch.
 
-Format: `editp pid/PERSON_ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]​`
+Format: `editp PERSON_INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]​`
 
-* Edits the person at the specified by their person id (`pid`). The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the person at the specified by displayed index. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
 Examples:
-*  `edit pid/1 p/91234567 e/jiveshrealemail@yahoo.com` Edits the phone number and email address of the 1st person to be `91234567` and `jiveshrealemail@yahoo.com` respectively.
-*  `edit 2 n/weiq dt/NUSSO @nussymphonyorchestra thanks` Edits the name of the 2nd person to be `weiq` and clears the specified tag.
+*  `editp 1 p/91234567 e/jiveshrealemail@yahoo.com` Edits the phone number and email address of the 1st person to be `91234567` and `jiveshrealemail@yahoo.com` respectively.
+*  `editp 2 n/weiq dt/NUSSO @nussymphonyorchestra thanks` Edits the name of the 2nd person to be `weiq` and clears the specified tag.
 
 ### Deleting a person: `deletep`
 
 Deletes the specified person from ePoch.
 
-Format: `deletep pid/PERSON_ID`
+Format: `deletep PERSON_INDEX`
 
-* Deletes the person with the specified person ID (`pid`).
-* The person ID refers to the index number shown in the displayed person list.
-* The person ID **must be a positive integer** 1, 2, 3, …​
+* Deletes the person with the specified index `INDEX`.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `deletep pid/2` deletes the person in the address book that has person ID of 2.
+* `deletep 2` deletes the person in the address book that has an index of 2.
 
 ### Finding a person: `findp`
 
-Finds all the people in ePoch that match all the specified fields.
+Finds all the people in ePoch whose name matches any search keyword.
 
-Format: `findp [pid/PERSON_ID] [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [cca/CCA_NAME]`
+Format: `findp [FIRST_WORD] [SECOND_WORD] ....`
 
-* Finds the people who have valid matches for all the specified fields.
-* At least one of the optional fields must be provided.
+* Finds the people whose name matches any of the given space-separated keywords.
+* At least one keyword must be provided.
 
 ### Adding a CCA: `addc`
 
@@ -146,13 +146,13 @@ Format: `findc STRING`
 
 Adds a reminder to a CCA.
 
-Format: `addr cid/CCA_ID n/REMINDER_NAME sd/START_DATE [f/FREQUENCY] [o/OCCURRENCES]`
+Format: `addr INDEX n/REMINDER_NAME sd/START_DATE [f/FREQUENCY] [o/OCCURRENCES]`
 
 ### Editing a reminder: `editr`
 
 Edits a reminder.
 
-Format: `editr cid/CCA_ID n/REMINDER_NAME sd/START_DATE [f/FREQUENCY] [o/OCCURRENCES]`
+Format: `editr INDEX n/REMINDER_NAME sd/START_DATE [f/FREQUENCY] [o/OCCURRENCES]`
 
 ### Deleting a reminder: `deleter`
 
@@ -246,10 +246,10 @@ Action | Format
 -------|------------------
 **List all data** | `list`
 **Delete all data** | `clear`
-**Add person** | `addp n/PERSON_NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]`
-**Edit person data** | `editp PERSON_ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]`
-**Delete person** | `deletep PERSON_ID`
-**Find person** | `findp [pid/PERSON_ID] [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [cca/CCA_NAME]`
+**Add person** | `addp n/PERSON_NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS`
+**Edit person data** | `editp PERSON_INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]`
+**Delete person** | `deletep PERSON_INDEX`
+**Find person** | `findp KEY_WORD [KEY_WORD2] ....`
 **Add CCA** | `addc n/CCA_NAME`
 **Edit CCA name** | `editc CCA_ID n/CCA_NAME`
 **Delete CCA** | `deletec CCA_ID`
