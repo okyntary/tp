@@ -332,6 +332,10 @@
     -fx-effect: innershadow(gaussian, black, 10, 0, 0, 0);
 }
 
+#reminderListView, #personListView, #ccaListView {
+    -fx-background-color: #ebebeb;
+}
+
 #resultDisplay .content {
     -fx-background-color: transparent, #ebebeb, transparent, #ebebeb;
     -fx-background-radius: 0;
