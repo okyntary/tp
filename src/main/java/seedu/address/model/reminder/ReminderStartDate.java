@@ -51,7 +51,9 @@ public class ReminderStartDate implements Comparable<ReminderStartDate> {
      * @throws ParseException if the given {@code date} is invalid.
      */
     public void validate(String dateString) throws ParseException {
-        int year, month, day;
+        int year;
+        int month;
+        int day;
         try {
             String[] fields = dateString.split("-");
             year = Integer.parseInt(fields[0]);
