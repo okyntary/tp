@@ -131,9 +131,9 @@ Examples:
 
 ### Finding a person: `findp`
 
-Finds all the people in ePoch whose name matches any search keyword.
+Finds all the people in ePoch whose name matches any of the search keywords.
 
-Format: `findp [FIRST_WORD] [SECOND_WORD] ....`
+Format: `findp FIRST_KEYWORD [SECOND_KEYWORD] ....`
 
 * Finds the people whose name matches any of the given space-separated keywords.
 * At least one keyword must be provided.
@@ -158,18 +158,19 @@ Format: `deletec CCA_ID`
 
 ### Finding a CCA: `findc`
 
-Filters all CCAs with names that contain a given keyword, as well as people enrolled in these CCAs and reminders associated with these CCAs.
+Filters all CCAs with names that match any of the search keywords, as well as people enrolled in these CCAs and reminders associated with these CCAs.
 
-Format: `findc KEYWORD`
+Format: `findc FIRST_KEYWORD [SECOND_KEYWORD]`
 
 ### Adding a reminder to a CCA: `addr`
 
-Adds a reminder to a CCA. 
+Adds a reminder to a CCA.
 If frequency and occurrences is specified, the reminder will repeat at the specified frequency.
-The maximum possible number of occurrences is 50.
-The maximum possible period of the frequency (integer part of the frequency) is 100.
 
 Format: `addr cid/INDEX n/REMINDER_NAME sd/START_DATE [f/FREQUENCY] [o/OCCURRENCES]`
+
+* The maximum possible number of occurrences is 50.
+* The maximum possible period of the frequency (integer part of the frequency) is 100.
 
 `FREQUENCY` should be specified as either daily
 
@@ -187,9 +188,9 @@ Format: `deleter REMINDER_ID`
 
 ### Finding the title of a reminder: `findr`
 
-Filters all reminders that fit a given keyword.
+Filters all reminders that match any of the given keywords.
 
-Format: `findr KEYWORD`
+Format: `findr FIRST_KEYWORD [SECOND_KEYWORD]`
 
 ### Snoozing a reminder: `snoozer`
 
