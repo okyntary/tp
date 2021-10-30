@@ -1,7 +1,7 @@
 package seedu.address.model.reminder;
 
 public class ReminderOccurrence {
-    public static final String MESSAGE_CONSTRAINTS = "Occurrences should be entered as an integer e.g. 2";
+    public static final String MESSAGE_CONSTRAINTS = "Occurrences should be entered as a positive integer e.g. 2";
 
     private int occurrences;
 
