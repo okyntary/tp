@@ -51,8 +51,8 @@ Person ID | Integer | `pid/` | `pid/1`
 CCA ID | Integer | `cid/` | `cid/1`
 Colour | 3 integers representing an RGB value | `c/` | `c/255 100 55`
 Start date | Date in yyyy-MM-dd format | `sd/` | `sd/2021-10-5`
-Frequency | An integer followed by a time period; the time period is either `d` (daily), `w` (weekly), `m` (monthly) or `y` (yearly) | `f/` | `f/3d`, `f/2w`, `f/6m`, `f/1y`
-Occurrences | Integer | `o/` | `o/10`
+Frequency | A positive integer followed by a time period; the time period is either `d` (daily), `w` (weekly), `m` (monthly) or `y` (yearly) | `f/` | `f/3d`, `f/2w`, `f/6m`, `f/1y`
+Occurrences | Positive integer | `o/` | `o/10`
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -63,7 +63,7 @@ Occurrences | Integer | `o/` | `o/10`
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `addp n/NAME`, `NAME` is a parameter which can be used as `addp n/John Doe`.
+  e.g. in `addc n/CC_NAME`, `NAME` is a parameter whiph can be used as `addc n/NUSSO`.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [e/EMAIL]` can be used as `n/Johnny Doe [e/EMAIL]` or as `n/Johnny Doe`.
