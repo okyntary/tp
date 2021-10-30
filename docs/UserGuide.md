@@ -166,7 +166,7 @@ Format: `findc STRING`
 
 Adds a reminder to a CCA.
 
-Format: `addr INDEX n/REMINDER_NAME sd/START_DATE [f/FREQUENCY] [o/OCCURRENCES]`
+Format: `addr cid/INDEX n/REMINDER_NAME sd/START_DATE [f/FREQUENCY] [o/OCCURRENCES]`
 
 `FREQUENCY` should be specified as either daily
 
