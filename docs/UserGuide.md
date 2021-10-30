@@ -128,13 +128,13 @@ Format: `addc n/CCA_NAME`
 
 Edits the name of a CCA.
 
-Format: `editc cid/CCA_ID n/CCA_NAME`
+Format: `editc CCA_ID n/CCA_NAME`
 
 ### Deleting a CCA: `deletec`
 
 Deletes a CCA.
 
-Format: `deletec cid/CCA_ID`
+Format: `deletec CCA_ID`
 
 ### Finding a CCA: `findc`
 
