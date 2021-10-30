@@ -158,9 +158,9 @@ Format: `deletec CCA_ID`
 
 ### Finding a CCA: `findc`
 
-Filters all CCAs with names that contain a given string, as well as people enrolled in these CCAs and reminders associated with these CCAs.
+Filters all CCAs with names that contain a given keyword, as well as people enrolled in these CCAs and reminders associated with these CCAs.
 
-Format: `findc STRING`
+Format: `findc KEYWORD`
 
 ### Adding a reminder to a CCA: `addr`
 
@@ -187,9 +187,9 @@ Format: `deleter REMINDER_ID`
 
 ### Finding the title of a reminder: `findr`
 
-Filters all reminders that fit a given string.
+Filters all reminders that fit a given keyword.
 
-Format: `findr STRING`
+Format: `findr KEYWORD`
 
 ### Snoozing a reminder: `snoozer`
 
@@ -278,11 +278,11 @@ Action | Format
 **Add CCA** | `addc n/CCA_NAME`
 **Edit CCA name** | `editc CCA_ID n/CCA_NAME`
 **Delete CCA** | `deletec CCA_ID`
-**Find CCA** | `findc STRING`
+**Find CCA** | `findc KEYWORD`
 **Add reminder** | `addr cid/CCA_ID n/REMINDER_NAME sd/START_DATE [f/FREQUENCY] [o/OCCURRENCES]`
 **Edit reminder title** | `editr cid/CCA_ID n/REMINDER_NAME sd/START_DATE [f/FREQUENCY] [o/OCCURRENCES]`
 **Delete reminder** | `deleter REMINDER_ID`
-**Find reminder** | `findr STRING`
+**Find reminder** | `findr KEYWORD`
 **Snooze reminder** | `snoozer REMINDER_ID`
 **Enrols a person into CCA** | `enrol cid/CCA_ID pid/PERSON_ID`
 **Removes a person from a CCA** | `expel cid/CCA_ID pid/PERSON_ID`
