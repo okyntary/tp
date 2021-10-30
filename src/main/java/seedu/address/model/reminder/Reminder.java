@@ -155,7 +155,8 @@ public class Reminder implements Comparable<Reminder> {
         }
 
         return otherReminder != null
-                && otherReminder.getName().equals(getName());
+                && otherReminder.getName().equals(getName())
+                && otherReminder.getStartDate().toString().equals(getStartDate().toString());
     }
 
     /**
