@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.person;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_MAXIMUM_PERSONS_CAPACITY_REACHED;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -41,7 +42,7 @@ public class PersonAddCommand extends Command {
     private final Person toAdd;
 
     /**
-     * Creates an PersonAddCommand to add the specified {@code Person}
+     * Creates a PersonAddCommand to add the specified {@code Person}
      */
     public PersonAddCommand(Person person) {
         requireNonNull(person);
@@ -54,6 +55,10 @@ public class PersonAddCommand extends Command {
 
         if (model.hasPerson(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        }
+
+        if (model.getNumberOfPersons() == model.MAXIMUM_CAPACITY_PERSONS) {
+            throw new CommandException(MESSAGE_MAXIMUM_PERSONS_CAPACITY_REACHED);
         }
 
         model.addPerson(toAdd);

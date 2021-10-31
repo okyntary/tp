@@ -1,14 +1,18 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INDEX_EXCEEDS_MAXIMUM_SIZE;
 
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.exceptions.IndexExceedsCapacityException;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.commands.TagColourCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.cca.CcaName;
 import seedu.address.model.person.Address;
@@ -20,6 +24,7 @@ import seedu.address.model.reminder.ReminderName;
 import seedu.address.model.reminder.ReminderOccurrence;
 import seedu.address.model.reminder.ReminderStartDate;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.TagColour;
 import seedu.address.model.util.Frequency;
 
 /**
@@ -33,9 +38,13 @@ public class ParserUtil {
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     * @throws IndexExceedsCapacityException if the specified index is exceeds ePoch's capacity of 999999999.
      */
-    public static Index parseIndex(String oneBasedIndex) throws ParseException {
+    public static Index parseIndex(String oneBasedIndex) throws ParseException, IndexExceedsCapacityException {
         String trimmedIndex = oneBasedIndex.trim();
+        if (trimmedIndex.length() > 9 && Pattern.compile("\\d+").matcher(trimmedIndex).matches()) {
+            throw new IndexExceedsCapacityException(MESSAGE_INDEX_EXCEEDS_MAXIMUM_SIZE);
+        }
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
@@ -239,5 +248,45 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses {@code String RGB values} into a {@code TagColour}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code RGB values} are invalid.
+     */
+    public static TagColour parseTagColour(String rgbValues) throws ParseException {
+        requireNonNull(rgbValues);
+        String trimmedRgbValues = rgbValues.trim();
+        String[] rgbValuesArray = trimmedRgbValues.split(" ");
+        if (rgbValuesArray.length != 3) {
+            throw new ParseException(TagColourCommand.MESSAGE_RGB_CONSTRAINTS);
+        }
+
+        int red;
+        int green;
+        int blue;
+        try {
+            red = Integer.parseInt(rgbValuesArray[0]);
+        } catch (NumberFormatException e) {
+            throw new ParseException(TagColourCommand.MESSAGE_RGB_CONSTRAINTS);
+        }
+        try {
+            green = Integer.parseInt(rgbValuesArray[1]);
+        } catch (NumberFormatException e) {
+            throw new ParseException(TagColourCommand.MESSAGE_RGB_CONSTRAINTS);
+        }
+        try {
+            blue = Integer.parseInt(rgbValuesArray[2]);
+        } catch (NumberFormatException e) {
+            throw new ParseException(TagColourCommand.MESSAGE_RGB_CONSTRAINTS);
+        }
+
+        if (red < 0 || red > 255 || green < 0 || green > 255 || blue < 0 || blue > 255) {
+            throw new ParseException(TagColourCommand.MESSAGE_RGB_CONSTRAINTS);
+        }
+
+        return new TagColour(red, green, blue);
     }
 }

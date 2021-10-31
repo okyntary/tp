@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.reminder;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_MAXIMUM_REMINDERS_CAPACITY_REACHED;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CCA_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FREQUENCY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -78,11 +79,16 @@ public class ReminderAddCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_REMINDER);
         }
 
+        if (model.getNumberOfReminders() == model.MAXIMUM_CAPACITY_REMINDERS) {
+            throw new CommandException(MESSAGE_MAXIMUM_REMINDERS_CAPACITY_REACHED);
+        }
+
+
         boolean success = model.addReminder(toAdd, ccaToAddInto);
 
         if (success) {
             model.setCca(ccaToAddInto, ccaToAddInto);
-            toAdd.setCca(ccaToAddInto);
+            toAdd.setCcaName(ccaToAddInto.getName().fullName);
             model.updateFilteredCcaList(Model.PREDICATE_SHOW_ALL_CCAS);
             model.updateFilteredReminderList(Model.PREDICATE_SHOW_ALL_REMINDERS);
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd.getName(), ccaToAddInto.getName()));

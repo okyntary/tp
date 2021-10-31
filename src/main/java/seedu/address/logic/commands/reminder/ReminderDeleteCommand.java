@@ -10,6 +10,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.cca.Cca;
 import seedu.address.model.reminder.Reminder;
 
 public class ReminderDeleteCommand extends Command {
@@ -17,7 +18,7 @@ public class ReminderDeleteCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the Reminder identified by the index number used in the displayed Reminder list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Parameters: INDEX (must be a positive integer less than 1,000,000,000)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_REMINDER_SUCCESS = "Deleted Reminder: %1$s";
@@ -36,8 +37,12 @@ public class ReminderDeleteCommand extends Command {
         if (targetReminderIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_REMINDER_DISPLAYED_INDEX);
         }
-
         Reminder reminderToDelete = lastShownList.get(targetReminderIndex.getZeroBased());
+        for (Cca cca : model.getAddressBook().getCcaList()) {
+            if (cca.getName().fullName == reminderToDelete.getCcaName()) {
+                cca.removeReminder(reminderToDelete);
+            }
+        }
         model.deleteReminder(reminderToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_REMINDER_SUCCESS, reminderToDelete));
     }

@@ -34,7 +34,7 @@ public class ReminderEditCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the reminder identified "
             + "by the index number used in the displayed reminder list. "
             + "Existing values will be overwritten by the input values. "
-            + "\nParameters: INDEX (must be a positive integer) "
+            + "\nParameters: INDEX (must be a positive integer less than 1,000,000,000) "
             + PREFIX_CCA_ID + "CCA_ID "
             + PREFIX_NAME + "REMINDER_NAME "
             + PREFIX_START_DATE + "START_DATE "
@@ -78,7 +78,7 @@ public class ReminderEditCommand extends Command {
             if (ccaIndex.getZeroBased() >= lastShownCcaList.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_CCA_DISPLAYED_INDEX);
             }
-            editReminderDescriptor.setCca(lastShownCcaList.get(ccaIndex.getZeroBased()));
+            editReminderDescriptor.setCca(lastShownCcaList.get(ccaIndex.getZeroBased()).getName().fullName);
         }
         Reminder editedReminder = createEditedReminder(reminderToEdit, editReminderDescriptor);
 
@@ -105,12 +105,12 @@ public class ReminderEditCommand extends Command {
                 .getReminderFrequency().orElse(remToEdit.getFrequency());
         ReminderOccurrence updatedReminderOccurrence = editRemDescriptor
                 .getReminderOccurrence().orElse(remToEdit.getOccurrences());
-        Cca updatedCca = editRemDescriptor
-                .getCca().orElse(remToEdit.getCca());
+        String updatedCca = editRemDescriptor
+                .getCca().orElse(remToEdit.getCcaName());
 
         Reminder newReminder = new Reminder(updatedName, updatedReminderStartDate,
                 updatedFreq, updatedReminderOccurrence);
-        newReminder.setCca(updatedCca);
+        newReminder.setCcaName(updatedCca);
         return newReminder;
     }
 
@@ -143,7 +143,7 @@ public class ReminderEditCommand extends Command {
         private ReminderOccurrence reminderOccurrence;
 
         private Index ccaIndex;
-        private Cca cca;
+        private String ccaName;
 
         public EditReminderDescriptor() {}
 
@@ -157,7 +157,7 @@ public class ReminderEditCommand extends Command {
             setReminderFrequency(toCopy.reminderFrequency);
             setReminderOccurrence(toCopy.reminderOccurrence);
             setCcaIndex(toCopy.ccaIndex);
-            setCca(toCopy.cca);
+            setCca(toCopy.ccaName);
         }
 
         /**
@@ -165,7 +165,7 @@ public class ReminderEditCommand extends Command {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil
-                    .isAnyNonNull(reminderName, reminderStartDate, reminderFrequency, reminderOccurrence, cca);
+                    .isAnyNonNull(reminderName, reminderStartDate, reminderFrequency, reminderOccurrence, ccaName);
         }
 
         public void setReminderName(ReminderName reminderName) {
@@ -222,12 +222,12 @@ public class ReminderEditCommand extends Command {
          * A defensive copy of {@code ccaIndex} is used internally.
          * This is done only when model is accessible.
          */
-        public void setCca(Cca cca) {
-            this.cca = cca;
+        public void setCca(String ccaName) {
+            this.ccaName = ccaName;
         }
 
-        public Optional<Cca> getCca() {
-            return Optional.ofNullable(cca);
+        public Optional<String> getCca() {
+            return Optional.ofNullable(ccaName);
         }
 
         @Override

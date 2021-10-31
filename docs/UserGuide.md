@@ -38,6 +38,24 @@ It is intended to be used by NUS students, to help keep track of the students an
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Attributes in ePoch
+
+Attribute Name | Type | Argument Tag | Example
+---------------|------|--------------|--------
+Index (CCA ID, Person ID or Reminder ID) | Integer | (NONE) | `1`, `5`, `10`
+Name | String | `n/` | `n/Alice`, `n/NUSSO`
+Phone Number | String containing integers only | `p/` | `p/91234567`, `p/0123`
+Email | String | `e/` | `e/alice@mail.com`, `e/nusso123@nus`
+Address | String | `a/` | `a/22 College Avenue East`
+Person ID | Integer | `pid/` | `pid/1`
+CCA ID | Integer | `cid/` | `cid/1`
+Colour | 3 integers representing an RGB value | `c/` | `c/255 100 55`
+Start date | Date in yyyy-MM-dd format | `sd/` | `sd/2021-10-5`
+Frequency | A positive integer followed by a time period; the time period is either `d` (daily), `w` (weekly), `m` (monthly) or `y` (yearly) | `f/` | `f/3d`, `f/2w`, `f/6m`, `f/1y`
+Occurrences | Positive integer | `o/` | `o/10`
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## Features
 
 <div markdown="block" class="alert alert-info">
@@ -45,7 +63,7 @@ It is intended to be used by NUS students, to help keep track of the students an
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `addp n/NAME`, `NAME` is a parameter which can be used as `addp n/John Doe`.
+  e.g. in `addc n/CC_NAME`, `NAME` is a parameter whiph can be used as `addc n/NUSSO`.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [e/EMAIL]` can be used as `n/Johnny Doe [e/EMAIL]` or as `n/Johnny Doe`.
@@ -61,6 +79,8 @@ It is intended to be used by NUS students, to help keep track of the students an
 
 </div>
 
+Note: ePoch has a capacity of 1,000,000,000 persons, CCAs and reminders each. 
+
 
 ### Listing all persons : `list`
 
@@ -75,7 +95,7 @@ Adds a person to ePoch.
 Format: `addp n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person must have at least their name added.
+A person must have at least their name, phone number, email, and address added.
 </div>
 
 Examples:
@@ -86,37 +106,37 @@ Examples:
 
 Edits an existing person in ePoch.
 
-Format: `editp pid/PERSON_ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]​`
+Format: `editp PERSON_INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]​`
 
-* Edits the person at the specified by their person id (`pid`). The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the person at the specified by displayed index. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
 Examples:
-*  `edit pid/1 p/91234567 e/jiveshrealemail@yahoo.com` Edits the phone number and email address of the 1st person to be `91234567` and `jiveshrealemail@yahoo.com` respectively.
-*  `edit 2 n/weiq dt/NUSSO @nussymphonyorchestra thanks` Edits the name of the 2nd person to be `weiq` and clears the specified tag.
+*  `editp 1 p/91234567 e/jiveshrealemail@yahoo.com` Edits the phone number and email address of the 1st person to be `91234567` and `jiveshrealemail@yahoo.com` respectively.
+*  `editp 2 n/weiq dt/NUSSO @nussymphonyorchestra thanks` Edits the name of the 2nd person to be `weiq` and clears the specified tag.
 
 ### Deleting a person: `deletep`
 
 Deletes the specified person from ePoch.
 
-Format: `deletep pid/PERSON_ID`
+Format: `deletep PERSON_INDEX`
 
-* Deletes the person with the specified person ID (`pid`).
-* The person ID refers to the index number shown in the displayed person list.
-* The person ID **must be a positive integer** 1, 2, 3, …​
+* Deletes the person with the specified index `INDEX`.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `deletep pid/2` deletes the person in the address book that has person ID of 2.
+* `deletep 2` deletes the person in the address book that has an index of 2.
 
 ### Finding a person: `findp`
 
-Finds all the people in ePoch that match all the specified fields.
+Finds all the people in ePoch whose name matches any search keyword.
 
-Format: `findp [pid/PERSON_ID] [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [cca/CCA_NAME]`
+Format: `findp [FIRST_WORD] [SECOND_WORD] ....`
 
-* Finds the people who have valid matches for all the specified fields.
-* At least one of the optional fields must be provided.
+* Finds the people whose name matches any of the given space-separated keywords.
+* At least one keyword must be provided.
 
 ### Adding a CCA: `addc`
 
@@ -128,55 +148,51 @@ Format: `addc n/CCA_NAME`
 
 Edits the name of a CCA.
 
-Format: `editc cid/CCA_ID n/CCA_NAME`
+Format: `editc CCA_ID n/CCA_NAME`
 
 ### Deleting a CCA: `deletec`
 
 Deletes a CCA.
 
-Format: `deletec cid/CCA_ID`
-
-### Deleting a CCA: `deletec`
-
-Deletes a CCA.
-
-Format: `deletec cid/CCA_ID`
+Format: `deletec CCA_ID`
 
 ### Finding a CCA: `findc`
 
-Filters all CCAs with names that contain a given string.
+Filters all CCAs with names that contain a given string, as well as people enrolled in these CCAs and reminders associated with these CCAs.
 
-Format: `findc s/STRING`
+Format: `findc STRING`
 
 ### Adding a reminder to a CCA: `addr`
 
 Adds a reminder to a CCA.
 
-Format: `addr cid/CCA_ID t/REMINDER_TITLE sd/START_DATE [f/FREQUENCY] [o/OCCURRENCES]`
+Format: `addr cid/INDEX n/REMINDER_NAME sd/START_DATE [f/FREQUENCY] [o/OCCURRENCES]`
 
-### Editing the title of a reminder: `editr`
+`FREQUENCY` should be specified as either daily
 
-Edits the title of a reminder.
+### Editing a reminder: `editr`
 
-Format: `editr rid/REMINDER_ID t/REMINDER_TITLE`
+Edits a reminder.
 
-### Deleting the title of a reminder: `deleter`
+Format: `editr INDEX n/REMINDER_NAME sd/START_DATE [f/FREQUENCY] [o/OCCURRENCES]`
+
+### Deleting a reminder: `deleter`
 
 Deletes a reminder.
 
-Format: `deleter rid/REMINDER_ID`
+Format: `deleter REMINDER_ID`
 
 ### Finding the title of a reminder: `findr`
 
 Filters all reminders that fit a given string.
 
-Format: `findr t/REMINDER_TITLE`
+Format: `findr STRING`
 
 ### Snoozing a reminder: `snoozer`
 
 Snoozes the reminder.
 
-Format: `snoozer rid/REMINDER_ID`
+Format: `snoozer REMINDER_ID`
 
 ### Enrolling a person from a CCA: `enrol`
 
@@ -189,6 +205,18 @@ Format: `enrol cid/CCA_ID pid/PERSON_ID`
 Expels a person from a CCA.
 
 Format: `expel cid/CCA_ID pid/PERSON_ID`
+
+### Changing the colour of a non-CCA tag: `colourt`
+
+Changes the colour of a non-CCA tag.
+
+Format: `colourt n/TAG_NAME c/RED GREEN BLUE`
+
+### Changing the colour of all CCA tags: `colourc`
+
+Changes the colour of all CCA tags.
+
+Format: `colourc c/RED GREEN BLUE`
 
 ### Delete all data from ePoch: `clear`
 
@@ -240,19 +268,22 @@ Action | Format
 -------|------------------
 **List all data** | `list`
 **Delete all data** | `clear`
-**Add person** | `addp n/PERSON_NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]`
-**Edit person data** | `editp pid/PERSON_ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]`
-**Delete person** | `deletep pid/PERSON_ID`
-**Find person** | `findp [pid/PERSON_ID] [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [cca/CCA_NAME]`
+**Add person** | `addp n/PERSON_NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS`
+**Edit person data** | `editp PERSON_INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]`
+**Delete person** | `deletep PERSON_INDEX`
+**Find person** | `findp KEY_WORD [KEY_WORD2] ....`
 **Add CCA** | `addc n/CCA_NAME`
-**Edit CCA name** | `editc cid/CCA_ID n/CCA_NAME`
-**Delete CCA** | `deletec cid/CCA_ID`
-**Find CCA** | `findc s/STRING`
-**Add reminder** |`addr cid/CCA_ID t/REMINDER_TITLE sd/START_DATE [f/FREQUENCY] [o/OCCURRENCES]`
-**Edit reminder title** | `editr rid/REMINDER_ID t/REMINDER_TITLE`
-**Delete reminder** | `deleter rid/REMINDER_ID`
-**Find reminder** | `findr t/REMINDER_TITLE`
-**Snooze reminder** | `snoozer`
+**Edit CCA name** | `editc CCA_ID n/CCA_NAME`
+**Delete CCA** | `deletec CCA_ID`
+**Find CCA** | `findc STRING`
+**Add reminder** | `addr cid/CCA_ID n/REMINDER_NAME sd/START_DATE [f/FREQUENCY] [o/OCCURRENCES]`
+**Edit reminder title** | `editr cid/CCA_ID n/REMINDER_NAME sd/START_DATE [f/FREQUENCY] [o/OCCURRENCES]`
+**Delete reminder** | `deleter REMINDER_ID`
+**Find reminder** | `findr STRING`
+**Snooze reminder** | `snoozer REMINDER_ID`
 **Enrols a person into CCA** | `enrol cid/CCA_ID pid/PERSON_ID`
 **Removes a person from a CCA** | `expel cid/CCA_ID pid/PERSON_ID`
-**Exit** | Exits the app
+**Changes the colour of a non-CCA tag** | `colourt n/TAG_NAME c/RED GREEN BLUE`
+**Changes the colour of all CCA tags** | `colourc c/RED GREEN BLUE`
+**View help page** | `help`
+**Exit the app** | `exit`

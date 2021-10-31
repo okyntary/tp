@@ -2,10 +2,18 @@ package seedu.address.logic.commands.reminder;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
+import seedu.address.model.cca.CcaNameContainsKeywordsPredicate;
+import seedu.address.model.reminder.Reminder;
 import seedu.address.model.reminder.ReminderNameContainsKeywordsPredicate;
 
 /**
@@ -30,9 +38,25 @@ public class ReminderFindCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
+        model.resetFiltersForReminderList();
+        model.resetFiltersForCcaList();
+
         model.updateFilteredReminderList(predicate);
+
+        CcaNameContainsKeywordsPredicate filteredCcaPredicate = getFilterForCcaList((model.getFilteredReminderList()));
+        model.updateFilteredCcaList(filteredCcaPredicate);
+
         return new CommandResult(
                 String.format(Messages.MESSAGE_REMINDERS_LISTED_OVERVIEW, model.getFilteredReminderList().size()));
+    }
+
+    private CcaNameContainsKeywordsPredicate getFilterForCcaList(ObservableList<Reminder> reminderList) {
+        Set<String> allValidCcas = new HashSet<>();
+        for (Reminder validReminder: reminderList) {
+            allValidCcas.add(validReminder.getCcaName());
+        }
+        List<String> ccaNames = new ArrayList<>(allValidCcas);
+        return new CcaNameContainsKeywordsPredicate(ccaNames);
     }
 
     @Override

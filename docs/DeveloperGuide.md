@@ -170,8 +170,9 @@ because of how time-consuming refactoring the entire project to use this new sys
 A CCA has:
 
 * A CCA name, represented by the `CcaName` class. CCA name must be unique.
-* Zero or more people enrolled in it, represented by the HashSet `personArrayList`.
-* Zero or more reminders associated with it, represented by the HashSet `remindersArrayList`.
+* Zero or more people enrolled in it, represented by the HashSet `members`.
+* Zero or more reminders associated with it, represented by the HashSet `reminders`.
+* A set of zero or more tags, with the tags being represented by the `Tag` class.
 
 Two CCAs are considered identical if they have the same name.
 
@@ -226,7 +227,7 @@ A Reminder has:
 * Zero or one occurrence, represented by the `ReminderOccurrence` class.
 * Exactly one CCA that it is linked to, represented as a `Cca` data field.
 
-Two Reminders are considered identical if they have the same name, same frequency, and same occurrence.
+Two Reminders are considered identical if they have the same name, same cca, same start date, same frequency, and same occurrence.
 
 #### Command for Adding Reminders
 
@@ -240,91 +241,74 @@ The `ReminderAddCommand` class has an Index which is the index of the CCA to add
 It implements the `execute` method which handles the logic of the add command.
 The `updateFilteredCcaList` and `updateFilteredReminderList` methods are called to update the `UI` component.
 
+#### Command for Deleting Reminders
 
-### \[Proposed\] Undo/redo feature
+The `deleter` command is implemented by `ReminderDeleteCommand`.
+Similar to `ReminderAddCommand`, `ReminderDeleteCommand` extends `Command` to practice polymorphism.
 
-#### Proposed Implementation
+The `ReminderDeleteCommand` class has an Index which is the index of the Reminder to delete, specified by the user.
+It implements the `execute` method which handles the logic of the delete command.
+The `getFilteredReminderList` method is called to obtain a List of Reminders, `lastShownList`.
+If the given index exists in `lastShownList`, the corresponding Reminder is deleted using the `deleteReminder` method defined in the `ModelManager`.
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+#### Command for Editing Reminders
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+The `editr` command is implemented by `ReminderEditCommand`, which extends `Command`.
+Polymorphism allows the different Command objects to be passed around and executed without having to know what type of Command it is.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+If the user does not specify any of the fields, the fields default to the original values of the unedited reminder.
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+The `ReminderEditCommand` class has an Index which is the index of the Reminder to be edited, specified by the user.
+It implements the `execute` method which handles the logic of the add command.
+The `updateFilteredReminderList` method is called to update the `UI` component.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+#### Command for Finding Reminders
 
-![UndoRedoState0](images/UndoRedoState0.png)
+The `findr` command is implemented by `ReminderFindCommand` which extends `Command`.
+Similar to other commands, `ReminderFindCommand` extends `Command` to practice polymorphism.
 
-Step 2. The user executes `deletep 5` command to delete the 5th person in the address book. The `deletep` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `deletep 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+The keywords specified by the user are passed as a List to the `ReminderNameContainsKeywordsPredicate` constructor.
+The `ReminderNameContainsKeywordsPredicate` class extends `Predicate<Reminder>` and implements the `test` method,
+which uses streams to filter Reminders whose name matches any of the keywords.
 
-![UndoRedoState1](images/UndoRedoState1.png)
+#### Command for Snoozing Reminders
 
-Step 3. The user executes `addp n/David …` to add a new person. The `addp` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+The `snoozer` command is implemented by `ReminderSnoozeCommand`, which extends `Command`.
+Polymorphism allows the different Command objects to be passed around and executed without having to know what type of Command it is.
 
-![UndoRedoState2](images/UndoRedoState2.png)
+The `ReminderSnoozeCommand` has an Index which is the index of the Reminder to snooze, specified by the user.
+If the Index is not valid, an error message is shown.
+It implements the `execute` method which handles the logic of the add command.
+It edits the Reminder by getting its next date and updating the `UI` components, using the same process as the `ReminderEditCommand`.
+If the Reminder is on its last occurrence, this action performs the same action as the `ReminderDeleteCommand` (as the Reminder has no more occurrences after being snoozed).
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+### Tags
 
-</div>
+A Tag has:
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+* A tag name, represented by a `String`
 
-![UndoRedoState3](images/UndoRedoState3.png)
+Two Tags are considered identical if they have the same name.
+A Tag also corresponds to a certain `TagColour`, the mappings of which are stored in the static `tagColours` Hashtable within the Tag class.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
+#### Command for Changing Non-CCA Tag Colours
 
-</div>
+The `colourt` command is implemented by `TagColourCommand`, which extends `Command`.
+Polymorphism allows the different Command objects to be passed around and executed without having to know what type of Command it is.
 
-The following sequence diagram shows how the undo operation works:
+The `TagColourCommand` has a `String` containing the tag name and a `TagColour` representing the new colour to change that particular tag to.
+It implements the `execute` method which handles the logic of the `TagColourCommand`, setting the value in the Hashtable (of the relevant key, specified by the tag name) to the new `TagColour` value.
+It then updates the `UI` component by refreshing the list of Persons and CCAs (Reminders only have a CCA tag, and so do not need to be refreshed).
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+#### Command for Changing CCA Tag Colours
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+The `colourc` command is implemented by the `CcaColourCommand`, which extends `Command`.
+Polymorphism allows the different Command objects to be passed around and executed without having to know what type of Command it is.
 
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `deletep`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
+The `CcaColourCommand` has a `TagColour` representing the new colour to change the CCA tags to.
+Since, CCA tags are automatically added to Reminders, one changes all of the CCA tag colours at once.
+The command implements the `execute` method which handles the logic of the `CcaColourCommand`, setting the value in the Hashtable (of the key corresponding to CCA tags) to the new `TagColour` value.
+It then updates the `UI` component by refreshing the list of Reminders.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -349,56 +333,54 @@ _{Explain here how the data archiving feature will be implemented}_
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
+* has many contacts that are spread across different CCAs
+* needs to keep track of many recurring reminders associated with each CCA
 
 **Value proposition**:
 
-ePoch helps users categorise contacts, which helps the user keep track of various overlapping social circles.
-The product offers peace of mind to the user using a “set-and-forget” approach by helping the user schedule recurring social events.
+ePoch helps overcommitted students keep track of their many contacts and events across various CCAs.
+The product allows students to link persons with CCAs and set reminders that repeat over a given time interval, to conveniently organise their commitments and overlapping social circles.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …                                    | I want to …                     | So that I can…                                                        |
+| Priority | As a …                                     | I want to …                    | So that I can…                                                         |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *` | new user | see usage instructions of ePoch | refer to instructions if I forget how to use ePoch |
 | `* *` | user with multiple devices across different operating systems | use ePoch across multiple platforms | access its functionality regardless of the device I am using |
-| `* * *` | user who dislikes using the mouse or trackpad (or has no acces to them) | something similar to a command line interface | rely exclusively on keyboard inputs |
-| `* *` | careless user | be able to undo any command I erroneously enter with ease | get ePoch back to a state where there are no errors |
-| `*` | careless user who often does not realise their mistakes immediately | be able to undo any commands even across different sessions of using ePoch | revert ePoch back to an even earlier state if necessary |
-| `*` | user with an appreciation for aesthetics | be able to visualise my contacts on fancy visualisations (e.g. using graphs or charts) | gain a better understanding of how they connect with each other through their CCAs |
-| `*` | user with a love for statistics and categories | view statistics of my contacts and CCAs | view potentially interesting data on them and their relation to me |
-| `*` | user who is visually impaired | hear sound cues every time there is an action | verify that my command has been executed |
-| `*` | user who is sensitive to the volume of sounds | be able to adjust the master volume of the sound cues | get the volume to a level which is comfortable with me |
-| `*` | user who does not want sound cues for all reminders | be able to toggle certain reminder sound cues on and off at will | get a stronger reminder for certain events but not others |
-| `*` | user who gets bored looking at the same GUI all day | be able to occasionally change ePoch's colour scheme | have a fresh experience when I use ePoch |
-| `*` | user who values their time and has occasional typos | have an auto-complete function | not worry about correcting my typos |
+| `* * *` | user who dislikes using the mouse or trackpad | interact with an app through a command line interface | rely exclusively on keyboard inputs |
+| `*` | user who manages multiple CCAs | view the number of people in each CCA | easily keep track of CCA enrolment
 | `*` | organised user | be able to export my contacts to a JSON file | send an organised list of contacts to others |
 | `* *` | visual user | be able to customise the colour for my contact's CCA tags | visually differentiate and colour-code different tags |
-| `* *` | visual user | be able to customise the colour for my various tasks and reminders | visually differentiate and colour-code different them based on my preferences |
+| `* *` | visual user | be able to be visually prompted of overdue reminders | visually differentiate what I need to urgently work on |
+| `* *` | user participating in different types of CCAs | add tags to categorise my CCA into categories like 'Music' and 'Sports' | differentiate and organise my different types of CCAs |
 | `* *` | tech-savvy user who is familiar with keyboard shortcuts | be able to exeucte commands with shortcuts I am familiar with | easily execute more complicated commands with just a few keystrokes |
-| `* * *` | user who has multiple friends, CCAs, and reminders | be able to view all within a nice UI | view them quickly and efficiently |
+| `* * *` | user who has multiple friends, CCAs, and reminders | be able to view all within a clean and user-friendly UI | view them quickly and efficiently |
 | `* *` | user with friends in multiple CCAs | be able to quickly view what CCAs my friends are in | keep track of which CCAs to join based on what CCAs my friends are in |
 | `* *` | user who loves to experiment | be able to quickly delete all data from ePoch at once | try out different configurations of persons CCAs and reminders |
 | `* * *` | user | add a person to a CCA | keep track of what CCAs my friends are in |
-| `* * *` | user whose friends are experimenting with CCAs | be able to efficiently add and remove people from CCAs | update ePoch with the latest information |
+| `* * *` | user whose friends are joining many CCAs | be able to efficiently add people from CCAs | keep track of my friends from different CCAs |
+| `* * *` | user whose friends are experimenting with CCAs | be able to efficiently remove people from CCAs | update ePoch with the latest information |
 | `* * *` | user who meets many fellow students | be able to add contacts in ePoch | keep track of the people I meet |
 | `* *` | user who meets many fellow students | be able to edit the details of my contacts in ePoch | update ePoch with the latest information, especially since a contact's details may change regularly |
 | `* * *` | busy user | be able to delete contacts from ePoch | stop keeping tracks of contacts that are no longer relevant |
 | `* *` | forgetful user | find any contact that matches my search terms | easily find and contact(s) that I desire |
 | `* * *` | user with multiple CCAs | be able to add all the CCAs I am involved in | keep track of them |
-| `* * *` | user who changes CCAs over time | be able to delete CCAs | keep track of those I am currently a part of |
+| `* * *` | user who changes CCAs over time | be able to delete CCAs | stop keeping track of those I am no longer a part of |
 | `* *` | careless user | be able to edit the details of CCAs | fix any mistakes I've made in adding the CCA |
 | `* *` | user who is overcommitted with many CCAs | be able to find any CCA with a title that matches a given search term | easily filter through my many CCAs |
 | `* *` | user who has many friends from different CCAs | be able to search for a CCA and view all the people who are part of that CCA | remember who is part of that CCA |
 | `* *` | user who is overcommitted with many upcoming events and commitments | be able to view all the reminders associated with a CCA | see what upcoming events I have related to that CCA |
 | `* * *` | user with many commitments | be able to add reminders | be reminded to do any tasks or events associated with those commitments |
-| `* * *` | user with many CCA commitments | be able to add reminders associated with CCAs | be reminded of CCA-specific commitments |
+| `* * *` | user with many CCA commitments | be able to add reminders associated with CCAs | stay on top of things by organising my CCA-specific commitments |
 | `* *` | user who might make typos | edit reminder titles | rectify any errors in the title I set for reminders |
+| `* *` | busy user with many recurring meetings | set reminders to repeat at a specific interval | be constantly reminded of my commitments without having to remember to add a new reminder each time |
+| `* *` | busy user with many recurring meetings | set reminders to repeat for a given number of occurrences | efficiently set reminders without wasting time on repeated actions |
 | `* * *` | user with commitments constantly in flux | delete reminders | delete irrelevant or redundant reminders |
-| `* *` | user who is overcommitted with many commitments | filter reminders | find more important reminders by their title |
-| `* *` | user who can finish reminders quickly | snooze reminders that I've completed | clear space for reminders that I've not yet completed |
+| `* *` | user who is overcommitted with many commitments | search for reminders with names matching given keywords | find more important reminders by their title |
+| `* *` | user with many recurring reminders | snooze reminders that I've completed | clear space for reminders that I've not yet completed |
 
 
 ### Use cases

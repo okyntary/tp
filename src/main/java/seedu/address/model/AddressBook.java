@@ -109,6 +109,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(editedPerson);
 
         persons.setPerson(target, editedPerson);
+        ccas.setEnrolledPerson(target, editedPerson);
     }
 
     /**

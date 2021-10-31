@@ -6,10 +6,10 @@ import seedu.address.model.util.Frequency;
 
 public class ReminderFrequency {
     public static final String MESSAGE_CONSTRAINTS =
-            "Frequency should be entered in [Number][Type] format, e.g. 2d";
+            "Frequency should be entered in [Positive number][Type] format, e.g. 2d";
 
     /*
-     * The frequency should be in [Number][Type] format.
+     * The frequency should be in [Positive number][Type] format.
      */
     public static final String VALIDATION_REGEX = "\\d+[dwmy]$";
     public final Frequency timePeriod;
