@@ -63,7 +63,7 @@ Occurrences | Positive integer | `o/` | `o/10`
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `addc n/CC_NAME`, `NAME` is a parameter whiph can be used as `addc n/NUSSO`.
+  e.g. in `addc n/CCA_NAME [t/TAG]`, `NAME` is a parameter which can be used as `addc n/NUSSO`.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [e/EMAIL]` can be used as `n/Johnny Doe [e/EMAIL]` or as `n/Johnny Doe`.
@@ -142,13 +142,13 @@ Format: `findp [FIRST_WORD] [SECOND_WORD] ....`
 
 Adds a CCA.
 
-Format: `addc n/CCA_NAME`
+Format: `addc n/CCA_NAME t/[TAG]`
 
 ### Editing a CCA: `editc`
 
-Edits the name of a CCA.
+Edits the details of a CCA.
 
-Format: `editc CCA_ID n/CCA_NAME`
+Format: `editc CCA_ID [n/CCA_NAME] [t/TAG]`
 
 ### Deleting a CCA: `deletec`
 
@@ -232,7 +232,7 @@ Format: `exit`
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
@@ -272,8 +272,8 @@ Action | Format
 **Edit person data** | `editp PERSON_INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]`
 **Delete person** | `deletep PERSON_INDEX`
 **Find person** | `findp KEY_WORD [KEY_WORD2] ....`
-**Add CCA** | `addc n/CCA_NAME`
-**Edit CCA name** | `editc CCA_ID n/CCA_NAME`
+**Add CCA** | `addc n/CCA_NAME [t/TAG]`
+**Edit CCA** | `editc CCA_ID [n/CCA_NAME] [t/TAG]`
 **Delete CCA** | `deletec CCA_ID`
 **Find CCA** | `findc STRING`
 **Add reminder** | `addr cid/CCA_ID n/REMINDER_NAME sd/START_DATE [f/FREQUENCY] [o/OCCURRENCES]`
