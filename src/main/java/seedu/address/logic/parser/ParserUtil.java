@@ -116,7 +116,9 @@ public class ParserUtil {
         } catch (java.text.ParseException e) {
             throw new ParseException(ReminderStartDate.PARSE_DATE_CONSTRAINTS);
         }
-        return new ReminderStartDate(startDate);
+        ReminderStartDate reminderStartDate = new ReminderStartDate(startDate);
+        reminderStartDate.validate(trimmedDateText);
+        return reminderStartDate;
     }
 
     /**

@@ -5,10 +5,14 @@ import static java.util.Objects.requireNonNull;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import seedu.address.logic.parser.exceptions.ParseException;
+
 public class ReminderStartDate implements Comparable<ReminderStartDate> {
     public static final String MESSAGE_CONSTRAINTS =
             "Dates should be entered in YYYY-MM-DD format, e.g. 2021-5-23";
     public static final String PARSE_DATE_CONSTRAINTS = "This date could not be parsed. Is it a valid date?";
+    public static final String DATE_YEAR_TOO_LARGE_CONSTRAINTS = "It looks like you've made a typo - "
+            + "this date is way too far in the future! The year should be less than 3000.";
 
     /*
      * The date must be in YYYY-MM-DD format.
@@ -38,6 +42,52 @@ public class ReminderStartDate implements Comparable<ReminderStartDate> {
      */
     public static boolean isValidDate(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Checks that the parsed date matches with the given string representation.
+     *
+     * @param dateString The string representation of the date in yyyy-MM-dd format
+     * @throws ParseException if the given {@code date} is invalid.
+     */
+    public void validate(String dateString) throws ParseException {
+        int year;
+        int month;
+        int day;
+        try {
+            String[] fields = dateString.split("-");
+            year = Integer.parseInt(fields[0]);
+            month = Integer.parseInt(fields[1]);
+            day = Integer.parseInt(fields[2]);
+        } catch (NumberFormatException e) {
+            throw new ParseException(ReminderStartDate.PARSE_DATE_CONSTRAINTS);
+        }
+        if (year >= 3000) {
+            throw new ParseException(ReminderStartDate.DATE_YEAR_TOO_LARGE_CONSTRAINTS);
+        }
+        if (year != getYear() || month != getMonth() || day != startDate.getDate()) {
+            throw new ParseException(ReminderStartDate.PARSE_DATE_CONSTRAINTS);
+        }
+    }
+
+    /**
+     * A getter for the year of the startDate.
+     * This is implemented as the getYear() method of the Date object starts counting from 1900.
+     * @return an integer representing the year of the startDate.
+     */
+    public int getYear() {
+        int padding = 1900;
+        return startDate.getYear() + padding;
+    }
+
+    /**
+     * A getter for the month of the startDate.
+     * This is implemented as the getMonth() method of the Date object is zero-indexed.
+     * @return an integer representing the month of the startDate.
+     */
+    public int getMonth() {
+        int padding = 1;
+        return startDate.getMonth() + padding;
     }
 
     /**

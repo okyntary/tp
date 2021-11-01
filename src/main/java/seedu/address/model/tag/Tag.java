@@ -28,7 +28,9 @@ public class Tag {
         requireNonNull(tagName);
         checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
         this.tagName = tagName;
-        Tag.tagColours.put(this.tagName, TagColour.DEFAULT_COLOUR);
+        if (!Tag.tagColours.containsKey(this.tagName)) {
+            Tag.tagColours.put(this.tagName, TagColour.DEFAULT_COLOUR);
+        }
     }
 
     /**

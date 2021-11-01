@@ -166,20 +166,30 @@ Format: `findc FIRST_KEYWORD [SECOND_KEYWORD]`
 ### Adding a reminder to a CCA: `addr`
 
 Adds a reminder to a CCA.
-If frequency and occurrences is specified, the reminder will repeat at the specified frequency.
+If frequency and occurrences is specified, the reminder will repeat at the specified frequency; else, the reminder will be treated as a once-off event.
 
-Format: `addr cid/INDEX n/REMINDER_NAME sd/START_DATE [f/FREQUENCY] [o/OCCURRENCES]`
+Format: `addr cid/CCA_ID n/REMINDER_NAME sd/START_DATE [f/FREQUENCY] [o/OCCURRENCES]`
 
 * The maximum possible number of occurrences is 50.
 * The maximum possible period of the frequency (integer part of the frequency) is 100.
+* The year of the start date of a reminder must be before 3000.
 
-`FREQUENCY` should be specified as either daily
+`FREQUENCY` should be specified as an integer followed immediately (no space) by a letter, either d, w, m, or y.
+
+Letter | Meaning
+-------|------------------
+**d** | day
+**w** | week
+**m** | month
+**y** | year
 
 ### Editing a reminder: `editr`
 
 Edits a reminder.
 
-Format: `editr INDEX n/REMINDER_NAME sd/START_DATE [f/FREQUENCY] [o/OCCURRENCES]`
+Format: `editr INDEX [n/REMINDER_NAME] [sd/START_DATE] [f/FREQUENCY] [o/OCCURRENCES]`
+
+* If none of the optional fields are specified (e.g. editr 1), then the reminder will not be edited (since no edits have been specified).
 
 ### Deleting a reminder: `deleter`
 
@@ -196,8 +206,13 @@ Format: `findr FIRST_KEYWORD [SECOND_KEYWORD]`
 ### Snoozing a reminder: `snoozer`
 
 Snoozes the reminder.
+Snoozing a reminder means that the reminder will be shifted to the date of its next occurrence (if any).
 
 Format: `snoozer REMINDER_ID`
+
+* If the reminder is on its last occurrence (occurrences = 1), snoozing the reminder will result in it being removed entirely (as it will have no more occurrences left after being snoozed).
+* If the reminder is not on its last occurrence (occurrences > 1), snoozing the reminder will shift it to the date of its next occurrence.
+* The date of next occurrence is calculated from the current date which the reminder occurs and its frequency.
 
 ### Enrolling a person from a CCA: `enrol`
 
@@ -282,7 +297,7 @@ Action | Format
 **Delete CCA** | `deletec CCA_ID`
 **Find CCA** | `findc KEYWORD`
 **Add reminder** | `addr cid/CCA_ID n/REMINDER_NAME sd/START_DATE [f/FREQUENCY] [o/OCCURRENCES]`
-**Edit reminder title** | `editr cid/CCA_ID n/REMINDER_NAME sd/START_DATE [f/FREQUENCY] [o/OCCURRENCES]`
+**Edit reminder** | `editr INDEX [n/REMINDER_NAME] [sd/START_DATE] [f/FREQUENCY] [o/OCCURRENCES]`
 **Delete reminder** | `deleter REMINDER_ID`
 **Find reminder** | `findr KEYWORD`
 **Snooze reminder** | `snoozer REMINDER_ID`
