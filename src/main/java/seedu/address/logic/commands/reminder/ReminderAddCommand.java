@@ -87,7 +87,6 @@ public class ReminderAddCommand extends Command {
         boolean success = model.addReminder(toAdd, ccaToAddInto);
 
         if (success) {
-            model.setCca(ccaToAddInto, ccaToAddInto);
             toAdd.setCcaName(ccaToAddInto.getName().fullName);
             model.updateFilteredCcaList(Model.PREDICATE_SHOW_ALL_CCAS);
             model.updateFilteredReminderList(Model.PREDICATE_SHOW_ALL_REMINDERS);

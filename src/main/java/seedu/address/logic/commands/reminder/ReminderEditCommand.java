@@ -39,7 +39,7 @@ public class ReminderEditCommand extends Command {
             + PREFIX_NAME + "REMINDER_NAME "
             + PREFIX_START_DATE + "START_DATE "
             + "\nExample: " + COMMAND_WORD + " "
-            + PREFIX_CCA_ID + "1 "
+            + "1 "
             + PREFIX_NAME + "NUSSO rehearsal "
             + PREFIX_START_DATE + "2021-10-31";
 
