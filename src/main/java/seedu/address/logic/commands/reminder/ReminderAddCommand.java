@@ -27,15 +27,14 @@ public class ReminderAddCommand extends Command {
 
     public static final String COMMAND_WORD = "addr";
 
-
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a Reminder to ePoch. "
             + "Parameters: "
             + PREFIX_CCA_ID + "CCA_ID "
             + PREFIX_NAME + "REMINDER_NAME "
             + PREFIX_START_DATE + "START_DATE "
-            + PREFIX_FREQUENCY + "FREQUENCY "
-            + PREFIX_OCCURRENCES + "OCCURRENCES "
-            + "\nExample: " + COMMAND_WORD + " "
+            + "[" + PREFIX_FREQUENCY + "FREQUENCY] "
+            + "[" + PREFIX_OCCURRENCES + "OCCURRENCES]\n"
+            + "Example: " + COMMAND_WORD + " "
             + PREFIX_CCA_ID + "1 "
             + PREFIX_NAME + "NUSSO rehearsal "
             + PREFIX_START_DATE + "2021-10-31 "
@@ -83,11 +82,9 @@ public class ReminderAddCommand extends Command {
             throw new CommandException(MESSAGE_MAXIMUM_REMINDERS_CAPACITY_REACHED);
         }
 
-
         boolean success = model.addReminder(toAdd, ccaToAddInto);
 
         if (success) {
-            model.setCca(ccaToAddInto, ccaToAddInto);
             toAdd.setCcaName(ccaToAddInto.getName().fullName);
             model.updateFilteredCcaList(Model.PREDICATE_SHOW_ALL_CCAS);
             model.updateFilteredReminderList(Model.PREDICATE_SHOW_ALL_REMINDERS);
