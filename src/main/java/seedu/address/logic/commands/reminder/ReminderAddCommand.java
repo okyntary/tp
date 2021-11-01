@@ -83,7 +83,6 @@ public class ReminderAddCommand extends Command {
             throw new CommandException(MESSAGE_MAXIMUM_REMINDERS_CAPACITY_REACHED);
         }
 
-
         boolean success = model.addReminder(toAdd, ccaToAddInto);
 
         if (success) {
