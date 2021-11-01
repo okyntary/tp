@@ -1,5 +1,6 @@
 package seedu.address.model.reminder;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -18,7 +19,9 @@ public class ReminderNameContainsKeywordsPredicate implements Predicate<Reminder
     @Override
     public boolean test(Reminder reminder) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(reminder.getName().fullName, keyword));
+                .anyMatch(keyword ->
+                        Arrays.stream(keyword.split(" "))
+                            .anyMatch(word -> StringUtil.containsWordIgnoreCase(reminder.getName().fullName, word)));
     }
 
     @Override
