@@ -83,10 +83,7 @@ public class UniqueCcaListTest {
     @Test
     public void setCca_editedCcaHasSameIdentity_success() {
         uniqueCcaList.add(NUSSO);
-        Cca editedNusso = new CcaBuilder(NUSSO)
-                // TODO: tags
-                // .withTags(VALID_TAG_HUSBAND)
-                .build();
+        Cca editedNusso = new CcaBuilder(NUSSO).withTags(VALID_TAG_HUSBAND).build();
         uniqueCcaList.setCca(NUSSO, editedNusso);
         UniqueCcaList expectedUniqueCcaList = new UniqueCcaList();
         expectedUniqueCcaList.add(editedNusso);
