@@ -216,7 +216,6 @@ public class AddressBook implements ReadOnlyAddressBook {
                 + ccas.asUnmodifiableObservableList().size() + " CCAs, "
                 + reminders.asUnmodifiableObservableList().size() + " reminders";
         return result;
-        // TODO: refine later
     }
 
     @Override

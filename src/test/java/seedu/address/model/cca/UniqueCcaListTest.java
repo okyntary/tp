@@ -3,6 +3,7 @@ package seedu.address.model.cca;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalCcas.NUSSO;
 import static seedu.address.testutil.TypicalCcas.USKICK;
@@ -40,10 +41,7 @@ public class UniqueCcaListTest {
     @Test
     public void contains_ccaWithSameIdentityFieldsInList_returnsTrue() {
         uniqueCcaList.add(NUSSO);
-        Cca editedNusso = new CcaBuilder(NUSSO)
-                // TODO: tags
-                // .withTags(VALID_TAG_HUSBAND)
-                .build();
+        Cca editedNusso = new CcaBuilder(NUSSO).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(uniqueCcaList.contains(editedNusso));
     }
 
