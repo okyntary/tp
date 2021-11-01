@@ -146,6 +146,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setCca(Cca target, Cca editedCca) {
         requireNonNull(editedCca);
         ccas.setCca(target, editedCca);
+
+        reminders.setAssociatedCca(target, editedCca);
     }
 
     /**
