@@ -147,7 +147,7 @@ public class ParserUtil {
         } catch (NumberFormatException e) {
             throw new ParseException(ReminderFrequency.MESSAGE_CONSTRAINTS);
         }
-        if (numTimePeriod <= 0) {
+        if (numTimePeriod <= 0 || numTimePeriod > 100) {
             throw new ParseException(ReminderFrequency.MESSAGE_CONSTRAINTS);
         }
         Frequency timePeriod = Frequency.getFrequency(timePeriodString);
@@ -172,7 +172,7 @@ public class ParserUtil {
         } catch (NumberFormatException e) {
             throw new ParseException(ReminderOccurrence.MESSAGE_CONSTRAINTS);
         }
-        if (numOccurrences <= 0) {
+        if (numOccurrences <= 0 || numOccurrences > 50) {
             throw new ParseException(ReminderOccurrence.MESSAGE_CONSTRAINTS);
         }
         return new ReminderOccurrence(numOccurrences);

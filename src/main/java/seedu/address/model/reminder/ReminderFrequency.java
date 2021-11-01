@@ -6,7 +6,8 @@ import seedu.address.model.util.Frequency;
 
 public class ReminderFrequency {
     public static final String MESSAGE_CONSTRAINTS =
-            "Frequency should be entered in [Positive number][Type] format, e.g. 2d";
+            "Frequency should be entered in [Positive number][Type] format, e.g. 2d"
+                    + "\nThe maximum value of the number is 100 (inclusive).";
 
     /*
      * The frequency should be in [Positive number][Type] format.

@@ -43,7 +43,7 @@ It is intended to be used by NUS students, to help keep track of the students an
 Attribute Name | Type | Argument Tag | Example
 ---------------|------|--------------|--------
 Index (CCA ID, Person ID or Reminder ID) | Integer | (NONE) | `1`, `5`, `10`
-Name | String | `n/` | `n/Alice`, `n/NUSSO`
+Name | String (alphanumeric characters or spaces) | `n/` | `n/Alice`, `n/NUSSO`
 Phone Number | String containing integers only | `p/` | `p/91234567`, `p/0123`
 Email | String | `e/` | `e/alice@mail.com`, `e/nusso123@nus`
 Address | String | `a/` | `a/22 College Avenue East`
@@ -51,8 +51,9 @@ Person ID | Integer | `pid/` | `pid/1`
 CCA ID | Integer | `cid/` | `cid/1`
 Colour | 3 integers representing an RGB value | `c/` | `c/255 100 55`
 Start date | Date in yyyy-MM-dd format | `sd/` | `sd/2021-10-5`
-Frequency | A positive integer followed by a time period; the time period is either `d` (daily), `w` (weekly), `m` (monthly) or `y` (yearly) | `f/` | `f/3d`, `f/2w`, `f/6m`, `f/1y`
-Occurrences | Positive integer | `o/` | `o/10`
+Frequency | A positive integer followed by a time period; the time period is either `d` (daily), `w` (weekly), `m` (monthly) or `y` (yearly); the integer may range from 1 to 100 (inclusive) | `f/` | `f/3d`, `f/2w`, `f/6m`, `f/1y`
+Occurrences | Positive integer from 1 to 50 (inclusive) | `o/` | `o/10`
+Tag | String (alphanumeric characters with no spaces) | `t/` | `t/friend`
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -100,13 +101,13 @@ A person must have at least their name, phone number, email, and address added.
 
 Examples:
 * `addp n/Jovyn Tan Li Shyan`
-* `addp n/Neo Wei Qing e/wei_qing_official_email_real@gmail.com a/Cinnamon College at/NUSSO @nussymphonyorchestra thanks`
+* `addp n/Neo Wei Qing e/wei_qing_official_email_real@gmail.com a/Cinnamon College t/NUSSO @nussymphonyorchestra thanks`
 
 ### Editing a person: `editp`
 
 Edits an existing person in ePoch.
 
-Format: `editp PERSON_INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]​`
+Format: `editp PERSON_INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]...​`
 
 * Edits the person at the specified by displayed index. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -131,9 +132,9 @@ Examples:
 
 ### Finding a person: `findp`
 
-Finds all the people in ePoch whose name matches any search keyword.
+Finds all the people in ePoch whose name matches any of the search keywords.
 
-Format: `findp [FIRST_WORD] [SECOND_WORD] ....`
+Format: `findp FIRST_KEYWORD [SECOND_KEYWORD] ....`
 
 * Finds the people whose name matches any of the given space-separated keywords.
 * At least one keyword must be provided.
@@ -158,15 +159,19 @@ Format: `deletec CCA_ID`
 
 ### Finding a CCA: `findc`
 
-Filters all CCAs with names that contain a given string, as well as people enrolled in these CCAs and reminders associated with these CCAs.
+Filters all CCAs with names that match any of the search keywords, as well as people enrolled in these CCAs and reminders associated with these CCAs.
 
-Format: `findc STRING`
+Format: `findc FIRST_KEYWORD [SECOND_KEYWORD]`
 
 ### Adding a reminder to a CCA: `addr`
 
 Adds a reminder to a CCA.
+If frequency and occurrences is specified, the reminder will repeat at the specified frequency.
 
 Format: `addr cid/INDEX n/REMINDER_NAME sd/START_DATE [f/FREQUENCY] [o/OCCURRENCES]`
+
+* The maximum possible number of occurrences is 50.
+* The maximum possible period of the frequency (integer part of the frequency) is 100.
 
 `FREQUENCY` should be specified as either daily
 
@@ -184,9 +189,9 @@ Format: `deleter REMINDER_ID`
 
 ### Finding the title of a reminder: `findr`
 
-Filters all reminders that fit a given string.
+Filters all reminders that match any of the given keywords.
 
-Format: `findr STRING`
+Format: `findr FIRST_KEYWORD [SECOND_KEYWORD]`
 
 ### Snoozing a reminder: `snoozer`
 
@@ -275,11 +280,11 @@ Action | Format
 **Add CCA** | `addc n/CCA_NAME [t/TAG]`
 **Edit CCA** | `editc CCA_ID [n/CCA_NAME] [t/TAG]`
 **Delete CCA** | `deletec CCA_ID`
-**Find CCA** | `findc STRING`
+**Find CCA** | `findc KEYWORD`
 **Add reminder** | `addr cid/CCA_ID n/REMINDER_NAME sd/START_DATE [f/FREQUENCY] [o/OCCURRENCES]`
 **Edit reminder title** | `editr cid/CCA_ID n/REMINDER_NAME sd/START_DATE [f/FREQUENCY] [o/OCCURRENCES]`
 **Delete reminder** | `deleter REMINDER_ID`
-**Find reminder** | `findr STRING`
+**Find reminder** | `findr KEYWORD`
 **Snooze reminder** | `snoozer REMINDER_ID`
 **Enrols a person into CCA** | `enrol cid/CCA_ID pid/PERSON_ID`
 **Removes a person from a CCA** | `expel cid/CCA_ID pid/PERSON_ID`

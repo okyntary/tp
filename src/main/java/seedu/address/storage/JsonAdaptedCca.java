@@ -86,7 +86,7 @@ public class JsonAdaptedCca {
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, CcaName.class.getSimpleName()));
         }
-        if (!CcaName.isValidName(name)) {
+        if (!CcaName.isValidCcaName(name)) {
             throw new IllegalValueException(CcaName.MESSAGE_CONSTRAINTS);
         }
         final CcaName modelName = new CcaName(name);
