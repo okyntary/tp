@@ -75,8 +75,6 @@ public class UniqueReminderList implements Iterable<Reminder> {
      */
     public void setAssociatedCca(Cca originalCca, Cca newCca) {
         internalList.parallelStream().forEach(reminder -> {
-            System.out.println(reminder.getCcaName());
-            System.out.println(originalCca.getName());
             if (reminder.getCcaName().equals(originalCca.getName().toString())) {
                 reminder.setCcaName(newCca.getName().toString());
             }
