@@ -172,6 +172,7 @@ Format: `addr cid/INDEX n/REMINDER_NAME sd/START_DATE [f/FREQUENCY] [o/OCCURRENC
 
 * The maximum possible number of occurrences is 50.
 * The maximum possible period of the frequency (integer part of the frequency) is 100.
+* The year of the start date of a reminder must be before 3000.
 
 `FREQUENCY` should be specified as either daily
 
