@@ -51,11 +51,8 @@ public class PersonDeleteCommand extends Command {
         }
         model.deletePerson(personToDelete);
 
-        ObservableList<Cca> ccaList = model.getAddressBook().getCcaList();
-        for (int i = 0; i < ccaList.size(); i++) {
-            Cca cca = ccaList.get(i);
-            model.setCca(cca, cca); //refresh ALL ccas
-        }
+        // Refresh all CCAs
+        model.getAddressBook().getCcaList().parallelStream().forEach(cca -> model.setCca(cca, cca));
 
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
     }
