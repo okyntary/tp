@@ -40,7 +40,6 @@ public class CcaColourCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        // TODO: reload all tags
         requireNonNull(model);
         Tag.setCcaTagColour(tagColour);
 
@@ -49,7 +48,6 @@ public class CcaColourCommand extends Command {
             Reminder reminder = reminderList.get(i);
             model.setReminder(reminder, reminder);
         }
-        // add personList here if we're including cca tags for persons
 
         return new CommandResult(String.format(MESSAGE_SUCCESS));
     }

@@ -22,7 +22,7 @@ public class TypicalCcas {
     // Manually added - CCA's details found in {@code CommandTestUtil}
     // TODO - too lazy to add for now
 
-    public static final String KEYWORD_MATCHING_NUSSO = "NUSSO"; // A keyword that matches MEIER
+    public static final String KEYWORD_MATCHING_NUSSO = "NUSSO"; // A keyword that matches NUSSO
 
     private TypicalCcas() {} // prevents instantiation
 
