@@ -49,7 +49,6 @@ Email | String | `e/` | `e/alice@mail.com`, `e/nusso123@nus`
 Address | String | `a/` | `a/22 College Avenue East`
 Person ID | Integer | `pid/` | `pid/1`
 CCA ID | Integer | `cid/` | `cid/1`
-Colour | 3 integers representing an RGB value | `c/` | `c/255 100 55`
 Start date | Date in yyyy-MM-dd format | `sd/` | `sd/2021-10-5`
 Frequency | A positive integer followed by a time period; the time period is either `d` (daily), `w` (weekly), `m` (monthly) or `y` (yearly) | `f/` | `f/3d`, `f/2w`, `f/6m`, `f/1y`
 Occurrences | Positive integer | `o/` | `o/10`
@@ -206,18 +205,6 @@ Expels a person from a CCA.
 
 Format: `expel cid/CCA_ID pid/PERSON_ID`
 
-### Changing the colour of a non-CCA tag: `colourt`
-
-Changes the colour of a non-CCA tag.
-
-Format: `colourt n/TAG_NAME c/RED GREEN BLUE`
-
-### Changing the colour of all CCA tags: `colourc`
-
-Changes the colour of all CCA tags.
-
-Format: `colourc c/RED GREEN BLUE`
-
 ### Delete all data from ePoch: `clear`
 
 Deletes all data (persons, CCAs, reminders) from ePoch.
@@ -283,7 +270,5 @@ Action | Format
 **Snooze reminder** | `snoozer REMINDER_ID`
 **Enrols a person into CCA** | `enrol cid/CCA_ID pid/PERSON_ID`
 **Removes a person from a CCA** | `expel cid/CCA_ID pid/PERSON_ID`
-**Changes the colour of a non-CCA tag** | `colourt n/TAG_NAME c/RED GREEN BLUE`
-**Changes the colour of all CCA tags** | `colourc c/RED GREEN BLUE`
 **View help page** | `help`
 **Exit the app** | `exit`
