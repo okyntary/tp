@@ -2,9 +2,7 @@ package seedu.address.logic.commands.person;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.commons.core.Messages;
