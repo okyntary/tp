@@ -57,6 +57,4 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/okyntary.md)]
 
 * Role: Developer
-* Responsibilities: Gradle Expert
-
-I like playing Slay the Spire. Slay the Spire is the best game released in the last three years, fight me.
+* Responsibilities: Gradle Expert, `Storage` component expert 
