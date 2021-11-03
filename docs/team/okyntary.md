@@ -5,7 +5,7 @@ title: Teo Keane's/okyntary's Project Portfolio Page
 
 ### Project: ePoch
 
-ePoch helps overcommitted students keep track of their many contacts and events across various CCAs. The product allows students to link persons with CCAs and set reminders that repeat over a given time interval, to conveniently organise their commitments and overlapping social circles.
+ePoch is a desktop app for managing contacts, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). It has been designed for the busy NUS student, allowing the user to create contacts for persons and to create CCAs, link those persons and CCAs together, and to create periodic reminders for those CCAs.
 
 ### Summary of contributions:
 
