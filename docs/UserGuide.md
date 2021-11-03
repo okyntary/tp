@@ -291,7 +291,5 @@ Action | Format
 **Snooze reminder** | `snoozer REMINDER_ID`
 **Enrols a person into CCA** | `enrol cid/CCA_ID pid/PERSON_ID`
 **Removes a person from a CCA** | `expel cid/CCA_ID pid/PERSON_ID`
-**Changes the colour of a non-CCA tag** | `colourt n/TAG_NAME c/RED GREEN BLUE`
-**Changes the colour of all CCA tags** | `colourc c/RED GREEN BLUE`
 **View help page** | `help`
 **Exit the app** | `exit`

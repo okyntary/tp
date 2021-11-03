@@ -1,46 +1,36 @@
 ---
 layout: page
-title: Teo Keane's Project Portfolio Page
+title: Teo Keane's/okyntary's Project Portfolio Page
 ---
 
-### Project: AddressBook Level 3
+### Project: ePoch
 
-AddressBook - Level 3 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+ePoch is a desktop app for managing contacts, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). It has been designed for the busy NUS student, allowing the user to create contacts for persons and to create CCAs, link those persons and CCAs together, and to create periodic reminders for those CCAs.
 
-Given below are my contributions to the project.
+### Summary of contributions:
 
-* **New Feature**: Added the ability to undo/redo previous commands.
-  * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-  * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-  * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-  * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+* **Code contributed**
+  * [RepoSense link]((https://nus-cs2103-ay2122s1.github.io/tp-dashboard/?search=t14-2&sort=groupTitle&sortWithin=title&since=2021-09-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=authorship&tabAuthor=okyntary&tabRepo=AY2122S1-CS2103-T14-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false) 
 
-* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
-
-* **Code contributed**: [RepoSense link]()
-
-* **Project management**:
-  * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
-
-* **Enhancements to existing features**:
-  * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
-  * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
+* **Enhancements implemented**
+  * Implement storage for all new features that require storage between sessions, so that important data is retained between sessions
+    * Creation of new classes to store new objects and object types
+      * `JsonAdaptedCca` to match new class `Cca`
+      * `JsonAdaptedReminder` to match new class `Reminder`
+    * Modification of existing classes to store new attributes for existing object types
+      * `JsonSerializableAddressBook` to account for modified class `AddressBook`
+      * `JsonAdaptedPerson` to match modified class `Person`
+  * Add `addr` command for creating new `Reminder` objects
+  * Modify `deletep`. `deletec` and `deleter` commands to match desired behaviour, according to ePoch's desired data structure
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `delete` and `find` [\#72]()
-    * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
+    * Added documentation for the features section [\#31](https://github.com/AY2122S1-CS2103-T14-2/tp/pull/31)
+    * Proofread and edited lines over the entirety of the User Guide [\#120](https://github.com/AY2122S1-CS2103-T14-2/tp/pull/120)
+    * Changed documentation for `addc` and `editc` commands to reflect changes in the parameters accepted * [/#218](https://github.com/AY2122S1-CS2103-T14-2/tp/pull/218)
   * Developer Guide:
-    * Added implementation details of the `delete` feature.
-
-* **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-  * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
-
-* **Tools**:
-  * Integrated a third party library (Natty) to the project ([\#42]())
-  * Integrated a new Github plugin (CircleCI) to the team repo
-
-* _{you can add/remove categories in the list above}_
+    * Update documentation related to `Storage` component
+      * Update UML diagram to reflect new and modified classes in `Storage` component [\#239](https://github.com/AY2122S1-CS2103-T14-2/tp/pull/239) 
+      * Added Sequence Diagram to illustrate `saveAddressBook()` method call [\#239](https://github.com/AY2122S1-CS2103-T14-2/tp/pull/239)
+      * Added explanation for `Storage` implementation details [\#239](https://github.com/AY2122S1-CS2103-T14-2/tp/pull/239)
+    * Added, proofread and edited Use Cases, Non-Functional Requirements, Glossary and Instructions for Manual Testing [\#35](https://github.com/AY2122S1-CS2103-T14-2/tp/pull/35/files), [\#120](https://github.com/AY2122S1-CS2103-T14-2/tp/pull/120)

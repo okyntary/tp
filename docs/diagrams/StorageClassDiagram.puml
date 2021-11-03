@@ -44,6 +44,9 @@ JsonSerializableAddressBook --> "*" JsonAdaptedCca
 JsonSerializableAddressBook --> "*" JsonAdaptedReminder
 JsonAdaptedCca --> "*" JsonAdaptedPerson
 JsonAdaptedCca --> "*" JsonAdaptedReminder
+JsonAdaptedCca --> "*" JsonAdaptedTag
 JsonAdaptedPerson --> "*" JsonAdaptedTag
+JsonAdaptedReminder --> Frequency
+JsonAdaptedReminder --> Date
 
 @enduml

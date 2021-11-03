@@ -55,6 +55,4 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/okyntary.md)]
 
 * Role: Developer
-* Responsibilities: Gradle Expert
-
-I like playing Slay the Spire. Slay the Spire is the best game released in the last three years, fight me.
+* Responsibilities: Gradle Expert, `Storage` component expert 

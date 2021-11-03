@@ -23,7 +23,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2122S1-CS2103-T14-2/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
@@ -36,7 +36,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2122S1-CS2103-T14-2/tp/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2122S1-CS2103-T14-2/tp/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -69,13 +69,13 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2122S1-CS2103-T14-2/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2122S1-CS2103-T14-2/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2122S1-CS2103-T14-2/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -86,7 +86,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2122S1-CS2103-T14-2/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -114,7 +114,7 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2122S1-CS2103-T14-2/tp/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 ****
@@ -132,10 +132,9 @@ The `Model` component,
 
 </div>
 
-
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2122S1-CS2103-T14-2/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -143,6 +142,10 @@ The `Storage` component,
 * can save both address book data and user preference data in json format, and read them back into corresponding objects.
 * inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+
+The Sequence Diagram below illustrates the interactions within the Storage component for the `saveAddressBook()` API call.
+
+<img src="images/StorageSequenceDiagram.png" width="550" />
 
 ### Common classes
 
@@ -225,7 +228,7 @@ A Reminder has:
 * A start date, represented by the `ReminderStartDate` class.
 * Zero or one frequency, represented by the `ReminderFrequency` class and making use of enumerations from the `Frequency` class.
 * Zero or one occurrence, represented by the `ReminderOccurrence` class.
-* Exactly one CCA that it is linked to, represented as a `Cca` data field.
+* Exactly one CCA that it is linked to, represented as a `CcaName` data field as a String.
 
 Two Reminders are considered identical if they have the same name, same cca, same start date, same frequency, and same occurrence.
 
@@ -291,24 +294,17 @@ A Tag has:
 Two Tags are considered identical if they have the same name.
 A Tag also corresponds to a certain `TagColour`, the mappings of which are stored in the static `tagColours` Hashtable within the Tag class.
 
-#### Command for Changing Non-CCA Tag Colours
+### Storage
 
-The `colourt` command is implemented by `TagColourCommand`, which extends `Command`.
-Polymorphism allows the different Command objects to be passed around and executed without having to know what type of Command it is.
+The current Storage mechanism is split into two main sections: `AddressBook` storage, for all ePoch-related data, and `UserPrefs` storage, for all user preference-related data.
+Whenever ePoch needs to save or update its storage, it converts the relevant object into a json object with the `saveJsonFile` method in `jsonUtil`.
 
-The `TagColourCommand` has a `String` containing the tag name and a `TagColour` representing the new colour to change that particular tag to.
-It implements the `execute` method which handles the logic of the `TagColourCommand`, setting the value in the Hashtable (of the relevant key, specified by the tag name) to the new `TagColour` value.
-It then updates the `UI` component by refreshing the list of Persons and CCAs (Reminders only have a CCA tag, and so do not need to be refreshed).
+There are three main classes types in ePoch that need to be saved: `Person`, `Cca`, and `Reminder`. Each of these classes is converted to its corresponding `JsonAdapted` class,
+to be made suitable for json conversion. Because each `Cca` object contains a `Set` of `Person`s and `Reminder`s as members, `JsonAdaptedPerson` and `JsonAdaptedReminder` will be stored within `JsonAdaptedCca`.
+Also, because each `Person` and `Cca` object contains a `Set` of `Tag`s, `JsonAdaptedTag` will be stored within `JsonAdaptedPerson` and `JsonAdaptedCca` as well.
 
-#### Command for Changing CCA Tag Colours
-
-The `colourc` command is implemented by the `CcaColourCommand`, which extends `Command`.
-Polymorphism allows the different Command objects to be passed around and executed without having to know what type of Command it is.
-
-The `CcaColourCommand` has a `TagColour` representing the new colour to change the CCA tags to.
-Since, CCA tags are automatically added to Reminders, one changes all of the CCA tag colours at once.
-The command implements the `execute` method which handles the logic of the `CcaColourCommand`, setting the value in the Hashtable (of the key corresponding to CCA tags) to the new `TagColour` value.
-It then updates the `UI` component by refreshing the list of Reminders.
+Alternatives considered: instead of storing whole `Person` and `Reminder` objects in `Cca` objects, the alternative of storing unique identifiers for them as `Pid`, `Rid` etc was considered. In the end, this possibility was rejected
+because of how time-consuming refactoring the entire project to use this new system would be.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -338,7 +334,7 @@ It then updates the `UI` component by refreshing the list of Reminders.
 
 **Value proposition**:
 
-ePoch helps overcommitted students keep track of their many contacts and events across various CCAs.
+ePoch helps NUS students keep track of their many contacts and events across various CCAs.
 The product allows students to link persons with CCAs and set reminders that repeat over a given time interval, to conveniently organise their commitments and overlapping social circles.
 
 
