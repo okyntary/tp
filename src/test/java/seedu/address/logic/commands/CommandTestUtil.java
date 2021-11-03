@@ -15,6 +15,7 @@ import java.util.Date;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.cca.CcaEditCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.person.PersonEditCommand;
 import seedu.address.logic.commands.reminder.ReminderEditCommand;
@@ -27,6 +28,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.reminder.ReminderNameContainsKeywordsPredicate;
 import seedu.address.model.util.Frequency;
+import seedu.address.testutil.EditCcaDescriptorBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.EditReminderDescriptorBuilder;
 
@@ -45,6 +47,8 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_TAG_USP = "USP";
+    public static final String VALID_TAG_SPORTS = "sports";
     public static final String VALID_CCA_NAME_NUSSO = "NUSSO";
     public static final String VALID_CCA_NAME_TRACK = "USP Track";
     public static final String VALID_CCA_NAME_USKICK = "USKick";
@@ -87,6 +91,8 @@ public class CommandTestUtil {
     public static final PersonEditCommand.EditPersonDescriptor DESC_BOB;
     public static final ReminderEditCommand.EditReminderDescriptor DESC_REHEARSAL;
     public static final ReminderEditCommand.EditReminderDescriptor DESC_MEETING;
+    public static final CcaEditCommand.EditCcaDescriptor DESC_TRACK;
+    public static final CcaEditCommand.EditCcaDescriptor DESC_USKICK;
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -101,6 +107,10 @@ public class CommandTestUtil {
         DESC_MEETING = new EditReminderDescriptorBuilder().withName(VALID_REMINDER_NAME_MEETING)
                 .withStartDate(new Date()).withFrequency(VALID_TIME_PERIOD_YEAR, VALID_NUM_TIME_PERIOD_2)
                 .withOccurrence(VALID_OCCURENCES_10).withCcaName(VALID_CCA_NAME_USKICK).build();
+        DESC_TRACK = new EditCcaDescriptorBuilder().withName(VALID_CCA_NAME_TRACK)
+                .withTags(VALID_TAG_SPORTS).build();
+        DESC_USKICK = new EditCcaDescriptorBuilder().withName(VALID_CCA_NAME_USKICK)
+                .withTags(VALID_TAG_USP, VALID_TAG_SPORTS).build();
     }
 
     /**
