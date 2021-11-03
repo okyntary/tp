@@ -163,7 +163,7 @@ There are three main classes types in ePoch that need to be saved: `Person`, `Cc
 to be made suitable for `.json` conversion. Because each `Cca` object contains a `Set` of `Person`s and `Reminder`s as members, `JsonAdaptedPerson` and `JsonAdaptedReminder` will be stored within `JsonAdaptedCca` as well.
 
 Alternatives considered: instead of storing whole `Person` and `Reminder` objects in `Cca` objects, the alternative of storing unique identifiers for them `Pid`, `Rid` etc was considered. In the end, this possibility was rejected
-because of how time-consuming refactoring the entire project to use this new system would be. 
+because of how time-consuming refactoring the entire project to use this new system would be.
 
 ### CCAs
 
@@ -431,7 +431,7 @@ Extension:
 Extension:
 - 1a. At least one attribute from name, cid and start date is missing or specified improperly.
     - The system throws an error. Use case resumes from step 1.
-    
+
 **Use case: UC5 - Find a person**
 
 **MSS**
@@ -442,7 +442,7 @@ Extension:
 
 Extensions:
 
-- 1a. No attributes are specified, or attributes are specified improperly. 
+- 1a. No attributes are specified, or attributes are specified improperly.
   - 1a1. The system throws an error. Use case resumes from step 1.
 
 
