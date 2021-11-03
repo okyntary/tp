@@ -11,18 +11,26 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.cca.CcaEditCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.person.PersonEditCommand;
+import seedu.address.logic.commands.reminder.ReminderEditCommand;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.cca.Cca;
 import seedu.address.model.cca.CcaNameContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.reminder.Reminder;
+import seedu.address.model.reminder.ReminderNameContainsKeywordsPredicate;
+import seedu.address.model.util.Frequency;
+import seedu.address.testutil.EditCcaDescriptorBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.EditReminderDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -39,9 +47,20 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_TAG_USP = "USP";
+    public static final String VALID_TAG_SPORTS = "sports";
     public static final String VALID_CCA_NAME_NUSSO = "NUSSO";
     public static final String VALID_CCA_NAME_TRACK = "USP Track";
     public static final String VALID_CCA_NAME_USKICK = "USKick";
+    public static final String VALID_REMINDER_NAME_MEETING = "meeting";
+    public static final String VALID_REMINDER_NAME_REHEARSAL = "rehearsal";
+    public static final String VALID_REMINDER_NAME_PROJECT = "project";
+    public static final Frequency VALID_TIME_PERIOD_DAY = Frequency.DAY;
+    public static final Frequency VALID_TIME_PERIOD_YEAR = Frequency.YEAR;
+    public static final int VALID_NUM_TIME_PERIOD_10 = 10;
+    public static final int VALID_NUM_TIME_PERIOD_2 = 2;
+    public static final int VALID_OCCURENCES_5 = 5;
+    public static final int VALID_OCCURENCES_10 = 10;
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -70,6 +89,10 @@ public class CommandTestUtil {
 
     public static final PersonEditCommand.EditPersonDescriptor DESC_AMY;
     public static final PersonEditCommand.EditPersonDescriptor DESC_BOB;
+    public static final ReminderEditCommand.EditReminderDescriptor DESC_REHEARSAL;
+    public static final ReminderEditCommand.EditReminderDescriptor DESC_MEETING;
+    public static final CcaEditCommand.EditCcaDescriptor DESC_TRACK;
+    public static final CcaEditCommand.EditCcaDescriptor DESC_USKICK;
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -78,6 +101,16 @@ public class CommandTestUtil {
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        DESC_REHEARSAL = new EditReminderDescriptorBuilder().withName(VALID_REMINDER_NAME_REHEARSAL)
+                .withStartDate(new Date()).withFrequency(VALID_TIME_PERIOD_DAY, VALID_NUM_TIME_PERIOD_10)
+                .withOccurrence(VALID_OCCURENCES_5).withCcaName(VALID_CCA_NAME_NUSSO).build();
+        DESC_MEETING = new EditReminderDescriptorBuilder().withName(VALID_REMINDER_NAME_MEETING)
+                .withStartDate(new Date()).withFrequency(VALID_TIME_PERIOD_YEAR, VALID_NUM_TIME_PERIOD_2)
+                .withOccurrence(VALID_OCCURENCES_10).withCcaName(VALID_CCA_NAME_USKICK).build();
+        DESC_TRACK = new EditCcaDescriptorBuilder().withName(VALID_CCA_NAME_TRACK)
+                .withTags(VALID_TAG_SPORTS).build();
+        DESC_USKICK = new EditCcaDescriptorBuilder().withName(VALID_CCA_NAME_USKICK)
+                .withTags(VALID_TAG_USP, VALID_TAG_SPORTS).build();
     }
 
     /**
@@ -122,6 +155,7 @@ public class CommandTestUtil {
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
     }
+
     /**
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
      * {@code model}'s address book.
@@ -135,18 +169,32 @@ public class CommandTestUtil {
 
         assertEquals(1, model.getFilteredPersonList().size());
     }
+
     /**
-     * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
+     * Updates {@code model}'s filtered list to show only the CCA at the given {@code targetIndex} in the
      * {@code model}'s address book.
      */
     public static void showCcaAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredCcaList().size());
 
-        Cca person = model.getFilteredCcaList().get(targetIndex.getZeroBased());
-        final String[] splitName = person.getName().fullName.split("\\s+");
+        Cca cca = model.getFilteredCcaList().get(targetIndex.getZeroBased());
+        final String[] splitName = cca.getName().fullName.split("\\s+");
         model.updateFilteredCcaList(new CcaNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredCcaList().size());
     }
 
+    /**
+     * Updates {@code model}'s filtered list to show only the reminder at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showReminderAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredReminderList().size());
+
+        Reminder reminder = model.getFilteredReminderList().get(targetIndex.getZeroBased());
+        final String[] splitName = reminder.getName().fullName.split("\\s+");
+        model.updateFilteredReminderList(new ReminderNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+
+        assertEquals(1, model.getFilteredReminderList().size());
+    }
 }
