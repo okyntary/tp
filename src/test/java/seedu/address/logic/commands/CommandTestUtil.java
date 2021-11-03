@@ -22,6 +22,8 @@ import seedu.address.model.cca.Cca;
 import seedu.address.model.cca.CcaNameContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.reminder.Reminder;
+import seedu.address.model.reminder.ReminderNameContainsKeywordsPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -122,6 +124,7 @@ public class CommandTestUtil {
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
     }
+
     /**
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
      * {@code model}'s address book.
@@ -135,18 +138,32 @@ public class CommandTestUtil {
 
         assertEquals(1, model.getFilteredPersonList().size());
     }
+
     /**
-     * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
+     * Updates {@code model}'s filtered list to show only the CCA at the given {@code targetIndex} in the
      * {@code model}'s address book.
      */
     public static void showCcaAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredCcaList().size());
 
-        Cca person = model.getFilteredCcaList().get(targetIndex.getZeroBased());
-        final String[] splitName = person.getName().fullName.split("\\s+");
+        Cca cca = model.getFilteredCcaList().get(targetIndex.getZeroBased());
+        final String[] splitName = cca.getName().fullName.split("\\s+");
         model.updateFilteredCcaList(new CcaNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredCcaList().size());
     }
 
+    /**
+     * Updates {@code model}'s filtered list to show only the reminder at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showReminderAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredReminderList().size());
+
+        Reminder reminder = model.getFilteredReminderList().get(targetIndex.getZeroBased());
+        final String[] splitName = reminder.getName().fullName.split("\\s+");
+        model.updateFilteredReminderList(new ReminderNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+
+        assertEquals(1, model.getFilteredReminderList().size());
+    }
 }
