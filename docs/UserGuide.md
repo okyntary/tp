@@ -101,7 +101,7 @@ A person must have at least their name, phone number, email, and address added.
 
 Examples:
 * `addp n/Jovyn Tan Li Shyan p/98765432 e/email@mail.com a/NUS`
-* `addp n/Neo Wei Qing p/91231234 e/wei_qing_official_email_real@gmail.com a/Cinnamon College t/NUSSO nussymphonyorchestra`
+* `addp n/Neo Wei Qing p/91231234 e/wei_qing_official_email_real@gmail.com a/Cinnamon College t/friend`
 
 ### Editing a person: `editp`
 
@@ -115,7 +115,7 @@ Format: `editp PERSON_INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/T
 
 Examples:
 *  `editp 1 p/91234567 e/jiveshrealemail@yahoo.com` Edits the phone number and email address of the 1st person to be `91234567` and `jiveshrealemail@yahoo.com` respectively.
-*  `editp 2 n/weiq t/NUSSO nussymphonyorchestra` Edits the name of the 2nd person to be `weiq` and sets the person's tags to `NUSSO nussymphonyorchestra`. 
+*  `editp 2 n/weiq t/friend t/groupmate` Edits the name of the 2nd person to be `weiq` and sets the person's tags to `friend` and `groupmate`. 
 
 ### Deleting a person: `deletep`
 
