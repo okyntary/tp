@@ -1,14 +1,14 @@
 package seedu.address.testutil;
 
-import seedu.address.model.AddressBook;
-import seedu.address.model.reminder.Reminder;
-import seedu.address.model.util.Frequency;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+
+import seedu.address.model.AddressBook;
+import seedu.address.model.reminder.Reminder;
+import seedu.address.model.util.Frequency;
 
 /**
  * A utility class containing a list of {@code Reminder} objects to be used in tests.

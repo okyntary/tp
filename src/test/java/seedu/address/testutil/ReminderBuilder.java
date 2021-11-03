@@ -1,14 +1,14 @@
 package seedu.address.testutil;
 
+import java.util.ArrayList;
+import java.util.Date;
+
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.reminder.ReminderFrequency;
 import seedu.address.model.reminder.ReminderName;
 import seedu.address.model.reminder.ReminderOccurrence;
 import seedu.address.model.reminder.ReminderStartDate;
 import seedu.address.model.util.Frequency;
-
-import java.util.ArrayList;
-import java.util.Date;
 
 /**
  * A utility class to help with building Reminder objects.
@@ -86,6 +86,11 @@ public class ReminderBuilder {
         return this;
     }
 
+    /**
+     * Builds a {@code Reminder} with the details specified.
+     *
+     * @return The built reminder
+     */
     public Reminder build() {
         Reminder reminder = new Reminder(reminderName, reminderStartDate, reminderFrequency, reminderOccurrence);
         reminder.setCcaName(ccaName);

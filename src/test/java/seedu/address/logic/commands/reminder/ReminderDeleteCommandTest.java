@@ -1,13 +1,5 @@
 package seedu.address.logic.commands.reminder;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.reminder.Reminder;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -16,6 +8,15 @@ import static seedu.address.logic.commands.CommandTestUtil.showReminderAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_REMINDER;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_REMINDER;
 import static seedu.address.testutil.TypicalReminders.getTypicalAddressBook;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.reminder.Reminder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
