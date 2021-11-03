@@ -2,9 +2,7 @@ package seedu.address.logic.commands.cca;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
@@ -14,12 +12,8 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 import seedu.address.model.cca.Cca;
 import seedu.address.model.cca.CcaNameContainsKeywordsPredicate;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.Person;
-import seedu.address.model.reminder.Reminder;
-import seedu.address.model.reminder.ReminderName;
-import seedu.address.model.reminder.ReminderNameContainsKeywordsPredicate;
+import seedu.address.model.person.PersonIsInCcaPredicate;
+import seedu.address.model.reminder.ReminderContainsCcaNamePredicate;
 
 
 /**
@@ -48,10 +42,10 @@ public class CcaFindCommand extends Command {
 
         model.updateFilteredCcaList(predicate);
 
-        NameContainsKeywordsPredicate personPredicate = getFilterForPersonList(model.getFilteredCcaList());
+        PersonIsInCcaPredicate personPredicate = getFilterForPersonList(model.getFilteredCcaList());
         model.updateFilteredPersonList(personPredicate);
 
-        ReminderNameContainsKeywordsPredicate reminderPredicate = getFilterForRemainderList(model.getFilteredCcaList());
+        ReminderContainsCcaNamePredicate reminderPredicate = getFilterForRemainderList(model.getFilteredCcaList());
         model.updateFilteredReminderList(reminderPredicate);
 
         return new CommandResult(
@@ -65,23 +59,13 @@ public class CcaFindCommand extends Command {
                 && predicate.equals(((CcaFindCommand) other).predicate)); // state check
     }
 
-    private NameContainsKeywordsPredicate getFilterForPersonList(ObservableList<Cca> ccaList) {
-        Set<Person> allPersons = new HashSet<>();
-        for (Cca validCca: ccaList) {
-            allPersons.addAll(validCca.getMembers());
-        }
-        List<String> allPersonNames = allPersons
-                .stream().map(Person::getName).map(Name::toString).collect(Collectors.toList());
-        return new NameContainsKeywordsPredicate(allPersonNames);
+    private PersonIsInCcaPredicate getFilterForPersonList(ObservableList<Cca> ccaList) {
+        return new PersonIsInCcaPredicate(ccaList);
     }
 
-    private ReminderNameContainsKeywordsPredicate getFilterForRemainderList(ObservableList<Cca> ccaList) {
-        Set<Reminder> allReminders = new HashSet<>();
-        for (Cca validCca: ccaList) {
-            allReminders.addAll(validCca.getReminders());
-        }
-        List<String> allReminderNames = allReminders
-                .stream().map(Reminder::getName).map(ReminderName::toString).collect(Collectors.toList());
-        return new ReminderNameContainsKeywordsPredicate(allReminderNames);
+    private ReminderContainsCcaNamePredicate getFilterForRemainderList(ObservableList<Cca> ccaList) {
+        List<String> ccaNameList = ccaList.parallelStream()
+                .map(cca -> cca.getName().toString()).collect(Collectors.toList());
+        return new ReminderContainsCcaNamePredicate(ccaNameList);
     }
 }

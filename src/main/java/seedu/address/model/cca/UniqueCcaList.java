@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.cca.exceptions.CcaNotFoundException;
 import seedu.address.model.cca.exceptions.DuplicateCcaException;
 import seedu.address.model.person.Person;
+import seedu.address.model.reminder.Reminder;
 
 /**
  * A list of CCAs that enforces uniqueness between its elements and does not allow nulls.
@@ -74,6 +75,19 @@ public class UniqueCcaList implements Iterable<Cca> {
             if (cca.containsEnrolledPerson(enrolledTarget)) {
                 cca.expelPerson(enrolledTarget);
                 cca.enrolPerson(editedPersonToBeEnrolled);
+            }
+        });
+    }
+
+    /**
+     * Changes any instances of {@code originalReminder} in any CCA's reminder list
+     * to the {@code editedReminder}
+     */
+    public void setAssociatedReminder(Reminder originalReminder, Reminder editedReminder) {
+        internalList.parallelStream().forEach(cca -> {
+            if (cca.getName().toString().equals(originalReminder.getCcaName())) {
+                cca.removeReminder(originalReminder);
+                cca.addReminder(editedReminder);
             }
         });
     }

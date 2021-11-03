@@ -52,7 +52,7 @@ The rest of the App consists of four components.
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `deletep 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -94,7 +94,7 @@ Here's a (partial) class diagram of the `Logic` component:
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
-2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
+2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `PersonAddCommand`) which is executed by the `LogicManager`.
 3. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
@@ -102,7 +102,7 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 ![Interactions Inside the Logic Component for the `deletep 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `PersonDeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -156,6 +156,17 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Storage
+
+The current Storage mechanism is split into two main sections: `AddressBook` storage, for all ePoch-related data, and `UserPrefs` storage, for all user preference-related data.
+Whenever ePoch needs to save or update its storage, it converts the relevant object into a `.json` object with the `saveJsonFile` method in `jsonUtil`.
+
+There are three main classes types in ePoch that need to be saved: `Person`, `Cca`, and `Reminder`. Each of these classes is converted to its corresponding `JsonAdapted` class,
+to be made suitable for `.json` conversion. Because each `Cca` object contains a `Set` of `Person`s and `Reminder`s as members, `JsonAdaptedPerson` and `JsonAdaptedReminder` will be stored within `JsonAdaptedCca` as well.
+
+Alternatives considered: instead of storing whole `Person` and `Reminder` objects in `Cca` objects, the alternative of storing unique identifiers for them `Pid`, `Rid` etc was considered. In the end, this possibility was rejected
+because of how time-consuming refactoring the entire project to use this new system would be.
 
 ### CCAs
 
@@ -416,7 +427,7 @@ Extension:
 Extension:
 - 1a. At least one attribute from name, cid and start date is missing or specified improperly.
     - The system throws an error. Use case resumes from step 1.
-    
+
 **Use case: UC5 - Find a person**
 
 **MSS**
@@ -427,7 +438,7 @@ Extension:
 
 Extensions:
 
-- 1a. No attributes are specified, or attributes are specified improperly. 
+- 1a. No attributes are specified, or attributes are specified improperly.
   - 1a1. The system throws an error. Use case resumes from step 1.
 
 
@@ -518,23 +529,21 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the `.jar` file.<br>
        Expected: The most recent window size and location should be remembered.
 
-1. _{ more test cases … }_
-
 ### Adding a person
 
 1. Adding a person
 
    1. Prerequisites: None.
-   
+
    2. Test case: `addp n/Ellen Chua a/Tembusu e/ellenchua@u.nus.edu.sg p/98225832` <br>
       Expected: a person named `Ellen Chua`, with address `Tembusu`, email `ellenchua@u.nus.edu.sg`, and phone number `98225832` is added.
-   
+
    3. Test case: `addp` <br>
       Expected: Error thrown, indicating invalid command format.
-   
+
    4. Test case: `addp n/Kevin Norton`, i.e. some fields are missing. <br>
       Expected: Similar to previous.
-   
+
    5. Other incorrect add commands to try: `add`, `addperson` etc. <br>
       Expected: Similar to previous.
 
@@ -563,7 +572,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Adding a reminder to a CCA
    1. Prerequisites: List all CCAs using the `list` command. The CCA that the reminder is to be added to is listed.
-   
+
    2. Test case: `addr n/Weekly band practice cid/1 sd/2021-09-20` <br>
        Expected: a reminder named `Weekly band practice` which begins on `2021-09-20` is added to the CCA at index 1 (i.e. the first CCA in the list).
 
@@ -590,7 +599,7 @@ testers are expected to do more *exploratory* testing.
 
     4. Other incorrect delete commands to try: `delete`, `deleter x` (where x is larger than the number of reminders listed) <br>
        Expected: Similar to previous.
-   
+
 ### Enrolling a person into a CCA
 
 1. Enrolling a person to a CCA
@@ -604,7 +613,7 @@ testers are expected to do more *exploratory* testing.
 
     4. Test case: `enrol cid/1`, i.e. some fields are missing. <br>
        Expected: Similar to previous.
-       
+
     5. Other incorrect add commands to try: `enrol`, `enrol cid/0`, `addreminder cid/x` where `x` is greater than the number of CCAs listed etc. <br>
        Expected: Similar to previous.
 
@@ -635,9 +644,9 @@ testers are expected to do more *exploratory* testing.
 
    2. Simulate missing file
       1. Prerequisites: Delete `addressbook.json`, if it exists, from the `/data` folder in the directory where the `.jar` file for ePoch is stored.
-      
+
       2. Test case: Double-click the `.jar` file to run it. <br>
          Expected: this should show the GUI with a set of sample contacts. There should be no `addressbook.json` file in the `/data` at this exact moment.
-      
+
       3. Test case: Run the `clear` command in ePoch. <br>
          Expected: this should clear all sample contacts from ePoch, and the GUI should contain no data at all. An `addressbook.json` file should be created in the `/data` folder.s

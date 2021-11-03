@@ -8,6 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.cca.Cca;
 import seedu.address.model.reminder.exceptions.DuplicateReminderException;
 import seedu.address.model.reminder.exceptions.ReminderNotFoundException;
 
@@ -66,6 +67,18 @@ public class UniqueReminderList implements Iterable<Reminder> {
         }
 
         internalList.set(index, editedReminder);
+    }
+
+    /**
+     * Checks for reminders attached to {@code originalCca} and changes
+     * them to be associated with {@code newCca}
+     */
+    public void setAssociatedCca(Cca originalCca, Cca newCca) {
+        internalList.parallelStream().forEach(reminder -> {
+            if (reminder.getCcaName().equals(originalCca.getName().toString())) {
+                reminder.setCcaName(newCca.getName().toString());
+            }
+        });
     }
 
     /**

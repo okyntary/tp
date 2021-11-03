@@ -1,8 +1,9 @@
 package seedu.address.logic.commands.reminder;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CCA_ID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FREQUENCY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_OCCURRENCES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START_DATE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_REMINDERS;
 
@@ -33,18 +34,18 @@ public class ReminderEditCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the reminder identified "
             + "by the index number used in the displayed reminder list. "
-            + "Existing values will be overwritten by the input values. "
-            + "\nParameters: INDEX (must be a positive integer less than 1,000,000,000) "
-            + PREFIX_CCA_ID + "CCA_ID "
-            + PREFIX_NAME + "REMINDER_NAME "
-            + PREFIX_START_DATE + "START_DATE "
-            + "\nExample: " + COMMAND_WORD + " "
-            + PREFIX_CCA_ID + "1 "
+            + "Existing values will be overwritten by the input values.\n"
+            + "Parameters: INDEX (must be a positive integer less than 1,000,000,000) "
+            + "[" + PREFIX_NAME + "REMINDER_NAME] "
+            + "[" + PREFIX_START_DATE + "START_DATE] "
+            + "[" + PREFIX_FREQUENCY + "FREQUENCY] "
+            + "[" + PREFIX_OCCURRENCES + "OCCURRENCES]\n"
+            + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_NAME + "NUSSO rehearsal "
             + PREFIX_START_DATE + "2021-10-31";
 
     public static final String MESSAGE_EDIT_REMINDER_SUCCESS = "Edited Reminder: %1$s";
-    public static final String REMINDER_NOT_EDITED = "At least one field to edit must be provided.";
+    // public static final String REMINDER_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_EDIT = "This reminder already exists in ePoch.";
 
     private final Index index;
