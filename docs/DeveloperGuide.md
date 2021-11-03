@@ -540,16 +540,16 @@ testers are expected to do more *exploratory* testing.
 1. Adding a person
 
    1. Prerequisites: None.
-   
+
    2. Test case: `addp n/Ellen Chua a/Tembusu e/ellenchua@u.nus.edu.sg p/98225832` <br>
       Expected: a person named `Ellen Chua`, with address `Tembusu`, email `ellenchua@u.nus.edu.sg`, and phone number `98225832` is added.
-   
+
    3. Test case: `addp` <br>
       Expected: Error thrown, indicating invalid command format.
-   
+
    4. Test case: `addp n/Kevin Norton`, i.e. some fields are missing. <br>
       Expected: Similar to previous.
-   
+
    5. Other incorrect add commands to try: `add`, `addperson` etc. <br>
       Expected: Similar to previous.
 
@@ -578,7 +578,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Adding a reminder to a CCA
    1. Prerequisites: List all CCAs using the `list` command. The CCA that the reminder is to be added to is listed.
-   
+
    2. Test case: `addr n/Weekly band practice cid/1 sd/2021-09-20` <br>
        Expected: a reminder named `Weekly band practice` which begins on `2021-09-20` is added to the CCA at index 1 (i.e. the first CCA in the list).
 
@@ -605,7 +605,7 @@ testers are expected to do more *exploratory* testing.
 
     4. Other incorrect delete commands to try: `delete`, `deleter x` (where x is larger than the number of reminders listed) <br>
        Expected: Similar to previous.
-   
+
 ### Enrolling a person into a CCA
 
 1. Enrolling a person to a CCA
@@ -619,7 +619,7 @@ testers are expected to do more *exploratory* testing.
 
     4. Test case: `enrol cid/1`, i.e. some fields are missing. <br>
        Expected: Similar to previous.
-       
+
     5. Other incorrect add commands to try: `enrol`, `enrol cid/0`, `addreminder cid/x` where `x` is greater than the number of CCAs listed etc. <br>
        Expected: Similar to previous.
 
@@ -650,9 +650,9 @@ testers are expected to do more *exploratory* testing.
 
    2. Simulate missing file
       1. Prerequisites: Delete `addressbook.json`, if it exists, from the `/data` folder in the directory where the `.jar` file for ePoch is stored.
-      
+
       2. Test case: Double-click the `.jar` file to run it. <br>
          Expected: this should show the GUI with a set of sample contacts. There should be no `addressbook.json` file in the `/data` at this exact moment.
-      
+
       3. Test case: Run the `clear` command in ePoch. <br>
          Expected: this should clear all sample contacts from ePoch, and the GUI should contain no data at all. An `addressbook.json` file should be created in the `/data` folder.s
