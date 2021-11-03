@@ -5,8 +5,6 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
-
 ## Project team
 
 ### Jivesh Mohan
@@ -24,7 +22,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/jovyntls.png" width="200px">
 
 [[github](http://github.com/jovyntls)]
-[[portfolio](team/jovyn.md)]
+[[portfolio](team/jovyntls.md)]
 
 * Role: Team Lead
 * Responsibilities: Scheduling and tracking, Deliverables and deadlines
@@ -44,7 +42,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/justintanyf.png" width="200px">
 
 [[github](http://github.com/justintanyf)]
-[[portfolio](team/tanyanfeng.md)]
+[[portfolio](team/justintanyf.md)]
 
 * Role: Developer
 * Responsibilities: Intellij Expert, SourceTree Expert
