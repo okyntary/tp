@@ -22,4 +22,3 @@ Given below are my contributions to the project.
 - Contributions to team-based tasks:
   - Managed issue tracker
   - Project management for 4 sprints
-

@@ -1,5 +1,5 @@
 ---
-layout: user
+layout: page
 title: User Guide
 ---
 
@@ -80,7 +80,7 @@ Tag | String (alphanumeric characters with no spaces) | `t/` | `t/friend`
 
 </div>
 
-Note: ePoch has a capacity of 1,000,000,000 persons, CCAs and reminders each. 
+Note: ePoch has a capacity of 1,000,000,000 persons, CCAs and reminders each.
 
 
 ### Listing all persons : `list`
