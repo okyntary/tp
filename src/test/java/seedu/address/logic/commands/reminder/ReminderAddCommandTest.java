@@ -1,9 +1,10 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.reminder;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
@@ -11,71 +12,76 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
 
-import org.junit.jupiter.api.Test;
-
 import javafx.collections.ObservableList;
+import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.commands.person.PersonAddCommand;
+import seedu.address.logic.commands.reminder.ReminderAddCommand;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.cca.Cca;
+import seedu.address.model.cca.UniqueCcaList;
 import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.CcaBuilder;
+import seedu.address.testutil.ReminderBuilder;
+import seedu.address.testutil.TypicalIndexes;
 
-public class PersonAddCommandTest {
+public class ReminderAddCommandTest {
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new PersonAddCommand(null));
+    public void constructor_nullReminder_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new ReminderAddCommand(null, null));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Person validPerson = new PersonBuilder().build();
+    public void execute_reminderAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingReminderAdded modelStub = new ModelStubAcceptingReminderAdded();
+        Reminder validReminder = new ReminderBuilder().build();
 
-        CommandResult commandResult = new PersonAddCommand(validPerson).execute(modelStub);
+        CommandResult commandResult = new ReminderAddCommand(validReminder, TypicalIndexes.INDEX_FIRST_CCA)
+                .execute(modelStub);
 
-        assertEquals(String.format(PersonAddCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+        assertEquals(String.format(ReminderAddCommand.MESSAGE_SUCCESS, validReminder),
+                commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validReminder), modelStub.remindersAdded);
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Person validPerson = new PersonBuilder().build();
-        PersonAddCommand personAddCommand = new PersonAddCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(validPerson);
+    public void execute_duplicateReminder_throwsCommandException() {
+        Reminder validReminder = new ReminderBuilder().build();
+        ReminderAddCommand reminderAddCommand = new ReminderAddCommand(validReminder, TypicalIndexes.INDEX_FIRST_CCA);
+        ModelStub modelStub = new ModelStubWithReminder(validReminder);
 
         assertThrows(CommandException.class,
-            PersonAddCommand.MESSAGE_DUPLICATE_PERSON, () -> personAddCommand.execute(modelStub));
+                ReminderAddCommand.MESSAGE_DUPLICATE_REMINDER, () -> reminderAddCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Person alice = new PersonBuilder().withName("Alice").build();
-        Person bob = new PersonBuilder().withName("Bob").build();
-        PersonAddCommand addAliceCommand = new PersonAddCommand(alice);
-        PersonAddCommand addBobCommand = new PersonAddCommand(bob);
+        Reminder reminder1 = new ReminderBuilder().withName("reminder1").build();
+        Reminder reminder2 = new ReminderBuilder().withName("reminder2").build();
+        ReminderAddCommand addReminder1Command = new ReminderAddCommand(reminder1, TypicalIndexes.INDEX_FIRST_CCA);
+        ReminderAddCommand addReminder2Command = new ReminderAddCommand(reminder2, TypicalIndexes.INDEX_FIRST_CCA);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(addReminder1Command.equals(addReminder1Command));
 
         // same values -> returns true
-        PersonAddCommand addAliceCommandCopy = new PersonAddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        ReminderAddCommand addReminder1CommandCopy = new ReminderAddCommand(reminder1, TypicalIndexes.INDEX_FIRST_CCA);
+        assertTrue(addReminder1Command.equals(addReminder1CommandCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(addReminder1Command.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(addReminder1Command.equals(null));
 
         // different person -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        assertFalse(addReminder1Command.equals(addReminder2Command));
     }
 
     /**
@@ -275,44 +281,81 @@ public class PersonAddCommandTest {
     }
 
     /**
-     * A Model stub that contains a single person.
+     * A Model stub that contains a single reminder.
      */
-    private class ModelStubWithPerson extends ModelStub {
-        private final Person person;
+    private class ModelStubWithReminder extends ModelStub {
+        private final Reminder reminder;
 
-        ModelStubWithPerson(Person person) {
-            requireNonNull(person);
-            this.person = person;
+        ModelStubWithReminder(Reminder reminder) {
+            requireNonNull(reminder);
+            this.reminder = reminder;
         }
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return this.person.isSamePerson(person);
+        public boolean hasReminder(Reminder reminder) {
+            requireNonNull(reminder);
+            return this.reminder.isSameReminder(reminder);
+        }
+
+        @Override
+        public ObservableList<Cca> getFilteredCcaList() {
+            UniqueCcaList ccas = new UniqueCcaList();
+            CcaBuilder ccaBuilder = new CcaBuilder();
+            ccas.add(ccaBuilder.build());
+            return ccas.asUnmodifiableObservableList();
+        }
+
+        @Override
+        public void updateFilteredCcaList(Predicate<Cca> predicate) {
+            // do nothing
+        }
+
+        @Override
+        public void updateFilteredReminderList(Predicate<Reminder> predicate) {
+            // do nothing
         }
     }
 
     /**
      * A Model stub that always accept the person being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Person> personsAdded = new ArrayList<>();
+    private class ModelStubAcceptingReminderAdded extends ModelStub {
+        final ArrayList<Reminder> remindersAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
+        public boolean hasReminder(Reminder reminder) {
+            requireNonNull(reminder);
+            return remindersAdded.stream().anyMatch(reminder::isSameReminder);
         }
 
         @Override
-        public void addPerson(Person person) {
-            requireNonNull(person);
-            personsAdded.add(person);
+        public boolean addReminder(Reminder reminder, Cca ccaToAddInto) {
+            requireAllNonNull(reminder, ccaToAddInto);
+            remindersAdded.add(reminder);
+            return true;
         }
 
         @Override
-        public int getNumberOfPersons() {
+        public int getNumberOfReminders() {
             return 1;
+        }
+
+        @Override
+        public ObservableList<Cca> getFilteredCcaList() {
+            UniqueCcaList ccas = new UniqueCcaList();
+            CcaBuilder ccaBuilder = new CcaBuilder();
+            ccas.add(ccaBuilder.build());
+            return ccas.asUnmodifiableObservableList();
+        }
+
+        @Override
+        public void updateFilteredCcaList(Predicate<Cca> predicate) {
+            // do nothing
+        }
+
+        @Override
+        public void updateFilteredReminderList(Predicate<Reminder> predicate) {
+            // do nothing
         }
 
         @Override
@@ -320,5 +363,4 @@ public class PersonAddCommandTest {
             return new AddressBook();
         }
     }
-
 }
