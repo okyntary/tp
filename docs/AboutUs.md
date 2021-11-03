@@ -22,7 +22,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/jovyntls.png" width="200px">
 
 [[github](http://github.com/jovyntls)]
-[[portfolio](team/jovyn.md)]
+[[portfolio](team/jovyntls.md)]
 
 * Role: Team Lead
 * Responsibilities: Scheduling and tracking, Deliverables and deadlines
