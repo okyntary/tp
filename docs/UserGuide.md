@@ -100,7 +100,7 @@ A person must have at least their name, phone number, email, and address added.
 </div>
 
 Examples:
-* `addp n/Jovyn Tan Li Shyan`
+* `addp n/Jovyn Tan Li Shyan e/jovyn_email_real@gmail.com a/Cinnamon College t/Computing`
 * `addp n/Neo Wei Qing e/wei_qing_official_email_real@gmail.com a/Cinnamon College t/NUSSO @nussymphonyorchestra thanks`
 
 ### Editing a person: `editp`
