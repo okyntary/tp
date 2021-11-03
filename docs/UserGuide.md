@@ -49,7 +49,6 @@ Email | String | `e/` | `e/alice@mail.com`, `e/nusso123@nus`
 Address | String | `a/` | `a/22 College Avenue East`
 Person ID | Integer | `pid/` | `pid/1`
 CCA ID | Integer | `cid/` | `cid/1`
-Colour | 3 integers representing an RGB value | `c/` | `c/255 100 55`
 Start date | Date in yyyy-MM-dd format | `sd/` | `sd/2021-10-5`
 Frequency | A positive integer followed by a time period; the time period is either `d` (daily), `w` (weekly), `m` (monthly) or `y` (yearly); the integer may range from 1 to 100 (inclusive) | `f/` | `f/3d`, `f/2w`, `f/6m`, `f/1y`
 Occurrences | Positive integer from 1 to 50 (inclusive) | `o/` | `o/10`
@@ -93,15 +92,15 @@ Format: `list`
 
 Adds a person to ePoch.
 
-Format: `addp n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]​`
+Format: `addp n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]... ​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person must have at least their name, phone number, email, and address added.
 </div>
 
 Examples:
-* `addp n/Jovyn Tan Li Shyan`
-* `addp n/Neo Wei Qing e/wei_qing_official_email_real@gmail.com a/Cinnamon College t/NUSSO @nussymphonyorchestra thanks`
+* `addp n/Jovyn Tan Li Shyan p/98765432 e/email@mail.com a/NUS`
+* `addp n/Neo Wei Qing p/91231234 e/wei_qing_official_email_real@gmail.com a/Cinnamon College t/friend`
 
 ### Editing a person: `editp`
 
@@ -115,7 +114,7 @@ Format: `editp PERSON_INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/T
 
 Examples:
 *  `editp 1 p/91234567 e/jiveshrealemail@yahoo.com` Edits the phone number and email address of the 1st person to be `91234567` and `jiveshrealemail@yahoo.com` respectively.
-*  `editp 2 n/weiq dt/NUSSO @nussymphonyorchestra thanks` Edits the name of the 2nd person to be `weiq` and clears the specified tag.
+*  `editp 2 n/weiq t/friend t/groupmate` Edits the name of the 2nd person to be `weiq` and sets the person's tags to `friend` and `groupmate`. 
 
 ### Deleting a person: `deletep`
 
@@ -143,13 +142,13 @@ Format: `findp FIRST_KEYWORD [SECOND_KEYWORD] ....`
 
 Adds a CCA.
 
-Format: `addc n/CCA_NAME t/[TAG]`
+Format: `addc n/CCA_NAME [t/TAG]...`
 
 ### Editing a CCA: `editc`
 
 Edits the details of a CCA.
 
-Format: `editc CCA_ID [n/CCA_NAME] [t/TAG]`
+Format: `editc CCA_ID [n/CCA_NAME] [t/TAG]...`
 
 ### Deleting a CCA: `deletec`
 
@@ -225,18 +224,6 @@ Format: `enrol cid/CCA_ID pid/PERSON_ID`
 Expels a person from a CCA.
 
 Format: `expel cid/CCA_ID pid/PERSON_ID`
-
-### Changing the colour of a non-CCA tag: `colourt`
-
-Changes the colour of a non-CCA tag.
-
-Format: `colourt n/TAG_NAME c/RED GREEN BLUE`
-
-### Changing the colour of all CCA tags: `colourc`
-
-Changes the colour of all CCA tags.
-
-Format: `colourc c/RED GREEN BLUE`
 
 ### Delete all data from ePoch: `clear`
 
