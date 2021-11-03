@@ -1,5 +1,5 @@
 ---
-layout: user
+layout: page
 title: User Guide
 ---
 
