@@ -64,7 +64,8 @@ public class ReminderNameContainsKeywordsPredicateTest {
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
-        ReminderNameContainsKeywordsPredicate predicate = new ReminderNameContainsKeywordsPredicate(Collections.emptyList());
+        ReminderNameContainsKeywordsPredicate predicate = new ReminderNameContainsKeywordsPredicate(
+                Collections.emptyList());
         assertFalse(predicate.test(new ReminderBuilder().withName("Meeting").build()));
 
         // Non-matching keyword
@@ -72,7 +73,8 @@ public class ReminderNameContainsKeywordsPredicateTest {
         assertFalse(predicate.test(new ReminderBuilder().withName("Meeting Reminder").build()));
 
         // Keywords do not match name
-        predicate = new ReminderNameContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
+        predicate = new ReminderNameContainsKeywordsPredicate(Arrays.asList("12345",
+                "alice@email.com", "Main", "Street"));
         assertFalse(predicate.test(new ReminderBuilder().withName("Meeting").build()));
     }
 }

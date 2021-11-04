@@ -155,12 +155,13 @@ public class UniqueReminderListTest {
     @Test
     public void setReminders_listWithDuplicateReminders_throwsDuplicateReminderException() {
         List<Reminder> listWithDuplicateReminders = Arrays.asList(MEETING, MEETING);
-        assertThrows(DuplicateReminderException.class, () -> uniqueReminderList.setReminders(listWithDuplicateReminders));
+        assertThrows(DuplicateReminderException.class, () -> uniqueReminderList
+            .setReminders(listWithDuplicateReminders));
     }
 
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
-                -> uniqueReminderList.asUnmodifiableObservableList().remove(0));
+            -> uniqueReminderList.asUnmodifiableObservableList().remove(0));
     }
 }
