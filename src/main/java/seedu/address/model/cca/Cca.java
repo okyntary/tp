@@ -181,4 +181,14 @@ public class Cca {
     public boolean removeReminder(Reminder reminder) {
         return this.reminders.remove(reminder);
     }
+
+    /**
+     * Updates the CCA name for all reminders that is linked to this CCA.
+     * Should only be called the editc command is executed.
+     */
+    public void updateCcaNameForReminders() {
+        for (Reminder reminder : reminders) {
+            reminder.setCcaName(this.ccaName.fullName);
+        }
+    }
 }
