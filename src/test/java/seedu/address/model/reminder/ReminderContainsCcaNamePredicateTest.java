@@ -1,14 +1,16 @@
 package seedu.address.model.reminder;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.testutil.ReminderBuilder;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.testutil.ReminderBuilder;
+
 
 public class ReminderContainsCcaNamePredicateTest {
 
