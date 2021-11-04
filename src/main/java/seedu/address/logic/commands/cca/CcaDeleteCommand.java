@@ -56,7 +56,6 @@ public class CcaDeleteCommand extends Command {
         }
         model.deleteCca(ccaToDelete);
 
-        model.updateFilteredCcaList(PREDICATE_SHOW_ALL_CCAS);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         model.updateFilteredReminderList(PREDICATE_SHOW_ALL_REMINDERS);
 

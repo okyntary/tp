@@ -63,7 +63,6 @@ public class CcaAddCommand extends Command {
 
         model.addCca(toAdd);
 
-        model.updateFilteredCcaList(PREDICATE_SHOW_ALL_CCAS);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         model.updateFilteredReminderList(PREDICATE_SHOW_ALL_REMINDERS);
 

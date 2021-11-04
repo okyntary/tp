@@ -2,7 +2,6 @@ package seedu.address.logic.commands.person;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CCAS;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_REMINDERS;
 
 import java.util.List;
@@ -56,7 +55,6 @@ public class PersonDeleteCommand extends Command {
         model.deletePerson(personToDelete);
 
         model.updateFilteredCcaList(PREDICATE_SHOW_ALL_CCAS);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         model.updateFilteredReminderList(PREDICATE_SHOW_ALL_REMINDERS);
 
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
