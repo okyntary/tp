@@ -38,6 +38,6 @@ public class TypicalCcas {
     }
 
     public static List<Cca> getTypicalCcas() {
-        return new ArrayList<>(Arrays.asList(NUSSO, USKICK));
+        return new ArrayList<>(Arrays.asList(NUSSO, USKICK, USCOFFEE, USC));
     }
 }

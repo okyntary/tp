@@ -16,5 +16,4 @@ public class CliSyntax {
     public static final Prefix PREFIX_START_DATE = new Prefix("sd/");
     public static final Prefix PREFIX_FREQUENCY = new Prefix("f/");
     public static final Prefix PREFIX_OCCURRENCES = new Prefix("o/");
-    public static final Prefix PREFIX_COLOUR = new Prefix("c/");
 }
