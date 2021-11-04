@@ -79,6 +79,8 @@ Tag | String (alphanumeric characters with no spaces) | `t/` | `t/friend`
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
+* Besides find-related commands, executing a command will refresh the UI to show all entries. This is to avoid confusing the user.
+
 </div>
 
 Note: ePoch has a capacity of 1,000,000,000 persons, CCAs and reminders each.
@@ -134,7 +136,8 @@ Examples:
 
 ### Finding a person: `findp`
 
-Finds all the people in ePoch whose name matches any of the search keywords.
+Finds all the people in ePoch whose name matches any of the search keywords, along with all CCAs they are enrolled in, 
+as well as all reminders associated with these CCAs.
 
 Format: `findp FIRST_WORD [SECOND_WORD] ....`
 
@@ -201,7 +204,7 @@ Format: `deleter REMINDER_ID`
 
 ### Finding the title of a reminder: `findr`
 
-Filters all reminders that match any of the given keywords.
+Filters all reminders that match any of the given keywords, as well as CCAs associated with these reminders.
 
 Format: `findr FIRST_WORD [SECOND_WORD] ....`
 

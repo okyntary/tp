@@ -3,6 +3,9 @@ package seedu.address.logic.commands.cca;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CCA_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_ID;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CCAS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_REMINDERS;
 
 import java.util.List;
 
@@ -73,7 +76,9 @@ public class CcaEnrolCommand extends Command {
         boolean success = model.enrolPersonIntoCca(ccaToEnrolInto, personToEnrol);
         if (success) {
             model.setCca(ccaToEnrolInto, ccaToEnrolInto);
-            model.updateFilteredCcaList(Model.PREDICATE_SHOW_ALL_CCAS);
+            model.updateFilteredCcaList(PREDICATE_SHOW_ALL_CCAS);
+            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+            model.updateFilteredReminderList(PREDICATE_SHOW_ALL_REMINDERS);
             return new CommandResult(String.format(MESSAGE_SUCCESS, personToEnrol.getName(), ccaToEnrolInto.getName()));
         } else {
             throw new CommandException(

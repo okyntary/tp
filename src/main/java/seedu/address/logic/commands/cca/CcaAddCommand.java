@@ -4,6 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_MAXIMUM_CCAS_CAPACITY_REACHED;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CCAS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_REMINDERS;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -59,6 +62,11 @@ public class CcaAddCommand extends Command {
         }
 
         model.addCca(toAdd);
+
+        model.updateFilteredCcaList(PREDICATE_SHOW_ALL_CCAS);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredReminderList(PREDICATE_SHOW_ALL_REMINDERS);
+
         logger.log(Level.FINE, "CCA successfully added");
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
