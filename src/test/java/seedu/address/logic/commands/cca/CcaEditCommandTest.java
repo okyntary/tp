@@ -12,6 +12,7 @@ import static seedu.address.logic.commands.CommandTestUtil.showCcaAtIndex;
 import static seedu.address.testutil.TypicalCcas.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CCA;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_CCA;
+import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_CCA;
 
 import org.junit.jupiter.api.Test;
 

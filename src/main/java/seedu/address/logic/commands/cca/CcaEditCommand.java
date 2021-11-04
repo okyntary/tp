@@ -82,6 +82,7 @@ public class CcaEditCommand extends Command {
         ObservableList<Reminder> reminderList = model.getAddressBook().getReminderList();
         for (int i = 0; i < reminderList.size(); i++) {
             Reminder reminder = reminderList.get(i);
+            reminder.setCcaName(editedCca.getName().fullName); //hmm
             model.setReminder(reminder, reminder);
         }
 
