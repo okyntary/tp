@@ -7,6 +7,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CCAS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_REMINDERS;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -62,8 +65,11 @@ public class PersonAddCommand extends Command {
         }
 
         model.addPerson(toAdd);
-        model.updateFilteredCcaList(Model.PREDICATE_SHOW_ALL_CCAS);
-        model.updateFilteredReminderList(Model.PREDICATE_SHOW_ALL_REMINDERS);
+
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredCcaList(PREDICATE_SHOW_ALL_CCAS);
+        model.updateFilteredReminderList(PREDICATE_SHOW_ALL_REMINDERS);
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
