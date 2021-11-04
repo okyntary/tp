@@ -15,7 +15,7 @@ import seedu.address.model.util.SampleDataUtil;
  */
 public class CcaBuilder {
 
-    public static final String DEFAULT_NAME = "NUSSO";
+    public static final String DEFAULT_NAME = "DEFAULT";
 
     // Identity fields
     private CcaName name;
