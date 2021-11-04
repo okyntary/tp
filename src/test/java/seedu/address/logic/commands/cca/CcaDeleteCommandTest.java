@@ -58,7 +58,7 @@ public class CcaDeleteCommandTest {
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deleteCca(ccaToDelete);
-        showNoCca(expectedModel);
+        showAllCcas(expectedModel);
 
         assertCommandSuccess(ccaDeleteCommand, model, expectedMessage, expectedModel);
     }
@@ -99,11 +99,9 @@ public class CcaDeleteCommandTest {
     }
 
     /**
-     * Updates {@code model}'s filtered list to show no one.
+     * Updates {@code model}'s filtered list to show everyone.
      */
-    private void showNoCca(Model model) {
-        model.updateFilteredCcaList(p -> false);
-
-        assertTrue(model.getFilteredCcaList().isEmpty());
+    private void showAllCcas(Model model) {
+        model.updateFilteredCcaList(p -> true);
     }
 }

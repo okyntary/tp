@@ -349,6 +349,11 @@ public class ReminderAddCommandTest {
         }
 
         @Override
+        public void updateFilteredPersonList(Predicate<Person> predicate) {
+            // do nothing
+        }
+
+        @Override
         public void updateFilteredCcaList(Predicate<Cca> predicate) {
             // do nothing
         }

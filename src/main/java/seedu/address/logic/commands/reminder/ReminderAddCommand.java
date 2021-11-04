@@ -7,6 +7,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_FREQUENCY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OCCURRENCES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START_DATE;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CCAS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_REMINDERS;
 
 import java.util.List;
 
@@ -86,7 +89,9 @@ public class ReminderAddCommand extends Command {
 
         if (success) {
             toAdd.setCcaName(ccaToAddInto.getName().fullName);
-            model.updateFilteredReminderList(Model.PREDICATE_SHOW_ALL_REMINDERS);
+            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+            model.updateFilteredCcaList(PREDICATE_SHOW_ALL_CCAS);
+            model.updateFilteredReminderList(PREDICATE_SHOW_ALL_REMINDERS);
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd.getName(), ccaToAddInto.getName()));
         } else {
             throw new CommandException(

@@ -316,6 +316,11 @@ public class PersonAddCommandTest {
         }
 
         @Override
+        public void updateFilteredPersonList(Predicate<Person> predicate) {
+            // do nothing
+        }
+
+        @Override
         public ReadOnlyAddressBook getAddressBook() {
             return new AddressBook();
         }

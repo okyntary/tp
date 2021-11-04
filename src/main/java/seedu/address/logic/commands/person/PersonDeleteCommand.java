@@ -2,16 +2,19 @@ package seedu.address.logic.commands.person;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CCAS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_REMINDERS;
 
 import java.util.List;
 
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.cca.Cca;
 import seedu.address.model.person.Person;
 
 /**
@@ -45,15 +48,17 @@ public class PersonDeleteCommand extends Command {
 
         Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
 
-        model.getAddressBook().getCcaList().parallelStream().forEachOrdered(cca -> {
+        ObservableList<Cca> ccaList = model.getAddressBook().getCcaList();
+        for (Cca cca : ccaList) {
             if (cca.containsEnrolledPerson(personToDelete)) {
                 cca.expelPerson(personToDelete);
                 model.setCca(cca, cca);
             }
-        });
+        }
 
         model.deletePerson(personToDelete);
 
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         model.updateFilteredCcaList(PREDICATE_SHOW_ALL_CCAS);
         model.updateFilteredReminderList(PREDICATE_SHOW_ALL_REMINDERS);
 
