@@ -6,14 +6,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalCcas.NUSSO;
-import static seedu.address.testutil.TypicalCcas.USCOFFEE;
 import static seedu.address.testutil.TypicalCcas.USKICK;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
-import static seedu.address.testutil.TypicalPersons.CARL;
 import static seedu.address.testutil.TypicalReminders.CHRISTMAS;
 import static seedu.address.testutil.TypicalReminders.CLASS;
-import static seedu.address.testutil.TypicalReminders.MEETING;
+import static seedu.address.testutil.TypicalReminders.CONCERT;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -263,6 +261,61 @@ public class ModelManagerTest {
         assertTrue(modelManager.hasCca(USKICK));
     }
 
+    @Test
+    public void enrolPersonIntoCca_nullCca_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.enrolPersonIntoCca(null, ALICE));
+    }
+
+    @Test
+    public void enrolPersonIntoCca_nullPerson_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.enrolPersonIntoCca(NUSSO, null));
+    }
+
+    @Test
+    public void enrolPersonIntoCca_personAlreadyEnrolled_enrolListStaysSame() {
+        assertFalse(NUSSO.getMembers().contains(BENSON));
+        modelManager.enrolPersonIntoCca(NUSSO, BENSON);
+        int originalMembers = NUSSO.getMembers().size();
+        modelManager.enrolPersonIntoCca(NUSSO, BENSON);
+        int newMembers = NUSSO.getMembers().size();
+        assertTrue(NUSSO.getMembers().contains(BENSON));
+        assertEquals(originalMembers, newMembers);
+    }
+
+    @Test
+    public void enrolPersonIntoCca_personNotAlreadyEnrolled_enrolsPerson() {
+        assertFalse(NUSSO.getMembers().contains(ALICE));
+        modelManager.enrolPersonIntoCca(NUSSO, ALICE);
+        assertTrue(NUSSO.getMembers().contains(ALICE));
+    }
+
+    @Test
+    public void expelPersonFromCca_nullCca_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.expelPersonFromCca(null, ALICE));
+    }
+
+    @Test
+    public void expelPersonFromCca_nullPerson_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.expelPersonFromCca(NUSSO, null));
+    }
+
+    @Test
+    public void expelPersonFromCca_personNotEnrolled_enrolListStaysSame() {
+        int originalMembers = USKICK.getMembers().size();
+        modelManager.expelPersonFromCca(USKICK, ALICE);
+        int newMembers = USKICK.getMembers().size();
+        assertFalse(USKICK.getMembers().contains(ALICE));
+        assertEquals(originalMembers, newMembers);
+    }
+
+    @Test
+    public void expelPersonFromCca_personEnrolled_expelsPerson() {
+        modelManager.enrolPersonIntoCca(USKICK, ALICE);
+        assertTrue(USKICK.getMembers().contains(ALICE));
+        modelManager.expelPersonFromCca(USKICK, ALICE);
+        assertFalse(USKICK.getMembers().contains(ALICE));
+    }
+
     ///// tests for reminder
 
     @Test
@@ -358,8 +411,48 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void snoozeReminder_nullReminder_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.snoozeReminder(null));
+    }
+
+    @Test
+    public void snoozeReminder_reminderNotInAddressBook_throwsReminderNotFoundException() {
+        assertThrows(ReminderNotFoundException.class, () -> modelManager.snoozeReminder(CHRISTMAS));
+    }
+
+    @Test
+    public void snoozeReminder_reminderInAddressBookAndLastOccurrence_deletesReminder() {
+        modelManager.addReminder(CONCERT, NUSSO);
+        assertTrue(modelManager.hasReminder(CONCERT));
+        modelManager.snoozeReminder(CONCERT);
+        assertFalse(modelManager.hasReminder(CONCERT));
+    }
+
+    @Test
+    public void snoozeReminder_reminderInAddressBookAndNotLastOccurrence_snoozesReminder() {
+        modelManager.addReminder(CLASS, NUSSO);
+        assertTrue(modelManager.hasReminder(CLASS));
+        int prevOccurrences = CLASS.getOccurrences().getOccurrences();
+        modelManager.snoozeReminder(CLASS);
+        int newOccurrences = modelManager.getFilteredReminderList().get(0).getOccurrences().getOccurrences();
+        assertEquals(prevOccurrences, newOccurrences + 1);
+    }
+
+    ///// tests for filters
+
+    @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
+    }
+
+    @Test
+    public void getFilteredCcaList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredCcaList().remove(0));
+    }
+
+    @Test
+    public void getFilteredReminderList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredReminderList().remove(0));
     }
 
     @Test

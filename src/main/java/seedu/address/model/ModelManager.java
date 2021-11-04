@@ -213,12 +213,13 @@ public class ModelManager implements Model {
 
     /**
      * Enrols a person into a CCA
-     * {@code cca} must not already exist in ePoch.
-     *  @param ccaToEnrolInto CCA to enrol into
+     * {@code cca} must exist in ePoch.
+     * @param ccaToEnrolInto CCA to enrol into
      * @param personToEnrol Person enrolling into CCA
      */
     @Override
     public boolean enrolPersonIntoCca(Cca ccaToEnrolInto, Person personToEnrol) {
+        requireAllNonNull(ccaToEnrolInto, personToEnrol);
         return ccaToEnrolInto.enrolPerson(personToEnrol);
     }
 
@@ -227,6 +228,7 @@ public class ModelManager implements Model {
      */
     @Override
     public boolean expelPersonFromCca(Cca ccaToExpelFrom, Person personToExpel) {
+        requireAllNonNull(ccaToExpelFrom, personToExpel);
         return ccaToExpelFrom.expelPerson(personToExpel);
     }
 
