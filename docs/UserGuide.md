@@ -282,8 +282,8 @@ Action | Format
 **Edit person data** | `editp PERSON_INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]`
 **Delete person** | `deletep PERSON_INDEX`
 **Find person** | `findp FIRST_WORD [SECOND_WORD] ....`
-**Add CCA** | `addc n/CCA_NAME [t/TAG]`
-**Edit CCA** | `editc CCA_ID [n/CCA_NAME] [t/TAG]`
+**Add CCA** | `addc n/CCA_NAME [t/TAG]...`
+**Edit CCA** | `editc CCA_ID [n/CCA_NAME] [t/TAG]...`
 **Delete CCA** | `deletec CCA_ID`
 **Find CCA** | `findc FIRST_WORD [SECOND_WORD] ....`
 **Add reminder** | `addr cid/CCA_ID n/REMINDER_NAME sd/START_DATE [f/FREQUENCY] [o/OCCURRENCES]`
