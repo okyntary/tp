@@ -44,6 +44,8 @@ public class CcaEditCommandTest {
         String expectedMessage = String.format(CcaEditCommand.MESSAGE_EDIT_CCA_SUCCESS, editedCca);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        expectedModel.resetAllFilteredLists();
+        model.resetAllFilteredLists();
         expectedModel.setCca(model.getFilteredCcaList().get(0), editedCca);
 
         assertCommandSuccess(ccaEditCommand, model, expectedMessage, expectedModel);
