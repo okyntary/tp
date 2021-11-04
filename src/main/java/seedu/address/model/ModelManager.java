@@ -155,6 +155,7 @@ public class ModelManager implements Model {
 
     @Override
     public boolean addReminder(Reminder reminder, Cca ccaToAddInto) {
+        requireAllNonNull(reminder, ccaToAddInto);
         addressBook.addReminder(reminder);
         boolean success = ccaToAddInto.addReminder(reminder);
         if (success) {

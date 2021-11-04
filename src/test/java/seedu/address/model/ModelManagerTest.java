@@ -5,8 +5,15 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalCcas.NUSSO;
+import static seedu.address.testutil.TypicalCcas.USCOFFEE;
+import static seedu.address.testutil.TypicalCcas.USKICK;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalPersons.CARL;
+import static seedu.address.testutil.TypicalReminders.CHRISTMAS;
+import static seedu.address.testutil.TypicalReminders.CLASS;
+import static seedu.address.testutil.TypicalReminders.MEETING;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -15,7 +22,13 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.cca.exceptions.CcaNotFoundException;
+import seedu.address.model.cca.exceptions.DuplicateCcaException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.reminder.exceptions.DuplicateReminderException;
+import seedu.address.model.reminder.exceptions.ReminderNotFoundException;
 import seedu.address.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {
@@ -72,6 +85,8 @@ public class ModelManagerTest {
         assertEquals(path, modelManager.getAddressBookFilePath());
     }
 
+    ///// tests for person
+
     @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.hasPerson(null));
@@ -86,6 +101,260 @@ public class ModelManagerTest {
     public void hasPerson_personInAddressBook_returnsTrue() {
         modelManager.addPerson(ALICE);
         assertTrue(modelManager.hasPerson(ALICE));
+    }
+
+    @Test
+    public void addPerson_nullPerson_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.addPerson(null));
+    }
+
+    @Test
+    public void addPerson_personNotInAddressBook_addsPerson() {
+        modelManager.addPerson(ALICE);
+        assertTrue(modelManager.hasPerson(ALICE));
+    }
+
+    @Test
+    public void addPerson_personInAddressBook_throwsDuplicatePersonException() {
+        modelManager.addPerson(ALICE);
+        assertThrows(DuplicatePersonException.class, () -> modelManager.addPerson(ALICE));
+    }
+
+    @Test
+    public void deletePerson_nullPerson_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.deletePerson(null));
+    }
+
+    @Test
+    public void deletePerson_personNotInAddressBook_throwsPersonNotFoundException() {
+        assertThrows(PersonNotFoundException.class, () -> modelManager.deletePerson(BENSON));
+    }
+
+    @Test
+    public void deletePerson_personInAddressBook_deletesPerson() {
+        modelManager.addPerson(BENSON);
+        assertTrue(modelManager.hasPerson(BENSON));
+        modelManager.deletePerson(BENSON);
+        assertFalse(modelManager.hasPerson(BENSON));
+    }
+
+    @Test
+    public void setPerson_nullTargetPerson_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setPerson(null, ALICE));
+    }
+
+    @Test
+    public void setPerson_nullEditedPerson_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setPerson(ALICE, null));
+    }
+
+    @Test
+    public void setPerson_targetPersonNotInAddressBook_throwsPersonNotFoundException() {
+        assertThrows(PersonNotFoundException.class, () -> modelManager.setPerson(ALICE, BENSON));
+    }
+
+    @Test
+    public void setPerson_targetPersonAndEditedPersonInAddressBook_throwsDuplicatePersonException() {
+        modelManager.addPerson(ALICE);
+        modelManager.addPerson(BENSON);
+        assertThrows(DuplicatePersonException.class, () -> modelManager.setPerson(ALICE, BENSON));
+    }
+
+    @Test
+    public void setPerson_targetPersonInAddressBookAndEditedPersonSameAsTargetPerson_setsPerson() {
+        modelManager.addPerson(ALICE);
+        modelManager.setPerson(ALICE, ALICE);
+        assertTrue(modelManager.hasPerson(ALICE));
+    }
+
+    @Test
+    public void setPerson_targetPersonInAddressBookAndEditedPersonDifferentFromTargetPerson_setsPerson() {
+        modelManager.addPerson(ALICE);
+        modelManager.setPerson(ALICE, BENSON);
+        assertTrue(modelManager.hasPerson(BENSON));
+    }
+
+    ///// tests for cca
+
+    @Test
+    public void hasCca_nullCca_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasCca(null));
+    }
+
+    @Test
+    public void hasCca_ccaNotInAddressBook_returnsFalse() {
+        assertFalse(modelManager.hasCca(NUSSO));
+    }
+
+    @Test
+    public void hasCca_ccaInAddressBook_returnsTrue() {
+        modelManager.addCca(NUSSO);
+        assertTrue(modelManager.hasCca(NUSSO));
+    }
+
+    @Test
+    public void addCca_nullCca_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.addCca(null));
+    }
+
+    @Test
+    public void addCca_ccaNotInAddressBook_addsCca() {
+        modelManager.addCca(NUSSO);
+        assertTrue(modelManager.hasCca(NUSSO));
+    }
+
+    @Test
+    public void addCca_ccaInAddressBook_throwsDuplicateCcaException() {
+        modelManager.addCca(NUSSO);
+        assertThrows(DuplicateCcaException.class, () -> modelManager.addCca(NUSSO));
+    }
+
+    @Test
+    public void deleteCca_nullCca_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.deleteCca(null));
+    }
+
+    @Test
+    public void deleteCca_ccaNotInAddressBook_throwsCcaNotFoundException() {
+        assertThrows(CcaNotFoundException.class, () -> modelManager.deleteCca(USKICK));
+    }
+
+    @Test
+    public void deleteCca_ccaInAddressBook_deletesCca() {
+        modelManager.addCca(USKICK);
+        assertTrue(modelManager.hasCca(USKICK));
+        modelManager.deleteCca(USKICK);
+        assertFalse(modelManager.hasCca(USKICK));
+    }
+
+    @Test
+    public void setCca_nullTargetCca_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setCca(null, NUSSO));
+    }
+
+    @Test
+    public void setCca_nullEditedCca_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setCca(NUSSO, null));
+    }
+
+    @Test
+    public void setCca_targetCcaNotInAddressBook_throwsCcaNotFoundException() {
+        assertThrows(CcaNotFoundException.class, () -> modelManager.setCca(NUSSO, USKICK));
+    }
+
+    @Test
+    public void setCca_targetCcaAndEditedCcaInAddressBook_throwsDuplicateCcaException() {
+        modelManager.addCca(NUSSO);
+        modelManager.addCca(USKICK);
+        assertThrows(DuplicateCcaException.class, () -> modelManager.setCca(NUSSO, USKICK));
+    }
+
+    @Test
+    public void setCca_targetCcaInAddressBookAndEditedCcaSameAsTargetCca_setsCca() {
+        modelManager.addCca(NUSSO);
+        modelManager.setCca(NUSSO, NUSSO);
+        assertTrue(modelManager.hasCca(NUSSO));
+    }
+
+    @Test
+    public void setCca_targetCcaInAddressBookAndEditedCcaDifferentFromTargetCca_setsCca() {
+        modelManager.addCca(NUSSO);
+        modelManager.setCca(NUSSO, USKICK);
+        assertTrue(modelManager.hasCca(USKICK));
+    }
+
+    ///// tests for reminder
+
+    @Test
+    public void hasReminder_nullReminder_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasReminder(null));
+    }
+
+    @Test
+    public void hasReminder_reminderNotInAddressBook_returnsFalse() {
+        assertFalse(modelManager.hasReminder(CHRISTMAS));
+    }
+
+    @Test
+    public void hasReminder_reminderInAddressBook_returnsTrue() {
+        modelManager.addReminder(CHRISTMAS, NUSSO);
+        assertTrue(modelManager.hasReminder(CHRISTMAS));
+    }
+
+    @Test
+    public void addReminder_nullReminder_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.addReminder(null, NUSSO));
+    }
+
+    @Test
+    public void addReminder_nullCcaToAddInto_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.addReminder(CHRISTMAS, null));
+    }
+
+    @Test
+    public void addReminder_reminderNotInAddressBook_addsReminder() {
+        modelManager.addReminder(CHRISTMAS, NUSSO);
+        assertTrue(modelManager.hasReminder(CHRISTMAS));
+    }
+
+    @Test
+    public void addReminder_reminderInAddressBook_throwsDuplicateReminderException() {
+        modelManager.addReminder(CHRISTMAS, NUSSO);
+        assertThrows(DuplicateReminderException.class, () -> modelManager.addReminder(CHRISTMAS, NUSSO));
+    }
+
+    @Test
+    public void deleteReminder_nullReminder_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.deleteReminder(null));
+    }
+
+    @Test
+    public void deleteReminder_reminderNotInAddressBook_throwsReminderNotFoundException() {
+        assertThrows(ReminderNotFoundException.class, () -> modelManager.deleteReminder(CHRISTMAS));
+    }
+
+    @Test
+    public void deleteReminder_reminderInAddressBook_deletesReminder() {
+        modelManager.addReminder(CHRISTMAS, NUSSO);
+        assertTrue(modelManager.hasReminder(CHRISTMAS));
+        modelManager.deleteReminder(CHRISTMAS);
+        assertFalse(modelManager.hasReminder(CHRISTMAS));
+    }
+
+    @Test
+    public void setReminder_nullTargetReminder_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setReminder(null, CHRISTMAS));
+    }
+
+    @Test
+    public void setReminder_nullEditedReminder_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setReminder(CHRISTMAS, null));
+    }
+
+    @Test
+    public void setReminder_targetReminderNotInAddressBook_throwsReminderNotFoundException() {
+        assertThrows(ReminderNotFoundException.class, () -> modelManager.setReminder(CHRISTMAS, CLASS));
+    }
+
+    @Test
+    public void setReminder_targetReminderAndEditedReminderInAddressBook_throwsDuplicateReminderException() {
+        modelManager.addReminder(CHRISTMAS, NUSSO);
+        modelManager.addReminder(CLASS, NUSSO);
+        assertThrows(DuplicateReminderException.class, () -> modelManager.setReminder(CHRISTMAS, CLASS));
+    }
+
+    @Test
+    public void setReminder_targetReminderInAddressBookAndEditedReminderSameAsTargetReminder_setsReminder() {
+        modelManager.addReminder(CHRISTMAS, NUSSO);
+        modelManager.setReminder(CHRISTMAS, CHRISTMAS);
+        assertTrue(modelManager.hasReminder(CHRISTMAS));
+    }
+
+    @Test
+    public void setReminder_targetReminderInAddressBookAndEditedReminderDifferentFromTargetReminder_setsReminder() {
+        modelManager.addReminder(CHRISTMAS, NUSSO);
+        modelManager.setReminder(CHRISTMAS, CLASS);
+        assertTrue(modelManager.hasReminder(CLASS));
     }
 
     @Test
