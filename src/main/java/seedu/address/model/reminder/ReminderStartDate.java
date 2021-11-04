@@ -54,8 +54,11 @@ public class ReminderStartDate implements Comparable<ReminderStartDate> {
         int year;
         int month;
         int day;
+        String[] fields = dateString.split("-");
+        if (fields.length != 3) {
+            throw new ParseException(ReminderStartDate.PARSE_DATE_CONSTRAINTS);
+        }
         try {
-            String[] fields = dateString.split("-");
             year = Integer.parseInt(fields[0]);
             month = Integer.parseInt(fields[1]);
             day = Integer.parseInt(fields[2]);

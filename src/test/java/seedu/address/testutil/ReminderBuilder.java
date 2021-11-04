@@ -87,6 +87,14 @@ public class ReminderBuilder {
     }
 
     /**
+     * Sets the {@code CcaName} of the {@code Reminder} that we are building.
+     */
+    public ReminderBuilder withCcaName(String ccaName) {
+        this.ccaName = ccaName;
+        return this;
+    }
+
+    /**
      * Builds a {@code Reminder} with the details specified.
      *
      * @return The built reminder

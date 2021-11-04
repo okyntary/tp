@@ -21,7 +21,7 @@ public class Reminder implements Comparable<Reminder> {
 
     // Data fields
     // Assumes a reminder can be tagged to at most 1 CCA
-    private String ccaName;
+    private String ccaName = "";
     private ArrayList<Date> dates = new ArrayList<>();
 
     /**

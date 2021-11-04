@@ -37,4 +37,26 @@ public class ReminderNameTest {
         assertTrue(ReminderName.isValidName("Capital NUSSO")); // with capital letters
         assertTrue(ReminderName.isValidName("NUS Symphony Orchestra NUS Symphony Orchestra")); // long names
     }
+
+    @Test
+    public void equals() {
+        ReminderName reminderName1 = new ReminderName("name1");
+        ReminderName reminderName2 = new ReminderName("name2");
+        ReminderName reminderName1Copy = new ReminderName("name1");
+
+        // same object -> returns true
+        assertTrue(reminderName1.equals(reminderName1));
+
+        // same values -> returns true
+        assertTrue(reminderName1.equals(reminderName1Copy));
+
+        // different types -> returns false
+        assertFalse(reminderName1.equals(1));
+
+        // null -> returns false
+        assertFalse(reminderName1.equals(null));
+
+        // different values -> returns false
+        assertFalse(reminderName1.equals(reminderName2));
+    }
 }

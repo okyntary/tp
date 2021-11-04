@@ -1,5 +1,6 @@
 package seedu.address.model.reminder;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -54,5 +55,53 @@ public class ReminderFrequencyTest {
         assertTrue(ReminderFrequency.isValidFrequency("5m"));
         assertTrue(ReminderFrequency.isValidFrequency("6y"));
         assertTrue(ReminderFrequency.isValidFrequency("10y"));
+    }
+
+    @Test
+    public void equals() {
+        ReminderFrequency frequency1 = new ReminderFrequency(Frequency.DAY, 5);
+        ReminderFrequency frequency2 = new ReminderFrequency(Frequency.WEEK, 5);
+        ReminderFrequency frequency3 = new ReminderFrequency(Frequency.DAY, 10);
+        ReminderFrequency frequency1Copy = new ReminderFrequency(Frequency.DAY, 5);
+
+        // same object -> returns true
+        assertTrue(frequency1.equals(frequency1));
+
+        // same values -> returns true
+        assertTrue(frequency1.equals(frequency1Copy));
+
+        // different types -> returns false
+        assertFalse(frequency1.equals(1));
+
+        // null -> returns false
+        assertFalse(frequency1.equals(null));
+
+        // different Frequency in ReminderFrequency -> returns false
+        assertFalse(frequency1.equals(frequency2));
+
+        // different int in ReminderFrequency -> returns false
+        assertFalse(frequency1.equals(frequency3));
+    }
+
+    @Test
+    public void isRecurring() {
+        ReminderFrequency frequency1 = new ReminderFrequency(Frequency.MONTH, 1);
+        ReminderFrequency frequency2 = new ReminderFrequency(Frequency.YEAR, 1);
+        ReminderFrequency frequency3 = new ReminderFrequency(Frequency.ONE_OFF, 1);
+
+        assertTrue(frequency1.isRecurring());
+        assertTrue(frequency2.isRecurring());
+        assertFalse(frequency3.isRecurring());
+    }
+
+    @Test
+    public void checkToString() {
+        ReminderFrequency frequency1 = new ReminderFrequency(Frequency.MONTH, 5);
+        ReminderFrequency frequency2 = new ReminderFrequency(Frequency.YEAR, 10);
+        ReminderFrequency frequency3 = new ReminderFrequency(Frequency.ONE_OFF, 1);
+
+        assertEquals("Every 5 Month(s)", frequency1.toString());
+        assertEquals("Every 10 Year(s)", frequency2.toString());
+        assertEquals("Once only", frequency3.toString());
     }
 }
