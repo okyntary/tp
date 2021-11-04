@@ -58,7 +58,7 @@ public class PersonDeleteCommandTest {
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
-        showNoPerson(expectedModel);
+        showAllPeople(expectedModel);
 
         assertCommandSuccess(personDeleteCommand, model, expectedMessage, expectedModel);
     }
@@ -99,11 +99,9 @@ public class PersonDeleteCommandTest {
     }
 
     /**
-     * Updates {@code model}'s filtered list to show no one.
+     * Updates {@code model}'s filtered list to show everyone.
      */
-    private void showNoPerson(Model model) {
-        model.updateFilteredPersonList(p -> false);
-
-        assertTrue(model.getFilteredPersonList().isEmpty());
+    private void showAllPeople(Model model) {
+        model.updateFilteredPersonList(p -> true);
     }
 }

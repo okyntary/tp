@@ -316,6 +316,11 @@ public class CcaAddCommandTest {
         }
 
         @Override
+        public void updateFilteredCcaList(Predicate<Cca> predicate) {
+            // do nothing
+        }
+
+        @Override
         public ReadOnlyAddressBook getAddressBook() {
             return new AddressBook();
         }
