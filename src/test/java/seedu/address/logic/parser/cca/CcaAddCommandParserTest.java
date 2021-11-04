@@ -1,4 +1,4 @@
-package seedu.address.logic.parser;
+package seedu.address.logic.parser.cca;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.CCA_NAME_DESC_NUSSO;
@@ -21,7 +21,6 @@ import static seedu.address.testutil.TypicalCcas.USKICK;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.cca.CcaAddCommand;
-import seedu.address.logic.parser.cca.CcaAddCommandParser;
 import seedu.address.model.cca.Cca;
 import seedu.address.model.person.Name;
 import seedu.address.model.tag.Tag;

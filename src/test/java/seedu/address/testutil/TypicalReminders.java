@@ -18,19 +18,23 @@ public class TypicalReminders {
     public static final Reminder MEETING = new ReminderBuilder().withName("Meeting")
             .withStartDate(getDateFromString("2021-10-30"))
             .withFrequency(Frequency.WEEK, 1)
-            .withOccurrence(30).build();
+            .withOccurrence(30)
+            .withCcaName("").build();
     public static final Reminder CLASS = new ReminderBuilder().withName("Class")
             .withStartDate(getDateFromString("2021-11-01"))
             .withFrequency(Frequency.DAY, 2)
-            .withOccurrence(50).build();
+            .withOccurrence(50)
+            .withCcaName("").build();
     public static final Reminder CHRISTMAS = new ReminderBuilder().withName("Holiday")
             .withStartDate(getDateFromString("2021-12-25"))
             .withFrequency(Frequency.YEAR, 1)
-            .withOccurrence(10).build();
-    public static final Reminder CONCERT = new ReminderBuilder().withName("Death")
+            .withOccurrence(10)
+            .withCcaName("").build();
+    public static final Reminder CONCERT = new ReminderBuilder().withName("Concert")
             .withStartDate(getDateFromString("2022-02-24"))
             .withFrequency(Frequency.ONE_OFF, 1)
-            .withOccurrence(1).build();
+            .withOccurrence(1)
+            .withCcaName("").build();
 
     private TypicalReminders() {} // prevents instantiation
 

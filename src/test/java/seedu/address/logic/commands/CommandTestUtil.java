@@ -3,9 +3,13 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CCA_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FREQUENCY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_OCCURRENCES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_START_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -52,9 +56,18 @@ public class CommandTestUtil {
     public static final String VALID_CCA_NAME_NUSSO = "NUSSO";
     public static final String VALID_CCA_NAME_TRACK = "USP Track";
     public static final String VALID_CCA_NAME_USKICK = "USKick";
-    public static final String VALID_REMINDER_NAME_MEETING = "meeting";
+    public static final String VALID_CID_FIRST_CCA = "1";
+    public static final String VALID_CID_SECOND_CCA = "2";
+    public static final String VALID_REMINDER_NAME_MEETING = "Meeting";
     public static final String VALID_REMINDER_NAME_REHEARSAL = "rehearsal";
     public static final String VALID_REMINDER_NAME_PROJECT = "project";
+    public static final String VALID_REMINDER_NAME_CLASS = "Class";
+    public static final String VALID_START_DATE_MEETING = "2021-10-30";
+    public static final String VALID_START_DATE_CLASS = "2021-11-01";
+    public static final String VALID_FREQUENCY_MEETING = "1w";
+    public static final String VALID_FREQUENCY_CLASS = "2d";
+    public static final String VALID_OCCURRENCES_MEETING = "30";
+    public static final String VALID_OCCURRENCES_CLASS = "50";
     public static final Frequency VALID_TIME_PERIOD_DAY = Frequency.DAY;
     public static final Frequency VALID_TIME_PERIOD_YEAR = Frequency.YEAR;
     public static final int VALID_NUM_TIME_PERIOD_10 = 10;
@@ -76,6 +89,22 @@ public class CommandTestUtil {
     public static final String CCA_NAME_DESC_NUSSO = " " + PREFIX_NAME + VALID_CCA_NAME_NUSSO;
     public static final String CCA_NAME_DESC_TRACK = " " + PREFIX_NAME + VALID_CCA_NAME_TRACK;
     public static final String CCA_NAME_DESC_USKICK = " " + PREFIX_NAME + VALID_CCA_NAME_USKICK;
+
+    public static final String REMINDER_CID_FIRST_CCA = " " + PREFIX_CCA_ID + VALID_CID_FIRST_CCA;
+    public static final String REMINDER_CID_SECOND_CCA = " " + PREFIX_CCA_ID + VALID_CID_SECOND_CCA;
+    public static final String REMINDER_NAME_DESC_MEETING = " " + PREFIX_NAME + VALID_REMINDER_NAME_MEETING;
+    public static final String REMINDER_NAME_DESC_CLASS = " " + PREFIX_NAME + VALID_REMINDER_NAME_CLASS;
+    public static final String REMINDER_START_DATE_DESC_MEETING = " " + PREFIX_START_DATE + VALID_START_DATE_MEETING;
+    public static final String REMINDER_START_DATE_DESC_CLASS = " " + PREFIX_START_DATE + VALID_START_DATE_CLASS;
+    public static final String REMINDER_FREQUENCY_DESC_MEETING = " " + PREFIX_FREQUENCY + VALID_FREQUENCY_MEETING;
+    public static final String REMINDER_FREQUENCY_DESC_CLASS = " " + PREFIX_FREQUENCY + VALID_FREQUENCY_CLASS;
+    public static final String REMINDER_OCCURRENCES_DESC_MEETING = " " + PREFIX_OCCURRENCES + VALID_OCCURRENCES_MEETING;
+    public static final String REMINDER_OCCURRENCES_DESC_CLASS = " " + PREFIX_OCCURRENCES + VALID_OCCURRENCES_CLASS;
+
+    public static final String INVALID_REMINDER_NAME_DESC = " " + PREFIX_NAME + "Meeting&"; // '&' not allowed in names
+    public static final String INVALID_START_DATE_DESC = " " + PREFIX_START_DATE + "2020-02-30";
+    public static final String INVALID_FREQUENCY_DESC = " " + PREFIX_FREQUENCY + "1dw";
+    public static final String INVALID_OCCURRENCES_DESC = " " + PREFIX_OCCURRENCES + "1w0";
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
