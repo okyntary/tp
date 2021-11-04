@@ -9,6 +9,8 @@ It has been designed for the busy NUS student. It allows the user to create cont
 
 It is intended to be used by NUS students, to help keep track of the students and organizations that they encounter.
 
+![User interface](images/Ui.png)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
