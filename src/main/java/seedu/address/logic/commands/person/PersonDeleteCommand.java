@@ -49,6 +49,7 @@ public class PersonDeleteCommand extends Command {
                 model.setCca(cca, cca);
             }
         });
+
         model.deletePerson(personToDelete);
 
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
