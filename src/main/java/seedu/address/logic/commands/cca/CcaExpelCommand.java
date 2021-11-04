@@ -14,6 +14,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.cca.Cca;
 import seedu.address.model.person.Person;
+import seedu.address.model.reminder.Reminder;
 
 public class CcaExpelCommand extends Command {
 
@@ -51,6 +52,7 @@ public class CcaExpelCommand extends Command {
 
         List<Cca> lastShownCcaList = model.getFilteredCcaList();
         List<Person> lastShownPersonList = model.getFilteredPersonList();
+        List<Reminder> lastShownReminderList = model.getFilteredReminderList();
 
         if (targetCcaIndex.getZeroBased() >= lastShownCcaList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_CCA_DISPLAYED_INDEX);
@@ -74,6 +76,8 @@ public class CcaExpelCommand extends Command {
         if (success) {
             model.setCca(ccaToExpelFrom, ccaToExpelFrom);
             model.updateFilteredCcaList(Model.PREDICATE_SHOW_ALL_CCAS);
+            model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
+            model.updateFilteredReminderList(Model.PREDICATE_SHOW_ALL_REMINDERS);
             return new CommandResult(String.format(MESSAGE_SUCCESS, personToExpel.getName(), ccaToExpelFrom.getName()));
         } else {
             throw new CommandException(
