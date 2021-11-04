@@ -22,6 +22,9 @@ public interface Model {
     Predicate<Cca> PREDICATE_SHOW_ALL_CCAS = unused -> true;
     Predicate<Reminder> PREDICATE_SHOW_ALL_REMINDERS = unused -> true;
 
+    /** {@code Predicate} that always evaluate to false */
+    Predicate<Person> PREDICATE_SHOW_NO_PERSONS = unused -> false;
+
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */

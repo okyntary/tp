@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CCAS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_REMINDERS;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -87,6 +89,9 @@ public class CcaEditCommand extends Command {
         }
 
         model.updateFilteredCcaList(PREDICATE_SHOW_ALL_CCAS);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredReminderList(PREDICATE_SHOW_ALL_REMINDERS);
+
         return new CommandResult(String.format(MESSAGE_EDIT_CCA_SUCCESS, editedCca));
     }
 

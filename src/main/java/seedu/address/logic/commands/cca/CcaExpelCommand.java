@@ -3,6 +3,9 @@ package seedu.address.logic.commands.cca;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CCA_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_ID;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CCAS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_REMINDERS;
 
 import java.util.List;
 
@@ -14,6 +17,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.cca.Cca;
 import seedu.address.model.person.Person;
+import seedu.address.model.reminder.Reminder;
 
 public class CcaExpelCommand extends Command {
 
@@ -51,6 +55,7 @@ public class CcaExpelCommand extends Command {
 
         List<Cca> lastShownCcaList = model.getFilteredCcaList();
         List<Person> lastShownPersonList = model.getFilteredPersonList();
+        List<Reminder> lastShownReminderList = model.getFilteredReminderList();
 
         if (targetCcaIndex.getZeroBased() >= lastShownCcaList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_CCA_DISPLAYED_INDEX);
@@ -73,7 +78,9 @@ public class CcaExpelCommand extends Command {
         boolean success = model.expelPersonFromCca(ccaToExpelFrom, personToExpel);
         if (success) {
             model.setCca(ccaToExpelFrom, ccaToExpelFrom);
-            model.updateFilteredCcaList(Model.PREDICATE_SHOW_ALL_CCAS);
+            model.updateFilteredCcaList(PREDICATE_SHOW_ALL_CCAS);
+            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+            model.updateFilteredReminderList(PREDICATE_SHOW_ALL_REMINDERS);
             return new CommandResult(String.format(MESSAGE_SUCCESS, personToExpel.getName(), ccaToExpelFrom.getName()));
         } else {
             throw new CommandException(

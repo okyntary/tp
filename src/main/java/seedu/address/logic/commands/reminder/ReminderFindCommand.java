@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.reminder;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_NO_PERSONS;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -45,6 +46,7 @@ public class ReminderFindCommand extends Command {
 
         CcaNameContainsKeywordsPredicate filteredCcaPredicate = getFilterForCcaList((model.getFilteredReminderList()));
         model.updateFilteredCcaList(filteredCcaPredicate);
+        model.updateFilteredPersonList(PREDICATE_SHOW_NO_PERSONS);
 
         return new CommandResult(
                 String.format(Messages.MESSAGE_REMINDERS_LISTED_OVERVIEW, model.getFilteredReminderList().size()));

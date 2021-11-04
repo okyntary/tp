@@ -20,6 +20,8 @@ public class ReminderSnoozeCommand extends Command {
             + "Parameters: INDEX (must be a positive integer less than 1,000,000,000)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
+    public static final String MESSAGE_SNOOZE_LAST_OCCURRENCE_ERROR = "You can't snooze this reminder "
+            + "since it has only 1 occurrence left. Do you want to delete it instead?";
     public static final String MESSAGE_SNOOZE_REMINDER_SUCCESS = "Snoozed Reminder: %1$s";
 
     private final Index targetReminderIndex;
@@ -38,6 +40,11 @@ public class ReminderSnoozeCommand extends Command {
         }
 
         Reminder reminderToSnooze = lastShownList.get(targetReminderIndex.getZeroBased());
+
+        if (reminderToSnooze.getOccurrences().getOccurrences() == 1) {
+            throw new CommandException(MESSAGE_SNOOZE_LAST_OCCURRENCE_ERROR);
+        }
+
         model.snoozeReminder(reminderToSnooze);
         return new CommandResult(String.format(MESSAGE_SNOOZE_REMINDER_SUCCESS, reminderToSnooze));
     }

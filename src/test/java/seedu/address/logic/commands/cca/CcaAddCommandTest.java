@@ -159,7 +159,7 @@ public class CcaAddCommandTest {
 
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
-            throw new AssertionError("This method should not be called.");
+            return;
         }
 
         @Override
@@ -226,7 +226,7 @@ public class CcaAddCommandTest {
 
         @Override
         public void updateFilteredReminderList(Predicate<Reminder> reminderPredicate) {
-            throw new AssertionError("This method should not be called.");
+            return;
         }
 
         @Override

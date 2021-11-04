@@ -62,6 +62,8 @@ public class PersonAddCommand extends Command {
         }
 
         model.addPerson(toAdd);
+        model.updateFilteredCcaList(Model.PREDICATE_SHOW_ALL_CCAS);
+        model.updateFilteredReminderList(Model.PREDICATE_SHOW_ALL_REMINDERS);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
