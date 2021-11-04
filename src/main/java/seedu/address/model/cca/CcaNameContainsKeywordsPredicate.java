@@ -19,7 +19,7 @@ public class CcaNameContainsKeywordsPredicate implements Predicate<Cca> {
     @Override
     public boolean test(Cca cca) {
         for (int i = 0; i < keywords.size(); i++) {
-            String keyword = keywords.get(0);
+            String keyword = keywords.get(i);
             String ccaName = cca.getName().fullName;
             if (StringUtil.containsWordIgnoreCase(ccaName, keyword)) {
                 return true;
