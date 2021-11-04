@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalCcas.NUSSO;
-import static seedu.address.testutil.TypicalCcas.USKICK;
+import static seedu.address.testutil.TypicalCcas.USCOFFEE;
+import static seedu.address.testutil.TypicalCcas.USC;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 import static seedu.address.testutil.TypicalReminders.CHRISTMAS;
@@ -181,13 +181,13 @@ public class ModelManagerTest {
 
     @Test
     public void hasCca_ccaNotInAddressBook_returnsFalse() {
-        assertFalse(modelManager.hasCca(NUSSO));
+        assertFalse(modelManager.hasCca(USCOFFEE));
     }
 
     @Test
     public void hasCca_ccaInAddressBook_returnsTrue() {
-        modelManager.addCca(NUSSO);
-        assertTrue(modelManager.hasCca(NUSSO));
+        modelManager.addCca(USCOFFEE);
+        assertTrue(modelManager.hasCca(USCOFFEE));
     }
 
     @Test
@@ -197,14 +197,14 @@ public class ModelManagerTest {
 
     @Test
     public void addCca_ccaNotInAddressBook_addsCca() {
-        modelManager.addCca(NUSSO);
-        assertTrue(modelManager.hasCca(NUSSO));
+        modelManager.addCca(USCOFFEE);
+        assertTrue(modelManager.hasCca(USCOFFEE));
     }
 
     @Test
     public void addCca_ccaInAddressBook_throwsDuplicateCcaException() {
-        modelManager.addCca(NUSSO);
-        assertThrows(DuplicateCcaException.class, () -> modelManager.addCca(NUSSO));
+        modelManager.addCca(USCOFFEE);
+        assertThrows(DuplicateCcaException.class, () -> modelManager.addCca(USCOFFEE));
     }
 
     @Test
@@ -214,51 +214,51 @@ public class ModelManagerTest {
 
     @Test
     public void deleteCca_ccaNotInAddressBook_throwsCcaNotFoundException() {
-        assertThrows(CcaNotFoundException.class, () -> modelManager.deleteCca(USKICK));
+        assertThrows(CcaNotFoundException.class, () -> modelManager.deleteCca(USC));
     }
 
     @Test
     public void deleteCca_ccaInAddressBook_deletesCca() {
-        modelManager.addCca(USKICK);
-        assertTrue(modelManager.hasCca(USKICK));
-        modelManager.deleteCca(USKICK);
-        assertFalse(modelManager.hasCca(USKICK));
+        modelManager.addCca(USC);
+        assertTrue(modelManager.hasCca(USC));
+        modelManager.deleteCca(USC);
+        assertFalse(modelManager.hasCca(USC));
     }
 
     @Test
     public void setCca_nullTargetCca_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.setCca(null, NUSSO));
+        assertThrows(NullPointerException.class, () -> modelManager.setCca(null, USCOFFEE));
     }
 
     @Test
     public void setCca_nullEditedCca_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.setCca(NUSSO, null));
+        assertThrows(NullPointerException.class, () -> modelManager.setCca(USCOFFEE, null));
     }
 
     @Test
     public void setCca_targetCcaNotInAddressBook_throwsCcaNotFoundException() {
-        assertThrows(CcaNotFoundException.class, () -> modelManager.setCca(NUSSO, USKICK));
+        assertThrows(CcaNotFoundException.class, () -> modelManager.setCca(USCOFFEE, USC));
     }
 
     @Test
     public void setCca_targetCcaAndEditedCcaInAddressBook_throwsDuplicateCcaException() {
-        modelManager.addCca(NUSSO);
-        modelManager.addCca(USKICK);
-        assertThrows(DuplicateCcaException.class, () -> modelManager.setCca(NUSSO, USKICK));
+        modelManager.addCca(USCOFFEE);
+        modelManager.addCca(USC);
+        assertThrows(DuplicateCcaException.class, () -> modelManager.setCca(USCOFFEE, USC));
     }
 
     @Test
     public void setCca_targetCcaInAddressBookAndEditedCcaSameAsTargetCca_setsCca() {
-        modelManager.addCca(NUSSO);
-        modelManager.setCca(NUSSO, NUSSO);
-        assertTrue(modelManager.hasCca(NUSSO));
+        modelManager.addCca(USCOFFEE);
+        modelManager.setCca(USCOFFEE, USCOFFEE);
+        assertTrue(modelManager.hasCca(USCOFFEE));
     }
 
     @Test
     public void setCca_targetCcaInAddressBookAndEditedCcaDifferentFromTargetCca_setsCca() {
-        modelManager.addCca(NUSSO);
-        modelManager.setCca(NUSSO, USKICK);
-        assertTrue(modelManager.hasCca(USKICK));
+        modelManager.addCca(USCOFFEE);
+        modelManager.setCca(USCOFFEE, USC);
+        assertTrue(modelManager.hasCca(USC));
     }
 
     @Test
@@ -268,25 +268,25 @@ public class ModelManagerTest {
 
     @Test
     public void enrolPersonIntoCca_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.enrolPersonIntoCca(NUSSO, null));
+        assertThrows(NullPointerException.class, () -> modelManager.enrolPersonIntoCca(USCOFFEE, null));
     }
 
     @Test
     public void enrolPersonIntoCca_personAlreadyEnrolled_enrolListStaysSame() {
-        assertFalse(NUSSO.getMembers().contains(BENSON));
-        modelManager.enrolPersonIntoCca(NUSSO, BENSON);
-        int originalMembers = NUSSO.getMembers().size();
-        modelManager.enrolPersonIntoCca(NUSSO, BENSON);
-        int newMembers = NUSSO.getMembers().size();
-        assertTrue(NUSSO.getMembers().contains(BENSON));
+        assertFalse(USCOFFEE.getMembers().contains(BENSON));
+        modelManager.enrolPersonIntoCca(USCOFFEE, BENSON);
+        int originalMembers = USCOFFEE.getMembers().size();
+        modelManager.enrolPersonIntoCca(USCOFFEE, BENSON);
+        int newMembers = USCOFFEE.getMembers().size();
+        assertTrue(USCOFFEE.getMembers().contains(BENSON));
         assertEquals(originalMembers, newMembers);
     }
 
     @Test
     public void enrolPersonIntoCca_personNotAlreadyEnrolled_enrolsPerson() {
-        assertFalse(NUSSO.getMembers().contains(ALICE));
-        modelManager.enrolPersonIntoCca(NUSSO, ALICE);
-        assertTrue(NUSSO.getMembers().contains(ALICE));
+        assertFalse(USCOFFEE.getMembers().contains(ALICE));
+        modelManager.enrolPersonIntoCca(USCOFFEE, ALICE);
+        assertTrue(USCOFFEE.getMembers().contains(ALICE));
     }
 
     @Test
@@ -296,24 +296,24 @@ public class ModelManagerTest {
 
     @Test
     public void expelPersonFromCca_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.expelPersonFromCca(NUSSO, null));
+        assertThrows(NullPointerException.class, () -> modelManager.expelPersonFromCca(USCOFFEE, null));
     }
 
     @Test
     public void expelPersonFromCca_personNotEnrolled_enrolListStaysSame() {
-        int originalMembers = USKICK.getMembers().size();
-        modelManager.expelPersonFromCca(USKICK, ALICE);
-        int newMembers = USKICK.getMembers().size();
-        assertFalse(USKICK.getMembers().contains(ALICE));
+        int originalMembers = USC.getMembers().size();
+        modelManager.expelPersonFromCca(USC, ALICE);
+        int newMembers = USC.getMembers().size();
+        assertFalse(USC.getMembers().contains(ALICE));
         assertEquals(originalMembers, newMembers);
     }
 
     @Test
     public void expelPersonFromCca_personEnrolled_expelsPerson() {
-        modelManager.enrolPersonIntoCca(USKICK, ALICE);
-        assertTrue(USKICK.getMembers().contains(ALICE));
-        modelManager.expelPersonFromCca(USKICK, ALICE);
-        assertFalse(USKICK.getMembers().contains(ALICE));
+        modelManager.enrolPersonIntoCca(USC, ALICE);
+        assertTrue(USC.getMembers().contains(ALICE));
+        modelManager.expelPersonFromCca(USC, ALICE);
+        assertFalse(USC.getMembers().contains(ALICE));
     }
 
     ///// tests for reminder
@@ -330,13 +330,13 @@ public class ModelManagerTest {
 
     @Test
     public void hasReminder_reminderInAddressBook_returnsTrue() {
-        modelManager.addReminder(CHRISTMAS, NUSSO);
+        modelManager.addReminder(CHRISTMAS, USCOFFEE);
         assertTrue(modelManager.hasReminder(CHRISTMAS));
     }
 
     @Test
     public void addReminder_nullReminder_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.addReminder(null, NUSSO));
+        assertThrows(NullPointerException.class, () -> modelManager.addReminder(null, USCOFFEE));
     }
 
     @Test
@@ -346,14 +346,14 @@ public class ModelManagerTest {
 
     @Test
     public void addReminder_reminderNotInAddressBook_addsReminder() {
-        modelManager.addReminder(CHRISTMAS, NUSSO);
+        modelManager.addReminder(CHRISTMAS, USCOFFEE);
         assertTrue(modelManager.hasReminder(CHRISTMAS));
     }
 
     @Test
     public void addReminder_reminderInAddressBook_throwsDuplicateReminderException() {
-        modelManager.addReminder(CHRISTMAS, NUSSO);
-        assertThrows(DuplicateReminderException.class, () -> modelManager.addReminder(CHRISTMAS, NUSSO));
+        modelManager.addReminder(CHRISTMAS, USCOFFEE);
+        assertThrows(DuplicateReminderException.class, () -> modelManager.addReminder(CHRISTMAS, USCOFFEE));
     }
 
     @Test
@@ -368,7 +368,7 @@ public class ModelManagerTest {
 
     @Test
     public void deleteReminder_reminderInAddressBook_deletesReminder() {
-        modelManager.addReminder(CHRISTMAS, NUSSO);
+        modelManager.addReminder(CHRISTMAS, USCOFFEE);
         assertTrue(modelManager.hasReminder(CHRISTMAS));
         modelManager.deleteReminder(CHRISTMAS);
         assertFalse(modelManager.hasReminder(CHRISTMAS));
@@ -391,21 +391,21 @@ public class ModelManagerTest {
 
     @Test
     public void setReminder_targetReminderAndEditedReminderInAddressBook_throwsDuplicateReminderException() {
-        modelManager.addReminder(CHRISTMAS, NUSSO);
-        modelManager.addReminder(CLASS, NUSSO);
+        modelManager.addReminder(CHRISTMAS, USCOFFEE);
+        modelManager.addReminder(CLASS, USCOFFEE);
         assertThrows(DuplicateReminderException.class, () -> modelManager.setReminder(CHRISTMAS, CLASS));
     }
 
     @Test
     public void setReminder_targetReminderInAddressBookAndEditedReminderSameAsTargetReminder_setsReminder() {
-        modelManager.addReminder(CHRISTMAS, NUSSO);
+        modelManager.addReminder(CHRISTMAS, USCOFFEE);
         modelManager.setReminder(CHRISTMAS, CHRISTMAS);
         assertTrue(modelManager.hasReminder(CHRISTMAS));
     }
 
     @Test
     public void setReminder_targetReminderInAddressBookAndEditedReminderDifferentFromTargetReminder_setsReminder() {
-        modelManager.addReminder(CHRISTMAS, NUSSO);
+        modelManager.addReminder(CHRISTMAS, USCOFFEE);
         modelManager.setReminder(CHRISTMAS, CLASS);
         assertTrue(modelManager.hasReminder(CLASS));
     }
@@ -422,7 +422,7 @@ public class ModelManagerTest {
 
     @Test
     public void snoozeReminder_reminderInAddressBookAndLastOccurrence_deletesReminder() {
-        modelManager.addReminder(CONCERT, NUSSO);
+        modelManager.addReminder(CONCERT, USCOFFEE);
         assertTrue(modelManager.hasReminder(CONCERT));
         modelManager.snoozeReminder(CONCERT);
         assertFalse(modelManager.hasReminder(CONCERT));
@@ -430,7 +430,7 @@ public class ModelManagerTest {
 
     @Test
     public void snoozeReminder_reminderInAddressBookAndNotLastOccurrence_snoozesReminder() {
-        modelManager.addReminder(CLASS, NUSSO);
+        modelManager.addReminder(CLASS, USCOFFEE);
         assertTrue(modelManager.hasReminder(CLASS));
         int prevOccurrences = CLASS.getOccurrences().getOccurrences();
         modelManager.snoozeReminder(CLASS);
