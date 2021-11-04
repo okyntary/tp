@@ -2,19 +2,12 @@ package seedu.address.ui;
 
 import java.util.Comparator;
 
-import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
 import javafx.scene.control.Label;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import javafx.scene.paint.Color;
 import seedu.address.model.person.Person;
-import seedu.address.model.tag.TagColour;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -61,16 +54,7 @@ public class PersonCard extends UiPart<Region> {
         email.setText(person.getEmail().value);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> {
-                    TagColour tagColour = tag.getTagColour();
-                    Label tagLabel = new Label(tag.tagName);
-                    tagLabel.backgroundProperty().bind(Bindings.createObjectBinding(() -> {
-                        Color c = Color.rgb(tagColour.red, tagColour.green, tagColour.blue);
-                        BackgroundFill tagFill = new BackgroundFill(c, CornerRadii.EMPTY, Insets.EMPTY);
-                        return new Background(tagFill);
-                    }));
-                    tags.getChildren().add(tagLabel);
-                });
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
     @Override

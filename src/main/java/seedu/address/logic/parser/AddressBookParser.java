@@ -12,9 +12,7 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.GreetCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.TagColourCommand;
 import seedu.address.logic.commands.cca.CcaAddCommand;
-import seedu.address.logic.commands.cca.CcaColourCommand;
 import seedu.address.logic.commands.cca.CcaDeleteCommand;
 import seedu.address.logic.commands.cca.CcaEditCommand;
 import seedu.address.logic.commands.cca.CcaEnrolCommand;
@@ -30,7 +28,6 @@ import seedu.address.logic.commands.reminder.ReminderEditCommand;
 import seedu.address.logic.commands.reminder.ReminderFindCommand;
 import seedu.address.logic.commands.reminder.ReminderSnoozeCommand;
 import seedu.address.logic.parser.cca.CcaAddCommandParser;
-import seedu.address.logic.parser.cca.CcaColourCommandParser;
 import seedu.address.logic.parser.cca.CcaDeleteCommandParser;
 import seedu.address.logic.parser.cca.CcaEditCommandParser;
 import seedu.address.logic.parser.cca.CcaEnrolCommandParser;
@@ -119,12 +116,6 @@ public class AddressBookParser {
 
         case ReminderSnoozeCommand.COMMAND_WORD:
             return new ReminderSnoozeCommandParser().parse(arguments);
-
-        case TagColourCommand.COMMAND_WORD:
-            return new TagColourCommandParser().parse(arguments);
-
-        case CcaColourCommand.COMMAND_WORD:
-            return new CcaColourCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
