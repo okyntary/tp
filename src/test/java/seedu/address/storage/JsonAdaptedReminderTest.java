@@ -19,7 +19,7 @@ class JsonAdaptedReminderTest {
 
     private static final String VALID_REMINDERNAME = MEETING.getName().toString();
     private static final Date VALID_STARTDATE = MEETING.getStartDate().getDate();
-    private static final Frequency VALID_FREQUENCY= MEETING.getFrequency().getTimePeriod();
+    private static final Frequency VALID_FREQUENCY = MEETING.getFrequency().getTimePeriod();
     private static final int VALID_NUMTIMEPERIOD = MEETING.getFrequency().getNumTimePeriod();
     private static final int VALID_OCCURRENCE = MEETING.getOccurrences().getOccurrences();
     private static final String VALID_CCANAME = MEETING.getCcaName();
