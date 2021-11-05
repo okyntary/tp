@@ -69,11 +69,15 @@ public class CommandTestUtil {
     public static final String VALID_OCCURRENCES_MEETING = "30";
     public static final String VALID_OCCURRENCES_CLASS = "50";
     public static final Frequency VALID_TIME_PERIOD_DAY = Frequency.DAY;
+    public static final Frequency VALID_TIME_PERIOD_WEEK = Frequency.WEEK;
     public static final Frequency VALID_TIME_PERIOD_YEAR = Frequency.YEAR;
+    public static final int VALID_NUM_TIME_PERIOD_1 = 1;
     public static final int VALID_NUM_TIME_PERIOD_10 = 10;
     public static final int VALID_NUM_TIME_PERIOD_2 = 2;
     public static final int VALID_OCCURENCES_5 = 5;
     public static final int VALID_OCCURENCES_10 = 10;
+    public static final int VALID_OCCURENCES_30 = 30;
+    public static final int VALID_OCCURRENCES_50 = 50;
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;

@@ -47,7 +47,8 @@ public class ReminderEditCommand extends Command {
             + PREFIX_START_DATE + "2021-10-31";
 
     public static final String MESSAGE_EDIT_REMINDER_SUCCESS = "Edited Reminder: %1$s";
-    // public static final String REMINDER_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_ONE_OF_FREQUENCY_OCCURRENCE =
+            "Please input either both frequency and occurrence or neither of them.";
     public static final String MESSAGE_DUPLICATE_EDIT = "This reminder already exists in ePoch.";
 
     private final Index index;
