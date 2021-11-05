@@ -53,11 +53,17 @@ public class CommandTestUtil {
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_TAG_USP = "USP";
     public static final String VALID_TAG_SPORTS = "sports";
+
     public static final String VALID_CCA_NAME_NUSSO = "NUSSO";
-    public static final String VALID_CCA_NAME_TRACK = "USP Track";
     public static final String VALID_CCA_NAME_USKICK = "USKick";
+    public static final String VALID_CCA_NAME_TRACK = "USP Track";
+    public static final String VALID_CCA_NAME_USP_ULTIMATE = "USP Ultimate";
     public static final String VALID_CID_FIRST_CCA = "1";
     public static final String VALID_CID_SECOND_CCA = "2";
+    public static final String VALID_CCA_TAG_INTEREST_GROUP = "InterestGroup";
+    public static final String VALID_CCA_TAG_DISC_PROVIDED = "DiscProvided";
+    public static final String VALID_CCA_TAG_INTERVIEW_NEEDED = "InterviewNeeded";
+
     public static final String VALID_REMINDER_NAME_MEETING = "Meeting";
     public static final String VALID_REMINDER_NAME_REHEARSAL = "rehearsal";
     public static final String VALID_REMINDER_NAME_PROJECT = "project";
