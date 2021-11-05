@@ -51,6 +51,7 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_TAG_MUSIC = "Music";
     public static final String VALID_TAG_USP = "USP";
     public static final String VALID_TAG_SPORTS = "sports";
 
@@ -99,6 +100,9 @@ public class CommandTestUtil {
     public static final String CCA_NAME_DESC_NUSSO = " " + PREFIX_NAME + VALID_CCA_NAME_NUSSO;
     public static final String CCA_NAME_DESC_TRACK = " " + PREFIX_NAME + VALID_CCA_NAME_TRACK;
     public static final String CCA_NAME_DESC_USKICK = " " + PREFIX_NAME + VALID_CCA_NAME_USKICK;
+    public static final String TAG_DESC_USP = " " + PREFIX_TAG + VALID_TAG_USP;
+    public static final String TAG_DESC_MUSIC = " " + PREFIX_TAG + VALID_TAG_MUSIC;
+    public static final String TAG_DESC_SPORTS = " " + PREFIX_TAG + VALID_TAG_SPORTS;
 
     public static final String REMINDER_CID_FIRST_CCA = " " + PREFIX_CCA_ID + VALID_CID_FIRST_CCA;
     public static final String REMINDER_CID_SECOND_CCA = " " + PREFIX_CCA_ID + VALID_CID_SECOND_CCA;
