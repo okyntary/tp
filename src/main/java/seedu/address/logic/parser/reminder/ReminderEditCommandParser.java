@@ -1,9 +1,7 @@
 package seedu.address.logic.parser.reminder;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_CCA_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CCA_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FREQUENCY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OCCURRENCES;
@@ -32,7 +30,7 @@ public class ReminderEditCommandParser implements Parser<ReminderEditCommand> {
     public ReminderEditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer
-                .tokenize(args, PREFIX_NAME, PREFIX_START_DATE, PREFIX_FREQUENCY, PREFIX_OCCURRENCES, PREFIX_CCA_ID);
+                .tokenize(args, PREFIX_NAME, PREFIX_START_DATE, PREFIX_FREQUENCY, PREFIX_OCCURRENCES);
 
         Index index;
 
@@ -54,6 +52,15 @@ public class ReminderEditCommandParser implements Parser<ReminderEditCommand> {
             editReminderDescriptor.setReminderStartDate(ParserUtil
                     .parseReminderStartDate(argMultimap.getValue(PREFIX_START_DATE).get()));
         }
+
+        if ((argMultimap.getValue(PREFIX_FREQUENCY).isPresent()
+                && !argMultimap.getValue(PREFIX_OCCURRENCES).isPresent())
+                || (!argMultimap.getValue(PREFIX_FREQUENCY).isPresent()
+                && argMultimap.getValue(PREFIX_OCCURRENCES).isPresent())) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    ReminderEditCommand.MESSAGE_ONE_OF_FREQUENCY_OCCURRENCE));
+        }
+
         if (argMultimap.getValue(PREFIX_FREQUENCY).isPresent()) {
             editReminderDescriptor.setReminderFrequency(ParserUtil
                     .parseReminderFrequency(argMultimap.getValue(PREFIX_FREQUENCY).get()));
@@ -61,14 +68,6 @@ public class ReminderEditCommandParser implements Parser<ReminderEditCommand> {
         if (argMultimap.getValue(PREFIX_OCCURRENCES).isPresent()) {
             editReminderDescriptor.setReminderOccurrence(ParserUtil
                     .parseReminderOccurrence(argMultimap.getValue(PREFIX_OCCURRENCES).get()));
-        }
-        if (argMultimap.getValue(PREFIX_CCA_ID).isPresent()) {
-            try {
-                editReminderDescriptor.setCcaIndex(ParserUtil
-                        .parseIndex(argMultimap.getValue(PREFIX_CCA_ID).get()));
-            } catch (IndexExceedsCapacityException iie) {
-                throw new ParseException(MESSAGE_INVALID_CCA_DISPLAYED_INDEX);
-            }
         }
 
         return new ReminderEditCommand(index, editReminderDescriptor);
