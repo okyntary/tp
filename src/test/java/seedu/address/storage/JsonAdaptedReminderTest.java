@@ -1,18 +1,17 @@
 package seedu.address.storage;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.logic.parser.ParserUtil;
-import seedu.address.model.person.Name;
-import seedu.address.model.reminder.ReminderName;
-import seedu.address.model.util.Frequency;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalReminders.MEETING;
 
 import java.util.ArrayList;
 import java.util.Date;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalReminders.MEETING;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.reminder.ReminderName;
+import seedu.address.model.util.Frequency;
 
 class JsonAdaptedReminderTest {
     private static final String INVALID_REMINDERNAME = " ";
