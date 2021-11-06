@@ -37,12 +37,4 @@ Given below are my contributions to the project.
   * Reviewing and merging PRS
   * Solving merge conflicts
   * Suggesting improvements
-
-
-
-
-
-
-
-
   
