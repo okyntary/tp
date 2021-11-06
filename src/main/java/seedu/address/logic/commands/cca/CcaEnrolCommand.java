@@ -90,7 +90,7 @@ public class CcaEnrolCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof CcaEnrolCommand // instanceof handles nulls
-                && ccaToEnrolInto.equals(((CcaEnrolCommand) other).ccaToEnrolInto)
-                && personToEnrol.equals(((CcaEnrolCommand) other).personToEnrol));
+                && targetCcaIndex.equals(((CcaEnrolCommand) other).targetCcaIndex)
+                && targetPersonIndex.equals(((CcaEnrolCommand) other).targetPersonIndex));
     }
 }

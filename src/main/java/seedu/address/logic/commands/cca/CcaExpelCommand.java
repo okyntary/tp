@@ -92,7 +92,7 @@ public class CcaExpelCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof CcaExpelCommand // instanceof handles nulls
-                && ccaToExpelFrom.equals(((CcaExpelCommand) other).ccaToExpelFrom)
-                && personToExpel.equals(((CcaExpelCommand) other).personToExpel));
+                && targetCcaIndex.equals(((CcaExpelCommand) other).targetCcaIndex)
+                && targetPersonIndex.equals(((CcaExpelCommand) other).targetPersonIndex));
     }
 }

@@ -94,9 +94,11 @@ public class Reminder implements Comparable<Reminder> {
         return this.dates;
     }
 
+    /*
     public void setDates(ArrayList<Date> dates) {
         this.dates = dates;
     }
+    */
 
     public String getNextDate() {
         return PARSE_DATE_TO_STRING_FORMAT.format(dates.get(0));

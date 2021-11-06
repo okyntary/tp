@@ -24,4 +24,11 @@ public class CcaContainsPersonPredicate implements Predicate<Cca> {
         return persons.stream()
                 .anyMatch(person -> cca.containsEnrolledPerson(person));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof CcaContainsPersonPredicate // instanceof handles nulls
+                && persons.equals(((CcaContainsPersonPredicate) other).persons)); // state check
+    }
 }

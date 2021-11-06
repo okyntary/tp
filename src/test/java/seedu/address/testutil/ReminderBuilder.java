@@ -1,5 +1,6 @@
 package seedu.address.testutil;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -16,11 +17,11 @@ import seedu.address.model.util.Frequency;
 public class ReminderBuilder {
 
     public static final String DEFAULT_NAME = "meeting";
-    public static final Date DEFAULT_DATE = new Date();
     public static final Frequency DEFAULT_TIME_PERIOD = Frequency.DAY;
     public static final int DEFAULT_NUM_TIME_PERIOD = 2;
     public static final int DEFAULT_OCCURRENCES = 3;
     public static final String DEFAULT_CCA = "nusso";
+    private static Date defaultDate = new Date();
 
     // Identity fields
     private ReminderName reminderName;
@@ -32,12 +33,22 @@ public class ReminderBuilder {
     private String ccaName;
     private ArrayList<Date> dates = new ArrayList<>();
 
+    static {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        String dateString = format.format(new Date());
+        try {
+            defaultDate = ReminderStartDate.PARSE_INPUT_DATE_FORMAT.parse(dateString);
+        } catch (java.text.ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
     /**
      * Creates a {@code Reminder} with the default details.
      */
     public ReminderBuilder() {
         reminderName = new ReminderName(DEFAULT_NAME);
-        reminderStartDate = new ReminderStartDate(DEFAULT_DATE);
+        reminderStartDate = new ReminderStartDate(defaultDate);
         reminderFrequency = new ReminderFrequency(DEFAULT_TIME_PERIOD, DEFAULT_NUM_TIME_PERIOD);
         reminderOccurrence = new ReminderOccurrence(DEFAULT_OCCURRENCES);
         ccaName = DEFAULT_CCA;
