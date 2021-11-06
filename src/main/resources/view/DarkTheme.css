@@ -1,3 +1,7 @@
+* {
+    -fx-border-radius: 12pt;
+}
+
 .background {
     -fx-background-color: derive(#1d1d1d, 20%);
     background-color: #383838; /* Used in the default.html file */
@@ -46,6 +50,8 @@
     -fx-table-cell-border-color: transparent;
     -fx-table-header-border-color: transparent;
     -fx-padding: 5;
+    -fx-background-radius: 30px;
+    -fx-border-radius: 30px;
 }
 
 .table-view .column-header-background {
@@ -62,6 +68,7 @@
         derive(-fx-base, 80%)
         transparent;
     -fx-border-insets: 0 10 1 0;
+    -fx-border-radius: 10 10 0 0;
 }
 
 .table-view .column-header .label {
@@ -91,12 +98,15 @@
     -fx-background-insets: 0;
     -fx-padding: 0;
     -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-radius: 30px;
+    -fx-border-radius: 30px;
 }
 
 .list-cell {
     -fx-label-padding: 0 0 0 0;
     -fx-graphic-text-gap : 0;
     -fx-padding: 0 0 0 0;
+    -fx-background-radius: 12pt;
 }
 
 .list-cell:filled:even {
@@ -168,6 +178,7 @@
     -fx-background-color: derive(#1d1d1d, 30%);
     -fx-border-color: derive(#1d1d1d, 25%);
     -fx-border-width: 1px;
+    -fx-border-radius: 10 10 0 0;
 }
 
 .status-bar-with-border .label {
@@ -323,7 +334,7 @@
     -fx-border-color: #383838 #383838 #ffffff #383838;
     -fx-border-insets: 0;
     -fx-border-width: 1;
-    -fx-font-family: "Open Sans Light";
+    -fx-font-family: "Courier";
     -fx-font-size: 13pt;
     -fx-text-fill: white;
 }
