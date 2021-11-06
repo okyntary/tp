@@ -47,6 +47,8 @@ public class CcaCard extends UiPart<Region> {
         this.name.setText(cca.getName().fullName);
         this.numPeople.setText("No. of people: " + cca.getNumberOfMembers());
 
+        name.setWrapText(true);
+
         cca.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
