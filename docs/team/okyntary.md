@@ -10,7 +10,7 @@ ePoch is a desktop app for managing contacts, optimized for use via a Command Li
 ### Summary of contributions:
 
 * **Code contributed**
-  * [RepoSense link]((https://nus-cs2103-ay2122s1.github.io/tp-dashboard/?search=t14-2&sort=groupTitle&sortWithin=title&since=2021-09-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=authorship&tabAuthor=okyntary&tabRepo=AY2122S1-CS2103-T14-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false) 
+  * [RepoSense link](https://nus-cs2103-ay2122s1.github.io/tp-dashboard/?search=t14-2&sort=groupTitle&sortWithin=title&since=2021-09-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=authorship&tabAuthor=okyntary&tabRepo=AY2122S1-CS2103-T14-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false) 
 
 * **Enhancements implemented**
   * Implement storage for all new features that require storage between sessions, so that important data is retained between sessions
