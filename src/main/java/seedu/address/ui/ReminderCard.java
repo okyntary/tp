@@ -58,6 +58,7 @@ public class ReminderCard extends UiPart<Region> {
         this.reminder = reminder;
         id.setText(displayedIndex + ". ");
         this.name.setText(reminder.getName().fullName);
+        name.setWrapText(true);
         this.date.setText(reminder.getNextDate());
         this.frequency.setText("Frequency: " + reminder.getFrequency().toString());
         this.occurrences.setText("Occurrences Left: " + reminder.getOccurrences().toString());

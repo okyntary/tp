@@ -49,12 +49,17 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
+        phone.setText("\uD83D\uDCDE" + person.getPhone().value);
+        address.setText("\uD83C\uDFE0" + person.getAddress().value);
+        email.setText("\uD83D\uDCE8" + person.getEmail().value);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+
+        name.setWrapText(true);
+        phone.setWrapText(true);
+        address.setWrapText(true);
+        email.setWrapText(true);
     }
 
     @Override
