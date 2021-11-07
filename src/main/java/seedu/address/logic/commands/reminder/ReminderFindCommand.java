@@ -3,17 +3,12 @@ package seedu.address.logic.commands.reminder;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_NO_PERSONS;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
-import seedu.address.model.cca.CcaNameContainsKeywordsPredicate;
+import seedu.address.model.cca.CcaContainsReminderPredicate;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.reminder.ReminderNameContainsKeywordsPredicate;
 
@@ -44,7 +39,7 @@ public class ReminderFindCommand extends Command {
 
         model.updateFilteredReminderList(predicate);
 
-        CcaNameContainsKeywordsPredicate filteredCcaPredicate = getFilterForCcaList((model.getFilteredReminderList()));
+        CcaContainsReminderPredicate filteredCcaPredicate = getFilterForCcaList((model.getFilteredReminderList()));
         model.updateFilteredCcaList(filteredCcaPredicate);
         model.updateFilteredPersonList(PREDICATE_SHOW_NO_PERSONS);
 
@@ -52,13 +47,8 @@ public class ReminderFindCommand extends Command {
                 String.format(Messages.MESSAGE_REMINDERS_LISTED_OVERVIEW, model.getFilteredReminderList().size()));
     }
 
-    private CcaNameContainsKeywordsPredicate getFilterForCcaList(ObservableList<Reminder> reminderList) {
-        Set<String> allValidCcas = new HashSet<>();
-        for (Reminder validReminder: reminderList) {
-            allValidCcas.add(validReminder.getCcaName());
-        }
-        List<String> ccaNames = new ArrayList<>(allValidCcas);
-        return new CcaNameContainsKeywordsPredicate(ccaNames);
+    private CcaContainsReminderPredicate getFilterForCcaList(ObservableList<Reminder> reminderList) {
+        return new CcaContainsReminderPredicate(reminderList);
     }
 
     @Override
