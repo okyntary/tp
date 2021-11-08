@@ -370,13 +370,13 @@ because of how time-consuming refactoring the entire project to use this new sys
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
-* has many contacts that are spread across different CCAs
-* needs to keep track of many recurring reminders associated with each CCA
+* has a need to manage a significant number of contacts.
+* prefers desktop apps over other types.
+* can type fast.
+* prefers typing to mouse interactions.
+* is reasonably comfortable using CLI apps.
+* has many contacts that are spread across different CCAs.
+* needs to keep track of many recurring reminders associated with each CCA.
 
 **Value proposition**:
 
@@ -391,39 +391,35 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …                                     | I want to …                    | So that I can…                                                         |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *` | new user | see usage instructions of ePoch | refer to instructions if I forget how to use ePoch |
-| `* *` | user with multiple devices across different operating systems | use ePoch across multiple platforms | access its functionality regardless of the device I am using |
 | `* * *` | user who dislikes using the mouse or trackpad | interact with an app through a command line interface | rely exclusively on keyboard inputs |
-| `*` | user who manages multiple CCAs | view the number of people in each CCA | easily keep track of CCA enrolment
-| `*` | organised user | be able to export my contacts to a JSON file | send an organised list of contacts to others |
-| `* *` | visual user | be able to customise the colour for my contact's CCA tags | visually differentiate and colour-code different tags |
-| `* *` | visual user | be able to be visually prompted of overdue reminders | visually differentiate what I need to urgently work on |
-| `* *` | user participating in different types of CCAs | add tags to categorise my CCA into categories like 'Music' and 'Sports' | differentiate and organise my different types of CCAs |
-| `* *` | tech-savvy user who is familiar with keyboard shortcuts | be able to exeucte commands with shortcuts I am familiar with | easily execute more complicated commands with just a few keystrokes |
 | `* * *` | user who has multiple friends, CCAs, and reminders | be able to view all within a clean and user-friendly UI | view them quickly and efficiently |
-| `* *` | user with friends in multiple CCAs | be able to quickly view what CCAs my friends are in | keep track of which CCAs to join based on what CCAs my friends are in |
-| `* *` | user who loves to experiment | be able to quickly delete all data from ePoch at once | try out different configurations of persons CCAs and reminders |
-| `* * *` | user | add a person to a CCA | keep track of what CCAs my friends are in |
-| `* * *` | user whose friends are joining many CCAs | be able to efficiently add people from CCAs | keep track of my friends from different CCAs |
-| `* * *` | user whose friends are experimenting with CCAs | be able to efficiently remove people from CCAs | update ePoch with the latest information |
+| `* *` | user with multiple devices across different operating systems | use ePoch across multiple platforms | access its functionality regardless of the device I am using |
 | `* * *` | user who meets many fellow students | be able to add contacts in ePoch | keep track of the people I meet |
-| `* *` | user who meets many fellow students | be able to edit the details of my contacts in ePoch | update ePoch with the latest information, especially since a contact's details may change regularly |
-| `* * *` | busy user | be able to delete contacts from ePoch | stop keeping tracks of contacts that are no longer relevant |
-| `* *` | forgetful user | find any contact that matches my search terms | easily find and contact(s) that I desire |
+| `* * *` | busy user | be able to delete contacts from ePoch | stop keeping track of contacts that are no longer relevant |
 | `* * *` | user with multiple CCAs | be able to add all the CCAs I am involved in | keep track of them |
-| `* * *` | user who changes CCAs over time | be able to delete CCAs | stop keeping track of those I am no longer a part of |
-| `* *` | careless user | be able to edit the details of CCAs | fix any mistakes I've made in adding the CCA |
+| `* * *` | user who changes CCAs over time | be able to delete CCAs | stop keeping track of those CCAs that I am no longer a part of |
+| `* * *` | user | add a person to a CCA | keep track of what CCAs my friends are in |
+| `* * *` | user whose friends are joining many CCAs | be able to efficiently add people to CCAs | keep track of my friends from different CCAs |
+| `* * *` | user whose friends are experimenting with CCAs | be able to efficiently remove people from CCAs | update ePoch with the latest information |
+| `* * *` | user with many CCA commitments | be able to add reminders associated with CCAs | stay on top of things by organising my CCA-specific commitments |
+| `* * *` | user with commitments constantly in flux | delete reminders | delete irrelevant or redundant reminders |
+| `* *` | user who loves to experiment | be able to quickly delete all data from ePoch at once | try out different configurations of persons, CCAs and reminders |
+| `* *` | forgetful user | find any contact that matches my search terms | easily find any contact(s) that I desire |
+| `* *` | user who meets many fellow students | be able to edit the details of my contacts in ePoch | update ePoch with the latest information, especially since a contact's details may change regularly |
+| `* *` | user with friends in multiple CCAs | be able to quickly view what CCAs my friends are in | keep track of which CCAs to join based on what CCAs my friends are in |
+| `* *` | careless user | be able to edit the details of CCAs | fix any mistakes made when adding CCAs |
 | `* *` | user who is overcommitted with many CCAs | be able to find any CCA with a title that matches a given search term | easily filter through my many CCAs |
 | `* *` | user who has many friends from different CCAs | be able to search for a CCA and view all the people who are part of that CCA | remember who is part of that CCA |
-| `* *` | user who is overcommitted with many upcoming events and commitments | be able to view all the reminders associated with a CCA | see what upcoming events I have related to that CCA |
-| `* * *` | user with many commitments | be able to add reminders | be reminded to do any tasks or events associated with those commitments |
-| `* * *` | user with many CCA commitments | be able to add reminders associated with CCAs | stay on top of things by organising my CCA-specific commitments |
-| `* *` | user who might make typos | edit reminder titles | rectify any errors in the title I set for reminders |
+| `* *` | user participating in different types of CCAs | add tags to categorise my CCA into categories like 'Music' and 'Sports' | differentiate and organise my different types of CCAs |
+| `* *` | visual user | be able to be visually prompted of overdue reminders | visually differentiate what I need to urgently work on |
+| `* *` | user who is overcommitted with many upcoming events and commitments | be able to view all the reminders associated with a CCA | see what upcoming events related to that CCA I have |
+| `* *` | user who might make typos | edit reminder names | rectify any errors in the names I set for reminders |
 | `* *` | busy user with many recurring meetings | set reminders to repeat at a specific interval | be constantly reminded of my commitments without having to remember to add a new reminder each time |
 | `* *` | busy user with many recurring meetings | set reminders to repeat for a given number of occurrences | efficiently set reminders without wasting time on repeated actions |
-| `* * *` | user with commitments constantly in flux | delete reminders | delete irrelevant or redundant reminders |
 | `* *` | user who is overcommitted with many commitments | search for reminders with names matching given keywords | find more important reminders by their title |
-| `* *` | user with many recurring reminders | snooze reminders that I've completed | clear space for reminders that I've not yet completed |
-
+| `* *` | user with many recurring reminders | snooze reminders that I have completed | clear space for reminders that I have not yet completed |
+| `*` | user who manages multiple CCAs | view the number of people in each CCA | easily keep track of CCA enrolment
+| `*` | organised user | be able to export my contacts to a JSON file | send an organised list of contacts to others |
 
 ### Use cases
 
