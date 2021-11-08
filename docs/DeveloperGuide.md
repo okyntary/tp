@@ -163,7 +163,7 @@ A CCA has:
 * A CCA name, represented by the `CcaName` class. CCA name must be unique.
 * Zero or more people enrolled in it, represented by the HashSet `members`.
 * Zero or more reminders associated with it, represented by the HashSet `reminders`.
-* A set of zero or more tags, with the tags being represented by the `Tag` class.
+* A Set of zero or more tags, with the tags being represented by the `Tag` class.
 
 Two CCAs are considered identical if they have the same name.
 
@@ -177,7 +177,7 @@ Polymorphism allows the different Command objects to be passed around and execut
 The `deletec` command is implemented by `CcaDeleteCommand`.
 Similar to `CcaAddCommand`, `CcaDeleteCommand` extends `Command` to practice polymorphism.
 
-The `CcaDeleteCommand` class has an Index which is the index of the CCA to delete, specified by the user.
+The `CcaDeleteCommand` class has an `Index` which is the index of the CCA to delete, specified by the user.
 It implements the `execute` method which handles the logic of the delete command.
 The `getFilteredCcaList` method is called to obtain a List of CCAs, `lastShownList`.
 If the given index exists in `lastShownList`, the corresponding CCA is deleted using the `deleteCca` method defined in the `ModelManager`.
@@ -194,19 +194,19 @@ which uses streams to filter CCAs whose name matches any of the keywords.
 
 The `enrol` command is implemented by `CcaEnrolCommand` which extends `Command`.
 
-The `CcaEnrolCommand` class has two Indexes, the index of the CCA to be enrolled into, and the index of the Person to enrol, specified by the user.
+The `CcaEnrolCommand` class has two `Indexes`, the index of the CCA to be enrolled into, and the index of the Person to enrol, specified by the user.
 It implements the `execute` method which handles the logic of the enrol command.
 The `getFilteredCcaList` and `getFilteredPersonList` method is called to obtain a List of CCAs and Persons, `lastShownCcaList` and `lastShownPersonList` respectively.
-If the gives Indexes exist in `lastShownCcaList` and `lastShownPersonList`, the corresponding Person is enrolled into the corresponding CCA using the `enrolPersonIntoCca` method defined in the `ModelManager`.
+If the gives `Indexes` exist in `lastShownCcaList` and `lastShownPersonList`, the corresponding Person is enrolled into the corresponding CCA using the `enrolPersonIntoCca` method defined in the `ModelManager`.
 
 #### Command for Expelling Person from CCAs
 
 The `expel` command is implemented by `CcaExpelCommand` which extends `Command`.
 
-The `CcaExpelCommand` class has two Indexes, the index of the CCA to be expelled from, and the index of the Person to expel, specified by the user.
+The `CcaExpelCommand` class has two `Indexes`, the index of the CCA to be expelled from, and the index of the Person to expel, specified by the user.
 It implements the `execute` method which handles the logic of the expel command.
 The `getFilteredCcaList` and `getFilteredPersonList` method is called to obtain a List of CCAs and Persons, `lastShownCcaList` and `lastShownPersonList` respectively.
-If the gives Indexes exist in `lastShownCcaList` and `lastShownPersonList`, the corresponding Person is expelled from the corresponding CCA using the `expelPersonFromCca` method defined in the `ModelManager`.
+If the gives `Indexes` exist in `lastShownCcaList` and `lastShownPersonList`, the corresponding Person is expelled from the corresponding CCA using the `expelPersonFromCca` method defined in the `ModelManager`.
 
 ### Reminders
 
