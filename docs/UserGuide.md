@@ -164,7 +164,7 @@ Format: `deletec CCA_ID`
 
 ### Finding a CCA: `findc`
 
-Filters all CCAs with names that match any of the search keywords, as well as people enrolled in these CCAs and reminders associated with these CCAs.
+Finds all CCAs with names that match any of the search keywords, as well as people enrolled in these CCAs and reminders associated with these CCAs.
 
 Format: `findc FIRST_WORD [SECOND_WORD] ....`
 
@@ -204,7 +204,7 @@ Format: `deleter REMINDER_ID`
 
 ### Finding the title of a reminder: `findr`
 
-Filters all reminders that match any of the given keywords, as well as CCAs associated with these reminders.
+Finds all reminders that match any of the given keywords, as well as CCAs associated with these reminders.
 
 Format: `findr FIRST_WORD [SECOND_WORD] ....`
 
