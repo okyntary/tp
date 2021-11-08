@@ -168,6 +168,18 @@ Finds all CCAs with names that match any of the search keywords, as well as peop
 
 Format: `findc FIRST_WORD [SECOND_WORD] ....`
 
+### Enrolling a person from a CCA: `enrol`
+
+Enrols a person into a CCA.
+
+Format: `enrol cid/CCA_ID pid/PERSON_ID`
+
+### Expelling a person from a CCA: `expel`
+
+Expels a person from a CCA.
+
+Format: `expel cid/CCA_ID pid/PERSON_ID`
+
 ### Adding a reminder to a CCA: `addr`
 
 Adds a reminder to a CCA.
@@ -218,18 +230,6 @@ Format: `snoozer REMINDER_ID`
 * If the reminder is on its last occurrence (occurrences = 1), snoozing the reminder will result in it being removed entirely (as it will have no more occurrences left after being snoozed).
 * If the reminder is not on its last occurrence (occurrences > 1), snoozing the reminder will shift it to the date of its next occurrence.
 * The date of next occurrence is calculated from the current date which the reminder occurs and its frequency.
-
-### Enrolling a person from a CCA: `enrol`
-
-Enrols a person into a CCA.
-
-Format: `enrol cid/CCA_ID pid/PERSON_ID`
-
-### Expelling a person from a CCA: `expel`
-
-Expels a person from a CCA.
-
-Format: `expel cid/CCA_ID pid/PERSON_ID`
 
 ### Delete all data from ePoch: `clear`
 
