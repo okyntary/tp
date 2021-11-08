@@ -27,7 +27,7 @@ ePoch is a desktop app for managing contacts, optimized for use via a Command Li
   * User Guide:
     * Added documentation for the features section [\#31](https://github.com/AY2122S1-CS2103-T14-2/tp/pull/31)
     * Proofread and edited lines over the entirety of the User Guide [\#120](https://github.com/AY2122S1-CS2103-T14-2/tp/pull/120)
-    * Changed documentation for `addc` and `editc` commands to reflect changes in the parameters accepted * [/#218](https://github.com/AY2122S1-CS2103-T14-2/tp/pull/218)
+    * Changed documentation for `addc` and `editc` commands to reflect changes in the parameters accepted * [\#218](https://github.com/AY2122S1-CS2103-T14-2/tp/pull/218)
   * Developer Guide:
     * Update documentation related to `Storage` component
       * Update UML diagram to reflect new and modified classes in `Storage` component [\#239](https://github.com/AY2122S1-CS2103-T14-2/tp/pull/239) 
