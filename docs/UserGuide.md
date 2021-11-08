@@ -36,7 +36,7 @@ It is intended to be used by NUS students, to help keep track of the students an
 
    * **`exit`** : Exits ePoch.
 
-1. Refer to the [Features](##features) segment below for details of each command.
+1. Refer to the [Features](##Features) segment below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
