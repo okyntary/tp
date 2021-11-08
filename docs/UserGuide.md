@@ -171,7 +171,7 @@ Format: `findc FIRST_WORD [SECOND_WORD] ....`
 ### Adding a reminder to a CCA: `addr`
 
 Adds a reminder to a CCA.
-If frequency and occurrences is specified, the reminder will repeat at the specified frequency; else, the reminder will be treated as a once-off event.
+If frequency and occurrences are specified, the reminder will repeat at the specified frequency; else, the reminder will be treated as a once-off event.
 
 Format: `addr cid/CCA_ID n/REMINDER_NAME sd/START_DATE [f/FREQUENCY] [o/OCCURRENCES]`
 
