@@ -6,8 +6,7 @@
 
 ![Ui](docs/images/Ui.png)
 
-* This is **a contact manager for USP students to keep track of other USP students and their respective CCAs/IGs,** by providing reminders for events and social gatherings related to those organisations.<br>
-* It is meant to be used regularly, and requires the user to consistently update it on a routine basis.
+* ePoch is a desktop app for managing contacts, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). It has been designed for the busy NUS student, allowing the user to create contacts for persons and to create CCAs; link those persons and CCAs together; and to create periodic reminders for those CCAs.
 * This contact manager is:
   * **written in OOP fashion**.
   * is based on the _AddressBook-Level3_ project created by the [SE-EDU initiative](https://se-education.org).
