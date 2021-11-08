@@ -10,6 +10,6 @@
 * It is meant to be used regularly, and requires the user to consistently update it on a routine basis.
 * This contact manager is:
   * **written in OOP fashion**.
-  * built off of is based on the _AddressBook-Level3_ project created by the [SE-EDU initiative](https://se-education.org).
+  * is based on the _AddressBook-Level3_ project created by the [SE-EDU initiative](https://se-education.org).
 * Documentation for this project, such as the User Guide and Developer Guide, can be found in the docs folder.
 * ePoch is a product of the CS2103 T14-2 team.
