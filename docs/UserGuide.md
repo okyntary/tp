@@ -69,7 +69,7 @@ Tag | String (alphanumeric characters with no spaces) | `t/` | `t/friend`
   e.g. in `addc n/CCA_NAME [t/TAG]`, `NAME` is a parameter which can be used as `addc n/NUSSO`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [e/EMAIL]` can be used as `n/Johnny Doe [e/EMAIL]` or as `n/Johnny Doe`.
+  e.g `n/NAME [t/TAG]` can be used as `n/NUSHackers t/cool` or as `n/NUSHackers`.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
