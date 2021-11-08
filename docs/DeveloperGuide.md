@@ -119,8 +119,7 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2122S1-CS2103-T14-2/tp/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
-****
+<img src="images/ModelClassDiagram.png" width="450"/>
 
 The `Model` component,
 
@@ -286,6 +285,7 @@ A Reminder has:
 * Zero or one frequency, represented by the `ReminderFrequency` class and making use of enumerations from the `Frequency` class.
 * Zero or one occurrence, represented by the `ReminderOccurrence` class.
 * Exactly one CCA that it is linked to, represented as a `CcaName` data field as a String.
+* An `ArrayList` of `Date`s which represents all upcoming dates of the reminder.
 
 Two Reminders are considered identical if they have the same name and same start date.
 A stronger version of equality is also defined: under this version, two Reminders are considered equal if they have the same name, same CCA, same start date, same frequency, and same occurrence.
