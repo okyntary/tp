@@ -156,17 +156,6 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Storage
-
-The current Storage mechanism is split into two main sections: `AddressBook` storage, for all ePoch-related data, and `UserPrefs` storage, for all user preference-related data.
-Whenever ePoch needs to save or update its storage, it converts the relevant object into a `.json` object with the `saveJsonFile` method in `jsonUtil`.
-
-There are three main classes types in ePoch that need to be saved: `Person`, `Cca`, and `Reminder`. Each of these classes is converted to its corresponding `JsonAdapted` class,
-to be made suitable for `.json` conversion. Because each `Cca` object contains a `Set` of `Person`s and `Reminder`s as members, `JsonAdaptedPerson` and `JsonAdaptedReminder` will be stored within `JsonAdaptedCca` as well.
-
-Alternatives considered: instead of storing whole `Person` and `Reminder` objects in `Cca` objects, the alternative of storing unique identifiers for them `Pid`, `Rid` etc was considered. In the end, this possibility was rejected
-because of how time-consuming refactoring the entire project to use this new system would be.
-
 ### Persons
 
 A Person has:
@@ -178,7 +167,7 @@ A Person has:
 * A set of zero or more tags, with the tags represented by the `Tag` class.
 
 Two Persons are considered identical if they have the same name.
-A stronger version of equality is also defined: two Persons are considered equal if they have the same name, same phone, same email, same address, and same tags.
+A stronger version of equality is also defined: under this version, two Persons are considered equal if they have the same name, same phone, same email, same address, and same tags.
 
 #### Command for Adding Persons
 
