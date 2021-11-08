@@ -11,6 +11,10 @@ This command allows users of the AddressBook application to add optional remarks
 
 We’ll assume that you have already set up the development environment as outlined in the Developer’s Guide.
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Product screenshots in this section will not match the exact UI of ePoch. 
+The screenshots depict a simplified version (from AB3) with only Persons, to highlight only relevant changes.  
+</div>
+
 
 ## Create a new `remark` command
 
