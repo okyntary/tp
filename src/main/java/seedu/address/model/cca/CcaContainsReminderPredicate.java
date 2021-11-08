@@ -20,4 +20,11 @@ public class CcaContainsReminderPredicate implements Predicate<Cca> {
         return reminders.stream()
                 .anyMatch(reminder -> reminder.getCcaName().equals(cca.getName().toString()));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuitif same object
+            || (other instanceof CcaContainsReminderPredicate) // handles nulls
+            && reminders.equals(((CcaContainsReminderPredicate) other).reminders);
+    }
 }
