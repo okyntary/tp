@@ -642,3 +642,37 @@ testers are expected to do more *exploratory* testing.
 
       3. Test case: Run the `clear` command in ePoch. <br>
          Expected: this should clear all sample contacts from ePoch, and the GUI should contain no data at all. An `addressbook.json` file should be created in the `/data` folder.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Effort**
+
+ePoch was a highly challenging project that required a significant amount of effort from our team. 
+This could be attributed mainly to our support of multiple entities, along with allowing users to create complex relations between them.
+
+While AB3 deals with only one entity type (Persons), ePoch deals with three (Persons, CCAs and Reminders). 
+As such, the development of ePoch was especially challenging as we had to manage not only these three entities, but also the links between them (Persons/CCAs, CCAs/Reminders). 
+This was an obstacle in many ways. 
+
+Firstly, there was a significant amount of development work needed in creating the three entities, integrating them into the current model, and designing how they would link to each other.
+It was difficult to decide how to allow these different objects to reference each other.
+Due to these associations, a significant amount of care and effort was needed to implement each feature as it could directly affect another feature and cause bugs.
+Testing was also difficult for each feature as we had to test not only the feature itself, but also how it may affect features related to other entities. 
+For example, we had to significantly modify the find commands to filter one list by keywords, and the other two lists by their associations.
+
+Secondly, commands that deleted or edited an entity needed extra effort to implement, as we had to ensure that all associated entities were updated real-time.
+For instance, the `editc` command to edit CCAs must also update the CCA name of associated reminders, if the CCA name is changed.
+Not only must these reminders be updated, the changes needed to be reflected in the UI.
+
+Thirdly, storing the links between these entities was challenging.
+When an entity was updated, it needed to be updated accordingly in the storage, so that the user would not lose these changes.
+Implementing a feature often required a large change to the storage format, as we would need to preserve the relationships between different entities.  
+
+Finally, due to the large amount of code written to support numerous entities and the relationships between them,
+we needed to write a lot more tests to achieve the same percentage of code coverage. 
+We also had to take greater care in writing unit tests and designing stubs, since our entities would normally have references to other entities.
+
+With numerous challenges faced, our team managed to overcome the technical difficulty of ePoch's implementation and design. 
+We believe a significant achievement of our relatively bug-free support of operations for three distinct entities, 
+as well as commands for linking entities and commands that display the links between them 
+(e.g., `findc` will display filtered CCAs along with the people and reminders associated with them).
