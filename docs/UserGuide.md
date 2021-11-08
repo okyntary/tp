@@ -2,10 +2,12 @@
 layout: page
 title: User Guide
 ---
+* Table of Contents
+{:toc}
+---
 
-ePoch is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type quickly, ePoch can get your contact management tasks done faster than traditional GUI apps.
 
-It has been designed for the busy NUS student. It allows the user to create contacts for persons and to create CCAs, link those persons and CCAs together, and to create periodic reminders for those CCAs.
+ePoch is a desktop app for managing contacts, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). It has been designed for the busy NUS student, allowing the user to create contacts for persons and to create CCAs, link those persons and CCAs together, and to create periodic reminders for those CCAs.
 
 It is intended to be used by NUS students, to help keep track of the students and organizations that they encounter.
 
@@ -36,7 +38,7 @@ It is intended to be used by NUS students, to help keep track of the students an
 
    * **`exit`** : Exits ePoch.
 
-1. Refer to the [Features](##features) segment below for details of each command.
+1. Refer to the [Features](#features) segment below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -86,6 +88,14 @@ Note: ePoch has a capacity of 1,000,000,000 persons, CCAs and reminders each.
 
 _All commands, with the exception of find-related commands, will refresh the UI to show all data in ePoch, in order to avoid confusing the user._
 
+### Viewing help : `help`
+
+Shows a message explaining how to access the help page.
+
+![help message](images/helpMessage.png)
+
+Format: `help`
+
 ### Listing all persons : `list`
 
 Shows a list of all persons, CCAs, reminders in ePoch.
@@ -129,7 +139,7 @@ Format: `deletep PERSON_INDEX`
 
 * Deletes the person with the specified displayed index.
 * The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
 * `deletep 2` deletes the person in ePoch that has an index of 2.
@@ -297,14 +307,6 @@ Exits the program.
 
 Format: `exit`
 
-### Viewing help : `help`
-
-Shows a message explaining how to access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
-
 ### Saving the data
 
 ePoch data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
@@ -333,8 +335,8 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 
 Action | Format
 -------|------------------
+**View help page** | `help`
 **List all data** | `list`
-**Delete all data** | `clear`
 **Add person** | `addp n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...`
 **Edit person data** | `editp PERSON_INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]...`
 **Delete person** | `deletep PERSON_INDEX`
@@ -343,12 +345,12 @@ Action | Format
 **Edit CCA** | `editc CCA_INDEX [n/CCA_NAME] [t/TAG]...`
 **Delete CCA** | `deletec CCA_INDEX`
 **Find CCA** | `findc FIRST_WORD [SECOND_WORD] ....`
+**Enrols a person into CCA** | `enrol cid/CCA_INDEX pid/PERSON_INDEX`
+**Removes a person from a CCA** | `expel cid/CCA_INDEX pid/PERSON_INDEX`
 **Add reminder** | `addr cid/CCA_INDEX n/REMINDER_NAME sd/START_DATE [f/FREQUENCY] [o/OCCURRENCES]`
 **Edit reminder** | `editr REMINDER_INDEX [n/REMINDER_NAME] [sd/START_DATE] [f/FREQUENCY] [o/OCCURRENCES]`
 **Delete reminder** | `deleter REMINDER_INDEX`
 **Find reminder** | `findr FIRST_WORD [SECOND_WORD]...`
 **Snooze reminder** | `snoozer REMINDER_INDEX`
-**Enrols a person into CCA** | `enrol cid/CCA_INDEX pid/PERSON_INDEX`
-**Removes a person from a CCA** | `expel cid/CCA_INDEX pid/PERSON_INDEX`
-**View help page** | `help`
+**Delete all data** | `clear`
 **Exit the app** | `exit`
