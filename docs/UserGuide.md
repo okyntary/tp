@@ -162,6 +162,8 @@ Format: `addc n/CCA_NAME [t/TAG]...`
 
 Edits the details of a CCA.
 
+* If none of the optional fields are specified (e.g. `editc` 1), then the CCA will not be edited (since no edits have been specified).
+
 Format: `editc CCA_ID [n/CCA_NAME] [t/TAG]...`
 
 ### Deleting a CCA: `deletec`
