@@ -21,7 +21,7 @@ public class ReminderSnoozeCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_SNOOZE_LAST_OCCURRENCE_ERROR = "You can't snooze this reminder "
-            + "since it has only 1 occurrence left. Do you want to delete it instead?";
+            + "since it has only 1 occurrence left. You can use the deleter command to delete it instead.";
     public static final String MESSAGE_SNOOZE_REMINDER_SUCCESS = "Snoozed Reminder: %1$s";
 
     private final Index targetReminderIndex;
