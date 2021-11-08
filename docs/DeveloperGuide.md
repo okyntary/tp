@@ -15,7 +15,6 @@ Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/Fast
 
 This project is based on the _AddressBook-Level3_ project created by the [SE-EDU initiative](https://se-education.org).
 
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
@@ -53,7 +52,6 @@ The rest of the App consists of four components.
 * [**`Logic`**](#logic-component): The command executor.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
-
 
 **How the architecture components interact with each other**
 
