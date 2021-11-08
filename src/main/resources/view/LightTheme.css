@@ -368,5 +368,4 @@
     -fx-effect: dropshadow(gaussian, rgba(20, 100, 100, 0.5), 10, 0.5, 0.0, 0.0);
     -fx-font-size: 24;
     -fx-text-fill: black;
-    -fx-font-weight: 700;
 }
