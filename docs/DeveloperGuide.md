@@ -274,7 +274,7 @@ A Reminder has:
 * Zero or one frequency, represented by the `ReminderFrequency` class and making use of enumerations from the `Frequency` class.
 * Zero or one occurrence, represented by the `ReminderOccurrence` class.
 * Exactly one CCA that it is linked to, represented as a `CcaName` data field as a String.
-* An `ArrayList` of `Date`s which represents all upcoming dates of the reminder.
+* An ArrayList of `Date`s which represents all upcoming dates of the reminder.
 
 Two Reminders are considered identical if they have the same name and same start date.
 A stronger version of equality is also defined: under this version, two Reminders are considered equal if they have the same name, same CCA, same start date, same frequency, and same occurrence.
@@ -423,7 +423,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, **system** refers to `ePoch`, unless specified otherwise)
+(For all use cases below, **system** refers to ePoch, unless specified otherwise)
 
 **Use case: UC1 - List all persons, CCAs, and reminders**
 
@@ -510,7 +510,7 @@ Use case ends.
 **MSS**
 
 1. User requests to list persons and CCAs.
-1. The system shows a list of persons and CCAs.
+1. The system shows a list of persons and CCAs (UC1).
 1. User requests to enrol a person into a CCA by specifying the IDs of the desired person and CCA.
 1. The system adds the person to the CCA.
 Use case ends.
@@ -536,7 +536,7 @@ Use case ends.
 
 ### Non-Functional Requirements
 
-1.  The system should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+1.  The system should work on any _mainstream OS_ as long as it has Java 11 or above installed.
 1.  The system should be able to hold up to 1000 objects (persons, CCAs, reminders) without a noticeable sluggishness in performance for typical usage.
 1.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 1.  The JAR file should not exceed 100MB in size.
@@ -581,8 +581,8 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: None.
 
-   2. Test case: `addp n/Ellen Chua a/Tembusu e/ellenchua@u.nus.edu.sg p/98225832` <br>
-      Expected: a person named `Ellen Chua`, with address `Tembusu`, email `ellenchua@u.nus.edu.sg`, and phone number `98225832` is added.
+   2. Test case: `addp n/Ellen Chua a/Tembusu e/ellenchua@u.nus.edu p/98225832` <br>
+      Expected: a person named `Ellen Chua`, with address `Tembusu`, email `ellenchua@u.nus.edu`, and phone number `98225832` is added.
 
    3. Test case: `addp` <br>
       Expected: Error thrown, indicating invalid command format.

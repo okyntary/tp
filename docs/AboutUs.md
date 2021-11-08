@@ -12,7 +12,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/jivesh.png" width="200px">
 
 [[github](https://github.com/jivesh)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/jivesh.md)]
 
 * Role: Developer
 * Responsibilities: Integration, Git expert
