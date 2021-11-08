@@ -506,7 +506,7 @@ Use case ends.
 **MSS**
 
 1. User requests to list persons and CCAs.
-1. The system shows a list of persons and CCAs.
+1. The system shows a list of persons and CCAs (UC1).
 1. User requests to enrol a person into a CCA by specifying the IDs of the desired person and CCA.
 1. The system adds the person to the CCA.
 Use case ends.
@@ -532,7 +532,7 @@ Use case ends.
 
 ### Non-Functional Requirements
 
-1.  The system should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+1.  The system should work on any _mainstream OS_ as long as it has Java 11 or above installed.
 1.  The system should be able to hold up to 1000 objects (persons, CCAs, reminders) without a noticeable sluggishness in performance for typical usage.
 1.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 1.  The JAR file should not exceed 100MB in size.
@@ -577,8 +577,8 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: None.
 
-   2. Test case: `addp n/Ellen Chua a/Tembusu e/ellenchua@u.nus.edu.sg p/98225832` <br>
-      Expected: a person named `Ellen Chua`, with address `Tembusu`, email `ellenchua@u.nus.edu.sg`, and phone number `98225832` is added.
+   2. Test case: `addp n/Ellen Chua a/Tembusu e/ellenchua@u.nus.edu p/98225832` <br>
+      Expected: a person named `Ellen Chua`, with address `Tembusu`, email `ellenchua@u.nus.edu`, and phone number `98225832` is added.
 
    3. Test case: `addp` <br>
       Expected: Error thrown, indicating invalid command format.
