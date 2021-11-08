@@ -86,6 +86,14 @@ Note: ePoch has a capacity of 1,000,000,000 persons, CCAs and reminders each.
 
 _All commands, with the exception of find-related commands, will refresh the UI to show all data in ePoch, in order to avoid confusing the user._
 
+### Viewing help : `help`
+
+Shows a message explaining how to access the help page.
+
+![help message](images/helpMessage.png)
+
+Format: `help`
+
 ### Listing all persons : `list`
 
 Shows a list of all persons, CCAs, reminders in ePoch.
@@ -129,7 +137,7 @@ Format: `deletep PERSON_INDEX`
 
 * Deletes the person with the specified index `INDEX`.
 * The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
 * `deletep 2` deletes the person in the address book that has an index of 2.
@@ -243,14 +251,6 @@ Exits the program.
 
 Format: `exit`
 
-### Viewing help : `help`
-
-Shows a message explaining how to access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
-
 ### Saving the data
 
 ePoch data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
@@ -279,22 +279,22 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 
 Action | Format
 -------|------------------
+**View help page** | `help`
 **List all data** | `list`
-**Delete all data** | `clear`
 **Add person** | `addp n/PERSON_NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS`
 **Edit person data** | `editp PERSON_INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]`
 **Delete person** | `deletep PERSON_INDEX`
 **Find person** | `findp FIRST_WORD [SECOND_WORD] ....`
 **Add CCA** | `addc n/CCA_NAME [t/TAG]...`
-**Edit CCA** | `editc CCA_ID [n/CCA_NAME] [t/TAG]...`
+**Edit CCA data** | `editc CCA_ID [n/CCA_NAME] [t/TAG]...`
 **Delete CCA** | `deletec CCA_ID`
+**Enrols a person into CCA** | `enrol cid/CCA_ID pid/PERSON_ID`
+**Removes a person from a CCA** | `expel cid/CCA_ID pid/PERSON_ID`
 **Find CCA** | `findc FIRST_WORD [SECOND_WORD] ....`
 **Add reminder** | `addr cid/CCA_ID n/REMINDER_NAME sd/START_DATE [f/FREQUENCY] [o/OCCURRENCES]`
-**Edit reminder** | `editr INDEX [n/REMINDER_NAME] [sd/START_DATE] [f/FREQUENCY] [o/OCCURRENCES]`
+**Edit reminder data** | `editr INDEX [n/REMINDER_NAME] [sd/START_DATE] [f/FREQUENCY] [o/OCCURRENCES]`
 **Delete reminder** | `deleter REMINDER_ID`
 **Find reminder** | `findr FIRST_WORD [SECOND_WORD] ....`
 **Snooze reminder** | `snoozer REMINDER_ID`
-**Enrols a person into CCA** | `enrol cid/CCA_ID pid/PERSON_ID`
-**Removes a person from a CCA** | `expel cid/CCA_ID pid/PERSON_ID`
-**View help page** | `help`
+**Delete all data** | `clear`
 **Exit the app** | `exit`
