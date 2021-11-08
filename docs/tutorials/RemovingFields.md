@@ -18,6 +18,10 @@ This tutorial aims to give you some practice on such a code 'removal' activity b
 However, if you have no such prior knowledge, removing a field can take a quite a bit of detective work. This tutorial takes you through that process. **At least have a read even if you don't actually do the steps yourself.**
 </div>
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Product screenshots in this section will not match the exact UI of ePoch. 
+The screenshots depict a simplified version (from AB3) with only Persons, to highlight only relevant changes.  
+</div>
+
 
 * Table of Contents
 {:toc}

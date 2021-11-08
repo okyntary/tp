@@ -85,7 +85,7 @@ Now let’s set the breakpoint. First, double-click the item to reach the corres
 
 ## Tracing the execution path
 
-Recall from the User Guide that the `edit` command has the format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` For this tutorial we will be issuing the command `edit 1 n/Alice Yeoh`.
+Recall from the User Guide that the `editp` command has the format: `editp INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` For this tutorial we will be issuing the command `editp 1 n/Alice Yeoh`.
 
 <div markdown="span" class="alert alert-primary">
 
@@ -94,7 +94,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
 
 1. To start the debugging session, simply `Run` \> `Debug Main`
 
-1. When the GUI appears, enter `edit 1 n/Alice Yeoh` into the command box and press `Enter`.
+1. When the GUI appears, enter `editp 1 n/Alice Yeoh` into the command box and press `Enter`.
 
 1. The Debugger tool window should show up and show something like this:<br>
    ![DebuggerStep1](../images/tracing/DebuggerStep1.png)
@@ -155,16 +155,16 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
 
 1. We see that the value of `commandWord` is now `edit` but `arguments` is still not processed in any meaningful way.
 
-1. Stepping through the `switch` block, we end up at a call to `EditCommandParser().parse()` as expected (because the command we typed is an edit command).
+1. Stepping through the `switch` block, we end up at a call to `PersonEditCommandParser().parse()` as expected (because the command we typed is an edit command).
 
     ``` java
     ...
-    case EditCommand.COMMAND_WORD:
-        return new EditCommandParser().parse(arguments);
+    case PersonEditCommand.COMMAND_WORD:
+        return new PersonEditCommandParser().parse(arguments);
     ...
     ```
 
-1. Let’s see what `EditCommandParser#parse()` does by stepping into it. You might have to click the 'step into' button multiple times here because there are two method calls in that statement: `EditCommandParser()` and `parse()`.
+1. Let’s see what `PersonEditCommandParser#parse()` does by stepping into it. You might have to click the 'step into' button multiple times here because there are two method calls in that statement: `PersonEditCommandParser()` and `parse()`.
 
    <div markdown="span" class="alert alert-primary">:bulb: **Intellij Tip:** Sometimes, you might end up stepping into functions that are not of interest. Simply use the `step out` button to get out of them!
    </div>
@@ -182,9 +182,9 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
     The sequence diagram below shows the details of the execution path through the Logic component. Does the execution path you traced in the code so far match the diagram?<br>
     ![Tracing an `edit` command through the Logic component](../images/tracing/LogicSequenceDiagram.png)
 
-1. Now, step over until you read the statement that calls the `execute()` method of the `EditCommand` object received, and step into that `execute()` method (partial code given below):
+1. Now, step over until you read the statement that calls the `execute()` method of the `PersonEditCommand` object received, and step into that `execute()` method (partial code given below):
 
-   **`EditCommand#execute()`:**
+   **`PersonEditCommand#execute()`:**
    ``` java
    @Override
    public CommandResult execute(Model model) throws CommandException {
@@ -208,7 +208,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
      <img src="../images/ModelClassDiagram.png" width="450" /><br>
    * :bulb: This may be a good time to read through the [`Model` component section of the DG](../DeveloperGuide.html#model-component)
 
-1. As you step through the rest of the statements in the `EditCommand#execute()` method, you'll see that it creates a `CommandResult` object (containing information about the result of the execution) and returns it.<br>
+1. As you step through the rest of the statements in the `PersonEditCommand#execute()` method, you'll see that it creates a `CommandResult` object (containing information about the result of the execution) and returns it.<br>
    Advancing the debugger by one more step should take you back to the middle of the `LogicManager#execute()` method.<br>
 
 1. Given that you have already seen quite a few classes in the `Logic` component in action, see if you can identify in this partial class diagram some of the classes you've encountered so far, and see how they fit into the class structure of the `Logic` component:
@@ -273,24 +273,24 @@ Here are some quick questions you can try to answer based on your execution path
     instead? What exceptions do you think will be thrown (if any), where
     will the exceptions be thrown and where will they be handled?
 
-    1.  `redit 1 n/Alice Yu`
+    1.  `reditp 1 n/Alice Yu`
 
-    2.  `edit 0 n/Alice Yu`
+    2.  `editp 0 n/Alice Yu`
 
-    3.  `edit 1 n/Alex Yeoh`
+    3.  `editp 1 n/Alex Yeoh`
 
-    4.  `edit 1`
+    4.  `editp 1`
 
-    5.  `edit 1 n/アリス ユー`
+    5.  `editp 1 n/アリス ユー`
 
-    6.  `edit 1 t/one t/two t/three t/one`
+    6.  `editp 1 t/one t/two t/three t/one`
 
 2.  What components will you have to modify to perform the following
     enhancements to the application?
 
     1.  Make command words case-insensitive
 
-    2.  Allow `delete` to remove more than one index at a time
+    2.  Allow `deletep` to remove more than one index at a time
 
     3.  Save the address book in the CSV format instead
 
