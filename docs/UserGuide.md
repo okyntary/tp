@@ -28,7 +28,7 @@ It is intended to be used by NUS students, to help keep track of the students an
 
    * **`list`** : Lists all persons, CCAs and reminders currently stored in ePoch.
 
-   * **`addp n/Tan Wei Yang a/CAPT e/tanweiyang@u.nus.edu.sg p/94492210`** Adds a person named `Tan Wei Yang`, with address `CAPT`, email `tanweiyang@u.nus.edu`, and phone number `94492210` to ePoch.
+   * **`addp n/Tan Wei Yang a/CAPT e/tanweiyang@u.nus.edu p/94492210`** Adds a person named `Tan Wei Yang`, with address `CAPT`, email `tanweiyang@u.nus.edu`, and phone number `94492210` to ePoch.
 
    * **`deletep`**` 3` : Deletes the person with id 3, ie. shown as third in the list of persons.
 
@@ -54,7 +54,6 @@ Frequency | A positive integer followed by a time period; the time period is eit
 Occurrences | Positive integer from 1 to 50 (inclusive) | `o/` | `o/10`
 Person ID | Integer | `pid/` | `pid/1`
 CCA ID | Integer | `cid/` | `cid/1`
-Reminder ID | Integer | `rid/` | `rid/1`
 Tag | String (alphanumeric characters with no spaces) | `t/` | `t/friend`
 
 --------------------------------------------------------------------------------------------------------------------
@@ -175,6 +174,7 @@ If frequency and occurrences is specified, the reminder will repeat at the speci
 
 Format: `addr cid/CCA_ID n/REMINDER_NAME sd/START_DATE [f/FREQUENCY] [o/OCCURRENCES]`
 
+* A reminder due on the current date will be highlighted in red.
 * The maximum possible number of occurrences is 50.
 * The maximum possible period of the frequency (integer part of the frequency) is 100.
 * The year of the start date of a reminder must be before 3000.
@@ -215,9 +215,10 @@ Snoozing a reminder means that the reminder will be shifted to the date of its n
 
 Format: `snoozer REMINDER_ID`
 
-* If the reminder is on its last occurrence (occurrences = 1), snoozing the reminder will result in it being removed entirely (as it will have no more occurrences left after being snoozed).
+* A reminder with only one occurrence left cannot be snoozed in order to prevent accidental deletion of reminders. The user can choose to delete the reminder instead. 
 * If the reminder is not on its last occurrence (occurrences > 1), snoozing the reminder will shift it to the date of its next occurrence.
 * The date of next occurrence is calculated from the current date which the reminder occurs and its frequency.
+* If the next occurrence of the reminder is the current date, the reminder will be highlighted in red.
 
 ### Enrolling a person from a CCA: `enrol`
 
