@@ -465,32 +465,36 @@ Extension:
 
 **MSS**
 
-1. User requests to add a CCA to ePoch by specifying the CCA name.
+1. User requests to add a CCA to ePoch by specifying the CCA name, optionally specifying additional CCA tags.
 1. The system adds the CCA to ePoch. <br>
 Use case ends.
 
 Extension:
 - 1a. The CCA name is not specified correctly, or is missing.
-  - The system throws an error. Use case resumes from step 1.
+  - 1a1. The system throws an error. Use case resumes from step 1.
 
 **Use case: UC4 - Add a reminder**
 
 **MSS**
 
-1. User requests to add a reminder to ePoch by specifying its name, the id of the CCA to which it is linked, and its start date, optionally specifying its frequency.
+1. User requests to add a reminder to ePoch by specifying the id of the CCA to which it is linked, its name, and its start date, optionally specifying its frequency and occurrences.
 1. The system adds the reminder to ePoch. <br>
    Use case ends.
 
 Extension:
-- 1a. At least one attribute from name, cid and start date is missing or specified improperly.
-    - The system throws an error. Use case resumes from step 1.
+- 1a. At least one attribute from CCA id, name, and start date is missing or specified improperly.
+    - 1a1. The system throws an error. Use case resumes from step 1.
+- 1b. Frequency is specified but occurrence is not specified.
+    - 1b1. The system throws an error. Use case resumes from step 1.
+- 1c. Occurrence is specified but frequency is not specified.
+    - 1c1. The system throws an error. Use case resumes from step 1.
 
 **Use case: UC5 - Find a person**
 
 **MSS**
 
 1. User requests to find a person based on the specified attributes.
-1. The system displays all persons that fit the user's specifications. <br>
+1. The system displays all persons that fit the user's specifications, as well as related CCAs and reminders. <br>
    Use case ends.
 
 Extensions:
@@ -506,7 +510,7 @@ Extensions:
 1. User requests to list persons.
 1. The system shows a list of persons (UC1).
 1. User requests to delete a person by specifying that person's ID.
-1. The system deletes the person.
+1. The system deletes the person. <br>
 Use case ends.
 
 **Extensions**
@@ -535,7 +539,7 @@ Use case ends.
 - 3a. The specified person does not exist (person ID invalid).
     * 3a1. The system throws an error message. Use case resumes from step 2.
 - 3b. The specified CCA does not exist (CCA ID invalid).
-    * 3b1. The system throws an error message. Use case resumes at step 2.
+    * 3b1. The system throws an error message. Use case resumes from step 2.
 
 **Use case: UC8 - Clear all data**
 
