@@ -17,7 +17,7 @@ It is intended to be used by NUS students, to help keep track of the students an
 
 1. Ensure you have Java 11 or above installed in your Computer.
 
-1. Download the JAR file, which can be found [here](https://github.com/AY2122S1-CS2103-T14-2/tp/releases/tag/v1.3.1).
+1. Download the JAR file, which can be found [here](https://github.com/AY2122S1-CS2103-T14-2/tp/releases/tag/v1.4).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your ePoch app.
 
