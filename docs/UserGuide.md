@@ -112,7 +112,7 @@ Edits an existing person in ePoch.
 
 Format: `editp PERSON_INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]...​`
 
-* Edits the person at the specified by displayed index. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the person at the specified displayed index. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values, while unchanged fields will remain the same.
 * If any new tag is added, all existing tags will be replaced with new tags.
@@ -127,62 +127,96 @@ Deletes the specified person from ePoch.
 
 Format: `deletep PERSON_INDEX`
 
-* Deletes the person with the specified index `INDEX`.
+* Deletes the person with the specified displayed index.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `deletep 2` deletes the person in the address book that has an index of 2.
+* `deletep 2` deletes the person in ePoch that has an index of 2.
 
 ### Finding a person: `findp`
 
-Finds all the people in ePoch whose name matches any of the search keywords, along with all CCAs they are enrolled in, 
-as well as all reminders associated with these CCAs.
+Finds all the people in ePoch whose name matches any of the search keywords, along with all CCAs they are enrolled in, as well as all reminders associated with these CCAs.
 
 Format: `findp FIRST_WORD [SECOND_WORD] ....`
 
-* Finds the people whose name matches any of the given space-separated keywords.
+* Finds the people whose name matches any of the given space-separated keywords (and related CCAs and reminders).
 * At least one keyword must be provided.
 
 ### Adding a CCA: `addc`
 
-Adds a CCA.
+Adds a CCA to ePoch.
 
 Format: `addc n/CCA_NAME [t/TAG]...`
 
+Examples:
+* `addc n/NUSSO`
+* `addc n/USKick t/USP t/Sports`
+
 ### Editing a CCA: `editc`
 
-Edits the details of a CCA.
+Edits the details of a CCA in ePoch.
 
-Format: `editc CCA_ID [n/CCA_NAME] [t/TAG]...`
+Format: `editc CCA_INDEX [n/CCA_NAME] [t/TAG]...`
+
+* Edits the CCA at the specified displayed index. The index refers to the index number shown in the displayed CCA list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values, while unchanged fields will remain the same.
+* If any new tag is added, all existing tags will be replaced with new tags.
+
+Examples:
+* `editc 1 n/not nusso` Edits the name of the 1st CCA to be `not nusso`.
+* `editc 2 t/` Clears all existing tags of the 2nd CCA.
 
 ### Deleting a CCA: `deletec`
 
-Deletes a CCA.
+Deletes the specified CCA from ePoch.
 
-Format: `deletec CCA_ID`
+Format: `deletec CCA_INDEX`
+
+* Deletes the CCA with the specified displayed index. The index refers to the index number shown in the displayed CCA list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `deletec 2` deletes the CCA in ePoch that has an index of 2.
 
 ### Finding a CCA: `findc`
 
-Finds all CCAs with names that match any of the search keywords, as well as people enrolled in these CCAs and reminders associated with these CCAs.
+Finds all the CCAs in ePoch with names that match any of the search keywords, as well as people enrolled in these CCAs and reminders associated with these CCAs.
 
 Format: `findc FIRST_WORD [SECOND_WORD] ....`
 
+* Finds the CCAs whose name matches any of the given space-separated keywords (and related people and reminders).
+* At least one keyword must be provided.
+
 ### Enrolling a person from a CCA: `enrol`
 
-Enrols a person into a CCA.
+Enrols a person into a CCA in ePoch.
 
-Format: `enrol cid/CCA_ID pid/PERSON_ID`
+Format: `enrol cid/CCA_INDEX pid/PERSON_INDEX`
+
+* Enrols the person at the specified person displayed index into the CCA at the specified CCA displayed index. The index refers to the index number shown in the displayed person list and displayed CCA list respectively.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `enrol cid/1 pid/2` Enrols the 2nd person shown into the 1st CCA shown.
 
 ### Expelling a person from a CCA: `expel`
 
 Expels a person from a CCA.
 
-Format: `expel cid/CCA_ID pid/PERSON_ID`
+Format: `expel cid/CCA_INDEX pid/PERSON_INDEX`
+
+* Expels the person at the specified person displayed index from the CCA at the specified CCA displayed index. The index refers to the index number shown in the displayed person list and displayed CCA list respectively.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `expel cid/1 pid/2` Expels the 2nd person shown from the 1st CCA shown.
 
 ### Adding a reminder to a CCA: `addr`
 
-Adds a reminder to a CCA.
+Adds a reminder to a CCA in ePoch.
 If frequency and occurrences are specified, the reminder will repeat at the specified frequency; else, the reminder will be treated as a once-off event.
 
 Format: `addr cid/CCA_ID n/REMINDER_NAME sd/START_DATE [f/FREQUENCY] [o/OCCURRENCES]`
@@ -200,25 +234,45 @@ Letter | Meaning
 **m** | month
 **y** | year
 
+Examples:
+* `addr cid/1 n/Rehearsal sd/2021-02-02` Adds a new reminder with name `Rehearsal` and start date 2nd February 2021 to the 1st CCA shown. The reminder is a once-off event.
+* `addr cid/2 n/Class sd/2021-11-08 f/1w o/25` Adds a new reminder with name `Class` and start date 8th November 2021 to the 2nd CCA shown. The reminder repeats every week for 25 occurences.
+
 ### Editing a reminder: `editr`
 
-Edits a reminder.
+Edits a the details of a reminder in ePoch.
 
 Format: `editr INDEX [n/REMINDER_NAME] [sd/START_DATE] [f/FREQUENCY] [o/OCCURRENCES]`
 
+* Edits the reminder at the specified displayed index. The index refers to the index number shown in the displayed reminder list.
+* The index **must be a positive integer** 1, 2, 3, …​
 * If none of the optional fields are specified (e.g. editr 1), then the reminder will not be edited (since no edits have been specified).
+* Existing values will be updated to the input values, while unchanged fields will remain the same.
+
+Examples:
+* `editr 1` No edits are made to the 1st reminder shown.
+* `editr 2 sd/2021-12-25 f/1y o/2` Edits the 2nd reminder to have start date 25th December 2021 with frequency of 1 year and 2 occurrences.
 
 ### Deleting a reminder: `deleter`
 
-Deletes a reminder.
+Deletes the specified reminder from ePoch.
 
 Format: `deleter REMINDER_ID`
 
+* Deletes the reminder with the specified displayed index. The index refers to the index number shown in the displayed reminder list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `deleter 2` deletes the reminder in ePoch that has an index of 2.
+
 ### Finding the title of a reminder: `findr`
 
-Finds all reminders that match any of the given keywords, as well as CCAs associated with these reminders.
+Finds all reminders in ePoch with names that match any of the search keywords, as well as CCAs associated with these reminders.
 
 Format: `findr FIRST_WORD [SECOND_WORD] ....`
+
+* Finds the reminders whose name matches any of the given space-separated keywords (and related CCAs).
+* At least one keyword must be provided.
 
 ### Snoozing a reminder: `snoozer`
 
@@ -281,20 +335,20 @@ Action | Format
 -------|------------------
 **List all data** | `list`
 **Delete all data** | `clear`
-**Add person** | `addp n/PERSON_NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS`
-**Edit person data** | `editp PERSON_INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]`
+**Add person** | `addp n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...`
+**Edit person data** | `editp PERSON_INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]...`
 **Delete person** | `deletep PERSON_INDEX`
-**Find person** | `findp FIRST_WORD [SECOND_WORD] ....`
+**Find person** | `findp FIRST_WORD [SECOND_WORD]...`
 **Add CCA** | `addc n/CCA_NAME [t/TAG]...`
-**Edit CCA** | `editc CCA_ID [n/CCA_NAME] [t/TAG]...`
-**Delete CCA** | `deletec CCA_ID`
+**Edit CCA** | `editc CCA_INDEX [n/CCA_NAME] [t/TAG]...`
+**Delete CCA** | `deletec CCA_INDEX`
 **Find CCA** | `findc FIRST_WORD [SECOND_WORD] ....`
-**Add reminder** | `addr cid/CCA_ID n/REMINDER_NAME sd/START_DATE [f/FREQUENCY] [o/OCCURRENCES]`
-**Edit reminder** | `editr INDEX [n/REMINDER_NAME] [sd/START_DATE] [f/FREQUENCY] [o/OCCURRENCES]`
-**Delete reminder** | `deleter REMINDER_ID`
-**Find reminder** | `findr FIRST_WORD [SECOND_WORD] ....`
-**Snooze reminder** | `snoozer REMINDER_ID`
-**Enrols a person into CCA** | `enrol cid/CCA_ID pid/PERSON_ID`
-**Removes a person from a CCA** | `expel cid/CCA_ID pid/PERSON_ID`
+**Add reminder** | `addr cid/CCA_INDEX n/REMINDER_NAME sd/START_DATE [f/FREQUENCY] [o/OCCURRENCES]`
+**Edit reminder** | `editr REMINDER_INDEX [n/REMINDER_NAME] [sd/START_DATE] [f/FREQUENCY] [o/OCCURRENCES]`
+**Delete reminder** | `deleter REMINDER_INDEX`
+**Find reminder** | `findr FIRST_WORD [SECOND_WORD]...`
+**Snooze reminder** | `snoozer REMINDER_INDEX`
+**Enrols a person into CCA** | `enrol cid/CCA_INDEX pid/PERSON_INDEX`
+**Removes a person from a CCA** | `expel cid/CCA_INDEX pid/PERSON_INDEX`
 **View help page** | `help`
 **Exit the app** | `exit`
