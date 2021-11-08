@@ -268,10 +268,10 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ePoch home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the `addressbook.json` file that contains the data from your previous ePoch home folder.
 
-**Q**: Can I create a reminder without linking it to a CCA?
-**A**: No. We do not support that functionality: all reminders must be linked to a CCA in some way
+**Q**: Can I create a reminder without linking it to a CCA?<br>
+**A**: No. We do not support that functionality: all reminders must be linked to a CCA in some way.
 
 --------------------------------------------------------------------------------------------------------------------
 
