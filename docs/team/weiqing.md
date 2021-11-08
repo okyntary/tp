@@ -30,9 +30,11 @@ Given below are my contributions to the project.
   * Update UI image (Pull request [\#56](https://github.com/AY2122S1-CS2103-T14-2/tp/pull/56))
   * Documentation for reminders (Pull request [\#129](https://github.com/AY2122S1-CS2103-T14-2/tp/pull/129))
   * Standardising command formats between UG and ePoch (Pull request [\#228](https://github.com/AY2122S1-CS2103-T14-2/tp/pull/228))
+  * Add explanations and examples for CCA and reminder commands (Pull request [\#283](https://github.com/AY2122S1-CS2103-T14-2/tp/pull/283))
 * **Contributions to DG**:
   * NFRs and glossary (Pull request [\#39](https://github.com/AY2122S1-CS2103-T14-2/tp/pull/39))
   * Implementation details of reminder features (Pull requests [\#97](https://github.com/AY2122S1-CS2103-T14-2/tp/pull/97), [\#129](https://github.com/AY2122S1-CS2103-T14-2/tp/pull/129))
+  * Implementation details of person features (Pull request [\#280](https://github.com/AY2122S1-CS2103-T14-2/tp/pull/280))
 * **Contributions to team-based tasks**:
   * Reviewing and merging PRS
   * Solving merge conflicts
