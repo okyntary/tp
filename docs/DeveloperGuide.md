@@ -292,7 +292,6 @@ A Tag has:
 * A tag name, represented by a `String`
 
 Two Tags are considered identical if they have the same name.
-A Tag also corresponds to a certain `TagColour`, the mappings of which are stored in the static `tagColours` Hashtable within the Tag class.
 
 ### Storage
 
