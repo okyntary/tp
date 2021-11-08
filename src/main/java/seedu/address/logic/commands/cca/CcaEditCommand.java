@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import javafx.collections.ObservableList;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
@@ -81,12 +80,6 @@ public class CcaEditCommand extends Command {
 
         model.setCca(ccaToEdit, editedCca);
         editedCca.updateCcaNameForReminders();
-        ObservableList<Reminder> reminderList = model.getAddressBook().getReminderList();
-        for (int i = 0; i < reminderList.size(); i++) {
-            Reminder reminder = reminderList.get(i);
-            reminder.setCcaName(editedCca.getName().fullName);
-            model.setReminder(reminder, reminder);
-        }
 
         model.updateFilteredCcaList(PREDICATE_SHOW_ALL_CCAS);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
