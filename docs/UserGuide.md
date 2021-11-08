@@ -6,9 +6,8 @@ title: User Guide
 {:toc}
 ---
 
-ePoch is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type quickly, ePoch can get your contact management tasks done faster than traditional GUI apps.
 
-It has been designed for the busy NUS student. It allows the user to create contacts for persons and to create CCAs, link those persons and CCAs together, and to create periodic reminders for those CCAs.
+ePoch is a desktop app for managing contacts, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). It has been designed for the busy NUS student, allowing the user to create contacts for persons and to create CCAs, link those persons and CCAs together, and to create periodic reminders for those CCAs.
 
 It is intended to be used by NUS students, to help keep track of the students and organizations that they encounter.
 
