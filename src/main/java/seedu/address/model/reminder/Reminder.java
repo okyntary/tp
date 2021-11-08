@@ -65,7 +65,6 @@ public class Reminder implements Comparable<Reminder> {
         Frequency frequency = reminderFrequency.getTimePeriod();
         int numFrequency = reminderFrequency.getNumTimePeriod();
         while (occurrences > 0) {
-            // TODO: handle the feb stuff
             Date prevDate = dates.get(dates.size() - 1);
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(prevDate);
@@ -83,7 +82,6 @@ public class Reminder implements Comparable<Reminder> {
                 calendar.add(Calendar.YEAR, numFrequency);
                 break;
             default:
-                // hmm
             }
             dates.add(calendar.getTime());
             occurrences--;
