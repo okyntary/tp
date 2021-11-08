@@ -18,7 +18,7 @@ Given below are my contributions to the project.
   - Skeleton for CCAs (PR [#53](https://github.com/AY2122S1-CS2103-T14-2/tp/pull/53))
   - Reminder start dates, Reminder Delete command, Reminder Find command (PRs [#79](https://github.com/AY2122S1-CS2103-T14-2/tp/pull/79), [#83](https://github.com/AY2122S1-CS2103-T14-2/tp/pull/83), [#117](https://github.com/AY2122S1-CS2103-T14-2/tp/pull/117))
   - Validation for reminder start dates and Index integer overflows (PRs [#214](https://github.com/AY2122S1-CS2103-T14-2/tp/pull/214), [#131](https://github.com/AY2122S1-CS2103-T14-2/tp/pull/131))
-  - Tests for CCA commands, CCA model, Reminder model and ReminderList, (PRs [#132], [#136], [#250])
+  - Tests for CCA commands, CCA model, Reminder model and ReminderList, (PRs [#132](https://github.com/AY2122S1-CS2103-T14-2/tp/pull/214), [#131](https://github.com/AY2122S1-CS2103-T14-2/tp/pull/132), [#136](https://github.com/AY2122S1-CS2103-T14-2/tp/pull/214), [#131](https://github.com/AY2122S1-CS2103-T14-2/tp/pull/136), [#250](https://github.com/AY2122S1-CS2103-T14-2/tp/pull/214), [#131](https://github.com/AY2122S1-CS2103-T14-2/tp/pull/250))
 - **Documentation:**
   - Contributions to the User Guide:
     - CCA commands (PR [#172](https://github.com/AY2122S1-CS2103-T14-2/tp/pull/172))
