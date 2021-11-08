@@ -34,3 +34,7 @@ ePoch is a desktop app for managing contacts, optimized for use via a Command Li
       * Added Sequence Diagram to illustrate `saveAddressBook()` method call [\#239](https://github.com/AY2122S1-CS2103-T14-2/tp/pull/239)
       * Added explanation for `Storage` implementation details [\#239](https://github.com/AY2122S1-CS2103-T14-2/tp/pull/239)
     * Added, proofread and edited Use Cases, Non-Functional Requirements, Glossary and Instructions for Manual Testing [\#35](https://github.com/AY2122S1-CS2103-T14-2/tp/pull/35/files), [\#120](https://github.com/AY2122S1-CS2103-T14-2/tp/pull/120)
+
+- **Contributions to team-based tasks**:
+  * Reviewing and merging PRS
+  * Solving merge conflicts
