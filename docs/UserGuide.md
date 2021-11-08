@@ -21,7 +21,7 @@ It is intended to be used by NUS students, to help keep track of the students an
 
 1. Copy the file to the folder you want to use as the _home folder_ for your ePoch app.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.
+1. Double-click the file to start the app. The GUI, similar to the one shown above, should appear in a few seconds. Note how the app contains some sample data.
 
 1. Enter commands in the command box and press Enter to execute them. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
