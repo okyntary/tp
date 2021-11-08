@@ -49,11 +49,12 @@ Name | String (alphanumeric characters or spaces) | `n/` | `n/Alice`, `n/NUSSO`
 Phone Number | String containing integers only | `p/` | `p/91234567`, `p/0123`
 Email | String | `e/` | `e/alice@mail.com`, `e/nusso123@nus`
 Address | String | `a/` | `a/22 College Avenue East`
-Person ID | Integer | `pid/` | `pid/1`
-CCA ID | Integer | `cid/` | `cid/1`
 Start date | Date in yyyy-MM-dd format | `sd/` | `sd/2021-10-5`
 Frequency | A positive integer followed by a time period; the time period is either `d` (daily), `w` (weekly), `m` (monthly) or `y` (yearly); the integer may range from 1 to 100 (inclusive) | `f/` | `f/3d`, `f/2w`, `f/6m`, `f/1y`
 Occurrences | Positive integer from 1 to 50 (inclusive) | `o/` | `o/10`
+Person ID | Integer | `pid/` | `pid/1`
+CCA ID | Integer | `cid/` | `cid/1`
+Reminder ID | Integer | `rid/` | `rid/1`
 Tag | String (alphanumeric characters with no spaces) | `t/` | `t/friend`
 
 --------------------------------------------------------------------------------------------------------------------
