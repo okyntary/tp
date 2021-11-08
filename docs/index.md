@@ -15,4 +15,4 @@ ePoch is a desktop app for managing contacts, optimized for use via a Command Li
 
 **Credit**
 
-This project is based on the AddressBook-Level3 project created by the SE-EDU initiative. For the detailed documentation of the original project, see the Address Book Product Website.
+This project is based on the _AddressBook-Level3_ project created by the [SE-EDU initiative](https://se-education.org).
