@@ -274,7 +274,7 @@ A Reminder has:
 * Zero or one frequency, represented by the `ReminderFrequency` class and making use of enumerations from the `Frequency` class.
 * Zero or one occurrence, represented by the `ReminderOccurrence` class.
 * Exactly one CCA that it is linked to, represented as a `CcaName` data field as a String.
-* An `ArrayList` of `Date`s which represents all upcoming dates of the reminder.
+* An ArrayList of `Date`s which represents all upcoming dates of the reminder.
 
 Two Reminders are considered identical if they have the same name and same start date.
 A stronger version of equality is also defined: under this version, two Reminders are considered equal if they have the same name, same CCA, same start date, same frequency, and same occurrence.
@@ -423,7 +423,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, **system** refers to `ePoch`, unless specified otherwise)
+(For all use cases below, **system** refers to ePoch, unless specified otherwise)
 
 **Use case: UC1 - List all persons, CCAs, and reminders**
 
