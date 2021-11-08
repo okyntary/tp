@@ -190,7 +190,7 @@ Polymorphism allows the different Command objects to be passed around and execut
 The `deletep` command is implemented by `PersonDeleteCommand`.
 Similar to `PersonAddCommand`, `PersonDeleteCommand` extends `Command` to practice polymorphism.
 
-The `PersonDeleteCommand` class has an Index which is the index of the Person to delete, specified by the user.
+The `PersonDeleteCommand` class has an `Index` which is the index of the Person to delete, specified by the user.
 It implements the `execute` method which handles the logic of the delete command.
 The `getFilteredPersonList` method is called to obtain a List of Persons, `lastShownList`.
 If the given index exists in `lastShownList`, the corresponding Person is deleted using the `deletePerson` method defined in the `ModelManager`.
@@ -200,7 +200,7 @@ If the given index exists in `lastShownList`, the corresponding Person is delete
 The `editp` command is implemented by `PersonEditCommand`, which extends `Command`.
 Polymorphism allows the different Command objects to be passed around and executed without having to know what type of Command it is.
 
-The `PersonEditCommand` class has an Index which is the index of the Person to edit, specified by the user.
+The `PersonEditCommand` class has an `Index` which is the index of the Person to edit, specified by the user.
 It implements the `execute` method which handles the logic of the edit command.
 The user needs to specify at least one of the fields.
 For fields that are not specified, they default to the original values of the unedited person.
@@ -245,7 +245,7 @@ If the given index exists in `lastShownList`, the corresponding CCA is deleted u
 The `editc` command is implemented by `CcaEditCommand`, which extends `Command`.
 Polymorphism allows the different Command objects to be passed around and executed without having to know what type of Command it is.
 
-The `CcaEditCommand` class has an Index which is the index of the Cca to edit, specified by the user.
+The `CcaEditCommand` class has an `Index` which is the index of the Cca to edit, specified by the user.
 It implements the `execute` method which handles the logic of the edit command.
 The user needs to specify at least one of the fields.
 For fields that are not specified, they default to the original values of the unedited CCA.
@@ -263,7 +263,7 @@ which uses streams to filter CCAs whose name matches any of the keywords.
 
 The `enrol` command is implemented by `CcaEnrolCommand` which extends `Command`.
 
-The `CcaEnrolCommand` class has two `Indexes`, the index of the CCA to be enrolled into, and the index of the Person to enrol, specified by the user.
+The `CcaEnrolCommand` class has two `Index`es, the index of the CCA to be enrolled into, and the index of the Person to enrol, specified by the user.
 It implements the `execute` method which handles the logic of the enrol command.
 The `getFilteredCcaList` and `getFilteredPersonList` method is called to obtain a List of CCAs and Persons, `lastShownCcaList` and `lastShownPersonList` respectively.
 If the gives `Indexes` exist in `lastShownCcaList` and `lastShownPersonList`, the corresponding Person is enrolled into the corresponding CCA using the `enrolPersonIntoCca` method defined in the `ModelManager`.
@@ -272,7 +272,7 @@ If the gives `Indexes` exist in `lastShownCcaList` and `lastShownPersonList`, th
 
 The `expel` command is implemented by `CcaExpelCommand` which extends `Command`.
 
-The `CcaExpelCommand` class has two `Indexes`, the index of the CCA to be expelled from, and the index of the Person to expel, specified by the user.
+The `CcaExpelCommand` class has two `Index`es, the index of the CCA to be expelled from, and the index of the Person to expel, specified by the user.
 It implements the `execute` method which handles the logic of the expel command.
 The `getFilteredCcaList` and `getFilteredPersonList` method is called to obtain a List of CCAs and Persons, `lastShownCcaList` and `lastShownPersonList` respectively.
 If the gives `Indexes` exist in `lastShownCcaList` and `lastShownPersonList`, the corresponding Person is expelled from the corresponding CCA using the `expelPersonFromCca` method defined in the `ModelManager`.
@@ -298,7 +298,7 @@ Polymorphism allows the different Command objects to be passed around and execut
 If the user does not specify a frequency and occurrence, the frequency defaults to a One-off frequency and the occurrence defaults to 1 (since we take it that the Reminder only occurs once).
 If the user specifies only one of frequency and occurrence, then an error is thrown.
 
-The `ReminderAddCommand` class has an Index which is the index of the CCA to add the Reminder to, specified by the user.
+The `ReminderAddCommand` class has an `Index` which is the index of the CCA to add the Reminder to, specified by the user.
 It implements the `execute` method which handles the logic of the add command.
 The `updateFilteredCcaList` and `updateFilteredReminderList` methods are called to update the `UI` component.
 
@@ -307,7 +307,7 @@ The `updateFilteredCcaList` and `updateFilteredReminderList` methods are called 
 The `deleter` command is implemented by `ReminderDeleteCommand`.
 Similar to `ReminderAddCommand`, `ReminderDeleteCommand` extends `Command` to practice polymorphism.
 
-The `ReminderDeleteCommand` class has an Index which is the index of the Reminder to delete, specified by the user.
+The `ReminderDeleteCommand` class has an `Index` which is the index of the Reminder to delete, specified by the user.
 It implements the `execute` method which handles the logic of the delete command.
 The `getFilteredReminderList` method is called to obtain a List of Reminders, `lastShownList`.
 If the given index exists in `lastShownList`, the corresponding Reminder is deleted using the `deleteReminder` method defined in the `ModelManager`.
@@ -319,7 +319,7 @@ Polymorphism allows the different Command objects to be passed around and execut
 
 If the user does not specify any of the fields, the fields default to the original values of the unedited reminder.
 
-The `ReminderEditCommand` class has an Index which is the index of the Reminder to be edited, specified by the user.
+The `ReminderEditCommand` class has an `Index` which is the index of the Reminder to be edited, specified by the user.
 It implements the `execute` method which handles the logic of the edit command.
 The `updateFilteredPersonList`, `updateFilteredCcaList`, and `updateFilteredReminderList` methods are called to update the `UI` component.
 
@@ -337,8 +337,8 @@ which uses streams to filter Reminders whose name matches any of the keywords.
 The `snoozer` command is implemented by `ReminderSnoozeCommand`, which extends `Command`.
 Polymorphism allows the different Command objects to be passed around and executed without having to know what type of Command it is.
 
-The `ReminderSnoozeCommand` has an Index which is the index of the Reminder to snooze, specified by the user.
-If the Index is not valid, an error message is shown.
+The `ReminderSnoozeCommand` has an `Index` which is the index of the Reminder to snooze, specified by the user.
+If the `Index` is not valid, an error message is shown.
 It implements the `execute` method which handles the logic of the snooze command.
 It edits the Reminder by getting its next date and updating the `UI` components, using the same process as the `ReminderEditCommand`.
 If the Reminder is on its last occurrence, this action performs the same action as the `ReminderDeleteCommand` (as the Reminder has no more occurrences after being snoozed).
