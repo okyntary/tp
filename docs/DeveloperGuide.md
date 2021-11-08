@@ -492,7 +492,7 @@ Use case ends.
 1.  The system should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 1.  The system should be able to hold up to 1000 objects (persons, CCAs, reminders) without a noticeable sluggishness in performance for typical usage.
 1.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-1.  The `.jar` file should not exceed 100MB in size.
+1.  The JAR file should not exceed 100MB in size.
 1.  The system should respond within 2 seconds whenever a command is entered by the user.
 
 ### Glossary
@@ -516,16 +516,16 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the ePoch `.jar` file and copy it into an empty folder where you wish to test it.
+   1. Download the ePoch JAR file and copy it into an empty folder where you wish to test it.
 
-   2. Double-click the `.jar` file to run it. <br>
+   2. Double-click the JAR file to run it. <br>
       Expected: this should show the GUI with a set of sample contacts. The window size may not be optimally set for your monitor size.
 
 1. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the `.jar` file.<br>
+   1. Re-launch the app by double-clicking the JAR file.<br>
        Expected: The most recent window size and location should be remembered.
 
 ### Adding a person
@@ -642,9 +642,9 @@ testers are expected to do more *exploratory* testing.
    1. Note: All contact data in ePoch (persons, CCAs, reminders) is stored in `data/addressbook.json`. 
 
    2. Simulate missing file
-      1. Prerequisites: Delete `addressbook.json`, if it exists, from the `/data` folder in the directory where the `.jar` file for ePoch is stored.
+      1. Prerequisites: Delete `addressbook.json`, if it exists, from the `/data` folder in the directory where the JAR file for ePoch is stored.
 
-      2. Test case: Double-click the `.jar` file to run it. <br>
+      2. Test case: Double-click the JAR file to run it. <br>
          Expected: this should show the GUI with a set of sample contacts. There should be no `addressbook.json` file in the `/data` at this exact moment.
 
       3. Test case: Run the `clear` command in ePoch. <br>
