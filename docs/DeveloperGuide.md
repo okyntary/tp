@@ -230,7 +230,8 @@ A Reminder has:
 * Zero or one occurrence, represented by the `ReminderOccurrence` class.
 * Exactly one CCA that it is linked to, represented as a `CcaName` data field as a String.
 
-Two Reminders are considered identical if they have the same name, same cca, same start date, same frequency, and same occurrence.
+Two Reminders are considered identical if they have the same name and same start date.
+A stronger version of equality is also defined: two Reminders are considered equal if they have the same name, same CCA, same start date, same frequency, and same occurrence.
 
 #### Command for Adding Reminders
 
