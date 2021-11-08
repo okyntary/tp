@@ -214,7 +214,7 @@ Edits a reminder.
 
 Format: `editr INDEX [n/REMINDER_NAME] [sd/START_DATE] [f/FREQUENCY] [o/OCCURRENCES]`
 
-* If none of the optional fields are specified (e.g. editr 1), then the reminder will not be edited (since no edits have been specified).
+* If none of the optional fields are specified (e.g. `editr` 1), then the reminder will not be edited (since no edits have been specified).
 
 ### Deleting a reminder: `deleter`
 
