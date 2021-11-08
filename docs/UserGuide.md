@@ -80,12 +80,11 @@ Tag | String (alphanumeric characters with no spaces) | `t/` | `t/friend`
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-* Besides find-related commands, executing a command will refresh the UI to show all entries. This is to avoid confusing the user.
-
 </div>
 
 Note: ePoch has a capacity of 1,000,000,000 persons, CCAs and reminders each.
 
+_All commands, with the exception of find-related commands, will refresh the UI to show all data in ePoch, in order to avoid confusing the user._
 
 ### Listing all persons : `list`
 
