@@ -482,7 +482,7 @@ Extension:
 1. The system displays all persons that fit the user's specifications, as well as related CCAs and reminders. <br>
    Use case ends.
 
-Extensions:
+**Extensions**
 
 - 1a. No attributes are specified, or attributes are specified improperly.
   - 1a1. The system throws an error. Use case resumes from step 1.
@@ -515,12 +515,12 @@ Use case ends.
 1. The system adds the person to the CCA.
 Use case ends.
 
-***Extensions**
+**Extensions**
 
 - 2a. The list of persons is empty. <br>
-  Use case ends.
+    * 2a1. The system throws an error message. Use case ends.
 - 2b. The list of CCAs is empty. <br>
-  Use case ends.
+    * 2b1. The system throws an error message. Use case ends.
 - 3a. The specified person does not exist (person ID invalid).
     * 3a1. The system throws an error message. Use case resumes from step 2.
 - 3b. The specified CCA does not exist (CCA ID invalid).
