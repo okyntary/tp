@@ -2,6 +2,9 @@
 layout: page
 title: User Guide
 ---
+* Table of Contents
+{:toc}
+---
 
 ePoch is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type quickly, ePoch can get your contact management tasks done faster than traditional GUI apps.
 
